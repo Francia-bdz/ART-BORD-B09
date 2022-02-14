@@ -36,7 +36,7 @@ class LANGUE{
 	function get_AllLanguesByPays(){
 		global $db;
 
-		$query = 'SELECT * FROM LANGUE ET INNER JOIN PAYS CL ON ET.numClas = CL.numClas;';
+		$query = 'SELECT * FROM LANGUE LA INNER JOIN PAYS PA ON LA.numPays = PA.numPays;';
 		$result = $db->query($query);
 		$allLanguesByPays = $result->fetchAll();
 		return($allLanguesByPays);
@@ -44,10 +44,9 @@ class LANGUE{
 
 	function get_AllLanguesByLib1Lang(){
 		global $db;
-
-		// select
-		// prepare
-		// execute
+		$query = 'SELECT * FROM LANGUE ORDER BY lib1Lang;';
+		$result = $db->query($query);
+		$allLanguesByLib1Lang = $result->fetchAll();
 		return($allLanguesByLib1Lang);
 	}
 
@@ -136,7 +135,6 @@ class LANGUE{
 
 		try {
 			$db->beginTransaction();
-
 			$query='DELETE FROM LANGUE WHERE numLang=?';
 			$request = $db->prepare($query);
 			$request->execute([$numLang]);

@@ -43,9 +43,9 @@ class THEMATIQUE{
 	function get_NbAllThematiquesBynumLang($numLang){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query = 'SELECT * FROM ETUDIANT ET INNER JOIN CLASSE CL ON ET.numClas = CL.numClas WHERE numEtu = ?;';
+		$result = $db->prepare($query);
+		$allNbThematiquesBynumLang = $result->fetchAll();
 		return($allNbThematiquesBynumLang);
 	}
 
