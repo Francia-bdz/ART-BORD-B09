@@ -1,6 +1,6 @@
 <?php
 // CRUD STATUT
-// ETUD
+
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class STATUT{
