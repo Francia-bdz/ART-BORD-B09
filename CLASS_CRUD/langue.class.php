@@ -155,6 +155,7 @@ class LANGUE{
 	}
 }	// End of class
 
+class PAYS{
 	function get_AllPays(){
 		global $db;
 
@@ -163,3 +164,4 @@ class LANGUE{
 		$allPays = $result->fetchAll();
 		return($allPays);
 	}
+}

@@ -18,6 +18,8 @@ require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
 // Instanciation de la classe langue
 $maLangue = new LANGUE();
 
+$monPays = new PAYS();
+
 // Gestion des erreurs de saisie
 $erreur = false;
 
@@ -102,18 +104,9 @@ include __DIR__ . '/initLangue.php';
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox Pays -->
-        <br>
+
         <div class="control-group">
-            <div class="controls">
-            <label class="control-label" for="LibTypPays">
-                <b>Quel pays :&nbsp;&nbsp;&nbsp;</b>
-            </label>
-
-
-                <input type="text" name="idPays" id="idPays" size="5" maxlength="5" value="<?= "" ?>" autocomplete="on" />
-
-                <br>
-                <!-- Listbox pays => 2ème temps -->
+            <div class="controls">      
 
                 <label for="LibTypPays" title="Sélectionnez le pays !">
             <b>Quel pays :&nbsp;&nbsp;&nbsp;</b>
@@ -125,7 +118,8 @@ include __DIR__ . '/initLangue.php';
                 $listNumPays= "";
                 $listfrPays = "";
 
-                $result = $maLangue->get_AllPays();
+                $result=$monPays->get_AllPays();
+
                 if($result){
                     foreach($result as $row) {
                         $listNumPays = $row["numPays"];
@@ -133,7 +127,7 @@ include __DIR__ . '/initLangue.php';
 ?>
                         <option value="<?= $listNumPays; ?>">
                             <?= $listfrPays; ?>
-                        </option>
+                    </option>
 <?php
                     } // End of foreach
                 }   // if ($result)
