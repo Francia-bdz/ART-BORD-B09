@@ -119,9 +119,7 @@ class LANGUE{
 
 			$query='UPDATE LANGUE SET lib1Lang=?, lib2Lang=?, numPays=? WHERE numLang=?';
 			$request = $db->prepare($query);
-			$request->execute([$numLang,$lib1Lang,$lib2Lang, $numPays]);
-	
-
+			$request->execute([$lib1Lang,$lib2Lang,$numPays,$numLang]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -139,9 +137,10 @@ class LANGUE{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query='DELETE FROM LANGUE WHERE numLang=?';
+			$request = $db->prepare($query);
+			$request->execute([$numLang]);
+
 			$count = $request->rowCount();
 			$db->commit();
 			$request->closeCursor();

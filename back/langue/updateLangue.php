@@ -21,6 +21,8 @@ require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
 
 $maLangue = new LANGUE();
 
+$monPays = new PAYS();
+
 
 // Gestion des erreurs de saisie
 $erreur = false;
@@ -41,19 +43,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }  
 
 
-    if (((isset($_POST['lib1Langue'])) AND !empty($_POST['lib1Langue']))
-        AND ((isset($_POST['lib2Langue'])) AND !empty($_POST['lib2Langue']))
-        AND ((isset($_POST['numPays'])) AND !empty($_POST['numPays']))
+    if (((isset($_POST['lib1Lang'])) AND !empty($_POST['lib1Lang']))
+        AND ((isset($_POST['lib2Lang'])) AND !empty($_POST['lib2Lang']))
+        AND ((isset($_POST['TypPays'])) AND !empty($_POST['TypPays']))
         AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
         // Saisies valides
         $erreur = false;
 
-        $lib1Lang = ctrlSaisies(($_POST['lib1Langue']));
-        $lib2Lang = ctrlSaisies(($_POST['lib2Langue']));
-        $numPays = ctrlSaisies(($_POST['numPays']));
+        $lib1Lang = ctrlSaisies(($_POST['lib1Lang']));
+        $lib2Lang = ctrlSaisies(($_POST['lib2Lang']));
+        $numPays = ctrlSaisies(($_POST['TypPays']));
+
         $numLang = ctrlSaisies(($_POST['id']));
 
-        $monStatut->update($numLang, $lib1Lang, $lib2Lang, $numPays);
+        $maLangue->update($numLang, $lib1Lang, $lib2Lang, $numPays);
 
         header("Location: ./langue.php");
     }   // Fin if ((isset($_POST['libStat'])) ...
@@ -124,14 +127,39 @@ include __DIR__ . '/initLangue.php';
         <br>
         <div class="control-group">
             <div class="controls">
-            <label class="control-label" for="LibTypPays">
-                <b>Quel pays :&nbsp;&nbsp;&nbsp;</b>
-            </label>
-
-
-                <input type="text" name="idPays" id="idPays" size="5" maxlength="5" value="<?= "" ?>" autocomplete="on" />
 
                 <!-- Listbox pays => 2ème temps -->
+
+                <div class="control-group">
+            <div class="controls">      
+
+                <label for="LibTypPays" title="Sélectionnez le pays !">
+            <b>Quel pays :&nbsp;&nbsp;&nbsp;</b>
+        </label>
+        <input type="hidden" id="idPays" name="idPays" value="<?= $numClas; ?>" />
+            <select size="1" name="TypPays" id="TypPays"  class="form-control form-control-create" title="Sélectionnez le pays !" >
+                <option value="-1">- - - Choisissez un pays - - -</option>
+<?php
+                $listNumPays= "";
+                $listfrPays = "";
+
+                $result=$monPays->get_AllPays();
+
+                if($result){
+                    foreach($result as $row) {
+                        $listNumPays = $row["numPays"];
+                        $listfrPays = $row["frPays"];
+?>
+                        <option value="<?= $listNumPays; ?>">
+                            <?= $listfrPays; ?>
+                    </option>
+<?php
+                    } // End of foreach
+                }   // if ($result)
+?>
+            </select>
+            </div>
+        </div>
 
             </div>
         </div>
