@@ -17,14 +17,14 @@ class LANGUE{
 	function get_1LangueByPays($numLang){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query = 'SELECT * FROM LANGUE ET INNER JOIN PAYS CL ON ET.numLang = CL.numLang WHERE numLang = ?;';
+		$result = $db->prepare($query);
+		$result->execute([$numLang]);
 		return($result->fetch());
 	}
 
 	function get_AllLangues(){
-		global $db;
+
 
 		global $db;
 		$query ='SELECT * FROM LANGUE;';
@@ -36,9 +36,9 @@ class LANGUE{
 	function get_AllLanguesByPays(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query = 'SELECT * FROM LANGUE ET INNER JOIN PAYS CL ON ET.numClas = CL.numClas;';
+		$result = $db->query($query);
+		$allLanguesByPays = $result->fetchAll();
 		return($allLanguesByPays);
 	}
 

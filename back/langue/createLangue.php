@@ -54,8 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $lib1Lang = ctrlSaisies(($_POST['lib1Lang']));
         $lib2Lang = ctrlSaisies(($_POST['lib2Lang']));
         $numPays = ctrlSaisies(($_POST['numPays']));
+        
 
-        $numLang =  getNextNumLang($numPays);
+        $numLang = $maLangue->getNextNumLang(($_POST['numPays']));
 
         $maLangue->create($numLang, $lib1Lang, $lib2Lang, $numPays);
 
@@ -118,6 +119,7 @@ include __DIR__ . '/initLangue.php';
 
                 <input type="text" name="idPays" id="idPays" size="5" maxlength="5" value="<?= "" ?>" autocomplete="on" />
 
+                <br>
                 <!-- Listbox pays => 2ème temps -->
 
             </div>
