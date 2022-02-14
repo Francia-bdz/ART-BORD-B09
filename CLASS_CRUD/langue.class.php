@@ -98,9 +98,9 @@ class LANGUE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO LANGUE(numLang, lib1Lang, lib2Lang, numPays) VALUES (?,?,?,?)';
+			$query = 'INSERT INTO LANGUE (numLang, lib1Lang, lib2Lang, numPays) VALUES (?,?,?,?)';
 			$request = $db->prepare($query);
-			$request->execute([$numLang], [$lib1Lang], [$lib2Lang], [$numPays]);
+			$request->execute([$numLang, $lib1Lang, $lib2Lang, $numPays]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -154,3 +154,12 @@ class LANGUE{
 		}
 	}
 }	// End of class
+
+	function get_AllPays(){
+		global $db;
+
+		$query = 'SELECT * FROM PAYS;';
+		$result = $db->query($query);
+		$allPays = $result->fetchAll();
+		return($allPays);
+	}

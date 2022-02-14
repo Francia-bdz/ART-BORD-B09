@@ -14,15 +14,9 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Langue
-
 require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
-
 // Instanciation de la classe langue
-
 $maLangue = new LANGUE();
-
-
-
 
 // Gestion des erreurs de saisie
 $erreur = false;
@@ -45,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (((isset($_POST['lib1Lang'])) AND !empty($_POST['lib1Lang']))
         AND ((isset($_POST['lib2Lang'])) AND !empty($_POST['lib2Lang']))
-        AND ((isset($_POST['numPays'])) AND !empty($_POST['numPays']))
+        AND ((isset($_POST['TypPays'])) AND !empty($_POST['TypPays']))
         AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))
         ) {
         // Saisies valides
@@ -53,10 +47,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $lib1Lang = ctrlSaisies(($_POST['lib1Lang']));
         $lib2Lang = ctrlSaisies(($_POST['lib2Lang']));
-        $numPays = ctrlSaisies(($_POST['numPays']));
+        $numPays = ctrlSaisies(($_POST['TypPays']));
         
-
-        $numLang = $maLangue->getNextNumLang(($_POST['numPays']));
+        $numLang = $maLangue->getNextNumLang($numPays);
 
         $maLangue->create($numLang, $lib1Lang, $lib2Lang, $numPays);
 
@@ -122,6 +115,30 @@ include __DIR__ . '/initLangue.php';
                 <br>
                 <!-- Listbox pays => 2ème temps -->
 
+                <label for="LibTypPays" title="Sélectionnez le pays !">
+            <b>Quel pays :&nbsp;&nbsp;&nbsp;</b>
+        </label>
+        <input type="hidden" id="idPays" name="idPays" value="<?= $numClas; ?>" />
+            <select size="1" name="TypPays" id="TypPays"  class="form-control form-control-create" title="Sélectionnez le pays !" >
+                <option value="-1">- - - Choisissez un pays - - -</option>
+<?php
+                $listNumPays= "";
+                $listfrPays = "";
+
+                $result = $maLangue->get_AllPays();
+                if($result){
+                    foreach($result as $row) {
+                        $listNumPays = $row["numPays"];
+                        $listfrPays = $row["frPays"];
+?>
+                        <option value="<?= $listNumPays; ?>">
+                            <?= $listfrPays; ?>
+                        </option>
+<?php
+                    } // End of foreach
+                }   // if ($result)
+?>
+            </select>
             </div>
         </div>
     <!-- FIN Listbox Pays -->
