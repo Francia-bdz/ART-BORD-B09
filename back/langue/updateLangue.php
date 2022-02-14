@@ -23,7 +23,6 @@ $maLangue = new LANGUE();
 
 $monPays = new PAYS();
 
-
 // Gestion des erreurs de saisie
 $erreur = false;
 
@@ -59,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $maLangue->update($numLang, $lib1Lang, $lib2Lang, $numPays);
 
         header("Location: ./langue.php");
-    }   // Fin if ((isset($_POST['libStat'])) ...
+    }   
     else {
         // Saisies invalides
         $erreur = true;
@@ -99,10 +98,6 @@ include __DIR__ . '/initLangue.php';
         $lib2Lang= $oneLangue['lib2Lang'];
         $numPays=$oneLangue['numPays'];
     }
-    
-
-
-
 
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">

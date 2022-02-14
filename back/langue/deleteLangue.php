@@ -14,9 +14,13 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Langue
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
 
 // Instanciation de la classe langue
 
+$maLangue = new LANGUE();
+
+$monPays = new PAYS();
 
 
 // Ctrl CIR
@@ -56,15 +60,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // delete effective du langue
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+
+    if ((isset($_POST["Submit"])) AND ($Submit === "Initialiser")) {
+        $sameId= $_POST['id'];
+        header("Location: ./deleteLangue.php?id=".$sameId);
+    }  
 
 
+    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+        // Saisies valides
+        $erreur = false;
 
+        $lib1Lang = ctrlSaisies(($_POST['lib1Lang']));
+        $lib2Lang = ctrlSaisies(($_POST['lib2Lang']));
+        $numPays = ctrlSaisies(($_POST['TypPays']));
 
+        $numLang = ctrlSaisies(($_POST['id']));
 
+        $maLangue->delete($numLang, $lib1Lang, $lib2Lang, $numPays);
 
+        header("Location: ./langue.php");
+    }   else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }  
+}  
 
-
-}   // End of if ($_SERVER["REQUEST_METHOD"] === "POST")
+// End of if ($_SERVER["REQUEST_METHOD"] === "POST")
 // Init variables form
 include __DIR__ . '/initLangue.php';
 ?>
@@ -95,9 +123,14 @@ include __DIR__ . '/initLangue.php';
     // Supp : récup id à supprimer
     // id passé en GET
 
-
-
-
+    if (isset($_GET['id'])){
+        $id = $_GET['id'];
+        $oneLangue = $maLangue-> get_1Langue($id);
+        $numLang = $oneLangue['numLang'];
+        $lib1Lang= $oneLangue['lib1Lang'];
+        $lib2Lang= $oneLangue['lib2Lang'];
+        $idLang=$oneLangue['numPays'];
+    }
 
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
@@ -128,7 +161,7 @@ include __DIR__ . '/initLangue.php';
             </label>
 
 
-                <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= "" ?>" autocomplete="on" />
+                <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= $idLang ?>" disabled />
 
                 <!-- Listbox langue disabled => 2ème temps -->
 

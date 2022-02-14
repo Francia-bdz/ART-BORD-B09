@@ -140,7 +140,6 @@ class LANGUE{
 			$query='DELETE FROM LANGUE WHERE numLang=?';
 			$request = $db->prepare($query);
 			$request->execute([$numLang]);
-
 			$count = $request->rowCount();
 			$db->commit();
 			$request->closeCursor();
@@ -162,5 +161,15 @@ class PAYS{
 		$result = $db->query($query);
 		$allPays = $result->fetchAll();
 		return($allPays);
+	}
+
+	function get_1Pays($numPays){
+		global $db;
+
+
+		$query='SELECT * FROM PAYS WHERE numPays= ?';
+		$request = $db->prepare($query);
+		$request->execute([$numPays]);
+		return($request->fetch());
 	}
 }
