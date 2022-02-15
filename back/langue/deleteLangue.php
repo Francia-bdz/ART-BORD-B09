@@ -53,7 +53,9 @@ $erreur = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // controle CIR
-
+    
+// Je ne sais pas comment remplir les fonctions get_NbAllThematiquesBynumLang,get_NbAllAnglesBynumLang et get_NbAllMotsclesBynumLang mais si je pouvais, je comparerais le 
+// nombre d'occurence contenant l'idStatut choisi et si ce nombre est >1, alors la suppresion de l'occurence serait impossible
 
     // delete effective du langue
 
@@ -168,6 +170,8 @@ include __DIR__ . '/initLangue.php';
                 <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= $idLang ?>" disabled />
 
                 <!-- Listbox langue disabled => 2ème temps -->
+                <!-- Je n'ai pas encore réussi a mettre la liste box en disable-->
+                
 
             </div>
         </div>

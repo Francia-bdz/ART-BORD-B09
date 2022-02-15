@@ -81,7 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // A faire dans un 2ème temps
     // Ctrl CIR : inexistence FK => del possible
 
-
+// Je ne sais pas comment remplir les fonctions get_NbAllMembresByidStatut et get_NbAllUserByidStatut mais si je pouvais, je comparerais le 
+// nombre d'occurence contenant l'idStatut choisi et si ce nombre est >1, alors la suppresion de l'occurence serait impossible
 
 
 }   // End of if ($_SERVER["REQUEST_METHOD"] === "POST")
