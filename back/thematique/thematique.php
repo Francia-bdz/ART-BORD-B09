@@ -16,17 +16,18 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/delAccents.php';
 
 // Insertion classe Thematique
+require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
 
 // Instanciation de la classe Thematique
-
-
+$maThematique = new THEMATIQUE();
 
 // Insertion classe Langue
-
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
 // Instanciation de la classe Langue
-
+$maLangue = new LANGUE();
 // BBCode
 
+// Attribuer numLang à lib2Lang ?
 
 // Ctrl CIR
 $errCIR = 0;
@@ -80,26 +81,27 @@ $errDel = 0;
     <tbody>
 <?php
     // Appel méthode : Get toutes les Thematiques en BDD
+$allThematiques = $maThematique->get_AllThematiques();
 
     // Boucle pour afficher
-    //foreach($all as $row) {
+    foreach($allThematiques as $row) {
 ?>
         <tr>
 
-		<td><h4>&nbsp; <?= "ici numThem"; ?> &nbsp;</h4></td>
+		<td><h4>&nbsp; <?= $row['numThem']; ?> &nbsp;</h4></td>
 
-        <td>&nbsp; <?= "ici libThem"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row['libThem']; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici lib1Lang"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row['numLang']; ?> &nbsp;</td>
 
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateThematique.php?id=<?=1; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier thématique" title="Modifier thématique" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateThematique.php?id=<?=$row['numThem'] ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier thématique" title="Modifier thématique" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<br /></td>
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteThematique.php?id=<?=1; ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer thématique" title="Supprimer thématique" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteThematique.php?id=<?=$row['numThem'] ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer thématique" title="Supprimer thématique" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<br /></td>
 
         </tr>
 <?php
-	// }	// End of foreach
+	}	// End of foreach
 ?>
     </tbody>
     </table>

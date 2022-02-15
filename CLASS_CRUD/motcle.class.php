@@ -43,9 +43,10 @@ class MOTCLE{
 	function get_NbAllMotsClesBynumLang($numLang){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query = 'SELECT COUNT (*) FROM MOTCLE where numLang=? ;';
+		$result = $db->prepare($query);
+		$result->execute([$numLang]);
+		$allNbMotsClesBynumLang = $result;	
 		return($allNbMotsClesBynumLang);
 	}
 

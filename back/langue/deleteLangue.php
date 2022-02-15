@@ -55,8 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // controle CIR
 
 
-    
-
     // delete effective du langue
 
     if(isset($_POST['Submit'])){
@@ -89,6 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }  
+
+   
 }  
 
 // End of if ($_SERVER["REQUEST_METHOD"] === "POST")
@@ -129,7 +129,12 @@ include __DIR__ . '/initLangue.php';
         $lib1Lang= $oneLangue['lib1Lang'];
         $lib2Lang= $oneLangue['lib2Lang'];
         $idLang=$oneLangue['numPays'];
+
     }
+
+    // $arrayTheme=$monAngle->get_NbAllAnglesBynumLang($numLang);
+    // $countTheme=$arrayTheme[0];
+    // echo ($countTheme);
 
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">

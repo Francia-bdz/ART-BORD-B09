@@ -6,11 +6,11 @@ require_once __DIR__ . '../../CONNECT/database.php';
 class THEMATIQUE{
 	function get_1Thematique($numThem){
 		global $db;
-
-		// select
-		// prepare
-		// execute
-		return($result->fetch());
+		
+		$query='SELECT * FROM THEMATIQUE WHERE numThem= ?';
+		$request = $db->prepare($query);
+		$request->execute([$numThem]);
+		return($request->fetch());
 	}
 
 	function get_1ThematiqueByLang($numThem){
@@ -25,9 +25,9 @@ class THEMATIQUE{
 	function get_AllThematiques(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query ='SELECT * FROM THEMATIQUE;';
+		$result = $db->query($query);
+		$allThematiques = $result->fetchAll();
 		return($allThematiques);
 	}
 
@@ -43,10 +43,11 @@ class THEMATIQUE{
 	function get_NbAllThematiquesBynumLang($numLang){
 		global $db;
 
-		$query = 'SELECT * FROM LANGUE LA INNER JOIN PAYS PA ON LA.numLang = PA.numLang WHERE numPays= ?;';
+		$query = 'SELECT COUNT (*) FROM THEMATIQUE where numLang=? ;';
 		$result = $db->prepare($query);
-		$allNbThematiquesBynumLang = $result->fetchAll();
-		return($allNbThematiquesBynumLang);
+		$result->execute([$numLang]);
+		$allNbThematiquesBynumLang = $result;
+		return($allNbThematiquesBynumLang->fetch());
 	}
 
 	// Récup dernière PK NumThem
@@ -113,9 +114,9 @@ class THEMATIQUE{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO THEMATIQUE (numThem, libThem, numLang) VALUES (?,?,?)';
+			$request = $db->prepare($query);
+			$request->execute([$numThem, $libThem, $numLang]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -132,9 +133,9 @@ class THEMATIQUE{
 		try {
 			$db->beginTransaction();
 
-			// update
-			// prepare
-			// execute
+			$query='UPDATE THEMATIQUE SET libThem=?, numLang=? WHERE numThem?';
+			$request = $db->prepare($query);
+			$request->execute([$libThem, $numLang, $numThem]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -152,9 +153,9 @@ class THEMATIQUE{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query='DELETE FROM THEMATIQUE WHERE numThem=?';
+			$request = $db->prepare($query);
+			$request->execute([$numThem]);
 			$count = $request->rowCount();
 			$db->commit();
 			$request->closeCursor();
