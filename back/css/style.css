@@ -4,11 +4,16 @@
  * @author Martine Bornerie
  */
 
+
+h1 { 
+	font-size: 200px;
+ }
+ 
 body {
 	/* Essai :
 	background-color: grey; ou transparent; ou mintcream; ou floralwhite; ou ghostwhite;
 	ou snow; ou whitesmoke; ou silver; ou aliceblue; ou gainsboro; ou lightgrey; ou oldlace; */
-	background-color: lightgrey;
+	background-color: rgb(255, 255, 255);
 	color: steelblue;
 	padding-top: 60px;
 	padding-bottom: 40px;
