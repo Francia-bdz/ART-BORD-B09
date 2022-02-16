@@ -70,8 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     }   
 
-
-
 }   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
 // Init variables form
 include __DIR__ . '/initThematique.php';

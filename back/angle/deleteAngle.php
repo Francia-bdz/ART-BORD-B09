@@ -14,16 +14,23 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Angle
+require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
 
 // Instanciation de la classe angle
 
+$monAngle= new ANGLE();
 
+// Insertion classe Langue
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+
+// Instanciation de la classe langue
 
 // Ctrl CIR
 // Insertion classe Article
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 
-// Instanciation de la classe Article
-
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE ();
 
 
 // Gestion des erreurs de saisie
@@ -32,17 +39,48 @@ $erreur = false;
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    $numThem = ctrlSaisies(($_POST['id']));
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
 
-    // controle CIR
+    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
+        header("Location: ./thematique.php");
+    }  
 
-    // delete effective de l'angle
+    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+        // Saisies valides
+        $erreur = false;
 
+        $numAngl = ctrlSaisies(($_POST['id']));
 
+        $arrayArticle=$monArticle->get_NbAllArticlesByNumAngl($numAngl);
 
+        $countArticle=$arrayArticle[0];
 
+        if ($countArticle<1){
+        $erreur = false;
 
+        $numAngl = ctrlSaisies(($_POST['id']));
 
+        $monAngle->delete($numAngl);
+
+        header("Location: ./angle.php");
+
+        } else {
+            $count=1;
+            header("Location: ./angle.php?count=".$count);
+        }
+    }
+        
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }  
 
 
 }   // End of if ($_SERVER["REQUEST_METHOD"] === "POST")
@@ -73,13 +111,13 @@ include __DIR__ . '/initAngle.php';
     <h1>BLOGART22 Admin - CRUD Angle</h1>
     <h2>Suppression d'un angle</h2>
 <?php
-    // Supp : récup id à supprimer
-    // id passé en GET
 
-
-
-
-
+if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $oneAngle= $monAngle->get_1Angle($id);
+    $numLang = $oneAngle['numLang'];
+    $libAngl= $oneAngle['libAngl'];
+}
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
@@ -104,7 +142,7 @@ include __DIR__ . '/initAngle.php';
             </label>
 
 
-                <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= $numLang; ?>" autocomplete="on" />
+            <input type="text" name="numLang" id="numLang" size="10" maxlength="10" value="<?= $numLang; ?>" disabled/>
 
                 <!-- Listbox langue disabled => 2ème temps -->
 

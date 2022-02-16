@@ -43,10 +43,11 @@ class ARTICLE{
 	function get_NbAllArticlesByNumAngl($numAngl){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($allNbArticlesBynumAngl);
+		$query = 'SELECT COUNT(*) FROM ARTICLE where numAngl=? ;';
+		$result = $db->prepare($query);
+		$result->execute([$numAngl]);
+		$allNbArticlesBynumAngl = $result;
+		return($allNbArticlesBynumAngl->fetch());
 	}
 
 	function get_NbAllArticlesByNumThem($numThem){

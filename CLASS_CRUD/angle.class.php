@@ -7,10 +7,10 @@ class ANGLE{
 	function get_1Angle(string $numAngl) {
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($result->fetch());
+		$query='SELECT * FROM ANGLE WHERE numAngl= ?';
+		$request = $db->prepare($query);
+		$request->execute([$numAngl]);
+		return($request->fetch());
 	}
 
 	function get_1AngleByLang(string $numAngl) {
@@ -25,18 +25,18 @@ class ANGLE{
 	function get_AllAngles() {
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query ='SELECT * FROM ANGLE;';
+		$result = $db->query($query);
+		$allAngles = $result->fetchAll();
 		return($allAngles);
 	}
 
 	function get_AllAnglesByLang() {
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM ANGLE NATURAL JOIN LANGUE ORDER BY lib1Lang';
+		$result = $db->query($query);
+		$allAnglesByLang=$result->fetchAll();
 		return($allAnglesByLang);
 	}
 
@@ -114,9 +114,9 @@ class ANGLE{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO ANGLE (numAngl, libAngl, numLang) VALUES (?,?,?)';
+			$request = $db->prepare($query);
+			$request->execute([$numAngl, $libAngl, $numLang]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -133,9 +133,9 @@ class ANGLE{
 		try {
 			$db->beginTransaction();
 
-			// update
-			// prepare
-			// execute
+			$query='UPDATE ANGLE SET numLang=?, libAngl=? WHERE numAngl=?';
+			$request = $db->prepare($query);
+			$request->execute([$numLang, $libAngl, $numAngl]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -153,9 +153,9 @@ class ANGLE{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query='DELETE FROM ANGLE WHERE numAngl=?';
+			$request = $db->prepare($query);
+			$request->execute([$numAngl]);
 			$count = $request->rowCount();
 			$db->commit();
 			$request->closeCursor();
