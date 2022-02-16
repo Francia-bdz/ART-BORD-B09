@@ -13,26 +13,45 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 // controle des saisies du formulaire
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
-// Insertion classe MotCle
+require_once __DIR__ . '/../../CLASS_CRUD/motcle.class.php';
 
-// Instanciation de la classe MotCle
+// Instanciation de la classe motcle
+$monMotcle = new MOTCLE();
 
+// Insertion classe Langue
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+// Instanciation de la classe Langue
+$maLangue = new LANGUE();
 
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    $numMotCle = ctrlSaisies(($_POST['id']));
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
 
+    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
+        header("Location: ./motCle.php");
+    }  
 
+    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+        // Saisies valides
 
-    // controle des saisies du formulaire
-
-    // modif effective de la MotCle
-
-
-
-
-
+        $numMotCle = ctrlSaisies(($_POST['id']));
+        
+        $monMotcle->delete($numMotCle);
+        
+        header("Location: ./motCle.php");
+    }       
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }  
 
 }   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
 // Init variables form
@@ -68,13 +87,13 @@ include __DIR__ . '/initMotCle.php';
     <h1>BLOGART22 Admin - CRUD Mot Clé</h1>
     <h2>Suppression d'un Mot Clé</h2>
 <?php
-    // Modif : récup id à modifier
-    // id passé en GET
-
-
-
-
-
+ 
+ if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $oneMotCle= $monMotcle-> get_1MotCle($id);
+    $numLang = $oneMotCle['numLang'];
+    $libMotCle= $oneMotCle['libMotCle'];
+}
 
 
 ?>
@@ -98,9 +117,9 @@ include __DIR__ . '/initMotCle.php';
         <br>
         <div class="control-group">
             <label class="control-label" for="LibTypLang"><b>Quelle langue :&nbsp;&nbsp;&nbsp;</b></label>
-                <input type="hidden" id="idLang" name="idLang" value="<?= isset($_GET['idLang']) ? $_GET['idLang'] : '' ?>" />
+           
+            <input type="text" name="numLang" id="numLang" size="10" maxlength="10" value="<?= $numLang; ?>" disabled/>
 
-                <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= $idLang; ?>" autocomplete="on" />
 
                 <!-- Listbox langue disabled => 2ème temps -->
 

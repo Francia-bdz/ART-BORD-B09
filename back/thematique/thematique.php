@@ -25,9 +25,6 @@ $maThematique = new THEMATIQUE();
 require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
 // Instanciation de la classe Langue
 $maLangue = new LANGUE();
-// BBCode
-
-// Attribuer numLang à lib2Lang ?
 
 // Ctrl CIR
 $errCIR = 0;
