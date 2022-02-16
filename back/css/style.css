@@ -5,15 +5,12 @@
  */
 
 
-h1 { 
-	font-size: 200px;
- }
- 
+
 body {
 	/* Essai :
 	background-color: grey; ou transparent; ou mintcream; ou floralwhite; ou ghostwhite;
 	ou snow; ou whitesmoke; ou silver; ou aliceblue; ou gainsboro; ou lightgrey; ou oldlace; */
-	background-color: rgb(255, 255, 255);
+	background-color: whitesmoke;
 	color: steelblue;
 	padding-top: 60px;
 	padding-bottom: 40px;
@@ -24,7 +21,7 @@ fieldset {
 	max-width: 600px;			/* largeur maximale cadre */
 	padding: 16px;				/* marge interne / sépare le contenu de la bordure	*/
 	/* Coins arrondis et couleur du cadre */
-	border: 2px solid grey;
+	border: 2px solid rgb(255, 255, 255);
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
