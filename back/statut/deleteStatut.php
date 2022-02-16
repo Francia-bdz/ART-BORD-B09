@@ -21,22 +21,18 @@ require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
 // Instanciation de la classe Statut
 $monStatut = new STATUT();
 
-
-
-
 // Ctrl CIR
 // Insertion classe User
-// require_once __DIR__ . '/../../CLASS_CRUD/user.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/user.class.php';
 
 // // Instanciation de la classe User
-// $monUser = new USER();
+$monUser = new USER();
 
 // // Insertion classe Membre
-// require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 
-// // Instanciation de la classe Membre
-
-// $monMembre = new MEMBRE();
+// Instanciation de la classe Membre
+$monMembre = new MEMBRE();
 
 // Gestion des erreurs de saisie
 $erreur = false;
@@ -59,16 +55,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }  
 
     if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
-    //    ((isset($_POST['libStat'])) AND !empty($_POST['libStat']))
-        // Saisies valides
-        $erreur = false;
-
-        // $libStat = ctrlSaisies(($_POST['libStat']));
+  
+        
         $idStat = ctrlSaisies(($_POST['id']));
+        
+        $arrayUser=$monUser->get_NbAllUsersByidStat($idStat);
+        $arrayMembre=$monMembre->get_NbAllMembersByidStat($idStat);
+        
+        $countUser=$arrayUser[0];
+        $countMembre=$arrayMembre[0];
+        
+        if ($countMembre<1 AND $countUser<1 ){
+            
+            $erreur = false;
+            $monStatut->delete($idStat);
+            header("Location: ./statut.php");
+        }else{
+            $count=1;
+            header("Location: ./statut.php?count=".$count);
+        }
 
-        $monStatut->delete($idStat);
-
-        header("Location: ./statut.php");
     }   // Fin if ((isset($_POST['libStat'])) ...
     else {
         // Saisies invalides
@@ -81,8 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // A faire dans un 2ème temps
     // Ctrl CIR : inexistence FK => del possible
 
-// Je ne sais pas comment remplir les fonctions get_NbAllMembresByidStatut et get_NbAllUserByidStatut mais si je pouvais, je comparerais le 
-// nombre d'occurence contenant l'idStatut choisi et si ce nombre est >1, alors la suppresion de l'occurence serait impossible
 
 
 }   // End of if ($_SERVER["REQUEST_METHOD"] === "POST")

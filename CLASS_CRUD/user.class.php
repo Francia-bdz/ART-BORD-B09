@@ -32,22 +32,22 @@ class USER{
 		return($result->rowCount());
 	}
 
-	function get_AllUsersByStat(){
-		global $db;
+	// function get_AllUsersByStat(){
+	// 	global $db;
 
-		// select
-		// prepare
-		// execute
-		return($allUsersByStat);
-	}
+	// 	// select
+	// 	// prepare
+	// 	// execute
+	// 	return($allUsersByStat);
+	// }
 
 	function get_NbAllUsersByidStat($idStat){
 		global $db;
-
-		// select
-		// prepare
-		// execute
-		return($allNbUsersByStat);
+		$query = 'SELECT COUNT(*) FROM USER where idStat=? ;';
+		$result = $db->prepare($query);
+		$result->execute([$idStat]);
+		$allNbUsersByidStat = $result;
+		return($allNbUsersByidStat->fetch());
 	}
 
 	function create($pseudoUser, $passUser, $nomUser, $prenomUser, $emailUser, $idStat){
