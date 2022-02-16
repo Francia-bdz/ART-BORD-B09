@@ -7,7 +7,7 @@ class MOTCLE{
 	function get_1MotCle($numMotCle){
 		global $db;
 
-		$query='SELECT * FROM MOTCLE WHERE numMotCle= ?';
+		$query='SELECT * FROM MOTCLE NATURAL JOIN LANGUE WHERE numMotCle= ?';
 		$request = $db->prepare($query);
 		$request->execute([$numMotCle]);
 		return($request->fetch());

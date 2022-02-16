@@ -18,13 +18,19 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Membre
 
-// Instanciation de la classe Membre
+require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+
+// Instanciation de la classe Thematique
+$monMembre = new MEMBRE();
 
 
 //  trl CIR
 $errCIR = 0;
 $errDel = 0;
 
+if (isset($_GET['count'])){
+    $errCIR=$_GET['count'];
+}
 
 ?>
 <!DOCTYPE html>
@@ -83,38 +89,38 @@ $errDel = 0;
     $to = 'd/m/Y H:i:s';
 
     // Appel méthode : Get toutes les membres en BDD
-
+    $allMembres = $monMembre->get_AllMembres();
     // Boucle pour afficher
-    //foreach($all as $row) {
+    foreach($allMembres as $row) {
 
 
 
             // date dtCreaMemb => FR
-            // $dtCreaMemb = dateChangeFormat($dtCreaMemb, $from, $to);
+        //  $dtCreaMemb = dateChangeFormat($dtCreaMemb, $from, $to);
 ?>
             <tr>
-            <td><h4>&nbsp; <?= "ici numMemb"; ?> &nbsp;</h4></td>
+            <td><h4>&nbsp; <?= $row['numMemb']; ?> &nbsp;</h4></td>
 
-            <td>&nbsp; <?= "ici prenomMemb" . " " . "ici nomMemb"; ?> &nbsp;</td>
+            <td>&nbsp; <?= $row['prenomMemb'] . " " . $row['nomMemb']; ?> &nbsp;</td>
 
-            <td>&nbsp; <?= "ici pseudoMemb"; ?> &nbsp;</td>
+            <td>&nbsp; <?= $row['pseudoMemb']; ?> &nbsp;</td>
 
-            <td>&nbsp; <?= "ici eMailMemb"; ?> &nbsp;</td>
+            <td>&nbsp; <?= $row['eMailMemb']; ?> &nbsp;</td>
 
-            <td>&nbsp; <?= "ici dtCreaMemb" ; ?> &nbsp;</td>
+            <td>&nbsp; <?= $row['dtCreaMemb']; ?> &nbsp;</td>
 
-            <td>&nbsp; <?= "ici accordMemb"; ?> &nbsp;</td>
+            <td>&nbsp; <?= $row['accordMemb']; ?> &nbsp;</td>
 
-            <td>&nbsp; <?= "ici libStat"; ?> &nbsp;</td>
+            <td>&nbsp; <?= $row['libStat']; ?> &nbsp;</td>
 
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateMembre.php?id=<?=1; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier membre" title="Modifier membre" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateMembre.php?id=<?=$row['numMemb']; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier membre" title="Modifier membre" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
             <br /></td>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteMembre.php?id=<?=1; ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer membre" title="Supprimer membre" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteMembre.php?id=<?=$row['numMemb']; ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer membre" title="Supprimer membre" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
             <br /></td>
             </tr>
 <?php
 
-	// }	// End of foreach
+	}	// End of foreach
 ?>
     </tbody>
     </table>

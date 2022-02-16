@@ -123,6 +123,7 @@ include __DIR__ . '/initThematique.php';
     $oneThematique = $maThematique-> get_1Thematique($id);
     $numLang = $oneThematique['numLang'];
     $libThem= $oneThematique['libThem'];
+    $lib1Lang = $oneThematique['lib1Lang'];
 }
 
 ?>
@@ -148,7 +149,7 @@ include __DIR__ . '/initThematique.php';
         <div class="control-group">
             <label class="control-label" for="LibTypLang"><b>Langue :&nbsp;&nbsp;&nbsp;</b></label>
                
-                <input type="text" name="numLang" id="numLang" size="10" maxlength="10" value="<?= $numLang; ?>" disabled/>
+            <input type="text" name="lib1Lang" id="lib1Lang" size="10" maxlength="10" value="<?= $lib1Lang; ?>" disabled/>
 
                 <!-- Listbox langue disabled => 2ème temps -->
 

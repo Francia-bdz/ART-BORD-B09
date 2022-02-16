@@ -16,12 +16,12 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/delAccents.php';
 
 // Insertion classe Membre
+require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 
-// Instanciation de la classe Membre
-
+// Instanciation de la classe Thematique
+$monMembre = new MEMBRE();
 
 // Constantes reCaptcha
-
 
 
 // Gestion des erreurs de saisie

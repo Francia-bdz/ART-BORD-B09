@@ -137,7 +137,7 @@ include __DIR__ . '/initLangue.php';
         $numLang = $oneLangue['numLang'];
         $lib1Lang= $oneLangue['lib1Lang'];
         $lib2Lang= $oneLangue['lib2Lang'];
-        $idLang=$oneLangue['numPays'];
+        $frPays=$oneLangue['frPays'];
     }else{
         echo("Aucune langue n'a été choisis, retournez dans sur la page d'accueil ");
     }
@@ -173,11 +173,9 @@ include __DIR__ . '/initLangue.php';
             </label>
 
 
-                <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= $idLang ?>" disabled />
+                <input type="text" name="frPays" id="frPays" size="10" maxlength="10" value="<?= $frPays ?>" disabled />
 
                 <!-- Listbox langue disabled => 2ème temps -->
-                <!-- Je n'ai pas encore réussi a mettre la liste box en disable-->
-                
 
             </div>
         </div>

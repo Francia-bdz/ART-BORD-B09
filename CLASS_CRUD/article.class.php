@@ -7,10 +7,10 @@ class ARTICLE{
 	function get_1Article($numArt){
 		global $db;
 		
-		// select
-		// prepare
-		// execute
-		return($result->fetch());
+		$query='SELECT * FROM ARTICLE WHERE numArt= ?';
+		$request = $db->prepare($query);
+		$request->execute([$numArt]);
+		return($request->fetch());
 	}
 
 	function get_1ArticleAnd3FK($numArt){
@@ -25,9 +25,9 @@ class ARTICLE{
 	function get_AllArticles(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query ='SELECT * FROM ARTICLE NATURAL JOIN ANGLE ' ;
+		$result = $db->query($query);
+		$allArticles = $result->fetchAll();
 		return($allArticles);
 	}
 
@@ -125,9 +125,9 @@ class ARTICLE{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO ARTICLE(dtCreArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, urlPhotArt, numAngl, numThem) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)';
+			$request = $db->prepare($query);
+			$request->execute([$dtCreArt, $libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -144,9 +144,9 @@ class ARTICLE{
 		try {
 			$db->beginTransaction();
 
-			// update
-			// prepare
-			// execute
+			$query='UPDATE MEMBRE SET libTitrArt=? libChapoArt=? libAccrochArt=? parag1Art=? libSsTitr1Art=? parag2Art=? libSsTitr2Art=? parag3Art=? libConclArt=? urlPhotArt=? numAngl=? numThem=? WHERE numArt=?';
+			$request = $db->prepare($query);
+			$request->execute([$libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem, $numArt]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -163,9 +163,9 @@ class ARTICLE{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query='DELETE FROM ARTICLE WHERE numArt=?';
+			$request = $db->prepare($query);
+			$request->execute([$numArt]);
 			$db->commit();
 			$request->closeCursor();
 		}

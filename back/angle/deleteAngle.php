@@ -117,6 +117,7 @@ if (isset($_GET['id'])){
     $oneAngle= $monAngle->get_1Angle($id);
     $numLang = $oneAngle['numLang'];
     $libAngl= $oneAngle['libAngl'];
+    $lib1Lang= $oneAngle['lib1Lang'];
 }
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
@@ -142,7 +143,7 @@ if (isset($_GET['id'])){
             </label>
 
 
-            <input type="text" name="numLang" id="numLang" size="10" maxlength="10" value="<?= $numLang; ?>" disabled/>
+            <input type="text" name="lib1Lang" id="lib1Lang" size="10" maxlength="10" value="<?= $lib1Lang; ?>" disabled/>
 
                 <!-- Listbox langue disabled => 2ème temps -->
 

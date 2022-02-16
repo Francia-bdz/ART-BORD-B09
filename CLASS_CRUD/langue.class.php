@@ -7,7 +7,7 @@ class LANGUE{
 	function get_1Langue($numLang){
 		global $db;
 		
-		$query='SELECT * FROM LANGUE WHERE numLang= ?';
+		$query='SELECT * FROM LANGUE NATURAL JOIN PAYS WHERE numLang= ?';
 		$request = $db->prepare($query);
 		$request->execute([$numLang]);
 		return($request->fetch());
@@ -25,7 +25,7 @@ class LANGUE{
 	function get_AllLangues(){
 		global $db;
 		
-		$query ='SELECT * FROM LANGUE;';
+		$query ='SELECT * FROM LANGUE NATURAL JOIN PAYS;';
 		$result = $db->query($query);
 		$allLangues = $result->fetchAll();
 		return($allLangues);

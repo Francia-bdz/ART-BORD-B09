@@ -7,7 +7,7 @@ class THEMATIQUE{
 	function get_1Thematique($numThem){
 		global $db;
 		
-		$query='SELECT * FROM THEMATIQUE WHERE numThem= ?';
+		$query='SELECT * FROM THEMATIQUE NATURAL JOIN LANGUE WHERE numThem= ?';
 		$request = $db->prepare($query);
 		$request->execute([$numThem]);
 		return($request->fetch());
@@ -34,7 +34,7 @@ class THEMATIQUE{
 	function get_AllThematiquesByLang(){
 		global $db;
 
-		$query='SELECT * FROM THEMATIQUE NATURAL JOIN LANGUE ORDER BY lib1Lang';
+		$query='SELECT * FROM THEMATIQUE NATURAL JOIN LANGUE ORDER BY libThem';
 		$result = $db->query($query);
 		$allThematiquesByLang=$result->fetchAll();
 		return($allThematiquesByLang);

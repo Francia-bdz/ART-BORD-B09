@@ -25,12 +25,6 @@ require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
 // Instanciation de la classe Langue
 $maLangue = new LANGUE();
 
-// $errCIR = 0;
-// $errDel = 0;
-
-// if (isset($_GET['count'])){
-//     $errCIR=$_GET['count'];
-// }
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
@@ -61,7 +55,6 @@ $maLangue = new LANGUE();
     <tbody>
 
 <?php
-    // Appel méthode : Get toutes les mots cles en BDD
 
 $allMotscles = $monMotcle->get_AllMotsClesByLang();
 

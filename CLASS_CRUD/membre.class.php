@@ -8,10 +8,10 @@ class MEMBRE{
 	function get_1Membre($numMemb){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($result->fetch());
+		$query='SELECT * FROM MEMBRE WHERE numMemb= ?';
+		$request = $db->prepare($query);
+		$request->execute([$numMemb]);
+		return($request->fetch());
 	}
 
 	function get_1MembreByEmail($eMailMemb){
@@ -26,9 +26,9 @@ class MEMBRE{
 	function get_AllMembres(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query ='SELECT * FROM MEMBRE NATURAL JOIN STATUT ORDER BY numMemb;';
+		$result = $db->query($query);
+		$allMembres = $result->fetchAll();
 		return($allMembres);
 	}
 
@@ -76,9 +76,9 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO MEMBRE (prenomMemb, nomMemb, pseudoMemb, passMemb, eMailMemb, dtCreaMemb, accordMemb, idStat) VALUES (?,?,?,?,?,?,?,?)';
+			$request = $db->prepare($query);
+			$request->execute([$prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $dtCreaMemb, $accordMemb, $idStat]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -95,9 +95,9 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 			
-			// update
-			// prepare
-			// execute
+				$query='UPDATE THEMATIQUE SET prenomMemb=?, nomMemb=?, passMemb=?, eMailMemb=?,idStat=? WHERE numMemb=?';
+				$request = $db->prepare($query);
+				$request->execute([$prenomMemb, $nomMemb, $passMemb, $eMailMemb, $idStat, $numMemb]);
 				$db->commit();
 				$request2->closeCursor();
 		}
@@ -119,9 +119,9 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query='DELETE FROM MEMBRE WHERE numMemb=?';
+			$request = $db->prepare($query);
+			$request->execute([$numMemb]);
 			$count = $request->rowCount();
 			$db->commit();
 			$request->closeCursor();

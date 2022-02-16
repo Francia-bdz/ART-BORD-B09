@@ -92,6 +92,7 @@ include __DIR__ . '/initMotCle.php';
     $id = $_GET['id'];
     $oneMotCle= $monMotcle-> get_1MotCle($id);
     $numLang = $oneMotCle['numLang'];
+    $lib1Lang = $oneMotCle['lib1Lang'];
     $libMotCle= $oneMotCle['libMotCle'];
 }
 
@@ -109,26 +110,13 @@ include __DIR__ . '/initMotCle.php';
             <input type="text" name="libMotCle" id="libMotCle" size="80" maxlength="100" value="<?= $libMotCle; ?>" disabled />
         </div>
         <br>
-<!-- --------------------------------------------------------------- -->
-<!-- --------------------------------------------------------------- -->
-    <!-- FK : Langue -->
-<!-- --------------------------------------------------------------- -->
-    <!-- Listbox langue -->
-        <br>
         <div class="control-group">
             <label class="control-label" for="LibTypLang"><b>Quelle langue :&nbsp;&nbsp;&nbsp;</b></label>
            
-            <input type="text" name="numLang" id="numLang" size="10" maxlength="10" value="<?= $numLang; ?>" disabled/>
-
-
-                <!-- Listbox langue disabled => 2ème temps -->
+            <input type="text" name="lib1Lang" id="lib1Lang" size="10" maxlength="10" value="<?= $lib1Lang; ?>" disabled/>
 
         </div>
-    <!-- FIN Listbox langue -->
-<!-- --------------------------------------------------------------- -->
-    <!-- FK : Langue -->
-<!-- --------------------------------------------------------------- -->
-<!-- --------------------------------------------------------------- -->
+
         <div class="control-group">
             <div class="controls">
                 <br><br>

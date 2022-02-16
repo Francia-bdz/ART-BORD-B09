@@ -7,7 +7,7 @@ class ANGLE{
 	function get_1Angle(string $numAngl) {
 		global $db;
 
-		$query='SELECT * FROM ANGLE WHERE numAngl= ?';
+		$query='SELECT * FROM ANGLE NATURAL JOIN LANGUE WHERE numAngl= ?';
 		$request = $db->prepare($query);
 		$request->execute([$numAngl]);
 		return($request->fetch());
@@ -25,7 +25,7 @@ class ANGLE{
 	function get_AllAngles() {
 		global $db;
 
-		$query ='SELECT * FROM ANGLE;';
+		$query ='SELECT * FROM ANGLE NATURAL JOIN LANGUE ORDER BY libAngl;';
 		$result = $db->query($query);
 		$allAngles = $result->fetchAll();
 		return($allAngles);

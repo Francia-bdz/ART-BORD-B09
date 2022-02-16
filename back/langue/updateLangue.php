@@ -94,6 +94,7 @@ include __DIR__ . '/initLangue.php';
         $lib1Lang= $oneLangue['lib1Lang'];
         $lib2Lang= $oneLangue['lib2Lang'];
         $numPays=$oneLangue['numPays'];
+        $frPays=$oneLangue['frPays'];
     }
 
 ?>

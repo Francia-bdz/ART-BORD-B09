@@ -17,9 +17,10 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Article
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 
-// Instanciation de la classe Article
-
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE ();
 
 ?>
 <!DOCTYPE html>
@@ -64,25 +65,25 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
     <tbody>
 <?php
     // Appel méthode : Get tous les articles en BDD
-
+    $allArticles = $monArticle->get_AllArticles();
     // Boucle pour afficher
-    //foreach($all as $row) {
+    foreach($allArticles as $row) {
 
 ?>
         <tr>
-		<td><h4>&nbsp; <?= "ici numArt"; ?> &nbsp;</h4></td>
+		<td><h4>&nbsp; <?= $row["numArt"]; ?> &nbsp;</h4></td>
 
-        <td>&nbsp; <?= "ici dtCreArt"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["dtCreArt"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici libTitrArt"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["libTitrArt"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici libChapoArt"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["libChapoArt"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici libAccrochArt"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["libAccrochArt"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici libAngl"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["libAngl"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici libThem"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["libThem"]; ?> &nbsp;</td>
 
 		<td>&nbsp;&nbsp;<a href="./updateArticle.php?id=<?=1; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier article" title="Modifier article" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<br /></td>
@@ -90,7 +91,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 		<br /></td>
         </tr>
 <?php
-	// }	// End of foreach
+	 }	
 ?>
     </tbody>
     </table>
