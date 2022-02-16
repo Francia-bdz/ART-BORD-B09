@@ -113,7 +113,6 @@ include __DIR__ . '/initLangue.php';
             border: solid 0px black;
             color: red;
             font-style: italic;
-            border-radius: 5px;
         }
     </style>
 </head>
