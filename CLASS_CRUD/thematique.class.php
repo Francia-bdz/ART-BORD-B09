@@ -43,7 +43,7 @@ class THEMATIQUE{
 	function get_NbAllThematiquesBynumLang($numLang){
 		global $db;
 
-		$query = 'SELECT COUNT (*) FROM THEMATIQUE where numLang=? ;';
+		$query = 'SELECT COUNT(*) FROM THEMATIQUE where numLang=? ;';
 		$result = $db->prepare($query);
 		$result->execute([$numLang]);
 		$allNbThematiquesBynumLang = $result;

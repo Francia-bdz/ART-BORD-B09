@@ -43,11 +43,11 @@ class ANGLE{
 	function get_NbAllAnglesBynumLang(string $numLang) {
 		global $db;
 
-		$query = 'SELECT COUNT (*) FROM ANGLE where numLang=? ;';
+		$query = 'SELECT COUNT(*) FROM ANGLE where numLang=? ;';
 		$result = $db->prepare($query);
 		$result->execute([$numLang]);
 		$allNbAnglesBynumLang = $result;
-		return($allNbAnglesBynumLang);
+		return($allNbAnglesBynumLang->fetch());
 	}
 
 	//  Récupérer la prochaine PK de la table ANGLE
