@@ -65,9 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($countArticle<1){
         $erreur = false;
 
-        $numLang = ctrlSaisies(($_POST['id']));
+        $numThem = ctrlSaisies(($_POST['id']));
 
-        $maLangue->delete($numLang);
+        $maThematique->delete($numThem);
 
         header("Location: ./thematique.php");
 
@@ -149,9 +149,8 @@ include __DIR__ . '/initThematique.php';
 
         <div class="control-group">
             <label class="control-label" for="LibTypLang"><b>Langue :&nbsp;&nbsp;&nbsp;</b></label>
-                <input type="hidden" id="idLang" name="idLang" value="<?= isset($_GET['idLang']) ? $_GET['idLang'] : '' ?>" />
-
-                <input type="text" name="numLang" id="numLang" size="5" maxlength="5" value="<?= $idLang; ?>" autocomplete="on" disabled/>
+               
+                <input type="text" name="numLang" id="numLang" size="10" maxlength="10" value="<?= $numLang; ?>" disabled/>
 
                 <!-- Listbox langue disabled => 2ème temps -->
 
