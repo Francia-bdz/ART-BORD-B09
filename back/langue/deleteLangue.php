@@ -44,31 +44,14 @@ require_once __DIR__ . '/../../CLASS_CRUD/motcle.class.php';
 $monMotcle = new MOTCLE();
 
 
-
-
 // Gestion des erreurs de saisie
 $erreur = false;
 
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // controle CIR
-
-$numLang = ctrlSaisies(($_POST['id']));
-    
-
-
-// controle if
-
-
-    if ($countTheme<1 AND $countAngle<1 AND $countMotcle<1){
-     
-        
-    }
-
-
-
-    // delete effective du langue
+  
+    $numLang = ctrlSaisies(($_POST['id']));
 
     if(isset($_POST['Submit'])){
         $Submit = $_POST['Submit'];

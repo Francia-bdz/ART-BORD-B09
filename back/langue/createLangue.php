@@ -26,7 +26,6 @@ $erreur = false;
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-
     if(isset($_POST['Submit'])){
         $Submit = $_POST['Submit'];
     } else {
@@ -34,17 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if ((isset($_POST["Submit"])) AND ($Submit === "Initialiser")) {
-
         header("Location: ./createLangue.php");
     }  
-
 
     if (((isset($_POST['lib1Lang'])) AND !empty($_POST['lib1Lang']))
         AND ((isset($_POST['lib2Lang'])) AND !empty($_POST['lib2Lang']))
         AND ((isset($_POST['TypPays'])) AND !empty($_POST['TypPays']))
-        AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))
-        ) {
-        // Saisies valides
+        AND ($_POST['TypPays']!=-1)
+        AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+     
         $erreur = false;
 
         $lib1Lang = ctrlSaisies(($_POST['lib1Lang']));
@@ -61,13 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Saisies invalides
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
-    }   // End of else erreur saisies
-
-
-
-
-}   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
-// Init variables form
+    }   
+}   
 include __DIR__ . '/initLangue.php';
 ?>
 <!DOCTYPE html>

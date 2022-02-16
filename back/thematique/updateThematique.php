@@ -17,9 +17,15 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Thematique
 
+require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+
 // Instanciation de la classe Thematique
+$maThematique = new THEMATIQUE();
 
-
+// Insertion classe Langue
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+// Instanciation de la classe Langue
+$maLangue = new LANGUE();
 
 // BBCode
 
@@ -30,19 +36,39 @@ $erreur = false;
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
 
+    if ((isset($_POST["Submit"])) AND ($Submit === "Initialiser")) {
+        $sameId= $_POST['id'];
+        header("Location: ./updateThematique.php?id=".$sameId);
+    }  
 
-    // controle des saisies du formulaire
+    if (((isset($_POST['libThem'])) AND !empty($_POST['libThem']))
+    AND ((isset($_POST['TypLang'])) AND !empty($_POST['TypLang']))
+    AND ($_POST['TypLang']!=-1)
+    AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
 
-    // modification effective de la thématique
+        $erreur = false;
 
+        $libThem = ctrlSaisies(($_POST['libThem']));
+        $numLang = ctrlSaisies(($_POST['TypLang']));
 
+        $numThem = ctrlSaisies(($_POST['id']));
 
-    // Gestion des erreurs => msg si saisies ko
+        $maThematique->update($numThem, $libThem, $numLang);
 
-
-
-
+        header("Location: ./thematique.php");
+    }   
+    else {
+        // Saisies invalides
+        $erreur = true;
+         $errSaisies =  "Erreur, la saisie est obligatoire !";
+    
+    }   
 
 
 
@@ -65,14 +91,13 @@ include __DIR__ . '/initThematique.php';
     <h1>BLOGART22 Admin - CRUD Thematique</h1>
     <h2>Modification d'une Thematique</h2>
 <?php
-    // Modif : récup id à modifier
-    // id passé en GET
 
-
-
-
-
-
+ if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $oneThematique = $maThematique-> get_1Thematique($id);
+    $numLang = $oneThematique['numLang'];
+    $libThem= $oneThematique['libThem'];
+}
 
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
@@ -92,14 +117,35 @@ include __DIR__ . '/initThematique.php';
     <!-- FK : Langue -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox langue -->
-        <div class="control-group">
-            <label class="control-label" for="LibTypLang"><b>Langue :&nbsp;&nbsp;&nbsp;</b></label>
-                <input type="hidden" id="idLang" name="idLang" value="<?= isset($_GET['idLang']) ? $_GET['idLang'] : '' ?>" />
+    <div class="control-group">
+            <div class="controls">      
 
-                <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= $numLang; ?>" autocomplete="on" />
+                <label for="LibTypLang" title="Sélectionnez la langue !">
+            <b>Quelle langue :&nbsp;&nbsp;&nbsp;</b>
+        </label>
+        <input type="hidden" id="idLang" name="idLang" value="<?= ''; ?>" />
+            <select size="1" name="TypLang" id="TypLang"  class="form-control form-control-create" title="Sélectionnez la langue !" >
+                <option value="-1">- - - Choisissez une langue - - -</option>
+<?php
+                $listNumLang= "";
+                $listlib1lang = "";
 
-                <!-- Listbox langue => 2ème temps -->
+                $result=$maLangue->get_AllLangues();
 
+                if($result){
+                    foreach($result as $row) {
+                        $listNumLang = $row["numLang"];
+                        $listlib1lang = $row["lib1Lang"];
+?>
+                        <option value="<?= $listNumLang; ?>">
+                            <?= $listlib1lang; ?>
+                    </option>
+<?php
+                    } // End of foreach
+                }   // if ($result)
+?>
+            </select>
+            </div>
         </div>
     <!-- FIN Listbox langue -->
 <!-- --------------------------------------------------------------- -->

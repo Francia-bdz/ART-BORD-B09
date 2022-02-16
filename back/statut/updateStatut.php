@@ -88,9 +88,6 @@ include __DIR__ . '/initStatut.php';
         $idStat = $oneStatut['idStat'];
         $libStat = $oneStatut['libStat'];
     }
-    
-
-    // id passé en GET
 
 
 ?>

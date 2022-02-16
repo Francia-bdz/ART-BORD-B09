@@ -34,9 +34,9 @@ class THEMATIQUE{
 	function get_AllThematiquesByLang(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM THEMATIQUE NATURAL JOIN LANGUE ORDER BY lib1Lang';
+		$result = $db->query($query);
+		$allThematiquesByLang=$result->fetchAll();
 		return($allThematiquesByLang);
 	}
 
@@ -133,7 +133,7 @@ class THEMATIQUE{
 		try {
 			$db->beginTransaction();
 
-			$query='UPDATE THEMATIQUE SET libThem=?, numLang=? WHERE numThem?';
+			$query='UPDATE THEMATIQUE SET libThem=?, numLang=? WHERE numThem=?';
 			$request = $db->prepare($query);
 			$request->execute([$libThem, $numLang, $numThem]);
 			$db->commit();

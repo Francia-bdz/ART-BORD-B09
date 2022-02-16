@@ -29,7 +29,6 @@ if (isset($_GET['count'])){
     $errCIR=$_GET['count'];
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">

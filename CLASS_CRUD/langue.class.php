@@ -23,9 +23,8 @@ class LANGUE{
 	}
 
 	function get_AllLangues(){
-
-
 		global $db;
+		
 		$query ='SELECT * FROM LANGUE;';
 		$result = $db->query($query);
 		$allLangues = $result->fetchAll();

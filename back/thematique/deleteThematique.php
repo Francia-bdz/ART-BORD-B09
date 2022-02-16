@@ -14,17 +14,25 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Thematique
+require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
 
-// Instanciation de la classe thématique
+// Instanciation de la classe Thematique
+$maThematique = new THEMATIQUE();
 
 
+// Insertion classe Langue
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+
+// Instanciation de la classe Langue
+$maLangue = new LANGUE();
 
 
 // Ctrl CIR
 // Insertion classe Article
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 
-// Instanciation de la classe Article
-
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE ();
 
 // BBCode
 
@@ -32,18 +40,48 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    $numThem = ctrlSaisies(($_POST['id']));
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
 
-    // controle CIR
+    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
+        header("Location: ./thematique.php");
+    }  
 
-    // delete effective du user
+    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+        // Saisies valides
+        $erreur = false;
 
+        $numThem = ctrlSaisies(($_POST['id']));
 
+        $arrayArticle=$monArticle->get_NbAllArticlesByNumThem($numThem);
 
+        $countArticle=$arrayArticle[0];
 
+        if ($countArticle<1){
+        $erreur = false;
 
+        $numLang = ctrlSaisies(($_POST['id']));
 
+        $maLangue->delete($numLang);
 
+        header("Location: ./thematique.php");
+
+        } else {
+            $count=1;
+            header("Location: ./thematique.php?count=".$count);
+        }
+    }
+        
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }  
 
 
 
@@ -81,12 +119,13 @@ include __DIR__ . '/initThematique.php';
     <h1>BLOGART22 Admin - CRUD Thematique</h1>
     <h2>Suppression d'une Thematique</h2>
 <?php
-    // Supp : récup id à supprimer
-    // id passé en GET
-
-
-
-
+  
+  if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $oneThematique = $maThematique-> get_1Thematique($id);
+    $numLang = $oneThematique['numLang'];
+    $libThem= $oneThematique['libThem'];
+}
 
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
@@ -112,7 +151,7 @@ include __DIR__ . '/initThematique.php';
             <label class="control-label" for="LibTypLang"><b>Langue :&nbsp;&nbsp;&nbsp;</b></label>
                 <input type="hidden" id="idLang" name="idLang" value="<?= isset($_GET['idLang']) ? $_GET['idLang'] : '' ?>" />
 
-                <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= $idLang; ?>" autocomplete="on" />
+                <input type="text" name="numLang" id="numLang" size="5" maxlength="5" value="<?= $idLang; ?>" autocomplete="on" disabled/>
 
                 <!-- Listbox langue disabled => 2ème temps -->
 

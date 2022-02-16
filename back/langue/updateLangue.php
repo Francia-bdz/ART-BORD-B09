@@ -45,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (((isset($_POST['lib1Lang'])) AND !empty($_POST['lib1Lang']))
         AND ((isset($_POST['lib2Lang'])) AND !empty($_POST['lib2Lang']))
         AND ((isset($_POST['TypPays'])) AND !empty($_POST['TypPays']))
+        AND ($_POST['TypPays']!=-1)
         AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
         // Saisies valides
         $erreur = false;
@@ -62,13 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     else {
         // Saisies invalides
         $erreur = true;
-     @
-       
-        $errSaisies =  "Erreur, la saisie est obligatoire !";
+         $errSaisies =  "Erreur, la saisie est obligatoire !";
     
-    }   // End of else erreur saisies
-
-
+    }   
 
 
 }   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
