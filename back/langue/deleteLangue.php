@@ -53,9 +53,20 @@ $erreur = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // controle CIR
+
+$numLang = ctrlSaisies(($_POST['id']));
     
-// Je ne sais pas comment remplir les fonctions get_NbAllThematiquesBynumLang,get_NbAllAnglesBynumLang et get_NbAllMotsclesBynumLang mais si je pouvais, je comparerais le 
-// nombre d'occurence contenant l'idStatut choisi et si ce nombre est >1, alors la suppresion de l'occurence serait impossible
+
+
+// controle if
+
+
+    if ($countTheme<1 AND $countAngle<1 AND $countMotcle<1){
+     
+        
+    }
+
+
 
     // delete effective du langue
 
@@ -65,9 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) AND ($Submit === "Initialiser")) {
-        $sameId= $_POST['id'];
-        header("Location: ./deleteLangue.php?id=".$sameId);
+    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
+        header("Location: ./langue.php");
     }  
 
 
@@ -75,16 +85,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Saisies valides
         $erreur = false;
 
-        $lib1Lang = ctrlSaisies(($_POST['lib1Lang']));
-        $lib2Lang = ctrlSaisies(($_POST['lib2Lang']));
-        $numPays = ctrlSaisies(($_POST['TypPays']));
+        $numLang = ctrlSaisies(($_POST['id']));
+
+        $arrayTheme=$maThematique->get_NbAllThematiquesBynumLang($numLang);
+        $arrayAngle=$monAngle->get_NbAllAnglesBynumLang($numLang);
+        $arrayMotcle=$monMotcle->get_NbAllMotsclesBynumLang($numLang);
+
+        $countTheme=$arrayTheme[0];
+        $countAngle=$arrayAngle[0];
+        $countMotcle=$arrayMotcle[0];
+
+        if ($countTheme<1 AND $countAngle<1 AND $countMotcle<1){
+        $erreur = false;
 
         $numLang = ctrlSaisies(($_POST['id']));
 
-        $maLangue->delete($numLang, $lib1Lang, $lib2Lang, $numPays);
+        $maLangue->delete($numLang);
 
         header("Location: ./langue.php");
-    }   else {
+
+        } else {
+            $count=1;
+            header("Location: ./langue.php?count=".$count);
+        }
+    }
+        
+    else {
         // Saisies invalides
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
@@ -120,8 +146,7 @@ include __DIR__ . '/initLangue.php';
     <h1>BLOGART22 Admin - CRUD Langue</h1>
     <h2>Suppression d'une langue</h2>
 <?php
-    // Supp : récup id à supprimer
-    // id passé en GET
+
 
     if (isset($_GET['id'])){
         $id = $_GET['id'];
@@ -130,12 +155,11 @@ include __DIR__ . '/initLangue.php';
         $lib1Lang= $oneLangue['lib1Lang'];
         $lib2Lang= $oneLangue['lib2Lang'];
         $idLang=$oneLangue['numPays'];
-
+    }else{
+        echo("Aucune langue n'a été choisis, retournez dans sur la page d'accueil ");
     }
 
-    // $arrayTheme=$monAngle->get_NbAllAnglesBynumLang($numLang);
-    // $countTheme=$arrayTheme[0];
-    // echo ($countTheme);
+
 
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">

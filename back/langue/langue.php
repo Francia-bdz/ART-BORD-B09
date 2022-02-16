@@ -25,6 +25,10 @@ $maLangue = new LANGUE();
 $errCIR = 0;
 $errDel = 0;
 
+if (isset($_GET['count'])){
+    $errCIR=$_GET['count'];
+}
+
 
 ?>
 <!DOCTYPE html>

@@ -53,10 +53,11 @@ class MEMBRE{
 	function get_NbAllMembersByidStat($idStat){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($allNbMembersByStat);
+		$query = 'SELECT COUNT(*) FROM MEMBRE where idStat=? ;';
+		$result = $db->prepare($query);
+		$result->execute([$idStat]);
+		$allNbMembersByStat = $result;
+		return($allNbMembersByStat->fetch());
 	}
 
 	function get_AllMembresByEmail($eMailMemb){
@@ -99,7 +100,6 @@ class MEMBRE{
 			// execute
 				$db->commit();
 				$request2->closeCursor();
-			}
 		}
 		catch (PDOException $e) {
 			$db->rollBack();

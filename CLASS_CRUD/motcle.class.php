@@ -43,11 +43,11 @@ class MOTCLE{
 	function get_NbAllMotsClesBynumLang($numLang){
 		global $db;
 
-		$query = 'SELECT COUNT (*) FROM MOTCLE where numLang=? ;';
+		$query = 'SELECT COUNT(*) FROM MOTCLE where numLang=? ;';
 		$result = $db->prepare($query);
 		$result->execute([$numLang]);
 		$allNbMotsClesBynumLang = $result;	
-		return($allNbMotsClesBynumLang);
+		return($allNbMotsClesBynumLang->fetch());
 	}
 
 	// Sortir mots clés déjà sélectionnés dans MOTCLE (TJ) dans ARTICLE
