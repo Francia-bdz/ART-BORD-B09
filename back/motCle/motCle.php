@@ -56,7 +56,7 @@ $maLangue = new LANGUE();
 
 <?php
 
-$allMotscles = $monMotcle->get_AllMotsClesByLang();
+$allMotscles = $monMotcle->get_AllMotCles();
 
     // Boucle pour afficher
     foreach($allMotscles as $row) {
