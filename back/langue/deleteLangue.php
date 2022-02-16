@@ -76,9 +76,8 @@ $numLang = ctrlSaisies(($_POST['id']));
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) AND ($Submit === "Initialiser")) {
-        $sameId= $_POST['id'];
-        header("Location: ./deleteLangue.php?id=".$sameId);
+    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
+        header("Location: ./langue.php");
     }  
 
 
@@ -147,8 +146,7 @@ include __DIR__ . '/initLangue.php';
     <h1>BLOGART22 Admin - CRUD Langue</h1>
     <h2>Suppression d'une langue</h2>
 <?php
-    // Supp : récup id à supprimer
-    // id passé en GET
+
 
     if (isset($_GET['id'])){
         $id = $_GET['id'];
@@ -157,7 +155,8 @@ include __DIR__ . '/initLangue.php';
         $lib1Lang= $oneLangue['lib1Lang'];
         $lib2Lang= $oneLangue['lib2Lang'];
         $idLang=$oneLangue['numPays'];
-
+    }else{
+        echo("Aucune langue n'a été choisis, retournez dans sur la page d'accueil ");
     }
 
 

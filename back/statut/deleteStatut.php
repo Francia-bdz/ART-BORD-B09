@@ -41,17 +41,14 @@ $erreur = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
-
-    // controle des saisies du formulaire
     if(isset($_POST['Submit'])){
         $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) AND ($Submit === "Initialiser")) {
-        $sameId= $_POST['id'];
-        header("Location: ./deleteStatut.php?id=".$sameId);
+    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
+        header("Location: ./statut.php");
     }  
 
     if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
@@ -75,22 +72,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: ./statut.php?count=".$count);
         }
 
-    }   // Fin if ((isset($_POST['libStat'])) ...
+    }   
     else {
-        // Saisies invalides
+       
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
-    }   // End of else erreur saisies
+    }  
 
 
 
-    // A faire dans un 2ème temps
-    // Ctrl CIR : inexistence FK => del possible
+}  
 
-
-
-}   // End of if ($_SERVER["REQUEST_METHOD"] === "POST")
-// Init variables form
 include __DIR__ . '/initStatut.php';
 ?>
 <!DOCTYPE html>
