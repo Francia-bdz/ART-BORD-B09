@@ -8,7 +8,7 @@ class MEMBRE{
 	function get_1Membre($numMemb){
 		global $db;
 
-		$query='SELECT * FROM MEMBRE WHERE numMemb= ?';
+		$query='SELECT * FROM MEMBRE NATURAL JOIN STATUT WHERE numMemb= ?';
 		$request = $db->prepare($query);
 		$request->execute([$numMemb]);
 		return($request->fetch());
@@ -45,7 +45,7 @@ class MEMBRE{
 		global $db;
 
 		// select
-		// prepare
+		// prepare 
 		// execute
 		return($allMembersByStat);
 	}
@@ -95,19 +95,15 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 			
-				$query='UPDATE THEMATIQUE SET prenomMemb=?, nomMemb=?, passMemb=?, eMailMemb=?,idStat=? WHERE numMemb=?';
+				$query='UPDATE MEMBRE SET prenomMemb=?, nomMemb=?, passMemb=?, eMailMemb=?,idStat=? WHERE numMemb=?';
 				$request = $db->prepare($query);
 				$request->execute([$prenomMemb, $nomMemb, $passMemb, $eMailMemb, $idStat, $numMemb]);
 				$db->commit();
-				$request2->closeCursor();
+				$request->closeCursor();
 		}
 		catch (PDOException $e) {
 			$db->rollBack();
-			if ($passMemb == -1) {
-				$request1->closeCursor();
-			} else {
-				$request2->closeCursor();
-			}
+			$request->closeCursor();
 			die('Erreur update MEMBRE : ' . $e->getMessage());
 		}
 	}

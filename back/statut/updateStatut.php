@@ -49,20 +49,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $monStatut->update($idStat, $libStat);
 
         header("Location: ./statut.php");
-    }   // Fin if ((isset($_POST['libStat'])) ...
+    }  
     else {
         // Saisies invalides
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
      
-    }   // End of else erreur saisies
+    }  
 
-
-
-
-
-}   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
-// Init variables form
+}   
 include __DIR__ . '/initStatut.php';
 ?>
 <!DOCTYPE html>
@@ -80,7 +75,6 @@ include __DIR__ . '/initStatut.php';
     <h1>BLOGART22 Admin - CRUD Statut</h1>
     <h2>Modification d'un statut</h2>
 <?php
-    // Modif : récup id à modifier
 
     if (isset($_GET['id'])){
         $id = $_GET['id'];

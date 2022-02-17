@@ -39,8 +39,6 @@ $erreur = false;
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $numThem = ctrlSaisies(($_POST['id']));
-
     if(isset($_POST['Submit'])){
         $Submit = $_POST['Submit'];
     } else {
@@ -82,9 +80,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }  
 
+}   
 
-}   // End of if ($_SERVER["REQUEST_METHOD"] === "POST")
-// Init variables form
 include __DIR__ . '/initAngle.php';
 ?>
 <!DOCTYPE html>

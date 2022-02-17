@@ -39,17 +39,38 @@ $monComment = new COMMENT();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
 
-    // controle CIR
+    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
+        header("Location: ./membre.php");
+    }  
 
-    // delete effective du user
+    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+        // Saisies valides
+        $erreur = false;
 
+        $numMemb = ctrlSaisies(($_POST['id']));
 
+        $arrayComment=$monComment->get_NbAllCommentsBynumMemb($numMemb);
 
+        $countComment=$arrayComment[0];
 
+        if ($countComment<1){
+        $erreur = false;
 
+        $monMembre->delete($numMemb);
 
+        header("Location: ./membre.php");
 
+        } else {
+            $count=1;
+            header("Location: ./membre.php?count=".$count);
+        }
+    }
 
 
 
@@ -81,12 +102,21 @@ include __DIR__ . '/initMembre.php';
     <h1>BLOGART22 Admin - CRUD Membre</h1>
     <h2>Suppression d'un membre</h2>
 <?php
-    // Supp : récup id à supprimer
-    // id passé en GET
 
-
-
-
+   if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $oneMembre = $monMembre-> get_1Membre($id);
+    $prenomMemb = $oneMembre['prenomMemb'];
+    $nomMemb = $oneMembre['nomMemb'];
+    $pseudoMemb = $oneMembre['pseudoMemb'];
+    $pass1Memb = $oneMembre['passMemb'];
+    $pass2Memb = $oneMembre['passMemb'];
+    $eMail1Memb = $oneMembre['eMailMemb'];
+    $eMail2Memb = $oneMembre['eMailMemb'];
+    $dtCreaMemb = $oneMembre['dtCreaMemb'];
+    $accordMemb = $oneMembre['accordMemb'];
+    $libStat = $oneMembre['libStat'];
+   }
 
 
 ?>
@@ -121,16 +151,16 @@ include __DIR__ . '/initMembre.php';
             <label class="control-label" for="accordMemb"><b>J'ai accepté que mes données soient conservées :</b></label>
             <div class="controls">
                <fieldset>
-                  <input type="radio" name="accordMemb"
+                  <input type="radio" name="accordMemb" value="on" disabled />
                   <? if($accordMemb == 1) echo 'checked="checked"'; ?>
-                  value="on" disabled />&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="accordMemb"
+                  &nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="radio" name="accordMemb" value="off" disabled />
                   <? if($accordMemb == 0) echo 'checked="checked"'; ?>
-                  value="off" disabled />&nbsp;&nbsp;Non
+                  &nbsp;&nbsp;Non
                </fieldset>
             </div>
         </div>
-        <br>
+        <br><br>
 
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
@@ -139,11 +169,9 @@ include __DIR__ . '/initMembre.php';
     <!-- Listbox statut -->
         <div class="control-group">
             <label class="control-label" for="LibTypStat"><b>Statut :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-                <input type="hidden" id="idStat" name="idStat" value="<?= isset($_GET['idStat']) ? $_GET['idStat'] : '' ?>" />
+        
+            <input type="text" name="libStat" id="libStat" size="20" value="<?= $libStat ?>" disabled autocomplete="" />
 
-                <input type="text" name="idStat" id="idStat" size="5" maxlength="5" value="<?= $idStat; ?>" autocomplete="on" />
-
-                <!-- Listbox statut disabled => 2ème temps -->
 
         </div>
 

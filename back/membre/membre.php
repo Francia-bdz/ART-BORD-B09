@@ -92,10 +92,10 @@ if (isset($_GET['count'])){
     // Boucle pour afficher
     foreach($allMembres as $row) {
 
-
-
             // date dtCreaMemb => FR
-      // $dtCreaMemb = dateChangeFormat($dtCreaMemb, $from, $to);
+        $dtCreaMemb = dateChangeFormat($row['dtCreaMemb'], $from, $to);
+
+        if($row['accordMemb']==1){}
 ?>
             <tr>
             <td><h4>&nbsp; <?= $row['numMemb']; ?> &nbsp;</h4></td>
@@ -106,7 +106,7 @@ if (isset($_GET['count'])){
 
             <td>&nbsp; <?= $row['eMailMemb']; ?> &nbsp;</td>
 
-            <td>&nbsp; <?= $row['dtCreaMemb']; ?> &nbsp;</td>
+            <td>&nbsp; <?= $dtCreaMemb ?> &nbsp;</td>
 
             <td>&nbsp; <?= $row['accordMemb']; ?> &nbsp;</td>
 

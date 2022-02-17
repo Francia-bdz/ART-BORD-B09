@@ -60,11 +60,12 @@ class COMMENT{
 
 	function get_NbAllCommentsBynumMemb($numMemb){
 		global $db;
-
-		// select
-		// prepare
-		// execute
-		return($allNbAllCommentsBynumMemb);
+		
+		$query = 'SELECT COUNT(*) FROM COMMENT where numMemb=? ;';
+		$result = $db->prepare($query);
+		$result->execute([$numMemb]);
+		$allNbMembersByStat = $result;
+		return($allNbMembersByStat->fetch());
 	}
 
 	// Fonction : recupérer next numéro séquence de article recherché (PK COMMENT)

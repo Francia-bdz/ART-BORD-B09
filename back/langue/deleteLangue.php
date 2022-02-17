@@ -172,10 +172,8 @@ include __DIR__ . '/initLangue.php';
                 <b>Quel pays :&nbsp;&nbsp;&nbsp;</b>
             </label>
 
-
                 <input type="text" name="frPays" id="frPays" size="10" maxlength="10" value="<?= $frPays ?>" disabled />
 
-                <!-- Listbox langue disabled => 2ème temps -->
 
             </div>
         </div>

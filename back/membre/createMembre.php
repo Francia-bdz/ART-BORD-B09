@@ -27,6 +27,22 @@ require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
 // Instanciation de la classe Statut
 $monStatut = new STATUT();
 
+// Fonction MDP 
+
+function FormatPassMemb($passMemb)
+{
+	$majuscule = preg_match("~[A-Z]~", $passMemb);
+	$minuscule = preg_match("~[a-z]~", $passMemb);
+	$chiffre = preg_match("~[0-9]~", $passMemb);
+	
+	if(!$majuscule || !$minuscule || !$chiffre)
+	{
+		return false;
+	}
+	else 
+		return true;
+}
+
 // Constantes reCaptcha
 
 
@@ -61,70 +77,55 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         AND ($_POST['TypStat']!=-1)
         AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
      
-            if (count($_POST['pseudoMemb'])>6 AND count($_POST['pseudoMemb'])<70){
+            
+            if (($_POST['accordMemb'])== "off"){
+                $accordMemb = 0;
+            } elseif (($_POST['accordMemb']) == "on"){
+                $accordMemb = 1;
+            }
+            
+            $prenomMemb = ctrlSaisies(($_POST['prenomMemb']));
+            $nomMemb = ctrlSaisies(($_POST['nomMemb']));
+            $pseudoMemb = ctrlSaisies(($_POST['pseudoMemb']));
+            $passMemb = ctrlSaisies(($_POST['pass2Memb']));
+            $eMailMemb = ctrlSaisies(($_POST['eMail2Memb']));
+            $dtCreaMemb = date('Y-m-d H:i:s');
+            $idStat = ctrlSaisies(($_POST['TypStat']));
+            
+            if (strlen($pseudoMemb)<6 || strlen($pseudoMemb)>70){
                 $erreur = true;
                 $errSaisies =  "Erreur, le nombre de caractère pour le pseudo doit être compris entre 6 et 70 !";
-            }else
-            //  elseif (((str_contains($_POST['eMail1Memb'],'@') AND (str_contains($_POST['eMail2Memb'], '@'))){
-            //     $erreur = true;
-            //     $errSaisies =  "Erreur, le nombre de caractère doit être compris entre 6 et 70 !";
-            // }
-       
-            if ($accordMemb == "off"){
-            $accordMemb = 0;
+            } elseif ($eMailMemb != $_POST['eMail1Memb']){
+                
+                $erreur = true;
+                $errSaisies =  "Les deux eMails ne correspondent pas !";
 
-            } elseif ($accordMemb == "on"){
-            $accordMemb = 1;
+            } elseif ($passMemb != $_POST['pass1Memb']){
+                
+                $erreur = true;
+                $errSaisies =  "Les deux mots de passe ne correspondent pas !";
+
+            } elseif (FormatPassMemb($passMemb)!= true){
+                
+                $erreur = true;
+                $errSaisies =  "Le mot de passe doit contenir au moins une majuscule, une minuscule et un caractère spécial !";
+
+            } else {
+                
+                $erreur = false;
+                
+                $monMembre->create($prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $dtCreaMemb, $accordMemb, $idStat);
+        
+                header("Location: ./membre.php");
             }
-        $erreur = false;
-
-        $prenomMemb = ctrlSaisies(($_POST['prenomMemb']));
-        $nomMemb = ctrlSaisies(($_POST['nomMemb']));
-        $pseudoMemb = ctrlSaisies(($_POST['pseudoMemb']));
-        $passMemb = ctrlSaisies(($_POST['pass2Memb']));
-        $eMailMemb = ctrlSaisies(($_POST['eMail2Memb']));
-        $dtCreaMemb = date('Y-m-d H:i:s');
-        $accordMemb = $accordMemb;
-
-        //creér une fonction pour transformer rgpd en boolen
-       
-        $idStat = ctrlSaisies(($_POST['TypStat']));
-    
-        $monMembre->create($prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $dtCreaMemb, $accordMemb, $idStat);
-
-        header("Location: ./membre.php");
     }   
     else {
-        // Saisies invalides
+        
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }  
 
-
-
-    // Gestion des erreurs => msg si saisies ko
-
-
-
-        // CTRL saisies
-        // PSEUDO : valide, longueur: 6 mini, 70 maxi
-
-        // VALIDITÉ MAIL
-        // 1ère mail == valide
-        // 2ème mail == valide
-        // 2 mails identiques
-
-
-        // PASS VALIDE
-        // majuscules, minuscules, chiffres, car. spéciaux
-        // 2 mails identiques
-
-        // ACCORD RGPD
-
-
-
-}   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
-// Init variables form
+}   
 include __DIR__ . '/initMembre.php';
 ?>
 <!DOCTYPE html>
