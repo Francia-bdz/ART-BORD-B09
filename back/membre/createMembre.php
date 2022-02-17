@@ -18,8 +18,14 @@ require_once __DIR__ . '/../../util/delAccents.php';
 // Insertion classe Membre
 require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 
-// Instanciation de la classe Thematique
+// Instanciation de la classe Membre
 $monMembre = new MEMBRE();
+
+// Insertion classe Statut
+require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
+
+// Instanciation de la classe Statut
+$monStatut = new STATUT();
 
 // Constantes reCaptcha
 
@@ -33,12 +39,66 @@ $erreur = false;
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
 
+    if ((isset($_POST["Submit"])) AND ($Submit === "Initialiser")) {
+        header("Location: ./createMembre.php");
+    }  
 
+    if (((isset($_POST['prenomMemb'])) AND !empty($_POST['prenomMemb']))
+        AND ((isset($_POST['nomMemb'])) AND !empty($_POST['nomMemb']))
+        AND ((isset($_POST['pseudoMemb'])) AND !empty($_POST['pseudoMemb']))
+        AND ((isset($_POST['pass1Memb'])) AND !empty($_POST['pass1Memb']))
+        AND ((isset($_POST['pass2Memb'])) AND !empty($_POST['pass2Memb']))
+        AND((isset($_POST['eMail1Memb'])) AND !empty($_POST['eMail1Memb']))
+        AND((isset($_POST['eMail2Memb'])) AND !empty($_POST['eMail2Memb']))
+        AND((isset($_POST['accordMemb'])) AND !empty($_POST['accordMemb']))
+        AND ((isset($_POST['TypStat'])) AND !empty($_POST['TypStat']))
+        AND ($_POST['TypStat']!=-1)
+        AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+     
+            if (count($_POST['pseudoMemb'])>6 AND count($_POST['pseudoMemb'])<70){
+                $erreur = true;
+                $errSaisies =  "Erreur, le nombre de caractère pour le pseudo doit être compris entre 6 et 70 !";
+            }else
+            //  elseif (((str_contains($_POST['eMail1Memb'],'@') AND (str_contains($_POST['eMail2Memb'], '@'))){
+            //     $erreur = true;
+            //     $errSaisies =  "Erreur, le nombre de caractère doit être compris entre 6 et 70 !";
+            // }
+       
+            if ($accordMemb == "off"){
+            $accordMemb = 0;
 
-    // controle des saisies du formulaire
+            } elseif ($accordMemb == "on"){
+            $accordMemb = 1;
+            }
+        $erreur = false;
 
-    // création effective du user
+        $prenomMemb = ctrlSaisies(($_POST['prenomMemb']));
+        $nomMemb = ctrlSaisies(($_POST['nomMemb']));
+        $pseudoMemb = ctrlSaisies(($_POST['pseudoMemb']));
+        $passMemb = ctrlSaisies(($_POST['pass2Memb']));
+        $eMailMemb = ctrlSaisies(($_POST['eMail2Memb']));
+        $dtCreaMemb = date('Y-m-d H:i:s');
+        $accordMemb = $accordMemb;
+
+        //creér une fonction pour transformer rgpd en boolen
+       
+        $idStat = ctrlSaisies(($_POST['TypStat']));
+    
+        $monMembre->create($prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $dtCreaMemb, $accordMemb, $idStat);
+
+        header("Location: ./membre.php");
+    }   
+    else {
+        // Saisies invalides
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }  
 
 
 
@@ -129,13 +189,13 @@ include __DIR__ . '/initMembre.php';
         <br>
         <div class="control-group">
             <label class="control-label" for="pseudoMemb"><b>Pseudonyme<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="text" name="pseudoMemb" id="pseudoMemb" size="80" maxlength="80" value="<? $pseudoMemb; ?>" placeholder="6 car. minimum" autocomplete="on" />
+            <input type="text" name="pseudoMemb" id="pseudoMemb" size="80" maxlength="80" value="<?= $pseudoMemb; ?>" placeholder="6 car. minimum" autocomplete="on" />
         </div>
 
         <br>
         <div class="control-group">
             <label class="control-label" for="pass1Memb"><b>Mot passe<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="password" name="pass1Memb" id="myInput1" size="80" maxlength="80" value="<? $pass1Memb; ?>" autocomplete="on" />
+            <input type="password" name="pass1Memb" id="myInput1" size="80" maxlength="80" value="<?= $pass1Memb; ?>" autocomplete="on" />
             <br>
             <input type="checkbox" onclick="myFunction('myInput1')">
             &nbsp;&nbsp;
@@ -145,7 +205,7 @@ include __DIR__ . '/initMembre.php';
         <br>
         <div class="control-group">
             <label class="control-label" for="pass2Memb"><b>Confirmez la Mot passe<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="password" name="pass2Memb" id="myInput2" size="80" maxlength="80" value="<? $pass2Memb; ?>" autocomplete="on" />
+            <input type="password" name="pass2Memb" id="myInput2" size="80" maxlength="80" value="<?= $pass2Memb; ?>" autocomplete="on" />
             <br>
             <input type="checkbox" onclick="myFunction('myInput2')">
             &nbsp;&nbsp;
@@ -155,13 +215,13 @@ include __DIR__ . '/initMembre.php';
         <br>
         <div class="control-group">
             <label class="control-label" for="eMail1Memb"><b>eMail<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="email" name="eMail1Memb" id="eMail1Memb" size="80" maxlength="80" value="<? $eMail1Memb; ?>" autocomplete="on" />
+            <input type="email" name="eMail1Memb" id="eMail1Memb" size="80" maxlength="80" value="<?= $eMail1Memb; ?>" autocomplete="on" />
         </div>
 
         <br>
         <div class="control-group">
             <label class="control-label" for="eMail2Memb"><b>Confirmez l'eMail<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="email" name="eMail2Memb" id="eMail2Memb" size="80" maxlength="80" value="<? $eMail2Memb; ?>" autocomplete="on" />
+            <input type="email" name="eMail2Memb" id="eMail2Memb" size="80" maxlength="80" value="<?= $eMail2Memb; ?>" autocomplete="on" />
         </div>
 
         <br>
@@ -185,17 +245,38 @@ include __DIR__ . '/initMembre.php';
     <!-- FK : Statut -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox statut -->
-        <br><br>
-        <div class="control-group">
-            <label class="control-label" for="LibTypStat"><b>Statut :&nbsp;&nbsp;&nbsp;</b></label>
-                <input type="hidden" id="idStat" name="idStat" value="<?= isset($_POST['idStat']) ? $_POST['idStat'] : '' ?>" />
+    <br>
 
-                <input type="text" name="idStat" id="idStat" size="5" maxlength="5" value="<?= $idStat; ?>" autocomplete="on" />
+    <div class="control-group">
+            <div class="controls">      
 
-                <!-- Listbox statut => 2ème temps -->
+                <label for="LibTypPays" title="Sélectionnez votre statut !">
+            <b>Quel Statut :&nbsp;&nbsp;&nbsp;</b>
+        </label>
+        <input type="hidden" id="idStat" name="idStat" value="<?= ''; ?>" />
+            <select size="1" name="TypStat" id="TypStat"  class="form-control form-control-create" title="Sélectionnez le pays !" >
+                <option value="-1">- - - Choisissez un statut - - -</option>
+<?php
+                $listidStat= "";
+                $listlibStat = "";
 
+                $result=$monStatut->get_AllStatuts();
+
+                if($result){
+                    foreach($result as $row) {
+                        $listidStat = $row["idStat"];
+                        $listlibStat = $row["libStat"];
+?>
+                        <option value="<?= $listidStat; ?>">
+                            <?= $listlibStat; ?>
+                    </option>
+<?php
+                    } // End of foreach
+                }   // if ($result)
+?>
+            </select>
+            </div>
         </div>
-        <br>
     <!-- FIN Listbox statut -->
 <!-- --------------------------------------------------------------- -->
     <!-- FK : Statut -->

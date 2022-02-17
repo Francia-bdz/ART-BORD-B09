@@ -17,8 +17,10 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Membre
+require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 
 // Instanciation de la classe Membre
+$monMembre = new MEMBRE();
 
 
 // Gestion des erreurs de saisie
@@ -88,13 +90,17 @@ include __DIR__ . '/initMembre.php';
     <h1>BLOGART22 Admin - CRUD Membre</h1>
     <h2>Modification d'un membre</h2>
 <?php
-    // Modif : récup id à modifier
-    // id passé en GET
-
-
-
-
-
+   if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $oneMembre = $monMembre-> get_1Membre($id);
+    $prenomMemb = $oneMembre['prenomMemb'];
+    $nomMemb = $oneMembre['nomMemb'];
+    $pseudoMemb = $oneMembre['pseudoMemb'];
+    $pass1Memb = $oneMembre['passMemb'];
+    $pass2Memb = $oneMembre['passMemb'];
+    $eMail1Memb = $oneMembre['eMailMemb'];
+    $eMail2Memb = $oneMembre['eMailMemb'];
+}
 
 
 ?>
@@ -161,10 +167,10 @@ include __DIR__ . '/initMembre.php';
             <div class="controls">
                <fieldset>
                   <input type="radio" name="accordMemb"
-                  <? if($accordMemb == 1) echo 'checked="checked"'; ?>
+                  <? if(=$accordMemb == 1) echo 'checked="checked"'; ?>
                   value="on" disabled />&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
                   <input type="radio" name="accordMemb"
-                  <? if($accordMemb == 0) echo 'checked="checked"'; ?>
+                  <?= if($accordMemb == 0) echo 'checked="checked"'; ?>
                   value="off" disabled />&nbsp;&nbsp;Non
                </fieldset>
             </div>
