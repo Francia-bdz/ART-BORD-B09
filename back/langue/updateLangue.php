@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         AND ((isset($_POST['TypPays'])) AND !empty($_POST['TypPays']))
         AND ($_POST['TypPays']!=-1)
         AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
-        // Saisies valides
+       
         $erreur = false;
 
         $lib1Lang = ctrlSaisies(($_POST['lib1Lang']));
@@ -67,9 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     }   
 
-
-}   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
-// Init variables form
+}   
 include __DIR__ . '/initLangue.php';
 ?>
 <!DOCTYPE html>

@@ -64,16 +64,19 @@ $monArticle = new ARTICLE ();
     </thead>
     <tbody>
 <?php
-    // Appel méthode : Get tous les articles en BDD
+    $from = 'Y-m-d H:i:s';
+    $to = 'd/m/Y H:i:s';
+
     $allArticles = $monArticle->get_AllArticles();
-    // Boucle pour afficher
+
     foreach($allArticles as $row) {
 
+        $dtCreArt = dateChangeFormat($row['dtCreArt'], $from, $to);
 ?>
         <tr>
 		<td><h4>&nbsp; <?= $row["numArt"]; ?> &nbsp;</h4></td>
 
-        <td>&nbsp; <?= $row["dtCreArt"]; ?> &nbsp;</td>
+        <td>&nbsp; <?= $dtCreArt; ?> &nbsp;</td>
 
         <td>&nbsp; <?= $row["libTitrArt"]; ?> &nbsp;</td>
 
@@ -85,9 +88,9 @@ $monArticle = new ARTICLE ();
 
         <td>&nbsp; <?= $row["libThem"]; ?> &nbsp;</td>
 
-		<td>&nbsp;&nbsp;<a href="./updateArticle.php?id=<?=1; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier article" title="Modifier article" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<td>&nbsp;&nbsp;<a href="./updateArticle.php?id=<?=$row["numArt"]; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier article" title="Modifier article" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<br /></td>
-		<td>&nbsp;&nbsp;<a href="./deleteArticle.php?id=<?=1; ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer article" title="Supprimer article" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<td>&nbsp;&nbsp;<a href="./deleteArticle.php?id=<?=$row["numArt"]; ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer article" title="Supprimer article" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<br /></td>
         </tr>
 <?php

@@ -25,9 +25,28 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 // Mise en forme date
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 // Insertion classe Article
 
-// Instanciation de la classe Article
+$monArticle = new ARTICLE();
+
+// Insertion classe Langue
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+
+// Instanciation de la classe Langue
+$maLangue = new LANGUE();
+
+// Insertion classe Angle
+require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+
+// Instanciation de la classe Angle
+$monAngle = new ANGLE();
+
+// Insertion classe Thematique
+require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+
+// Instanciation de la classe Angle
+$maThematique = new THEMATIQUE();
 
 
 // Insertion classe MotCleArticle
@@ -51,23 +70,64 @@ $targetDir = TARGET;
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+
+    if ((isset($_POST["Submit"])) AND ($Submit === "Initialiser")) {
+        $sameId= $_POST['id'];
+        header("Location: ./updateArticle.php?id=".$sameId);
+    }  
 
 
-    // controle des saisies du formulaire
+    if (((isset($_POST['libTitrArt'])) AND !empty($_POST['libTitrArt']))
+    AND ((isset($_POST['libChapoArt'])) AND !empty($_POST['libChapoArt']))
+    AND ((isset($_POST['libAccrochArt'])) AND !empty($_POST['libAccrochArt']))
+    AND ((isset($_POST['parag1Art'])) AND !empty($_POST['parag1Art']))
+    AND((isset($_POST['libSsTitr1Art'])) AND !empty($_POST['libSsTitr1Art']))
+    AND((isset($_POST['parag2Art'])) AND !empty($_POST['parag2Art']))
+    AND((isset($_POST['libSsTitr2Art'])) AND !empty($_POST['libSsTitr2Art']))
+    AND((isset($_POST['parag3Art'])) AND !empty($_POST['parag3Art']))
+    AND((isset($_POST['libConclArt'])) AND !empty($_POST['libConclArt']))
+    AND ((isset($_POST['TypAngl'])) AND !empty($_POST['TypAngl']))
+    AND ($_POST['TypAngl']!=-1)
+    AND ((isset($_POST['TypThem'])) AND !empty($_POST['TypThem']))
+    AND ($_POST['TypThem']!=-1)
+    AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+     
+        $erreur = false;
 
-    // modification effective du article
+        $dtCreArt = ctrlSaisies(($_POST['dtCreArt']));
+        $libTitrArt = ctrlSaisies(($_POST['libTitrArt']));
+        $libChapoArt = ctrlSaisies(($_POST['libChapoArt']));
+        $libAccrochArt = ctrlSaisies(($_POST['libAccrochArt']));
+        $parag1Art = ctrlSaisies(($_POST['parag1Art']));
+        $libSsTitr1Art = ctrlSaisies(($_POST['libSsTitr1Art']));
+        $parag2Art = ctrlSaisies(($_POST['parag2Art']));
+        $libSsTitr2Art = ctrlSaisies(($_POST['libSsTitr2Art']));
+        $parag3Art = ctrlSaisies(($_POST['parag3Art']));
+        $libConclArt = ctrlSaisies(($_POST['libConclArt']));
+        $urlPhotArt = ctrlSaisies(($_POST['urlPhotArt']));
+        $numAngl = ctrlSaisies(($_POST['TypAngl']));
+        $numThem = ctrlSaisies(($_POST['TypThem']));
 
+        $numArt = ctrlSaisies(($_POST['id']));
 
+        $monArticle->update($numArt, $libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem);
 
-    // Gestion des erreurs => msg si saisies ko
-
+        header("Location: ./langue.php");
+    }   
+    else {
+        // Saisies invalides
+        $erreur = true;
+         $errSaisies =  "Erreur, la saisie est obligatoire !";
+    
+    }   
 
     // Traitnemnt : upload image => Chnager image
     // Nom image à la volée
-
-
-
-
 
 }   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
 // Init variables form
@@ -94,14 +154,24 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
     <h1>BLOGART22 Admin - CRUD Article</h1>
     <h2>Modification d'un article</h2>
 <?php
-    // Modif : récup id à modifier
-    // id passé en GET
+  
+  if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $oneArticle = $monArticle-> get_1Article($id);
+    $dtCreArt = $oneArticle['dtCreArt'];
+    $libTitrArt = $oneArticle['libTitrArt'];
+    $libChapoArt = $oneArticle['libChapoArt'];
+    $libAccrochArt = $oneArticle['libAccrochArt'];
+    $parag1Art = $oneArticle['parag1Art'];
+    $parag2Art = $oneArticle['parag2Art'];
+    $libSsTitr2Art = $oneArticle['libSsTitr2Art'];
+    $parag3Art = $oneArticle['parag3Art'];
+    $libConclArt = $oneArticle['libConclArt'];
+    $urlPhotArt = $oneArticle['urlPhotArt'];
+    $numAngl = $oneArticle['numAngl'];
+    $numThem = $oneArticle['numThem'];
 
-
-
-
-
-
+}
 
 
 ?>

@@ -95,7 +95,7 @@ if (isset($_GET['count'])){
             // date dtCreaMemb => FR
         $dtCreaMemb = dateChangeFormat($row['dtCreaMemb'], $from, $to);
 
-        if($row['accordMemb']==1){}
+        // if($row['accordMemb']==1){}
 ?>
             <tr>
             <td><h4>&nbsp; <?= $row['numMemb']; ?> &nbsp;</h4></td>

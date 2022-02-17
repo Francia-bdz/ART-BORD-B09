@@ -7,7 +7,7 @@ class ARTICLE{
 	function get_1Article($numArt){
 		global $db;
 		
-		$query='SELECT * FROM ARTICLE WHERE numArt= ?';
+		$query='SELECT * FROM ARTICLE AR INNER JOIN ANGLE AN ON AR.numAngl= AN.numAngl INNER JOIN THEMATIQUE TH ON AR.numThem= TH.numThem WHERE numArt= ?';
 		$request = $db->prepare($query);
 		$request->execute([$numArt]);
 		return($request->fetch());
@@ -25,7 +25,7 @@ class ARTICLE{
 	function get_AllArticles(){
 		global $db;
 
-		$query ='SELECT * FROM ARTICLE NATURAL JOIN ANGLE ' ;
+		$query ='SELECT * FROM ARTICLE AR INNER JOIN ANGLE AN ON AR.numAngl= AN.numAngl INNER JOIN THEMATIQUE TH ON AR.numThem= TH.numThem' ;
 		$result = $db->query($query);
 		$allArticles = $result->fetchAll();
 		return($allArticles);

@@ -50,7 +50,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
     <h1>BLOGART22 Admin - CRUD User</h1>
 
 	<hr />
-	<h2>Nouveau User :&nbsp;<a href="#" class="superAdmin" title="User déjà créé"><i>Créer un User</i></a></h2>
+	<h2>Nouveau User :&nbsp;<a href="./createUser.php" class="superAdmin" title="User déjà créé"><i>Créer un User</i></a></h2>
     <hr />
 	<h2>Tous les Users</h2>
 
