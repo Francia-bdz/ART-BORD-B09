@@ -75,7 +75,6 @@ if (isset($_GET['count'])){
             <th>&nbsp;Pseudo&nbsp;</th>
             <th>&nbsp;eMail&nbsp;</th>
             <th>&nbsp;Date création&nbsp;</th>
-            <th>&nbsp;Connexion&nbsp;<br />&nbsp;auto&nbsp;</th>
             <th>&nbsp;Accord&nbsp;<br />&nbsp;RGPD&nbsp;</th>
             <th>&nbsp;Statut&nbsp;</th>
             <th colspan="2">&nbsp;Action&nbsp;</th>
@@ -96,7 +95,7 @@ if (isset($_GET['count'])){
 
 
             // date dtCreaMemb => FR
-        //  $dtCreaMemb = dateChangeFormat($dtCreaMemb, $from, $to);
+      // $dtCreaMemb = dateChangeFormat($dtCreaMemb, $from, $to);
 ?>
             <tr>
             <td><h4>&nbsp; <?= $row['numMemb']; ?> &nbsp;</h4></td>
