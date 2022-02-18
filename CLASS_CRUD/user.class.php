@@ -1,4 +1,4 @@
-<?php
+ <?php
 // CRUD USER
 // ETUD
 require_once __DIR__ . '../../CONNECT/database.php';
@@ -56,9 +56,9 @@ class USER{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO USER (pseudoUser, passUser, nomUser, prenomUser , emailUser, idStat) VALUES (?,?,?,?,?)';
+			$request = $db->prepare($query);
+			$request->execute([$pseudoUser, $passUser, $nomUser, $prenomUser, $emailUser, $idStat]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -75,9 +75,9 @@ class USER{
 		try {
 			$db->beginTransaction();
 
-			// update
-			// prepare
-			// execute
+			$query='UPDATE USER SET passUser=?, nomUser=?, prenomUser=?, emailUser=?, idStat=? WHERE pseudoUser=?';
+			$request = $db->prepare($query);
+			$request->execute([$pseudoUser, $passUser, $nomUser, $prenomUser, $emailUser, $idStat]);
 			$db->commit();
 			$request->closeCursor();
 		}
