@@ -35,10 +35,10 @@ class MEMBRE{
 	function get_ExistPseudo($pseudoMemb) {
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($result->rowCount());
+		$query='SELECT * FROM MEMBRE WHERE pseudoMemb= ?';
+		$request = $db->prepare($query);
+		$request->execute([$pseudoMemb]);
+		return($request->rowCount());
 	}
 
 	function get_AllMembersByStat(){

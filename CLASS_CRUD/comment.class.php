@@ -112,7 +112,7 @@ class COMMENT{
 
 			$query = 'INSERT INTO COMMENT (numSeqCom, numArt, dtCreCom, libCom , numMemb) VALUES (?,?,?,?,?)';
 			$request = $db->prepare($query);
-			$request->execute([, $numSeqCom, $numArt, $dtCreCom, $libCom, $numMemb]);
+			$request->execute([$numSeqCom, $numArt, $dtCreCom, $libCom, $numMemb]);
 			$db->commit();
 			$request->closeCursor();
 		}

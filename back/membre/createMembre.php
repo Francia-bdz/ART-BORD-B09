@@ -15,6 +15,8 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 // Del accents sur string
 require_once __DIR__ . '/../../util/delAccents.php';
 
+require_once __DIR__ . '/../../util/regex.php';
+
 // Insertion classe Membre
 require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 
@@ -26,22 +28,6 @@ require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
 
 // Instanciation de la classe Statut
 $monStatut = new STATUT();
-
-// Fonction MDP 
-
-function FormatPassMemb($passMemb)
-{
-	$majuscule = preg_match("~[A-Z]~", $passMemb);
-	$minuscule = preg_match("~[a-z]~", $passMemb);
-	$chiffre = preg_match("~[0-9]~", $passMemb);
-	
-	if(!$majuscule || !$minuscule || !$chiffre)
-	{
-		return false;
-	}
-	else 
-		return true;
-}
 
 // Constantes reCaptcha
 
@@ -91,21 +77,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $eMailMemb = ctrlSaisies(($_POST['eMail2Memb']));
             $dtCreaMemb = date('Y-m-d H:i:s');
             $idStat = ctrlSaisies(($_POST['TypStat']));
+
             
             if (strlen($pseudoMemb)<6 || strlen($pseudoMemb)>70){
                 $erreur = true;
                 $errSaisies =  "Erreur, le nombre de caractère pour le pseudo doit être compris entre 6 et 70 !";
-            } elseif ($eMailMemb != $_POST['eMail1Memb']){
+            } 
+            elseif (($monMembre->get_ExistPseudo($pseudoMemb))>1){
+                
+                $erreur = true;
+                $errSaisies =  "Le pseudo existe déja!";
+
+            }elseif ($eMailMemb != $_POST['eMail1Memb']){
                 
                 $erreur = true;
                 $errSaisies =  "Les deux eMails ne correspondent pas !";
 
-            } elseif ($passMemb != $_POST['pass1Memb']){
+            }elseif (isEmail($eMailMemb)!= true ){
+                
+                $erreur = true;
+                $errSaisies =  "L'email n'est pas dans le bon format !";
+
+            }
+            elseif ($passMemb != $_POST['pass1Memb']){
                 
                 $erreur = true;
                 $errSaisies =  "Les deux mots de passe ne correspondent pas !";
 
-            } elseif (FormatPassMemb($passMemb)!= true){
+            } elseif (isPassWord($passMemb)!= true){
                 
                 $erreur = true;
                 $errSaisies =  "Le mot de passe doit contenir au moins une majuscule, une minuscule et un caractère spécial !";

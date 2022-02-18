@@ -164,6 +164,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
     $libChapoArt = $oneArticle['libChapoArt'];
     $libAccrochArt = $oneArticle['libAccrochArt'];
     $parag1Art = $oneArticle['parag1Art'];
+    $libSsTitr1Art = $oneArticle['libSsTitr1Art'];
     $parag2Art = $oneArticle['parag2Art'];
     $libSsTitr2Art = $oneArticle['libSsTitr2Art'];
     $parag3Art = $oneArticle['parag3Art'];
@@ -312,12 +313,9 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
             </div>
         </div>
     <!-- FIN Listbox Langue -->
-<!-- --------------------------------------------------------------- -->
 
-<!-- --------------------------------------------------------------- -->
-    <!-- FK : Angle, Thématique + TJ Mots Clés -->
-<!-- --------------------------------------------------------------- -->
-<!-- --------------------------------------------------------------- -->
+    
+
     <!-- Listbox Angle live share -->
     <div class="control-group">
             <div class="controls">      

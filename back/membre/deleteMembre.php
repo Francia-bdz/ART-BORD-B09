@@ -35,7 +35,6 @@ require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
 
 $monComment = new COMMENT();
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
@@ -50,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }  
 
     if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
-        // Saisies valides
+
         $erreur = false;
 
         $numMemb = ctrlSaisies(($_POST['id']));
