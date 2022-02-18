@@ -19,13 +19,11 @@ require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
 // Instanciation de la classe Thematique
 $maThematique = new THEMATIQUE();
 
-
 // Insertion classe Langue
 require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
 
 // Instanciation de la classe Langue
 $maLangue = new LANGUE();
-
 
 // Ctrl CIR
 // Insertion classe Article
@@ -39,8 +37,6 @@ $monArticle = new ARTICLE ();
 
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
-    $numThem = ctrlSaisies(($_POST['id']));
 
     if(isset($_POST['Submit'])){
         $Submit = $_POST['Submit'];
@@ -78,13 +74,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
         
     else {
-        // Saisies invalides
+      
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }  
 
-}   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
-// Init variables form
+}   
 include __DIR__ . '/initThematique.php';
 ?>
 <!DOCTYPE html>

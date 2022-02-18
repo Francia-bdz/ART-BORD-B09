@@ -99,7 +99,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
      
         $erreur = false;
 
-        $dtCreArt = ctrlSaisies(($_POST['dtCreArt']));
         $libTitrArt = ctrlSaisies(($_POST['libTitrArt']));
         $libChapoArt = ctrlSaisies(($_POST['libChapoArt']));
         $libAccrochArt = ctrlSaisies(($_POST['libAccrochArt']));
@@ -109,15 +108,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $libSsTitr2Art = ctrlSaisies(($_POST['libSsTitr2Art']));
         $parag3Art = ctrlSaisies(($_POST['parag3Art']));
         $libConclArt = ctrlSaisies(($_POST['libConclArt']));
-        $urlPhotArt = ctrlSaisies(($_POST['urlPhotArt']));
+        // $urlPhotArt = ctrlSaisies(($_POST['urlPhotArt']));
         $numAngl = ctrlSaisies(($_POST['TypAngl']));
         $numThem = ctrlSaisies(($_POST['TypThem']));
+
+        $urlPhotArt ='null';
 
         $numArt = ctrlSaisies(($_POST['id']));
 
         $monArticle->update($numArt, $libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem);
 
-        header("Location: ./langue.php");
+        header("Location: ./article.php");
     }   
     else {
         // Saisies invalides
@@ -170,9 +171,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
     $urlPhotArt = $oneArticle['urlPhotArt'];
     $numAngl = $oneArticle['numAngl'];
     $numThem = $oneArticle['numThem'];
-
 }
-
 
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8" id="chgLang">
@@ -282,18 +281,34 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox Langue -->
-        <br>
-        <div class="control-group">
-            <div class="controls">
-                <label class="control-label" for="LibTypLang">
-                    <b>Quelle langue :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-                </label>
+    <div class="control-group">
+            <div class="controls">      
 
+                <label for="LibTypLang" title="Sélectionnez la langue !">
+            <b>Quelle langue :&nbsp;&nbsp;&nbsp;</b>
+        </label>
+        <input type="hidden" id="idLang" name="idLang" value="<?= ''; ?>" />
+            <select size="1" name="TypLang" id="TypLang"  class="form-control form-control-create" title="Sélectionnez la langue !" >
+                <option value="-1">- - - Choisissez une langue - - -</option>
+<?php
+                $listNumLang= "";
+                $listlib1lang = "";
 
-                <input type="text" name="idLang" id="idLang" size="5" maxlength="5" value="<?= $numAngl; ?>" autocomplete="on" />
+                $result=$maLangue->get_AllLangues();
 
-                <!-- Listbox langue => 2ème temps -->
-
+                if($result){
+                    foreach($result as $row) {
+                        $listNumLang = $row["numLang"];
+                        $listlib1lang = $row["lib1Lang"];
+?>
+                        <option value="<?= $listNumLang; ?>">
+                            <?= $listlib1lang; ?>
+                    </option>
+<?php
+                    } // End of foreach
+                }   // if ($result)
+?>
+            </select>
             </div>
         </div>
     <!-- FIN Listbox Langue -->
@@ -304,36 +319,70 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox Angle live share -->
-        <br>
-        <div class="control-group">
-            <div class="controls">
-                <label class="control-label" for="LibTypAngl">
-                    <b>Quel angle :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-                </label>
+    <div class="control-group">
+            <div class="controls">      
 
+                <label for="LibTypLang" title="Sélectionnez l'angle !">
+            <b>Quelle angle :&nbsp;&nbsp;&nbsp;</b>
+        </label>
+        <input type="hidden" id="idAngl" name="idAngl" value="<?= ''; ?>" />
+            <select size="1" name="TypAngl" id="TypAngl"  class="form-control form-control-create" title="Sélectionnez la langue !" >
+                <option value="-1">- - - Choisissez un angle - - -</option>
+<?php
+                $listNumAngl= "";
+                $listLibAngl = "";
 
-                <input type="text" name="idAngl" id="idAngl" size="5" maxlength="5" value="<?= $numAngl; ?>" autocomplete="on" />
+                $result=$monAngle->get_AllAngles();
 
-                <!-- Listbox angle => 2ème temps -->
-
+                if($result){
+                    foreach($result as $row) {
+                        $listNumAngl = $row["numAngl"];
+                        $listLibAngl = $row["libAngl"];
+?>
+                        <option value="<?= $listNumAngl; ?>">
+                            <?= $listLibAngl; ?>
+                    </option>
+<?php
+                    } 
+                }  
+?>
+            </select>
             </div>
         </div>
+        <br>
     <!-- FIN Listbox Angle -->
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox Thématique -->
         <br>
         <div class="control-group">
-            <div class="controls">
-                <label class="control-label" for="LibTypThem">
-                    <b>Quelle thématique :&nbsp;&nbsp;&nbsp;</b>
-                </label>
+            <div class="controls">      
 
+                <label for="LibTypLang" title="Sélectionnez l'angle !">
+            <b>Quelle thématique :&nbsp;&nbsp;&nbsp;</b>
+        </label>
+        <input type="hidden" id="idThem" name="idThem" value="<?= ''; ?>" />
+            <select size="1" name="TypThem" id="TypThem"  class="form-control form-control-create" title="Sélectionnez la langue !" >
+                <option value="-1">- - - Choisissez une thématique - - -</option>
+<?php
+                $listNumThem= "";
+                $listLibThem = "";
 
-                <input type="text" name="idThem" id="idThem" size="5" maxlength="5" value="<?= $numThem; ?>" autocomplete="on" />
+                $result=$maThematique->get_AllThematiques();
 
-                <!-- Listbox thematique => 2ème temps -->
-
+                if($result){
+                    foreach($result as $row) {
+                        $listNumThem = $row["numThem"];
+                        $listLibThem = $row["libThem"];
+?>
+                        <option value="<?= $listNumThem; ?>">
+                            <?= $listLibThem; ?>
+                    </option>
+<?php
+                    } 
+                }  
+?>
+            </select>
             </div>
         </div>
     <!-- FIN Listbox Thématique -->

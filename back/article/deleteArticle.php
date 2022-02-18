@@ -21,21 +21,25 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Article
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 
-// Instanciation de la classe Article
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE();
 
 
 // Ctrl CIR
 // Insertion classe MotCleArticle
+require_once __DIR__ . '/../../CLASS_CRUD/motclearticle.class.php';
 
 // Instanciation de la classe MotCleArticle
-
+$monMotCleArticle = new MOTCLEARTICLE();
 
 // Insertion classe MotCle
+require_once __DIR__ . '/../../CLASS_CRUD/motcle.class.php';
 
 // Instanciation de la classe MotCle
 
-
+$monMotCle = new MOTCLE();
 
 // Gestion des erreurs de saisie
 $erreur = false;
@@ -47,23 +51,45 @@ $targetDir = TARGET;
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
+
+    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
+        header("Location: ./article.php");
+    }  
+
+    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+  
+        $erreur = false;
+
+        $numArt = ctrlSaisies(($_POST['id']));
+
+        // $arrayArticle=$monArticle->get_NbAllArticlesByNumThem($numThem);
+
+        // $countArticle=$arrayArticle[0];
+
+        // if ($countArticle<1){
+
+        $monArticle->delete($numArt);
+
+        header("Location: ./Article.php");
+
+        // } else {
+        //     $count=1;
+        //     header("Location: ./thematique.php?count=".$count);
+        // }
+    } else {
+      
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }  
+
+}   
 
 
-    // controle CIR
-
-    // delete effective du article
-
-
-
-
-
-
-
-
-
-
-}   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
-// Init variables form
 include __DIR__ . '/initArticle.php';
 // En dur
 $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
@@ -87,12 +113,22 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
     <h2>Suppression d'un article</h2>
 
 <?php
-    // Supp : récup id à supprimer
-    // id passé en GET
-
-
-
-
+ if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $oneArticle = $monArticle-> get_1Article($id);
+    $dtCreArt = $oneArticle['dtCreArt'];
+    $libTitrArt = $oneArticle['libTitrArt'];
+    $libChapoArt = $oneArticle['libChapoArt'];
+    $libAccrochArt = $oneArticle['libAccrochArt'];
+    $parag1Art = $oneArticle['parag1Art'];
+    $parag2Art = $oneArticle['parag2Art'];
+    $libSsTitr2Art = $oneArticle['libSsTitr2Art'];
+    $parag3Art = $oneArticle['parag3Art'];
+    $libConclArt = $oneArticle['libConclArt'];
+    $urlPhotArt = $oneArticle['urlPhotArt'];
+    $numAngl = $oneArticle['numAngl'];
+    $numThem = $oneArticle['numThem'];
+}
 
 ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">

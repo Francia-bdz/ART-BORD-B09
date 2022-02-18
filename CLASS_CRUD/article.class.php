@@ -144,7 +144,7 @@ class ARTICLE{
 		try {
 			$db->beginTransaction();
 
-			$query='UPDATE MEMBRE SET libTitrArt=? libChapoArt=? libAccrochArt=? parag1Art=? libSsTitr1Art=? parag2Art=? libSsTitr2Art=? parag3Art=? libConclArt=? urlPhotArt=? numAngl=? numThem=? WHERE numArt=?';
+			$query='UPDATE ARTICLE SET libTitrArt=?, libChapoArt=?, libAccrochArt=?, parag1Art=?, libSsTitr1Art=?, parag2Art=?, libSsTitr2Art=?, parag3Art=?, libConclArt=?, urlPhotArt=?, numAngl=?, numThem=? WHERE numArt=?';
 			$request = $db->prepare($query);
 			$request->execute([$libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem, $numArt]);
 			$db->commit();
@@ -175,4 +175,4 @@ class ARTICLE{
 			die('Erreur delete ARTICLE : ' . $e->getMessage());
 		}
 	}
-}	// End of class
+}	
