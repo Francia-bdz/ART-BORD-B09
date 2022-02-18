@@ -110,9 +110,9 @@ class COMMENT{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO COMMENT (numSeqCom, numArt, dtCreCom, libCom , numMemb) VALUES (?,?,?,?,?)';
+			$request = $db->prepare($query);
+			$request->execute([, $numSeqCom, $numArt, $dtCreCom, $libCom, $numMemb]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -131,9 +131,9 @@ class COMMENT{
 		try {
 			$db->beginTransaction();
 
-			// update
-			// prepare
-			// execute
+			$query='UPDATE COMMENT SET numArt=?, attModOK=?, dtModCom=?, notifComKOAff=?, delLogiq=? WHERE numSeqCom=?';
+			$request = $db->prepare($query);
+			$request->execute([$numArt, $attModOK, $dtModCom, $notifComKOAff, $delLogiq, $numSeqCom]);
 			$db->commit();
 			$request->closeCursor();
 		}

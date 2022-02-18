@@ -64,9 +64,9 @@ class LIKEART{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO LIKEART (numMemb, numArt, likeA) VALUES (?,?,?)';
+			$request = $db->prepare($query);
+			$request->execute([$numMemb, $numArt, $likeA]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -83,9 +83,9 @@ class LIKEART{
 		try {
 			$db->beginTransaction();
 
-			// update
-			// prepare
-			// execute
+			$query='UPDATE LIKEART SET numArt=?, likeA=? WHERE numMemb=?';
+			$request = $db->prepare($query);
+			$request->execute([$numArt, $likeA, $numMemb]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -127,9 +127,13 @@ class LIKEART{
 			// prepare
 			// execute
 			//$count = $request->rowCount();
+			$query='DELETE FROM LIKEART WHERE numMemb=?, numArt=?';
+			$request = $db->prepare($query);
+			$request->execute([$numMemb, $numArt]);
+			$count = $request->rowCount();
 			$db->commit();
 			$request->closeCursor();
-			//return($count);
+			return($count);
 		}
 		catch (PDOException $e) {
 			$db->rollBack();

@@ -73,9 +73,9 @@ class LIKECOM{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query = 'INSERT INTO LIKECOM (numMemb, numSeqCom, numArt, likeC) VALUES (?,?,?,?)';
+			$request = $db->prepare($query);
+			$request->execute([$numMemb, $numSeqCom, $numArt, $likeC]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -92,9 +92,9 @@ class LIKECOM{
 		try {
 			$db->beginTransaction();
 
-			// update
-			// prepare
-			// execute
+			$query='UPDATE LIKECOM SET numSeqCom=?, numArt=?, likeC=? WHERE numMemb=?';
+			$request = $db->prepare($query);
+			$request->execute([$numSeqCom, $numArt, $likeC, $numMemb]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -138,7 +138,7 @@ class LIKECOM{
 			//$count = $request->rowCount();
 			$db->commit();
 			$request->closeCursor();
-			//return($count);
+			return($count);
 		}
 		catch (PDOException $e) {
 			$db->rollBack();
