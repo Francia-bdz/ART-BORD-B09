@@ -49,6 +49,8 @@ $maThematique = new THEMATIQUE();
 // Gestion des erreurs de saisie
 $erreur = false;
 
+
+
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -89,10 +91,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $libSsTitr2Art = ctrlSaisies(($_POST['libSsTitr2Art']));
         $parag3Art = ctrlSaisies(($_POST['parag3Art']));
         $libConclArt = ctrlSaisies(($_POST['libConclArt']));
-        $urlPhotArt = ctrlSaisies(($_POST['urlPhotArt']));
         $numAngl = ctrlSaisies(($_POST['TypAngl']));
         $numThem = ctrlSaisies(($_POST['TypThem']));
         
+        require_once __DIR__ . '/../../ctrlerUploadImage.php';
+
+        $urlPhotArt=ctrlSaisies(($_POST['urlPhotArt']));
 
         $monArticle->create($dtCreArt, $libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem);
 
@@ -210,7 +214,7 @@ include __DIR__ . '/initArticle.php';
             <label class="control-label" for="urlPhotArt"><b>Importez l'illustration :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
             <div class="controls">
                 <input type="hidden" name="MAX_FILE_SIZE" value="<?= MAX_SIZE; ?>" />
-                <input type="file" name="urlPhotArt" id="urlPhotArt" accept=".jpg,.gif,.png,.jpeg" size="70" maxlength="70" value="<?= $urlPhotArt; ?>" tabindex="110" placeholder="Sur 70 car." title="Recherchez l'image à uploader !" />
+                <input type="file" name="monfichier" id="monfichier" accept=".jpg,.gif,.png,.jpeg" size="70" maxlength="70" value="<?= $monfichier; ?>" tabindex="110" placeholder="Sur 70 car." title="Recherchez l'image à uploader !" />
                 <p>
 <?php              // Gestion extension images acceptées
                   $msgImagesOK = "&nbsp;&nbsp;>> Extension des images acceptées : .jpg, .gif, .png, .jpeg" . "<br>" .

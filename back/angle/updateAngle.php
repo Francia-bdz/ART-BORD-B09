@@ -130,13 +130,23 @@ include __DIR__ . '/initAngle.php';
                     foreach($result as $row) {
                         $listNumLang = $row["numLang"];
                         $listlib1lang = $row["lib1Lang"];
+                        if ($numLang == $row['numLang']) {
 ?>
-                        <option value="<?= $listNumLang; ?>">
+                        <option value="<?= $listNumLang; ?>" selected>
                             <?= $listlib1lang; ?>
                     </option>
 <?php
-                    } // End of foreach
-                }   // if ($result)
+                    } else {
+                    ?>
+                    <option value="<?= $listNumLang; ?>">
+                        <?= $listlib1lang; ?>
+
+                    </option>
+    <?php
+
+                    }
+                } // End of foreach
+            }   // if ($result)
 ?>
             </select>
             </div>

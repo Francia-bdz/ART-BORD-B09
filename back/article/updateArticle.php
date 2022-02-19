@@ -108,11 +108,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $libSsTitr2Art = ctrlSaisies(($_POST['libSsTitr2Art']));
         $parag3Art = ctrlSaisies(($_POST['parag3Art']));
         $libConclArt = ctrlSaisies(($_POST['libConclArt']));
-        // $urlPhotArt = ctrlSaisies(($_POST['urlPhotArt']));
+        $urlPhotArt = ctrlSaisies(($_POST['urlPhotArt']));
         $numAngl = ctrlSaisies(($_POST['TypAngl']));
         $numThem = ctrlSaisies(($_POST['TypThem']));
 
-        $urlPhotArt ='null';
+        require_once __DIR__ . '/../../ctrlerUploadImage.php';
 
         $numArt = ctrlSaisies(($_POST['id']));
 
