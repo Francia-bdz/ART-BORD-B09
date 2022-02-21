@@ -116,12 +116,8 @@ include __DIR__ . '/initLangue.php';
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox Pays -->
         <br>
-        <div class="control-group">
-            <div class="controls">
 
-                <!-- Listbox pays => 2ème temps -->
-
-                <div class="control-group">
+         <div class="control-group">
             <div class="controls">      
 
                 <label for="LibTypPays" title="Sélectionnez le pays !">
@@ -152,8 +148,6 @@ include __DIR__ . '/initLangue.php';
             </div>
         </div>
 
-            </div>
-        </div>
     <!-- FIN Listbox Pays -->
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->

@@ -166,13 +166,45 @@ include __DIR__ . '/initMembre.php';
     <!-- FK : Statut -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox statut -->
-        <div class="control-group">
-            <label class="control-label" for="LibTypStat"><b>Statut :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-        
-            <input type="text" name="libStat" id="libStat" size="20" value="<?= $libStat ?>" disabled autocomplete="" />
+    <div class="control-group">
+        <div class="controls">      
 
+            <label for="LibTypPays" title="Sélectionnez votre statut !">
+        <b>Quel Statut :&nbsp;&nbsp;&nbsp;</b>
+    </label>
+    <input type="hidden" id="idStat" name="idStat" value="<?= ''; ?>" />
+        <select size="1" name="TypStat" id="TypStat"  class="form-control form-control-create" title="Sélectionnez le statut !" disabled >
+            <option value="-1">- - - Choisissez un statut - - -</option>
+<?php
+            $listidStat= "";
+            $listlibStat = "";
 
+            $result=$monStatut->get_AllStatuts();
+
+            if($result){
+                foreach($result as $row) {
+                    $listidStat = $row["idStat"];
+                    $listlibStat = $row["libStat"];
+                    if ($idStat == $row['idStat']){
+?>
+                    <option value="<?= $listidStat; ?>" selected>
+                        <?= $listlibStat; ?>
+                </option>
+<?php
+                } else {
+                ?>
+                 <option value="<?= $listidStat; ?>" selected>
+                        <?= $listlibStat; ?>
+                </option>
+
+    <?php
+                     }   
+                } 
+            }   
+?>
+        </select>
         </div>
+    </div>
 
     <!-- FIN Listbox statut -->
 <!-- --------------------------------------------------------------- -->

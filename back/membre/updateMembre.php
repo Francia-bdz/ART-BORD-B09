@@ -31,21 +31,6 @@ $monStatut = new STATUT ();
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Fonction MDP 
-
-function FormatPassMemb($passMemb)
-{
-	$majuscule = preg_match("~[A-Z]~", $passMemb);
-	$minuscule = preg_match("~[a-z]~", $passMemb);
-	$chiffre = preg_match("~[0-9]~", $passMemb);
-	
-	if(!$majuscule || !$minuscule || !$chiffre)
-	{
-		return false;
-	}
-	else 
-		return true;
-}
 // Init msg
 
 
@@ -94,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $erreur = true;
             $errSaisies =  "Les deux mots de passe ne correspondent pas !";
 
-        } elseif (FormatPassMemb($passMemb)!= true){
+        } elseif (isPassWord($passMemb)!= true){
             
             $erreur = true;
             $errSaisies =  "Le mot de passe doit contenir au moins une majuscule, une minuscule et un caractère spécial !";
@@ -107,7 +92,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
             header("Location: ./membre.php");
         }
-
     }  
     else {
        
@@ -116,9 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
      
     }  
 
-
-}   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
-// Init variables form
+}  
 include __DIR__ . '/initMembre.php';
 ?>
 <!DOCTYPE html>
@@ -259,7 +241,7 @@ include __DIR__ . '/initMembre.php';
         <b>Quel Statut :&nbsp;&nbsp;&nbsp;</b>
     </label>
     <input type="hidden" id="idStat" name="idStat" value="<?= ''; ?>" />
-        <select size="1" name="TypStat" id="TypStat"  class="form-control form-control-create" title="Sélectionnez le pays !" >
+        <select size="1" name="TypStat" id="TypStat"  class="form-control form-control-create" title="Sélectionnez le statut !" >
             <option value="-1">- - - Choisissez un statut - - -</option>
 <?php
             $listidStat= "";
@@ -271,21 +253,27 @@ include __DIR__ . '/initMembre.php';
                 foreach($result as $row) {
                     $listidStat = $row["idStat"];
                     $listlibStat = $row["libStat"];
+                    if ($idStat == $row['idStat']){
 ?>
-                    <option value="<?= $listidStat; ?>">
+                    <option value="<?= $listidStat; ?>" selected>
                         <?= $listlibStat; ?>
                 </option>
 <?php
-                } // End of foreach
-            }   // if ($result)
+                } else {
+                ?>
+                 <option value="<?= $listidStat; ?>" selected>
+                        <?= $listlibStat; ?>
+                </option>
+
+    <?php
+                     }   
+                } 
+            }   
 ?>
         </select>
         </div>
     </div>
     <!-- FIN Listbox statut -->
-<!-- --------------------------------------------------------------- -->
-    <!-- FK : Statut -->
-<!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
         <br>
         <div class="control-group">

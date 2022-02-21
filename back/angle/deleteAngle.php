@@ -133,12 +133,12 @@ if (isset($_GET['id'])){
         <br>
 <!-- ---------------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------------- -->
-    <!-- Listbox Angle -->
+    <!-- Listbox  -->
     <div class="control-group">
             <div class="controls">      
 
                 <label for="LibTypLang" title="Sélectionnez la langue !">
-            <b>Quelle langue :&nbsp;&nbsp;&nbsp;</b>
+            <b>Langue :&nbsp;&nbsp;&nbsp;</b>
         </label>
         <input type="hidden" id="idLang" name="idLang" value="<?= ''; ?>" />
             <select size="1" name="TypLang" id="TypLang"  class="form-control form-control-create" title="Sélectionnez la langue !" disabled>

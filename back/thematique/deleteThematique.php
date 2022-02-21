@@ -139,15 +139,45 @@ include __DIR__ . '/initThematique.php';
     <!-- FK : Langue -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox langue -->
-        <br>
+    <div class="control-group">
+            <div class="controls">      
 
-        <div class="control-group">
-            <label class="control-label" for="LibTypLang"><b>Langue :&nbsp;&nbsp;&nbsp;</b></label>
-               
-            <input type="text" name="lib1Lang" id="lib1Lang" size="10" maxlength="10" value="<?= $lib1Lang; ?>" disabled/>
+                <label for="LibTypLang" title="Sélectionnez la langue !">
+            <b>Langue :&nbsp;&nbsp;&nbsp;</b>
+        </label>
+        <input type="hidden" id="idLang" name="idLang" value="<?= ''; ?>" />
+            <select size="1" name="TypLang" id="TypLang"  class="form-control form-control-create" title="Sélectionnez la langue !" disabled>
+                <option value="-1">- - - Choisissez une langue - - -</option>
+<?php
+                $listNumLang= "";
+                $listlib1lang = "";
 
-                <!-- Listbox langue disabled => 2ème temps -->
+                $result=$maLangue->get_AllLangues();
 
+                if($result){
+                    foreach($result as $row) {
+                        $listNumLang = $row["numLang"];
+                        $listlib1lang = $row["lib1Lang"];
+                        if ($numLang == $row['numLang']) {
+?>
+                        <option value="<?= $listNumLang; ?>" selected disabled>
+                            <?= $listlib1lang; ?>
+                    </option>
+<?php
+                    } else {
+                    ?>
+                    <option value="<?= $listNumLang; ?>" disabled>
+                        <?= $listlib1lang; ?>
+
+                    </option>
+    <?php
+
+                    }
+                } // End of foreach
+            }   // if ($result)
+?>
+            </select>
+            </div>
         </div>
     <!-- FIN Listbox langue -->
 <!-- --------------------------------------------------------------- -->
