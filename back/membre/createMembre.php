@@ -113,6 +113,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 
                 $erreur = false;
                 
+                // $passMemb = password_hash($passMemb, PASSWORD_DEFAULT);
+
                 $monMembre->create($prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $dtCreaMemb, $accordMemb, $idStat);
         
                 header("Location: ./membre.php");
@@ -279,9 +281,7 @@ include __DIR__ . '/initMembre.php';
         </div>
     <!-- FIN Listbox statut -->
 <!-- --------------------------------------------------------------- -->
-    <!-- FK : Statut -->
-<!-- --------------------------------------------------------------- -->
-<!-- --------------------------------------------------------------- -->
+
 <!-- -->
         <!--    Captcha Blogart22    -->
         <!-- Type de reCaptcha V2 Case à cocher : OK -->

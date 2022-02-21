@@ -28,37 +28,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $numMotCle = ctrlSaisies(($_POST['id']));
 
-    if(isset($_POST['Submit'])){
+    if (isset($_POST['Submit'])) {
         $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
+    if ((isset($_POST["Submit"])) and ($Submit === "Annuler")) {
         header("Location: ./motCle.php");
-    }  
+    }
 
-    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+    if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
         // Saisies valides
 
         $numMotCle = ctrlSaisies(($_POST['id']));
-        
+
         $monMotcle->delete($numMotCle);
-        
+
         header("Location: ./motCle.php");
-    }       
-    else {
+    } else {
         // Saisies invalides
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
-    }  
-
+    }
 }   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
 // Init variables form
 include __DIR__ . '/initMotCle.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
+
 <head>
     <meta charset="utf-8" />
     <title>Admin - CRUD Mot Clé</title>
@@ -83,56 +82,93 @@ include __DIR__ . '/initMotCle.php';
         }
     </style>
 </head>
+
 <body>
     <h1>BLOGART22 Admin - CRUD Mot Clé</h1>
     <h2>Suppression d'un Mot Clé</h2>
-<?php
- 
- if (isset($_GET['id'])){
-    $id = $_GET['id'];
-    $oneMotCle= $monMotcle-> get_1MotCle($id);
-    $numLang = $oneMotCle['numLang'];
-    $lib1Lang = $oneMotCle['lib1Lang'];
-    $libMotCle= $oneMotCle['libMotCle'];
-}
+    <?php
+
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $oneMotCle = $monMotcle->get_1MotCle($id);
+        $numLang = $oneMotCle['numLang'];
+        $lib1Lang = $oneMotCle['lib1Lang'];
+        $libMotCle = $oneMotCle['libMotCle'];
+    }
 
 
-?>
+    ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
-      <fieldset>
-        <legend class="legend1">Formulaire Mot Clé...</legend>
+        <fieldset>
+            <legend class="legend1">Formulaire Mot Clé...</legend>
 
-        <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
+            <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
 
-        <div class="control-group">
-            <label class="control-label" for="libMotCle"><b>Libellé :&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="text" name="libMotCle" id="libMotCle" size="80" maxlength="100" value="<?= $libMotCle; ?>" disabled />
-        </div>
-        <br>
-        <div class="control-group">
-            <label class="control-label" for="LibTypLang"><b>Quelle langue :&nbsp;&nbsp;&nbsp;</b></label>
-           
-            <input type="text" name="lib1Lang" id="lib1Lang" size="10" maxlength="10" value="<?= $lib1Lang; ?>" disabled/>
-
-        </div>
-
-        <div class="control-group">
-            <div class="controls">
-                <br><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Annuler" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
-                <br>
+            <div class="control-group">
+                <label class="control-label" for="libMotCle"><b>Libellé :&nbsp;&nbsp;&nbsp;</b></label>
+                <input type="text" name="libMotCle" id="libMotCle" size="80" maxlength="100" value="<?= $libMotCle; ?>" disabled />
             </div>
-        </div>
-      </fieldset>
-    </form>
-<?php
-require_once __DIR__ . '/footerMotCle.php';
+            <br>
+            <div class="control-group">
 
-require_once __DIR__ . '/footer.php';
-?>
+                <div class="controls">
+
+                    <label for="LibTypLang" title="Sélectionnez la langue !">
+                        <b>Langue :&nbsp;&nbsp;&nbsp;</b>
+                    </label>
+                    <input type="hidden" id="idLang" name="idLang" value="<?= ''; ?>" />
+                    <select size="1" name="TypLang" id="TypLang" class="form-control form-control-create" title="Sélectionnez la langue !" disabled>
+                        <option value="-1">- - - Choisissez une langue - - -</option>
+                        <?php
+                        $listNumLang = "";
+                        $listlib1lang = "";
+
+                        $result = $maLangue->get_AllLangues();
+
+                        if ($result) {
+                            foreach ($result as $row) {
+                                $listNumLang = $row["numLang"];
+                                $listlib1lang = $row["lib1Lang"];
+                                if ($numLang == $row['numLang']) {
+                        ?>
+                                    <option value="<?= $listNumLang; ?>" selected disabled>
+                                        <?= $listlib1lang; ?>
+                                    </option>
+                                <?php
+                                } else {
+                                ?>
+                                    <option value="<?= $listNumLang; ?>" disabled>
+                                        <?= $listlib1lang; ?>
+
+                                    </option>
+                        <?php
+
+                                }
+                            } 
+                        }  
+                        ?>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <br><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="Annuler" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                    <br>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <?php
+    require_once __DIR__ . '/footerMotCle.php';
+
+    require_once __DIR__ . '/footer.php';
+    ?>
 </body>
+
 </html>

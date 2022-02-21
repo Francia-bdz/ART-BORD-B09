@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
 
 // Instanciation de la classe angle
 
-$monAngle= new ANGLE();
+$monAngle = new ANGLE();
 
 // Insertion classe Langue
 require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
@@ -35,43 +35,43 @@ $erreur = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
-    if(isset($_POST['Submit'])){
+    if (isset($_POST['Submit'])) {
         $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) AND ($Submit === "Initialiser")) {
+    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
         header("Location: ./createAngle.php");
-    }  
+    }
 
-    if (((isset($_POST['libAngl'])) AND !empty($_POST['libAngl']))
-        AND ((isset($_POST['TypLang'])) AND !empty($_POST['TypLang']))
-        AND ($_POST['TypLang']!=-1)
-        AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
-     
+    if (((isset($_POST['libAngl'])) and !empty($_POST['libAngl']))
+        and ((isset($_POST['TypLang'])) and !empty($_POST['TypLang']))
+        and ($_POST['TypLang'] != -1)
+        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
+    ) {
+
         $erreur = false;
 
         $libAngl = ctrlSaisies(($_POST['libAngl']));
         $numLang = ctrlSaisies(($_POST['TypLang']));
-        
+
         $numAngl = $monAngle->getNextNumAngl($numLang);
 
         $monAngle->create($numAngl, $libAngl, $numLang);
 
         header("Location: ./angle.php");
-    }   
-    else {
-        // Saisies invalides
+    } else {
+
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
-    }  
-
-}   
+    }
+}
 include __DIR__ . '/initAngle.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
+
 <head>
     <meta charset="utf-8" />
     <title>Admin - CRUD Angle</title>
@@ -81,86 +81,85 @@ include __DIR__ . '/initAngle.php';
 
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
     <h1>BLOGART22 Admin - CRUD Angle</h1>
     <h2>Ajout d'un angle</h2>
 
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
-      <fieldset>
-        <legend class="legend1">Formulaire Angle...</legend>
+        <fieldset>
+            <legend class="legend1">Formulaire Angle...</legend>
 
-        <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
+            <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
 
-        <div class="control-group">
-            <label class="control-label" for="libAngl"><b>Libellé :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="text" name="libAngl" id="libAngl" size="80" maxlength="80" value="<?= $libAngl; ?>" tabindex="10" autofocus="autofocus" />
-        </div>
-        <br>
-<!-- ---------------------------------------------------------------------- -->
-<!-- ---------------------------------------------------------------------- -->
-    <!-- Listbox Langue -->
-    <div class="control-group">
-            <div class="controls">      
-
-                <label for="LibTypLang" title="Sélectionnez la langue !">
-            <b>Quelle langue :&nbsp;&nbsp;&nbsp;</b>
-        </label>
-        <input type="hidden" id="idLang" name="idLang" value="<?= ''; ?>" />
-            <select size="1" name="TypLang" id="TypLang"  class="form-control form-control-create" title="Sélectionnez la langue !" >
-                <option value="-1">- - - Choisissez une langue - - -</option>
-<?php
-                $listNumLang= "";
-                $listlib1lang = "";
-
-                $result=$maLangue->get_AllLangues();
-
-                if($result){
-                    foreach($result as $row) {
-                        $listNumLang = $row["numLang"];
-                        $listlib1lang = $row["lib1Lang"];
-?>
-                        <option value="<?= $listNumLang; ?>">
-                            <?= $listlib1lang; ?>
-                    </option>
-<?php
-                    } // End of foreach
-                }   // if ($result)
-?>
-            </select>
+            <div class="control-group">
+                <label class="control-label" for="libAngl"><b>Libellé :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
+                <input type="text" name="libAngl" id="libAngl" size="80" maxlength="80" value="<?= $libAngl; ?>" tabindex="10" autofocus="autofocus" />
             </div>
-        </div>
-    <!-- FIN Listbox Langue -->
-<!-- ---------------------------------------------------------------------- -->
-        <div class="control-group">
-            <div class="error">
-<?php
-            if ($erreur) {
-                echo ($errSaisies);
-            } else {
-                $errSaisies = "";
-                echo ($errSaisies);
-            }
-?>
-            </div>
-        </div>
+            <br>
+            <!-- Listbox Langue -->
+            <div class="control-group">
+                <div class="controls">
 
-        <div class="control-group">
-            <div class="controls">
-                <br><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
-                <br>
+                    <label for="LibTypLang" title="Sélectionnez la langue !">
+                        <b>Quelle langue :&nbsp;&nbsp;&nbsp;</b>
+                    </label>
+                    <input type="hidden" id="idLang" name="idLang" value="<?= ''; ?>" />
+                    <select size="1" name="TypLang" id="TypLang" class="form-control form-control-create" title="Sélectionnez la langue !">
+                        <option value="-1">- - - Choisissez une langue - - -</option>
+                        <?php
+                        $listNumLang = "";
+                        $listlib1lang = "";
+
+                        $result = $maLangue->get_AllLangues();
+
+                        if ($result) {
+                            foreach ($result as $row) {
+                                $listNumLang = $row["numLang"];
+                                $listlib1lang = $row["lib1Lang"];
+                        ?>
+                                <option value="<?= $listNumLang; ?>">
+                                    <?= $listlib1lang; ?>
+                                </option>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
             </div>
-        </div>
-      </fieldset>
+            <!-- FIN Listbox Langue -->
+            <div class="control-group">
+                <div class="error">
+                    <?php
+                    if ($erreur) {
+                        echo ($errSaisies);
+                    } else {
+                        $errSaisies = "";
+                        echo ($errSaisies);
+                    }
+                    ?>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <br><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                    <br>
+                </div>
+            </div>
+        </fieldset>
     </form>
-<?php
-require_once __DIR__ . '/footerAngle.php';
+    <?php
+    require_once __DIR__ . '/footerAngle.php';
 
-require_once __DIR__ . '/footer.php';
-?>
+    require_once __DIR__ . '/footer.php';
+    ?>
 </body>
+
 </html>

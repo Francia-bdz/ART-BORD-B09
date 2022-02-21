@@ -75,12 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: ./angle.php?count=".$count);
         }
     }
-        
-    else {
-        // Saisies invalides
-        $erreur = true;
-        $errSaisies =  "Erreur, la saisie est obligatoire !";
-    }  
 
 }   
 

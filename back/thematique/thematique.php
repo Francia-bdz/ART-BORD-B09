@@ -30,16 +30,17 @@ $maLangue = new LANGUE();
 $errCIR = 0;
 $errDel = 0;
 
-if (isset($_GET['count'])){
-    $errCIR=$_GET['count'];
+if (isset($_GET['count'])) {
+    $errCIR = $_GET['count'];
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
+
 <head>
-	<title>Admin - CRUD Thematique</title>
-	<meta charset="utf-8" />
+    <title>Admin - CRUD Thematique</title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
@@ -53,68 +54,78 @@ if (isset($_GET['count'])){
         }
     </style>
 </head>
+
 <body>
-	<h1>BLOGART22 Admin - CRUD Thematique</h1>
+    <h1>BLOGART22 Admin - CRUD Thematique</h1>
 
-	<hr />
-	<h2>Nouvelle thematique :&nbsp;<a href="./createThematique.php"><i>Créer une thematique</i></a></h2>
-<?php
-    if ($errDel == 99) {
-?>
-	    <br />
-        <i><div class="error"><br>=>&nbsp;Erreur delete THEMATIQUE : la suppression s'est mal passée !</div></i>
-<?php
-    }   // End of if ($errDel == 99)
-?>
     <hr />
-	<h2>Toutes les Thematiques</h2>
+    <h2>Nouvelle thematique :&nbsp;<a href="./createThematique.php"><i>Créer une thematique</i></a></h2>
+    <?php
+    if ($errDel == 99) {
+    ?>
+        <br />
+        <i>
+            <div class="error"><br>=>&nbsp;Erreur delete THEMATIQUE : la suppression s'est mal passée !</div>
+        </i>
+    <?php
+    }   // End of if ($errDel == 99)
+    ?>
+    <hr />
+    <h2>Toutes les Thematiques</h2>
 
-	<table border="3" bgcolor="aliceblue">
-    <thead>
-        <tr>
-            <th>&nbsp;Numéro&nbsp;</th>
-            <th>&nbsp;Description&nbsp;</th>
-            <th>&nbsp;Langue&nbsp;</th>
-            <th colspan="2">&nbsp;Action&nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
-<?php
-    // Appel méthode : Get toutes les Thematiques en BDD
-$allThematiques = $maThematique->get_AllThematiquesByLang();
+    <table border="3" bgcolor="aliceblue">
+        <thead>
+            <tr>
+                <th>&nbsp;Numéro&nbsp;</th>
+                <th>&nbsp;Description&nbsp;</th>
+                <th>&nbsp;Langue&nbsp;</th>
+                <th colspan="2">&nbsp;Action&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Appel méthode : Get toutes les Thematiques en BDD
+            $allThematiques = $maThematique->get_AllThematiquesByLang();
 
-    // Boucle pour afficher
-    foreach($allThematiques as $row) {
-?>
-        <tr>
+            // Boucle pour afficher
+            foreach ($allThematiques as $row) {
+            ?>
+                <tr>
 
-		<td><h4>&nbsp; <?= $row['numThem']; ?> &nbsp;</h4></td>
+                    <td>
+                        <h4>&nbsp; <?= $row['numThem']; ?> &nbsp;</h4>
+                    </td>
 
-        <td>&nbsp; <?= $row['libThem']; ?> &nbsp;</td>
+                    <td>&nbsp; <?= $row['libThem']; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= $row['lib1Lang']; ?> &nbsp;</td>
+                    <td>&nbsp; <?= $row['lib1Lang']; ?> &nbsp;</td>
 
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateThematique.php?id=<?=$row['numThem'] ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier thématique" title="Modifier thématique" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<br /></td>
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteThematique.php?id=<?=$row['numThem'] ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer thématique" title="Supprimer thématique" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<br /></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateThematique.php?id=<?= $row['numThem'] ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier thématique" title="Modifier thématique" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br />
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteThematique.php?id=<?= $row['numThem'] ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer thématique" title="Supprimer thématique" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br />
+                    </td>
 
-        </tr>
-<?php
-	}	// End of foreach
-?>
-    </tbody>
+                </tr>
+            <?php
+            }    // End of foreach
+            ?>
+        </tbody>
     </table>
-<?php
+    <?php
     if ($errCIR == 1) {
-?>
-        <i><div class="error"><br>=>&nbsp;Suppression impossible, existence d'article(s) associé(s) à cette thématique. Vous devez d'abord supprimer le(s) thématique(s) concernée(s).</div></i>
-<?php
+    ?>
+        <i>
+            <div class="error"><br>=>&nbsp;Suppression impossible, existence d'article(s) associé(s) à cette thématique. Vous devez d'abord supprimer le(s) thématique(s) concernée(s).</div>
+        </i>
+    <?php
     }   // End of if ($errCIR == 1)
-?>
+    ?>
     <p>&nbsp;</p>
-<?php
-require_once __DIR__ . '/footer.php';
-?>
+    <?php
+    require_once __DIR__ . '/footer.php';
+    ?>
 </body>
+
 </html>

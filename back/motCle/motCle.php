@@ -20,69 +20,72 @@ require_once __DIR__ . '/../../CLASS_CRUD/motcle.class.php';
 // Instanciation de la classe Thematique
 $monMotcle = new MOTCLE();
 
-// Insertion classe Langue
-require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
-// Instanciation de la classe Langue
-$maLangue = new LANGUE();
 
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
+
 <head>
-	<title>Admin - CRUD Mot Clé</title>
-	<meta charset="utf-8" />
+    <title>Admin - CRUD Mot Clé</title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
 </head>
+
 <body>
     <h1>BLOGART22 Admin - CRUD Mot Clé</h1>
 
-	<hr />
-	<h2>Nouveau Mot Clé :&nbsp;<a href="./createMotCle.php"><i>Créer un Mot Clé</i></a></h2>
-	<hr />
-	<h2>Tous les Mots Clés</h2>
+    <hr />
+    <h2>Nouveau Mot Clé :&nbsp;<a href="./createMotCle.php"><i>Créer un Mot Clé</i></a></h2>
+    <hr />
+    <h2>Tous les Mots Clés</h2>
 
-	<table border="3" bgcolor="aliceblue">
-    <thead>
-        <tr>
-            <th>&nbsp;Numéro&nbsp;</th>
-            <th>&nbsp;Nom Mot Clé&nbsp;</th>
-            <th>&nbsp;Langue&nbsp;</th>
-            <th colspan="2">&nbsp;Action&nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
+    <table border="3" bgcolor="aliceblue">
+        <thead>
+            <tr>
+                <th>&nbsp;Numéro&nbsp;</th>
+                <th>&nbsp;Nom Mot Clé&nbsp;</th>
+                <th>&nbsp;Langue&nbsp;</th>
+                <th colspan="2">&nbsp;Action&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
 
-<?php
+            <?php
 
-$allMotscles = $monMotcle->get_AllMotCles();
+            $allMotscles = $monMotcle->get_AllMotCles();
 
-    // Boucle pour afficher
-    foreach($allMotscles as $row) {
-?>
-        <tr>
+            // Boucle pour afficher
+            foreach ($allMotscles as $row) {
+            ?>
+                <tr>
 
-		<td><h4>&nbsp; <?= $row['numMotCle']; ?> &nbsp;</h4></td>
+                    <td>
+                        <h4>&nbsp; <?= $row['numMotCle']; ?> &nbsp;</h4>
+                    </td>
 
-        <td>&nbsp; <?= $row['libMotCle']; ?> &nbsp;</td>
+                    <td>&nbsp; <?= $row['libMotCle']; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= $row['lib1Lang']; ?> &nbsp;</td>
+                    <td>&nbsp; <?= $row['lib1Lang']; ?> &nbsp;</td>
 
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateMotCle.php?id=<?=$row['numMotCle']; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier mot clé" title="Modifier mot clé" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<br /></td>
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteMotCle.php?id=<?=$row['numMotCle']; ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer mot clé" title="Supprimer mot clé" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<br /></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateMotCle.php?id=<?= $row['numMotCle']; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier mot clé" title="Modifier mot clé" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br />
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteMotCle.php?id=<?= $row['numMotCle']; ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer mot clé" title="Supprimer mot clé" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br />
+                    </td>
 
-        </tr>
-<?php
-	}	// End of foreach
-?>
-    </tbody>
+                </tr>
+            <?php
+            }    // End of foreach
+            ?>
+        </tbody>
     </table>
-    <br /><br/>
-<?php
-require_once __DIR__ . '/footer.php';
-?>
+    <br /><br />
+    <?php
+    require_once __DIR__ . '/footer.php';
+    ?>
 </body>
+
 </html>

@@ -41,52 +41,48 @@ $erreur = false;
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
-    if(isset($_POST['Submit'])){
+    if (isset($_POST['Submit'])) {
         $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
+    if ((isset($_POST["Submit"])) and ($Submit === "Annuler")) {
         header("Location: ./statut.php");
-    }  
+    }
 
-    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
-  
-        
+    if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
+
+
         $idStat = ctrlSaisies(($_POST['id']));
-        
-        $arrayUser=$monUser->get_NbAllUsersByidStat($idStat);
-        $arrayMembre=$monMembre->get_NbAllMembersByidStat($idStat);
-        
-        $countUser=$arrayUser[0];
-        $countMembre=$arrayMembre[0];
-        
-        if ($countMembre<1 AND $countUser<1 ){
-            
+
+        $arrayUser = $monUser->get_NbAllUsersByidStat($idStat);
+        $arrayMembre = $monMembre->get_NbAllMembersByidStat($idStat);
+
+        $countUser = $arrayUser[0];
+        $countMembre = $arrayMembre[0];
+
+        if ($countMembre < 1 and $countUser < 1) {
+
             $erreur = false;
             $monStatut->delete($idStat);
             header("Location: ./statut.php");
-        }else{
-            $count=1;
-            header("Location: ./statut.php?count=".$count);
+        } else {
+            $count = 1;
+            header("Location: ./statut.php?count=" . $count);
         }
+    } else {
 
-    }   
-    else {
-       
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
-    }  
-
-
-
-}  
+    }
+}
 
 include __DIR__ . '/initStatut.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
+
 <head>
     <meta charset="utf-8" />
     <title>Admin - CRUD Statut</title>
@@ -109,6 +105,7 @@ include __DIR__ . '/initStatut.php';
             -webkit-border-radius: 8px;
             border-radius: 8px;
         }
+
         .error {
             padding: 2px;
             border: solid 0px black;
@@ -118,50 +115,54 @@ include __DIR__ . '/initStatut.php';
         }
     </style>
 </head>
+
 <body>
     <h1>BLOGART22 Admin - CRUD Statut</h1>
     <h2>Suppression d'un statut</h2>
-<?php
+    <?php
 
-  if (isset($_GET['id'])){
-    $id = $_GET['id'];
-    $oneStatut = $monStatut-> get_1Statut($id);
-    $idStat = $oneStatut['idStat'];
-    $libStat = $oneStatut['libStat'];
-}
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $oneStatut = $monStatut->get_1Statut($id);
+        $idStat = $oneStatut['idStat'];
+        $libStat = $oneStatut['libStat'];
+    }
 
 
-?>
+    ?>
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
-      <fieldset>
-        <legend class="legend1">Formulaire Statut...</legend>
+        <fieldset>
+            <legend class="legend1">Formulaire Statut...</legend>
 
-        <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
+            <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
 
-        <div class="control-group">
-            <label class="control-label" for="libStat"><b>Nom :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-            <input type="text" name="libStat" id="libStat" size="80" maxlength="80" value="<?= $libStat; ?>" disabled="disabled" />
-        </div>
-
-        <div class="control-group">
-            <div class="controls">
-                <br><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Annuler" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
-                <br>
+            <div class="control-group">
+                <label class="control-label" for="libStat"><b>Nom :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
+                <input type="text" name="libStat" id="libStat" size="80" maxlength="80" value="<?= $libStat; ?>" disabled="disabled" />
             </div>
-        </div>
-      </fieldset>
+
+            <div class="control-group">
+                <div class="controls">
+                    <br><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="Annuler" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                    <br>
+                </div>
+            </div>
+        </fieldset>
     </form>
     <br>
-    <i><div class="error"><br>=>&nbsp;Attention, une suppression doit respecter les CIR !</div></i>
-<?php
-require_once __DIR__ . '/footerStatut.php';
+    <i>
+        <div class="error"><br>=>&nbsp;Attention, une suppression doit respecter les CIR !</div>
+    </i>
+    <?php
+    require_once __DIR__ . '/footerStatut.php';
 
-require_once __DIR__ . '/footer.php';
-?>
+    require_once __DIR__ . '/footer.php';
+    ?>
 </body>
+
 </html>

@@ -22,19 +22,17 @@ $monStatut = new STATUT();
 // Gestion des CIR => affichage erreur sinon
 $errCIR = 0;
 
-if (isset($_GET['count'])){
-    $errCIR=$_GET['count'];
+if (isset($_GET['count'])) {
+    $errCIR = $_GET['count'];
 }
-
-
-
 
 ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
+
 <head>
-	<title>Gestion du Statut</title>
-	<meta charset="utf-8" />
+    <title>Gestion du Statut</title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
@@ -46,77 +44,90 @@ if (isset($_GET['count'])){
             font-style: italic;
             border-radius: 5px;
         }
+
         .superAdmin {
-            text-decoration: none;  /* del sourligné */
-            color: #797979;     /* Acier */
-/*            color: #919191;      Etain */
+            text-decoration: none;
+            /* del sourligné */
+            color: #797979;
+            /* Acier */
+            /*            color: #919191;      Etain */
         }
     </style>
 </head>
+
 <body>
-	<h1>BLOGART22 Admin - CRUD Statut</h1>
+    <h1>BLOGART22 Admin - CRUD Statut</h1>
 
-	<hr />
-	<h2>Nouveau statut :&nbsp;<a href="./createStatut.php"><i>Créer un statut</i></a></h2>
-	<hr />
-	<h2>Tous les statuts</h2>
+    <hr />
+    <h2>Nouveau statut :&nbsp;<a href="./createStatut.php"><i>Créer un statut</i></a></h2>
+    <hr />
+    <h2>Tous les statuts</h2>
 
-	<table border="3" bgcolor="aliceblue">
-    <thead>
-        <tr>
-            <th>&nbsp;Numéro&nbsp;</th>
-            <th>&nbsp;Nom&nbsp;</th>
-            <th colspan="2">&nbsp;Action&nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
-<?php
-    // Appel méthode : Get tous les statuts en BDD
+    <table border="3" bgcolor="aliceblue">
+        <thead>
+            <tr>
+                <th>&nbsp;Numéro&nbsp;</th>
+                <th>&nbsp;Nom&nbsp;</th>
+                <th colspan="2">&nbsp;Action&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Appel méthode : Get tous les statuts en BDD
 
-    // Boucle pour afficher
-    $allStatuts = $monStatut->get_AllStatuts();
-    foreach($allStatuts as $row) {
+            // Boucle pour afficher
+            $allStatuts = $monStatut->get_AllStatuts();
+            foreach ($allStatuts as $row) {
 
-?>
-        <tr>
-		<td><h4>&nbsp; <?= $row['idStat']; ?> &nbsp;</h4></td>
+            ?>
+                <tr>
+                    <td>
+                        <h4>&nbsp; <?= $row['idStat']; ?> &nbsp;</h4>
+                    </td>
 
-        <td>&nbsp; <?= $row['libStat']; ?> &nbsp;</td>
+                    <td>&nbsp; <?= $row['libStat']; ?> &nbsp;</td>
 
-<?php
-        if ($row['idStat'] != 1) {  // superAdmin
-?>
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateStatut.php?id=<?= $row['idStat']; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier statut" title="Modifier statut" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<br /></td>
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteStatut.php?id=<?= $row['idStat']; ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer statut" title="Supprimer statut" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<br /></td>
-<?php
-        } else {
-?>
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateStatut.php?id=<?= $row['idStat']; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier statut" title="Modifier statut" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<br /></td>
-		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="superAdmin"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer statut" title="Supprimer statut" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<br /></td>
-<?php
-        }   // End of else if
-?>
-        </tr>
-<?php
-	}	// End of foreach
-?>
-    </tbody>
+                    <?php
+                    if ($row['idStat'] != 1) {  // superAdmin
+                    ?>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateStatut.php?id=<?= $row['idStat']; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier statut" title="Modifier statut" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <br />
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./deleteStatut.php?id=<?= $row['idStat']; ?>"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer statut" title="Supprimer statut" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <br />
+                        </td>
+                    <?php
+                    } else {
+                    ?>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateStatut.php?id=<?= $row['idStat']; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier statut" title="Modifier statut" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <br />
+                        </td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="superAdmin"><i><img src="./../../img/supprimer-png.png" width="20" height="20" alt="Supprimer statut" title="Supprimer statut" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <br />
+                        </td>
+                    <?php
+                    }   // End of else if
+                    ?>
+                </tr>
+            <?php
+            }    // End of foreach
+            ?>
+        </tbody>
     </table>
-<?php
+    <?php
     // Si erreur sur retour del => aff msg "CIR KO"
     if ($errCIR == 1) {
-?>
-        <i><div class="error"><br>=>&nbsp;Suppression impossible, existence de user(s) associé(s) à ce statut. Vous devez d'abord supprimer le(s) user(s) concerné(s).</div></i>
-<?php
+    ?>
+        <i>
+            <div class="error"><br>=>&nbsp;Suppression impossible, existence de user(s) associé(s) à ce statut. Vous devez d'abord supprimer le(s) user(s) concerné(s).</div>
+        </i>
+    <?php
     }   // End of if ($errCIR == 1)
-?>
+    ?>
     <p>&nbsp;</p>
-<?php
-require_once __DIR__ . '/footer.php';
-?>
+    <?php
+    require_once __DIR__ . '/footer.php';
+    ?>
 </body>
+
 </html>
