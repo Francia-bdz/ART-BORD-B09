@@ -34,7 +34,7 @@ class ANGLE{
 	function get_AllAnglesByLang() {
 		global $db;
 
-		$query='SELECT * FROM ANGLE NATURAL JOIN LANGUE ORDER BY lib1Lang';
+		$query='SELECT * FROM ANGLE AN INNER JOIN LANGUE LA ON AN.numLang=LA.numLang ORDER BY lib1Lang';
 		$result = $db->query($query);
 		$allAnglesByLang=$result->fetchAll();
 		return($allAnglesByLang);
