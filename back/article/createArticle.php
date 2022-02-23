@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $numAngl = ctrlSaisies(($_POST['TypAngl']));
         $numThem = ctrlSaisies(($_POST['TypThem']));
 
-        require_once __DIR__ . '/ctrlerUploadImage.php';
+        // require_once __DIR__ . '/ctrlerUploadImage.php';
 
         $urlPhotArt = ($_FILES['monfichier']);
 

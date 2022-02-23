@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Roboto:wght@100&display=swap"
+        rel="stylesheet">
+    <link href="/front/sheets/connexion.css" rel="stylesheet" type="text/css" />
+
+    <script>
+        // Affichage pass
+        function myFunction(myInputPass) {
+            var x = document.getElementById(myInputPass);
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="title_and_rectangle_connexion">
+        <h1> BIENVENUE</h1>
+        <div class="rectangle_rouge"></div>
+    </div>
+    <div class="Partie_Texte">
+        <div class="Partie_connexion">
+            <h2><span class="enluminure">C</span>onnexion</h2>
+            <!-- <input type="text" name="pseudoMemb" id="pseudoMemb" size="100" maxlength="100" value="<?= $libAccrochArt ?>" tabindex="40" placeholder="Sur 100 car." /> -->
+
+            <div class="Pseudo_control connexion_control">
+                <label class="control-label" for="pseudoMemb"><b>Pseudo:</b></label>
+                <input type="text" name="pseudoMemb" id="pseudoMemb" size="50" placeholder="Entrez votre pseudo"
+                    autofocus />
+            </div>
+
+            <div class="Mdp_control connexion_control">
+
+                <label class="control-label" for="passMemb"><b>Mot de passe:</b></label>
+                <input type="password" name="passMemb" id="passMemb" size="50" placeholder="Entrez votre mot de passe"
+                    autofocus />
+                    <br>
+                    <input type="checkbox" onclick="myFunction('passMemb')">
+                &nbsp;&nbsp;
+                
+                <label><i class="bouton_affichage_mdp">Afficher Mot de passe</i></label>
+            </div>
+        </div>
+        <div class="Partie_inscription"></div>
+
+    </div>
+
+</body>
