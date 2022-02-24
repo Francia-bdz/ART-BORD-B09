@@ -26,6 +26,7 @@ margin-left: 5%;
     font-family: 'Bigilla';
     font-size: 80px;
     font-weight: bold;
+    margin-top: 2%;
 }
 
 .rectangle_noir_footer{
@@ -43,8 +44,6 @@ a{
 
 li{
     list-style: none;
-
-  
 }
 
 .Plan_du_site{
