@@ -115,7 +115,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 <?php
  if (isset($_GET['id'])){
     $id = $_GET['id'];
-    $oneArticle = $monArticle-> get_1Article($id);
+    $oneArticle = $monArticle-> get_1ArticleAnd3FK($id);
     $dtCreArt = $oneArticle['dtCreArt'];
     $libTitrArt = $oneArticle['libTitrArt'];
     $libChapoArt = $oneArticle['libChapoArt'];

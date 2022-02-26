@@ -67,7 +67,7 @@ $monArticle = new ARTICLE ();
     $from = 'Y-m-d H:i:s';
     $to = 'd/m/Y H:i:s';
 
-    $allArticles = $monArticle->get_AllArticles();
+    $allArticles = $monArticle->get_AllArticlesByNumAnglNumThem();
 
     foreach($allArticles as $row) {
 

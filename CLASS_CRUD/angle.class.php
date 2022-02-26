@@ -8,24 +8,24 @@ class ANGLE{
 		global $db;
 
 		$query='SELECT * FROM ANGLE NATURAL JOIN LANGUE WHERE numAngl= ?';
-		$request = $db->prepare($query);
-		$request->execute([$numAngl]);
-		return($request->fetch());
+		$result = $db->prepare($query);
+		$result->execute([$numAngl]);
+		return($result->fetch());
 	}
 
 	function get_1AngleByLang(string $numAngl) {
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM ANGLE AN INNER JOIN LA LANGUE ON AN.numLang=LA.numLang WHERE numAngl= ?';
+		$result = $db->prepare($query);
+		$result->execute([$numAngl]);
 		return($result->fetch());
 	}
 
 	function get_AllAngles() {
 		global $db;
 
-		$query ='SELECT * FROM ANGLE NATURAL JOIN LANGUE ORDER BY libAngl;';
+		$query ='SELECT * FROM ANGLE ORDER BY libAngl;';
 		$result = $db->query($query);
 		$allAngles = $result->fetchAll();
 		return($allAngles);

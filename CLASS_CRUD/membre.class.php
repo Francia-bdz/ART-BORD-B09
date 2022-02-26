@@ -9,17 +9,17 @@ class MEMBRE{
 		global $db;
 
 		$query='SELECT * FROM MEMBRE NATURAL JOIN STATUT WHERE numMemb= ?';
-		$request = $db->prepare($query);
-		$request->execute([$numMemb]);
-		return($request->fetch());
+		$result = $db->prepare($query);
+		$result->execute([$numMemb]);
+		return($result->fetch());
 	}
 
 	function get_1MembreByEmail($eMailMemb){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM MEMBRE NATURAL JOIN STATUT WHERE eMailMemb= ?';
+		$result = $db->prepare($query);
+		$result->execute([$eMailMemb]);
 		return($result->fetch());
 	}
 
@@ -44,9 +44,9 @@ class MEMBRE{
 	function get_AllMembersByStat(){
 		global $db;
 
-		// select
-		// prepare 
-		// execute
+		$query ='SELECT * FROM MEMBRE NATURAL JOIN STATUT ORDER BY numMemb;';
+		$result = $db->query($query);
+		$allMembersByStat = $result->fetchAll();
 		return($allMembersByStat);
 	}
 
@@ -63,9 +63,9 @@ class MEMBRE{
 	function get_AllMembresByEmail($eMailMemb){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM MEMBRE WHERE eMailMemb= ?';
+		$result = $db->prepare($query);
+		$result->execute([$eMailMemb]);
 		return($result->fetchAll());
 	}
 

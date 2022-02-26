@@ -83,7 +83,7 @@ if (isset($_GET['count'])) {
         <tbody>
             <?php
             // Appel méthode : Get tous les angles en BDD
-            $allAngles = $monAngle->get_AllAngles();
+            $allAngles = $monAngle->get_AllAnglesByLang();
             // Boucle pour afficher
             foreach ($allAngles as $row) {
 

@@ -7,18 +7,18 @@ class USER{
 	function get_1User($pseudoUser, $passUser){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM USER WHERE (pseudoUser= ? AND passUser= ?)';
+		$result = $db->prepare($query);
+		$result->execute([$pseudoUser, $passUser]);
 		return($result->fetch());
 	}
 
 	function get_AllUsers(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query ='SELECT * FROM USER; ';
+		$result = $db->query($query);
+		$allUsers = $result->fetchAll();
 		return($allUsers);
 	}
 
@@ -32,14 +32,14 @@ class USER{
 		return($result->rowCount());
 	}
 
-	// function get_AllUsersByStat(){
-	// 	global $db;
+	function get_AllUsersByStat(){
+		global $db;
 
-	// 	// select
-	// 	// prepare
-	// 	// execute
-	// 	return($allUsersByStat);
-	// }
+		$query ='SELECT * FROM USER NATURAL JOIN STATUT ';
+		$result = $db->query($query);
+		$allUsersByStat = $result->fetchAll();
+		return($allUsersByStat);
+	}
 
 	function get_NbAllUsersByidStat($idStat){
 		global $db;
@@ -77,7 +77,7 @@ class USER{
 
 			$query='UPDATE USER SET passUser=?, nomUser=?, prenomUser=?, emailUser=?, idStat=? WHERE pseudoUser=?';
 			$request = $db->prepare($query);
-			$request->execute([$pseudoUser, $passUser, $nomUser, $prenomUser, $emailUser, $idStat]);
+			$request->execute([$passUser, $nomUser, $prenomUser, $emailUser, $idStat,$pseudoUser]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -94,9 +94,9 @@ class USER{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query='DELETE FROM COMMENT WHERE (pseudoUser=? AND passUser=?) ';
+			$request = $db->prepare($query);
+			$request->execute([$pseudoUser,$passUser]);
 			$db->commit();
 			$request->closeCursor();
 		}

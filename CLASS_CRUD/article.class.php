@@ -7,25 +7,25 @@ class ARTICLE{
 	function get_1Article($numArt){
 		global $db;
 		
-		$query='SELECT * FROM ARTICLE AR INNER JOIN ANGLE AN ON AR.numAngl= AN.numAngl INNER JOIN THEMATIQUE TH ON AR.numThem= TH.numThem WHERE numArt= ?';
-		$request = $db->prepare($query);
-		$request->execute([$numArt]);
-		return($request->fetch());
+		$query='SELECT * FROM ARTICLE WHERE numArt= ?';
+		$result = $db->prepare($query);
+		$result->execute([$numArt]);
+		return($result->fetch());
 	}
 
 	function get_1ArticleAnd3FK($numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM ARTICLE AR INNER JOIN ANGLE AN ON AR.numAngl= AN.numAngl INNER JOIN THEMATIQUE TH ON AR.numThem= TH.numThem WHERE numArt= ?';
+		$result = $db->prepare($query);
+		$result->execute([$numArt]);
 		return($result->fetch());
 	}
 
 	function get_AllArticles(){
 		global $db;
 
-		$query ='SELECT * FROM ARTICLE AR INNER JOIN ANGLE AN ON AR.numAngl= AN.numAngl INNER JOIN THEMATIQUE TH ON AR.numThem= TH.numThem' ;
+		$query ='SELECT * FROM ARTICLE ' ;
 		$result = $db->query($query);
 		$allArticles = $result->fetchAll();
 		return($allArticles);
@@ -34,9 +34,9 @@ class ARTICLE{
 	function get_AllArticlesByNumAnglNumThem(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query ='SELECT * FROM ARTICLE AR INNER JOIN ANGLE AN ON AR.numAngl= AN.numAngl INNER JOIN THEMATIQUE TH ON AR.numThem= TH.numThem' ;
+		$result = $db->query($query);
+		$allArticlesByNumAnglNumThem = $result->fetchAll();
 		return($allArticlesByNumAnglNumThem);
 	}
 
