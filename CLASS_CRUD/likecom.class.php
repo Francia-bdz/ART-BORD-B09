@@ -44,7 +44,7 @@ class LIKECOM{
 	function get_AllLikesCom(){
 		global $db;
 
-		$query ='SELECT * FROM LIKECOM NATURAL JOIN ARTICLE ;';
+		$query ='SELECT * FROM MEMBRE ME INNER JOIN LIKECOM LKC ON ME.numMemb = LKC.numMemb INNER JOIN ARTICLE ART ON LKC.numArt = ART.numArt INNER JOIN COMMENT CO ON CO.numSeqCom=LKC.numSeqCom;';
 		$result = $db->query($query);
 		$allLikesCom = $result->fetchAll();
 		return($allLikesCom);

@@ -24,7 +24,7 @@ class LIKEART{
 	function get_AllLikesArtByNumArt(){
 		global $db;
 
-		$query = 'SELECT * FROM MEMBRE ME INNER JOIN LIKEART LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt GROUP BY ART.numArt;';
+		$query = 'SELECT * FROM MEMBRE ME INNER JOIN LIKEART LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt ;';
 		$result = $db->query($query);
 		$allLikesArtByNumArt = $result->fetchAll();
 		return($allLikesArtByNumArt);
@@ -33,7 +33,7 @@ class LIKEART{
 	function get_AllLikesArtByNumMemb(){
 		global $db;
 
-		$query = 'SELECT * FROM MEMBRE ME INNER JOIN LIKEART LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt GROUP BY ME.numMemb;';
+		$query = 'SELECT * FROM MEMBRE ME INNER JOIN LIKEART LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt ;';
 		$result = $db->query($query);
 		$allLikesArtByNumMemb = $result->fetchAll();
 		return($allLikesArtByNumMemb);

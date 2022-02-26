@@ -20,7 +20,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 
-// Instanciation de la classe Thematique
+// Instanciation de la classe Membre
 $monMembre = new MEMBRE();
 
 
@@ -92,7 +92,7 @@ if (isset($_GET['count'])) {
             $to = 'd/m/Y H:i:s';
 
             // Appel méthode : Get toutes les membres en BDD
-            $allMembres = $monMembre->get_AllMembres();
+            $allMembres = $monMembre->get_AllMembersByStat();
             // Boucle pour afficher
             foreach ($allMembres as $row) {
 

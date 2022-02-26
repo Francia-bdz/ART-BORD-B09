@@ -41,7 +41,7 @@ class MEMBRE{
 		return($request->rowCount());
 	}
 
-	function get_AllMembersByStat(){
+	function get_AllMembersByStat() {
 		global $db;
 
 		$query ='SELECT * FROM MEMBRE NATURAL JOIN STATUT ORDER BY numMemb;';

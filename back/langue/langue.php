@@ -94,7 +94,7 @@ if (isset($_GET['count'])) {
 
                     <td>&nbsp; <?= $row['lib2Lang']; ?> &nbsp;</td>
 
-                    <td>&nbsp; <?= $row['numPays']; ?> &nbsp;</td>
+                    <td>&nbsp; <?= $row['frPays']; ?> &nbsp;</td>
 
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateLangue.php?id=<?= $row['numLang']; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier langue" title="Modifier langue" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
                         <br />

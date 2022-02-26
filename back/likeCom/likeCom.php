@@ -15,7 +15,11 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Likecom
 
-// Instanciation de la classe Likecom
+require_once __DIR__ . '/../../CLASS_CRUD/likecom.class.php';
+
+// Instanciation de la classe Likeart
+
+$monLikeCom= new LIKECOM();
 
 
 
@@ -74,20 +78,20 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 <?php
     // Appel méthode : Get tous les users en BDD
 
+    $allLikesCom = $monLikeCom->get_AllLikesCom();
     // Boucle pour afficher
-    //foreach($all as $row) {
-
+    foreach ($allLikesCom as $row) {
 
 
 ?>
         <tr>
-        <td><h4>&nbsp; <?= "ici pseudoMemb"; ?> &nbsp;</h4></td>
+        <td><h4>&nbsp; <?= $row["pseudoMemb"]; ?> &nbsp;</h4></td>
 
-        <td>&nbsp; <?= "ici libTitrArt"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["libTitrArt"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici libCom"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["libCom"]; ?> &nbsp;</td>
 
-        <td>&nbsp;<span class="OK">&nbsp; <?= "ici (un)like"; ?> &nbsp;</span></td>
+        <td>&nbsp;<span class="OK">&nbsp; <?= $row["likeC"]; ?> &nbsp;</span></td>
 
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier like commentaire" title="Modifier like commentaire" /></i></a><br>&nbsp;&nbsp;<span class="error">(Un)like</span>&nbsp;
         <br /></td>
@@ -96,7 +100,7 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
         <br /></td>
         </tr>
 <?php
-    // }   // End of foreach
+    }   // End of foreach
 ?>
     </tbody>
     </table>

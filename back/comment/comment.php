@@ -18,7 +18,10 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Comment
 
-// Instanciation de la classe Comment
+require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
+
+// Instanciation de la classe USER
+$monComment = new COMMENT();
 
 
 ?>
@@ -84,41 +87,44 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
     $to = 'd/m/Y H:i:s';
 
     // Appel méthode : Get tous les comments en BDD
+    $allComments= $monComment->get_AllCommentsByArticleByMemb();
+    // Boucle pour afficher
+    foreach ($allComments as $row) {
 
     // Boucle pour afficher
     //foreach($all as $row) {
 
         // date dtCreCom => FR
-        // $dtCreCom = dateChangeFormat($dtCreCom, $from, $to);
+        $dtCreCom = dateChangeFormat($row['dtCreCom'], $from, $to);
 
         // date dtModCom => FR
-        // $dtModCom = dateChangeFormat($dtModCom, $from, $to);
+         $dtModCom = dateChangeFormat($row['dtModCom'], $from, $to);
 ?>
         <tr>
-        <td><h4>&nbsp; <?= "ici numArt"; ?> &nbsp;</h4></td>
+        <td><h4>&nbsp; <?= $row["numArt"]; ?> &nbsp;</h4></td>
 
-        <td><h4>&nbsp; <?= "ici numSeqCom"; ?> &nbsp;</h4></td>
+        <td><h4>&nbsp; <?= $row["numSeqCom"]; ?> &nbsp;</h4></td>
 
-        <td>&nbsp; <?= "ici pseudoMemb"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["pseudoMemb"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici dtCreCom"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $dtCreCom; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici libCom"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["libCom"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici dtModCom"; ?> &nbsp;</td>
-
-
-        <td>&nbsp;<span class="OK">&nbsp; <?= "ici attModOK"; ?> &nbsp;</span></td>
+        <td>&nbsp; <?= $dtModCom; ?> &nbsp;</td>
 
 
-        <td>&nbsp; <?= "ici notifComKOAff"; ?> &nbsp;</td>
+        <td>&nbsp;<span class="OK">&nbsp; <?= $row["attModOK"]; ?> &nbsp;</span></td>
 
 
-        <td>&nbsp;<span class="OK">&nbsp; <?= "ici delLogiq"; ?> &nbsp;</span></td>
+        <td>&nbsp; <?= $row["notifComKOAff"]; ?> &nbsp;</td>
+
+
+        <td>&nbsp;<span class="OK">&nbsp; <?= $row["delLogiq"]; ?> &nbsp;</span></td>
 
 
 <!-- F1 aff Comments (Modérateur / Admin / Super-admin) -->
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateComment.php?id1=<?=1; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier commentaire" title="Modifier commentaire" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateComment.php?id1=<?=$row["numSeqCom"]; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier commentaire" title="Modifier commentaire" /></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
         <br /></td>
 
 <!-- Del logique (Modérateur / Admin / Super-admin) -->
@@ -126,7 +132,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
         <br /></td>
         </tr>
 <?php
-    // } // End of foreach
+     } // End of foreach
 ?>
     </tbody>
     </table>

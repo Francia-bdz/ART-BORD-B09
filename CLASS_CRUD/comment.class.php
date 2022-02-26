@@ -46,7 +46,7 @@ class COMMENT{
 
 		$query='SELECT * FROM COMMENT NATURAL JOIN ARTICLE WHERE (numSeqCom= ? AND numArt= ?)';
 		$result = $db->query($query);
-		$result->execute([$numArt]);
+		$result->execute([$numSeqCom, $numArt]);
 		$allCommentsByNumSeqComNumArt=$result->fetchAll();
 		return($allCommentsByNumSeqComNumArt);
 	}
@@ -54,7 +54,7 @@ class COMMENT{
 	function get_AllCommentsByArticleByMemb(){
 		global $db;
 
-		$query='SELECT * FROM COMMENT NATURAL JOIN MEMBRE WHERE numMemb=?';
+		$query='SELECT * FROM COMMENT NATURAL JOIN MEMBRE';
 		$result = $db->query($query);
 		$allCommentsByArticleByMemb=$result->fetchAll();
 		return($allCommentsByArticleByMemb);

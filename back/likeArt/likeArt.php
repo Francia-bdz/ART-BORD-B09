@@ -14,11 +14,11 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Likeart
+require_once __DIR__ . '/../../CLASS_CRUD/likeart.class.php';
 
 // Instanciation de la classe Likeart
 
-
-
+$monLikeArt = new LIKEART();
 
 ?>
 <!DOCTYPE html>
@@ -72,18 +72,17 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
     </thead>
     <tbody>
 <?php
-    // Appel méthode : Get tous les users en BDD
+     
+     $allLikesArt= $monLikeArt->get_AllLikesArtByNumArt();
 
-    // Boucle pour afficher
-    //foreach($all as $row) {
-    //
+     foreach ($allLikesArt as $row) {
 ?>
         <tr>
-         <td><h4>&nbsp; <?= "ici pseudoMemb"; ?> &nbsp;</h4></td>
+         <td><h4>&nbsp; <?= $row["pseudoMemb"]; ?> &nbsp;</h4></td>
 
-         <td>&nbsp; <?= "ici libTitrArt"; ?> &nbsp;</td>
+         <td>&nbsp; <?= $row["libTitrArt"]; ?> &nbsp;</td>
 
-        <td>&nbsp;<span class="OK">&nbsp; <?= "ici (un)like"; ?> &nbsp;</span></td>
+        <td>&nbsp;<span class="OK">&nbsp; <?= $row["likeA"]; ?> &nbsp;</span></td>
 
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="./updateLikeArt.php?id1=<?=1; ?>"><i><img src="./../../img/valider-png.png" width="20" height="20" alt="Modifier like article" title="Modifier like article" /></i></a><br>&nbsp;&nbsp;<span class="error">(Un)like</span>&nbsp;
         <br /></td>
@@ -92,7 +91,7 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
         <br /></td>
         </tr>
 <?php
-    // }   // End of foreach
+ }   // End of foreach
 ?>
     </tbody>
     </table>
