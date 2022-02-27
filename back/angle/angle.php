@@ -42,7 +42,13 @@ if (isset($_GET['count'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Roboto:wght@200&display=swap" rel="stylesheet">
     <style type="text/css">
+         * {
+            font-family: 'Roboto';
+        }
         .error {
             padding: 2px;
             border: solid 0px black;
@@ -71,7 +77,7 @@ if (isset($_GET['count'])) {
     <hr />
     <h2>Tous les angles</h2>
 
-    <table border="3" bgcolor="aliceblue">
+    <table border="1" bgcolor="#FFFFFF">
         <thead>
             <tr>
                 <th>&nbsp;Numéro&nbsp;</th>

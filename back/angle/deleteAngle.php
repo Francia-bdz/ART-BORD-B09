@@ -107,7 +107,7 @@ include __DIR__ . '/initAngle.php';
 
 if (isset($_GET['id'])){
     $id = $_GET['id'];
-    $oneAngle= $monAngle->get_1AngleByLang($id);
+    $oneAngle= $monAngle->get_1Angle($id);
     $numLang = $oneAngle['numLang'];
     $libAngl= $oneAngle['libAngl'];
     $lib1Lang= $oneAngle['lib1Lang'];

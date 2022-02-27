@@ -37,7 +37,6 @@ $erreur = false;
 // init msg erreur
 
 
-
 // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
