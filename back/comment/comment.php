@@ -20,7 +20,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
 
-// Instanciation de la classe USER
+// Instanciation de la classe COMMENT
 $monComment = new COMMENT();
 
 

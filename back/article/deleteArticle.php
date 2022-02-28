@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 // Instanciation de la classe ARTICLE
 $monArticle = new ARTICLE();
 
-
 // Ctrl CIR
 // Insertion classe MotCleArticle
 require_once __DIR__ . '/../../CLASS_CRUD/motclearticle.class.php';

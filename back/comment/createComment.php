@@ -17,19 +17,65 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Comment
 
-// Instanciation de la classe Comment
+require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
 
+// Instanciation de la classe COMMENT
+$monComment = new COMMENT();
+
+// Insertion classe Membre
+require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+
+// Instanciation de la classe Membre
+$monMembre = new MEMBRE();
+
+// Insertion classe Article
+
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE();
 
 // Gestion des erreurs de saisie
 $erreur = false;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // controle des saisies du formulaire
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
+    } else {
+        $Submit = "";
+    }
 
+    if ((isset($_POST["Submit"])) AND ($Submit === "Initialiser")) {
+        header("Location: ./createComment.php");
+    }
 
-    // insertion classe comment
+    if (((isset($_POST['TypMemb'])) AND !empty($_POST['TypMemb']))
+        AND ($_POST['TypMemb']!=-1) AND
+        ((isset($_POST['TypArt'])) AND !empty($_POST['TypArt']))
+        AND ($_POST['TypArt']!=-1)
+        AND ((isset($_POST['libCom'])) AND !empty($_POST['libCom']))
+        AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))
+    ) {
 
+        $erreur = false;
+
+        $numMemb = ctrlSaisies(($_POST['TypMemb']));
+        $numArt = ctrlSaisies(($_POST['TypArt']));
+        $libCom = ctrlSaisies(($_POST['libCom']));
+
+        $numSeqCom=$monComment->getNextNumCom($numArt);
+
+        $dtCreCom = date('Y-m-d H:i:s');
+
+        $monComment->create($numSeqCom, $numArt, $dtCreCom, $libCom, $numMemb);
+
+        header("Location: ./comment.php");
+    } else {
+
+        $erreur = true;
+        $errSaisies =  "Erreur, la saisie est obligatoire !";
+    }
 
 }   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
 // Init variables form
@@ -67,32 +113,72 @@ include __DIR__ . '/initComment.php';
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox Membre -->
-        <br>
-        <div class="control-group">
-            <div class="controls">
-            <label class="control-label" for="LibTypAngl">
-                <b>Quel membre :&nbsp;&nbsp;&nbsp;</b>
-            </label>
-            <input type="text" name="idMemb" id="idMemb" size="5" maxlength="5" value="<?= ""; ?>" autocomplete="on" />
+    <br>
 
-            <!-- Listbox membre => 2ème temps -->
+    <div class="control-group">
+            <div class="controls">      
 
+                <label for="LibTypMemb" title="Sélectionnez votre membre !">
+            <b>Quel Membre :&nbsp;&nbsp;&nbsp;</b>
+        </label>
+        <input type="hidden" id="TypMemb" name="TypMemb" value="<?= ''; ?>" />
+            <select size="1" name="TypMemb" id="TypMemb"  class="form-control form-control-create" title="Sélectionnez le membre !" >
+                <option value="-1">- - - Choisissez le membre - - -</option>
+<?php
+                $listNumMemb= "";
+                $listPseudoMemb = "";
+
+                $result=$monMembre->get_AllMembersByStat();
+
+                if($result){
+                    foreach($result as $row) {
+                        $listNumMemb = $row["numMemb"];
+                        $listPseudoMemb = $row["pseudoMemb"];
+?>
+                        <option value="<?= $listNumMemb; ?>">
+                            <?= $listPseudoMemb; ?>
+                    </option>
+<?php
+                    } 
+                }   
+?>
+            </select>
             </div>
         </div>
     <!-- FIN Listbox Membre -->
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox Article -->
-        <br>
-        <div class="control-group">
-            <div class="controls">
-            <label class="control-label" for="LibTypThem">
-                <b>Quel article :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-            </label>
-            <input type="text" name="idArt" id="idArt" size="5" maxlength="5" value="<?= ""; ?>" autocomplete="on" />
+    <br>
 
-            <!-- Listbox Article => 2ème temps -->
+    <div class="control-group">
+            <div class="controls">      
 
+                <label for="LibTypArticle" title="Sélectionnez votre article !">
+            <b>Quel Article :&nbsp;&nbsp;&nbsp;</b>
+        </label>
+        <input type="hidden" id="TypArt" name="TypArt" value="<?= ''; ?>" />
+            <select size="1" name="TypArt" id="TypArt"  class="form-control form-control-create" title="Sélectionnez votre article !" >
+                <option value="-1">- - - Choisissez l'article - - -</option>
+<?php
+                $listNumArt= "";
+                $listLibTitrArt = "";
+
+                $result=$monArticle->get_AllArticles();
+
+                if($result){
+                    foreach($result as $row) {
+                        $listNumArt = $row["numArt"];
+                        $listLibTitrArt = $row["libTitrArt"];
+?>
+                        <option value="<?= $listNumArt; ?>">
+                            <?= $listLibTitrArt; ?>
+                    </option>
+<?php
+                    } // End of foreach
+                }   // if ($result)
+?>
+            </select>
             </div>
         </div>
     <!-- FIN Listbox Article -->
@@ -105,7 +191,7 @@ include __DIR__ . '/initComment.php';
         <div class="control-group">
             <label class="control-label" for="libCom"><b>Ajoutez votre Commentaire :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
             <div class="controls">
-              <textarea name="libCom" id="editor1" tabindex="30" style="height:400px; width:700px; padding:2px; border:solid 1px black; color:steelblue; border-radius:5px;" rows="20" cols="100" title="Texte à mettre en forme" value="<? if(isset($_GET['libCom'])) echo $_POST['libCom']; ?>"></textarea>
+              <textarea name="libCom" id="editor1" tabindex="30" style="height:400px; width:700px; padding:2px; border:solid 1px black; color:steelblue; border-radius:5px;" rows="20" cols="100" title="Texte à mettre en forme" value="<? $libCom; ?>"></textarea>
             </div>
         </div>
         <br>

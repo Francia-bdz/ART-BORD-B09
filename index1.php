@@ -54,7 +54,6 @@ require_once __DIR__ . '/util/utilErrOn.php';
 <body>
 	<br />
 	<h1>Panneau d'Admin : CRUD - BLOGART22 (ETUD)</h1>
-	<small><span><i>CRUD fini et valide (reste à intégrer et à tester)</i></span></small>
 	<br /><br /><hr />
 	<p>
 		<h2>Connexion...</h2>

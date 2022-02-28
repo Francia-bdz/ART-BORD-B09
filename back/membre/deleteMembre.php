@@ -35,6 +35,20 @@ require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
 
 $monComment = new COMMENT();
 
+// Instanciation de la classe Likeart
+require_once __DIR__ . '/../../CLASS_CRUD/likeArt.class.php';
+
+// Insertion classe Likeart
+$monLikeArt = new LIKEART();
+
+// Insertion classe Likecom
+
+require_once __DIR__ . '/../../CLASS_CRUD/likeCom.class.php';
+
+// Insertion classe Likecom
+$monLikeCom = new LIKECOM();
+
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
@@ -58,7 +72,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $countComment=$arrayComment[0];
 
-        if ($countComment<1){
+        $arrayLikeArt=$monLikeArt->get_nbLikesArtByMembre($numMemb);
+
+        $countLikeArt=$arrayLikeArt[0];
+
+        if ($countComment<1 AND $countLikeArt<1){
         $erreur = false;
 
         $monMembre->delete($numMemb);
