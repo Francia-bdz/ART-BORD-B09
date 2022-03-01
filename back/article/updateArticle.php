@@ -108,11 +108,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $libSsTitr2Art = ctrlSaisies(($_POST['libSsTitr2Art']));
         $parag3Art = ctrlSaisies(($_POST['parag3Art']));
         $libConclArt = ctrlSaisies(($_POST['libConclArt']));
-        // $urlPhotArt = ctrlSaisies(($_POST['urlPhotArt']));
+        $urlPhotArt = ctrlSaisies(($_POST['urlPhotArt']));
         $numAngl = ctrlSaisies(($_POST['TypAngl']));
         $numThem = ctrlSaisies(($_POST['TypThem']));
 
-        $urlPhotArt ='null';
+        require_once __DIR__ . '/../../ctrlerUploadImage.php';
 
         $numArt = ctrlSaisies(($_POST['id']));
 
@@ -158,12 +158,13 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
   
   if (isset($_GET['id'])){
     $id = $_GET['id'];
-    $oneArticle = $monArticle-> get_1Article($id);
+    $oneArticle = $monArticle-> get_1ArticleAnd3FK($id);
     $dtCreArt = $oneArticle['dtCreArt'];
     $libTitrArt = $oneArticle['libTitrArt'];
     $libChapoArt = $oneArticle['libChapoArt'];
     $libAccrochArt = $oneArticle['libAccrochArt'];
     $parag1Art = $oneArticle['parag1Art'];
+    $libSsTitr1Art = $oneArticle['libSsTitr1Art'];
     $parag2Art = $oneArticle['parag2Art'];
     $libSsTitr2Art = $oneArticle['libSsTitr2Art'];
     $parag3Art = $oneArticle['parag3Art'];
@@ -312,12 +313,9 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
             </div>
         </div>
     <!-- FIN Listbox Langue -->
-<!-- --------------------------------------------------------------- -->
 
-<!-- --------------------------------------------------------------- -->
-    <!-- FK : Angle, Thématique + TJ Mots Clés -->
-<!-- --------------------------------------------------------------- -->
-<!-- --------------------------------------------------------------- -->
+    
+
     <!-- Listbox Angle live share -->
     <div class="control-group">
             <div class="controls">      

@@ -18,10 +18,12 @@ require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
 
 // Instanciation de la classe angle
 
-$monAngle= new ANGLE();
+$monAngle = new ANGLE();
 
 // Insertion classe Langue
 require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+
+$maLangue = new LANGUE();
 
 // Instanciation de la classe langue
 
@@ -73,12 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: ./angle.php?count=".$count);
         }
     }
-        
-    else {
-        // Saisies invalides
-        $erreur = true;
-        $errSaisies =  "Erreur, la saisie est obligatoire !";
-    }  
 
 }   
 
@@ -131,19 +127,45 @@ if (isset($_GET['id'])){
         <br>
 <!-- ---------------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------------- -->
-    <!-- Listbox Angle -->
-        <br>
-        <div class="control-group">
-            <div class="controls">
-            <label class="control-label" for="LibTypLang">
-                <b>Quelle langue :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-            </label>
+    <!-- Listbox  -->
+    <div class="control-group">
+            <div class="controls">      
 
+                <label for="LibTypLang" title="Sélectionnez la langue !">
+            <b>Langue :&nbsp;&nbsp;&nbsp;</b>
+        </label>
+        <input type="hidden" id="idLang" name="idLang" value="<?= ''; ?>" />
+            <select size="1" name="TypLang" id="TypLang"  class="form-control form-control-create" title="Sélectionnez la langue !" disabled>
+                <option value="-1">- - - Choisissez une langue - - -</option>
+<?php
+                $listNumLang= "";
+                $listlib1lang = "";
 
-            <input type="text" name="lib1Lang" id="lib1Lang" size="10" maxlength="10" value="<?= $lib1Lang; ?>" disabled/>
+                $result=$maLangue->get_AllLangues();
 
-                <!-- Listbox langue disabled => 2ème temps -->
+                if($result){
+                    foreach($result as $row) {
+                        $listNumLang = $row["numLang"];
+                        $listlib1lang = $row["lib1Lang"];
+                        if ($numLang == $row['numLang']) {
+?>
+                        <option value="<?= $listNumLang; ?>" selected disabled>
+                            <?= $listlib1lang; ?>
+                    </option>
+<?php
+                    } else {
+                    ?>
+                    <option value="<?= $listNumLang; ?>" disabled>
+                        <?= $listlib1lang; ?>
 
+                    </option>
+    <?php
+
+                    }
+                } // End of foreach
+            }   // if ($result)
+?>
+            </select>
             </div>
         </div>
     <!-- FIN Listbox Angle -->

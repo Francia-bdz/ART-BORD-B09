@@ -1,0 +1,94 @@
+                    /* TYPO */
+
+@font-face {
+    font-family: "Bigilla";
+    src: local("Bigilla"),
+    url(/front/assets/typo/Bigilla.otf);
+    font-weight: normal;
+    }
+
+*{
+    margin: 0%;
+    padding: 0%;
+
+}
+footer{
+    background-color: #E1E1E1 ;
+}
+
+.title_and_rectangle{
+display: flex;
+justify-content: space-between;
+margin-left: 5%;
+}
+
+.title_footer{
+    font-family: 'Bigilla';
+    font-size: 80px;
+    font-weight: bold;
+    margin-top: 2%;
+}
+
+.rectangle_noir_footer{
+    align-self: center;
+    background-color: black;
+    width: 500px;
+    height: 10px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    
+}
+
+li{
+    list-style: none;
+}
+
+.Plan_du_site{
+    display: flex;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+   
+}
+
+.li_Plan_du_site{
+    margin-bottom: 20%;
+    margin-top: 20%;
+}
+.Plan_du_site_1{
+margin-left: 5%;
+}
+
+.Plan_du_site_2{
+    margin-left: 20%;
+}
+
+
+.Partie_Droit_Background{
+    margin-top: 2%;
+    background-color: #D2D2D2;
+}
+
+.Partie_Droit{
+    display: flex;
+    height: 50px;
+    
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 10%;
+}
+
+a{
+    transition: color 0.3 ease-in-out;
+}
+
+a:hover{
+        color: #7798C9;
+}

@@ -7,18 +7,16 @@ class COMMENTPLUS{
 	function get_AllCommentPlusByArticle($numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM COMMENTPLUS NATURAL JOIN ARTICLE WHERE numArt=?';
+		$result = $db->query($query);
+		$result->execute([$numArt]);
 		return($result->fetchAll());
 	}
 
-	function get_AllCommentPlusR(){
+	function get_AllCommentPlus(){
 		global $db;
-
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM ARTICLE AR INNER JOIN COMMENTPLUS CP ON CP.numArt= AR.numArt INNER JOIN COMMENT CO ON CO.numSeqCom=CP.numSeqCom INNER JOIN MEMBRE ME ON CO.numMemb=ME.numMemb';
+		$result = $db->query($query);
 		return($result->fetchAll());
 	}
 

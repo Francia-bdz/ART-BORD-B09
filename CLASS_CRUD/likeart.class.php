@@ -7,25 +7,24 @@ class LIKEART{
 	function get_1LikeArt($numMemb, $numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM LIKEART WHERE (numMemb= ? AND numArt= ?)';
+		$result = $db->prepare($query);
+		$result->execute([$numMemb, $numArt]);
 		return($result->fetch());
 	}
 
 	function get_AllLikesArt(){
 		global $db;
-
-		// select
-		// prepare
-		// execute
+		$query ='SELECT * FROM LIKEART;';
+		$result = $db->query($query);
+		$allLikesArt = $result->fetchAll();
 		return($allLikesArt);
 	}
 
 	function get_AllLikesArtByNumArt(){
 		global $db;
 
-		$query = 'SELECT * FROM MEMBRE ME INNER JOIN LIKEART LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt GROUP BY ART.numArt;';
+		$query = 'SELECT * FROM MEMBRE ME INNER JOIN LIKEART LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt ;';
 		$result = $db->query($query);
 		$allLikesArtByNumArt = $result->fetchAll();
 		return($allLikesArtByNumArt);
@@ -34,7 +33,7 @@ class LIKEART{
 	function get_AllLikesArtByNumMemb(){
 		global $db;
 
-		$query = 'SELECT * FROM MEMBRE ME INNER JOIN LIKEART LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt GROUP BY ME.numMemb;';
+		$query = 'SELECT * FROM MEMBRE ME INNER JOIN LIKEART LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt ;';
 		$result = $db->query($query);
 		$allLikesArtByNumMemb = $result->fetchAll();
 		return($allLikesArtByNumMemb);
@@ -43,18 +42,18 @@ class LIKEART{
 	function get_nbLikesArtByArticle($numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query = 'SELECT COUNT(*) FROM LIKEART where numArt=? ;';
+		$result = $db->prepare($query);
+		$result->execute([$numArt]);
 		return($result->fetchAll());
 	}
 
 	function get_nbLikesArtByMembre($numMemb){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query = 'SELECT COUNT(*) FROM LIKEART where numMemb=? ;';
+		$result = $db->prepare($query);
+		$result->execute([$numMemb]);
 		return($result->fetchAll());
 	}
 
@@ -103,9 +102,9 @@ class LIKEART{
 		try {
 			$db->beginTransaction();
 
-			// insert / update
-			// prepare
-			// execute
+			$query='INSERT OR UPDATE LIKEART WHERE (numMemb=? AND numArt=?)';
+			$request = $db->prepare($query);
+			$request->execute([$numMemb,$numArt]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -123,11 +122,7 @@ class LIKEART{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
-			//$count = $request->rowCount();
-			$query='DELETE FROM LIKEART WHERE numMemb=?, numArt=?';
+			$query='DELETE FROM LIKEART WHERE (numMemb=? AND numArt=?)';
 			$request = $db->prepare($query);
 			$request->execute([$numMemb, $numArt]);
 			$count = $request->rowCount();

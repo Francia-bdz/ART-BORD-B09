@@ -1,0 +1,180 @@
+@font-face {
+    font-family: "Bigilla";
+    src: local("Bigilla"),
+    url(/front/assets/typo/Bigilla.otf);
+    font-weight: normal;
+    }
+
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Roboto';
+
+}
+
+.title_and_rectangle_connexion{
+    margin-top: 2%;
+}
+
+
+.Partie_Texte{
+    margin-left: 3%;
+}
+
+h1{
+    font-family: "Bigilla", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 150px;
+    text-align: center;
+}
+
+h2{
+    margin-top: 3%;
+    font-weight: bolder;
+    font-size: 28px;
+}
+
+.rectangle_rouge{
+    height: 10px;
+    width: 650px;
+    background-color: #AD1305;
+    margin: 0 auto;
+}
+
+input{
+    border-radius:4px;
+    background-color: #C4C4C4;
+    padding: 10px 20px;
+    border: 0px;
+    font-size: 16px;
+}
+
+b{
+    font-size: 20px;
+    margin-right: 1%;
+}
+
+.bouton_affichage_mdp{
+    margin-top: 1%;
+}
+
+.connexion_control{
+    margin-top: 2%;
+}
+
+.enluminure{
+    font-family: "Bigilla";
+    font-size: 40px;
+    color: #AD1305;
+}
+
+input[type=submit]{
+    margin-top: 2%;
+    transition: all 0.2s ease-in-out;
+}
+
+input[type=submit]:hover{
+  -webkit-filter: brightness(70%);
+   filter: brightness(70%);;
+}
+
+.Pas_encore_inscrit{
+    margin-top: 2%;
+    font-weight: bolder;
+}
+
+.Pas_encore_inscrit_lien{
+    text-decoration: none;
+    color:#AD1305;
+    transition: all 0.2s ease-in-out;
+}
+
+.Pas_encore_inscrit_lien:hover{
+    color:#7798C9;
+}
+
+/* Footer */
+
+footer{
+    margin-top: 4%;
+    background-color: #E1E1E1 ;
+}
+
+.title_and_rectangle{
+display: flex;
+justify-content: space-between;
+margin-left: 5%;
+
+}
+
+.title_footer{
+    font-family: 'Bigilla';
+    font-size: 80px;
+    font-weight: bold;
+    margin-top: 2%;
+}
+
+.rectangle_noir_footer{
+    align-self: center;
+    background-color: black;
+    width: 500px;
+    height: 10px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    
+}
+
+li{
+    list-style: none;
+
+  
+}
+
+.Plan_du_site{
+    display: flex;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+   
+}
+
+.li_Plan_du_site{
+    margin-bottom: 20%;
+    margin-top: 20%;
+}
+.Plan_du_site_1{
+margin-left: 5%;
+}
+
+.Plan_du_site_2{
+    margin-left: 20%;
+}
+
+
+.Partie_Droit_Background{
+    margin-top: 2%;
+    background-color: #D2D2D2;
+}
+
+.Partie_Droit{
+    display: flex;
+    height: 50px;
+    
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 10%;
+}
+
+a{
+    transition: color 0.3 ease-in-out;
+}
+
+a:hover{
+        color: #7798C9;
+}

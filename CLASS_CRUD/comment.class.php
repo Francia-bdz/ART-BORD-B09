@@ -7,54 +7,56 @@ class COMMENT{
 	function get_1Comment($numSeqCom, $numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM COMMENT WHERE (numSeqCom= ? AND numArt= ?)';
+		$result = $db->prepare($query);
+		$result->execute([$numSeqCom, $numArt]);
 		return($result->fetch());
 	}
 
-	function get_AllCommentByArticle($numArt){
+	function get_AllCommentsByArticle($numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query = 'SELECT * FROM COMMENT where numArt=?';
+		$result = $db->prepare($query);
+		$result->execute([$numArt]);
 		return($result->fetchAll());
 	}
 
 	function get_AllCommentsByNumArt($numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($allCommentsByArt);
+		$query='SELECT * FROM COMMENT NATURAL JOIN ARTICLE WHERE numArt=?';
+		$result = $db->query($query);
+		$result->execute([$numArt]);
+		$allCommentsByNumArt=$result->fetchAll();
+		return($allCommentsByNumArt);
 	}
 
-	function get_1CommentsByNumSeqComNumArt($numSeqCom, $numArt){
+	function get_1CommentByNumSeqComNumArt($numSeqCom, $numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM COMMENT NATURAL JOIN ARTICLE WHERE (numSeqCom= ? AND numArt= ?)';
+		$result = $db->prepare($query);
+		$result->execute([$numSeqCom, $numArt]);
 		return($result->fetch());
 	}
 
 	function get_AllCommentsByNumSeqComNumArt($numSeqCom, $numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM COMMENT NATURAL JOIN ARTICLE WHERE (numSeqCom= ? AND numArt= ?)';
+		$result = $db->query($query);
+		$result->execute([$numSeqCom, $numArt]);
+		$allCommentsByNumSeqComNumArt=$result->fetchAll();
 		return($allCommentsByNumSeqComNumArt);
 	}
 
 	function get_AllCommentsByArticleByMemb(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM COMMENT NATURAL JOIN MEMBRE';
+		$result = $db->query($query);
+		$allCommentsByArticleByMemb=$result->fetchAll();
 		return($allCommentsByArticleByMemb);
 	}
 
@@ -112,7 +114,7 @@ class COMMENT{
 
 			$query = 'INSERT INTO COMMENT (numSeqCom, numArt, dtCreCom, libCom , numMemb) VALUES (?,?,?,?,?)';
 			$request = $db->prepare($query);
-			$request->execute([, $numSeqCom, $numArt, $dtCreCom, $libCom, $numMemb]);
+			$request->execute([$numSeqCom, $numArt, $dtCreCom, $libCom, $numMemb]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -151,9 +153,9 @@ class COMMENT{
 		try {
 			$db->beginTransaction();
 
-			// insert / update
-			// prepare
-			// execute
+			$query='INSERT OR UPDATE COMMENT WHERE (numSeqCom=? AND numArt=?)';
+			$request = $db->prepare($query);
+			$request->execute([$numSeqCom,$numArt]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -171,9 +173,9 @@ class COMMENT{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query='DELETE FROM COMMENT WHERE (numSeqCom=? AND numArt=?) ';
+			$request = $db->prepare($query);
+			$request->execute([$numSeqCom,$numArt]);
 			$db->commit();
 			$request->closeCursor();
 		}

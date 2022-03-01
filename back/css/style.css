@@ -4,12 +4,11 @@
  * @author Martine Bornerie
  */
 
-
+ * {
+	font-family: 'Roboto';
+}
 
 body {
-	/* Essai :
-	background-color: grey; ou transparent; ou mintcream; ou floralwhite; ou ghostwhite;
-	ou snow; ou whitesmoke; ou silver; ou aliceblue; ou gainsboro; ou lightgrey; ou oldlace; */
 	background-color: whitesmoke;
 	color: steelblue;
 	padding-top: 60px;
@@ -121,7 +120,7 @@ textarea {
  *fond de notre page sera bleue */
 @media screen and (min-width: 681px) and (max-width: 1279px){
     body{
-        background-color: blue;
+        background-color: red;
     }
 }
 
@@ -129,7 +128,7 @@ textarea {
  *de couleur blanche */
 @media screen and (min-width: 1280px){
     body{
-        background-color: white;
+        background-color: blue;
     }
 }
 

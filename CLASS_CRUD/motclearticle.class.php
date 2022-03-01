@@ -7,37 +7,42 @@ class MOTCLEARTICLE{
 	function get_AllMotClesByNumArt($numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($allCommentsByArt);
+		$query = 'SELECT * FROM MOTCLEARTICLE NATURAL JOIN ARTICLE WHERE numArt=? ;';
+		$result = $db->prepare($query);
+		$result->execute([$numArt]);
+		$allMotClesByNumArt = $result->fetchAll();
+		return($allMotClesByNumArt);
 	}
 
 	function get_AllMotClesByLibTitrArt($libTitrArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($allCommentsByArt);
+		$query = 'SELECT * FROM MOTCLEARTICLE NATURAL JOIN ARTICLE WHERE libTitrArt=? ;';
+		$result = $db->prepare($query);
+		$result->execute([$libTitrArt]);
+		$allMotClesByLibTitrArt = $result->fetchAll();
+		return($allMotClesByLibTitrArt);
 	}
 
 	function get_AllArtsByNumMotCle($numMotCle){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($allCommentsByArt);
+		$query = 'SELECT * FROM MOTCLEARTICLE NATURAL JOIN MOTCLE WHERE numMotCle=? ;';
+		$result = $db->prepare($query);
+		$result->execute([$numMotCle]);
+		$allArtsByNumMotCle = $result->fetchAll();
+		return($allArtsByNumMotCle);
 	}
 
 	function get_AllArtsByLibMotCle($libMotCle){
 		global $db;
 
-		// select
-		// prepare
-		// execute
-		return($allCommentsByArt);
+		
+		$query = 'SELECT * FROM MOTCLEARTICLE NATURAL JOIN MOTCLE WHERE libMotCle=? ;';
+		$result = $db->prepare($query);
+		$result->execute([$libMotCle]);
+		$allArtsByLibMotCle = $result->fetchAll();
+		return($allArtsByLibMotCle);
 	}
 
 	function create($numArt, $numMotCle){
@@ -46,9 +51,9 @@ class MOTCLEARTICLE{
 		try {
 			$db->beginTransaction();
 
-			// insert
-			// prepare
-			// execute
+			$query='INSERT FROM MOTCLEARTICLE WHERE (numArt=? AND numMotCle=?) ';
+			$request = $db->prepare($query);
+			$request->execute([$numArt,$numMotCle]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -65,9 +70,9 @@ class MOTCLEARTICLE{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
+			$query='DELETE FROM MOTCLEARTICLE WHERE (numArt=? AND numMotCle=?) ';
+			$request = $db->prepare($query);
+			$request->execute([$numArt,$numMotCle]);
 			$db->commit();
 			$request->closeCursor();
 		}

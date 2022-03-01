@@ -17,19 +17,26 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Comment
 
+require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
+
 // Instanciation de la classe Comment
 
-
+$monComment = new COMMENT ();
 
 // Insertion classe CommentPlus
 
-// Instanciation de la classe CommentPlus
+require_once __DIR__ . '/../../CLASS_CRUD/commentplus.class.php';
 
+// Instanciation de la classe CommentPlus
+$monCommentPlus= new COMMENTPLUS ();
 
 
 // Insertion classe Article
 
-// Instanciation de la classe Article
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE ();
 
 
 
@@ -74,7 +81,6 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
             <th>&nbsp;Visa modération&nbsp;</th>
             <th>&nbsp;Visible après modération&nbsp;</th>
             <th>&nbsp;Commentaire <br>si non visible&nbsp;</th>
-            <th>&nbsp;Commentaire <br>affiché&nbsp;</th>
             <th colspan="2">&nbsp;Action&nbsp;</th>
         </tr>
     </thead>
@@ -86,28 +92,33 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
     // Appel méthode : Get tous les articles en BDD
 
+    $allCommentsPlus= $monCommentPlus->get_AllCommentPlus();
+
+    
     // Boucle pour afficher
-    //foreach($all as $row) {
+    foreach ($allCommentsPlus as $row) {
+
+        $dtCreArt = dateChangeFormat($row['dtCreArt'], $from, $to);
 
 ?>
         <tr>
-        <td><h4>&nbsp; <?= "ici numSeqCom"; ?> &nbsp;</h4></td>
+        <td><h4>&nbsp; <?= $row["numArt"]; ?> &nbsp;</h4></td>
 
-        <td><h4>&nbsp; <?= "ici numArt"; ?> &nbsp;</h4></td>
+        <td><h4>&nbsp; <?= $dtCreArt; ?> &nbsp;</h4></td>
 
-        <td>&nbsp; <?= "ici pseudoMemb"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["numSeqComR"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici dtCreCom"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["libCom"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici libCom"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["dtCreCom"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici attModOK"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["pseudoMemb"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici affComOK"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["attModOK"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici notifComKOAff"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["notifComKOAff"]; ?> &nbsp;</td>
 
-        <td>&nbsp; <?= "ici delLogiq"; ?> &nbsp;</td>
+        <td>&nbsp; <?= $row["delLogiq"]; ?> &nbsp;</td>
 <!-- F1 aff Comments (Modérateur / Admin / Super-admin) -->
         <td>&nbsp;<a href="#"><i>Modifier</i></a>&nbsp;
         <br /></td>
@@ -116,7 +127,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
         <br /></td>
         </tr>
 <?php
-    // } // End of foreach
+    } // End of foreach
 ?>
     </tbody>
     </table>

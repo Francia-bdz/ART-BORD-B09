@@ -14,11 +14,11 @@ class THEMATIQUE{
 	}
 
 	function get_1ThematiqueByLang($numThem){
+		
 		global $db;
-
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM THEMATIQUE NATURAL JOIN LANGUE WHERE numThem= ?';
+		$result = $db->prepare($query);
+		$result->execute([$numThem]);
 		return($result->fetch());
 	}
 

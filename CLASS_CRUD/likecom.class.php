@@ -7,63 +7,64 @@ class LIKECOM{
 	function get_1LikeCom($numMemb, $numSeqCom, $numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM LIKECOM WHERE (numMemb= ? AND numSeqCom=? AND numArt= ?)';
+		$result = $db->prepare($query);
+		$result->execute([$numMemb,$numSeqCom ,$numArt]);
 		return($result->fetch());
 	}
 
 	function get_1LikeComPlusMemb($numMemb, $numSeqCom, $numArt){
+		
 		global $db;
-
-		// select
-		// prepare
-		// execute
+	
+		$query='SELECT * FROM LIKECOM NATURAL JOIN MEMBRE WHERE (numMemb= ? AND numSeqCom=? AND numArt= ?)';
+		$result = $db->prepare($query);
+		$result->execute([$numMemb,$numSeqCom ,$numArt]);
 		return($result->fetch());
 	}
 
 	function get_1LikeComPlusCom($numMemb, $numSeqCom, $numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM LIKECOM NATURAL JOIN COMMENT WHERE (numMemb= ? AND numSeqCom=? AND numArt= ?)';
+		$result = $db->prepare($query);
+		$result->execute([$numMemb,$numSeqCom ,$numArt]);
 		return($result->fetch());
 	}
 
 	function get_1LikeComPlusArt($numSeqCom, $numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM LIKECOM NATURAL JOIN ARTICLE WHERE (numSeqCom=? AND numArt= ?)';
+		$result = $db->prepare($query);
+		$result->execute([$numSeqCom ,$numArt]);
 		return($result->fetch());
 	}
 
 	function get_AllLikesCom(){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query ='SELECT * FROM MEMBRE ME INNER JOIN LIKECOM LKC ON ME.numMemb = LKC.numMemb INNER JOIN ARTICLE ART ON LKC.numArt = ART.numArt INNER JOIN COMMENT CO ON CO.numSeqCom=LKC.numSeqCom;';
+		$result = $db->query($query);
+		$allLikesCom = $result->fetchAll();
 		return($allLikesCom);
 	}
 
 	function get_AllLikesComByComment($numSeqCom, $numArt){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM LIKECOM WHERE (numSeqCom=? AND numArt= ?)';
+		$result = $db->prepare($query);
+		$result->execute([$numSeqCom, $numArt]);
 		return($result->fetchAll());
 	}
 
 	function get_AllLikesComByMembre($numMemb){
 		global $db;
 
-		// select
-		// prepare
-		// execute
+		$query='SELECT * FROM LIKECOM NATURAL JOIN MEMBRE WHERE numMemb=?';
+		$result = $db->prepare($query);
+		$result->execute([$numMemb]);
 		return($result->fetchAll());
 	}
 
@@ -112,9 +113,9 @@ class LIKECOM{
 		try {
 			$db->beginTransaction();
 
-			// insert / update
-			// prepare
-			// execute
+			$query='INSERT OR UPDATE LIKECOM WHERE (numMemb=? AND numSeqCom=? AND numArt=?)';
+			$request = $db->prepare($query);
+			$request->execute([$numMemb,$numSeqCom,$numArt]);
 			$db->commit();
 			$request->closeCursor();
 		}
@@ -132,10 +133,10 @@ class LIKECOM{
 		try {
 			$db->beginTransaction();
 
-			// delete
-			// prepare
-			// execute
-			//$count = $request->rowCount();
+			$query='DELETE FROM LIKECOM WHERE (numMemb=? AND numSeqCom=? AND numArt=?)';
+			$request = $db->prepare($query);
+			$request->execute([$numMemb, $numSeqCom,$numArt]);
+			$count = $request->rowCount();
 			$db->commit();
 			$request->closeCursor();
 			return($count);
