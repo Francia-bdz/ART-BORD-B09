@@ -291,7 +291,7 @@ include __DIR__ . '/initArticle.php';
                     <option value='-1'>- - - Aucun - - -</option>
                 </select>
             </div>
-            <br /><br /><br />
+            <br /><br />
             <!-- FIN Listbox Angle -->
 
             <!-- JAVA AJAX -->
