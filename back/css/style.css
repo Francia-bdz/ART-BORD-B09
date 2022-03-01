@@ -1,11 +1,15 @@
 /**
- * Description of script style.css
+ /* * Description of script style.css
  *
  * @author Martine Bornerie
  */
 
  * {
 	font-family: 'Roboto';
+}
+
+h1{
+	width: 500px;
 }
 
 body {
@@ -134,4 +138,3 @@ textarea {
 
 /* ------------------------------------------------------------------------- */
 /* ------------------------------------------------------------------------- */
-

@@ -15,18 +15,19 @@ h2{
     font-family: 'Roboto' ;
     font-size: 70px;
     font-style: normal;
-    margin-left: 10%;
-    margin-bottom: 0%;
 }
 
 .enluminure {
     font-family: 'Bigilla';
-    font-size: 100px;
+    font-size: 200px;
     color: #FF1400;
 }
 
 .color_text_propos {
     color: white;
+    text-align: right;
+    margin-right: 10%;
+    padding-top: 10%;
 }
 
 p{
@@ -35,12 +36,17 @@ p{
     text-align: left;
 }
 
+.color_credit {
+    color: white;
+    margin-left: 18%;
+}
 
 
 
 
                     /* DESIGN */
 
+                    
 .fond_noir{
     background-color: black;
     height: 1385px;
@@ -49,6 +55,9 @@ p{
 .peinture_text{
     display: flex;
     flex-direction: row;
+    margin-top: 5%;
+    margin: auto;
+    justify-content: center;
 }
 
 *{
@@ -64,4 +73,15 @@ p{
 img{
     width: 500px;
     height: 500px;
+}
+
+.fit-picture {
+    width: 487px;
+    height: 667px;
+    object-fit: cover;
+
+}
+
+.marge{
+    margin: 5%;
 }
