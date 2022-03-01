@@ -321,7 +321,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
             <div class="controls">      
 
                 <label for="LibTypLang" title="Sélectionnez l'angle !">
-            <b>Quelle angle :&nbsp;&nbsp;&nbsp;</b>
+            <b>Quel angle :&nbsp;&nbsp;&nbsp;</b>
         </label>
         <input type="hidden" id="idAngl" name="idAngl" value="<?= ''; ?>" />
             <select size="1" name="TypAngl" id="TypAngl"  class="form-control form-control-create" title="Sélectionnez la langue !" >

@@ -72,11 +72,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         and ((isset($_POST['libSsTitr2Art'])) and !empty($_POST['libSsTitr2Art']))
         and ((isset($_POST['parag3Art'])) and !empty($_POST['parag3Art']))
         and ((isset($_POST['libConclArt'])) and !empty($_POST['libConclArt']))
-        
-        and ((isset($_POST['TypAngl'])) and !empty($_POST['TypAngl']))
-        and ($_POST['TypAngl'] != -1)
-        and ((isset($_POST['TypThem'])) and !empty($_POST['TypThem']))
-        and ($_POST['TypThem'] != -1)
+        and isset($_FILES['monfichier']['tmp_name']) and !empty($_FILES['monfichier']['tmp_name'])
+        and ((isset($_POST['angle'])) and !empty($_POST['angle']))
+        and ($_POST['angle'] != -1)
+        and ((isset($_POST['thematique'])) and !empty($_POST['thematique']))
+        and ($_POST['thematique'] != -1)
         and (!empty($_POST['Submit']) and ($Submit === "Valider"))
     ) {
 
@@ -92,17 +92,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $libSsTitr2Art = ctrlSaisies(($_POST['libSsTitr2Art']));
         $parag3Art = ctrlSaisies(($_POST['parag3Art']));
         $libConclArt = ctrlSaisies(($_POST['libConclArt']));
-        $numAngl = ctrlSaisies(($_POST['TypAngl']));
-        $numThem = ctrlSaisies(($_POST['TypThem']));
+        $numAngl = ctrlSaisies(($_POST['angle']));
+        $numThem = ctrlSaisies(($_POST['thematique']));
 
-        // require_once __DIR__ . '/ctrlerUploadImage.php';
+        require_once __DIR__ . '/ctrlerUploadImage.php';
 
-        $urlPhotArt = ($_FILES['monfichier']);
+        $urlPhotArt = $nomImage;
 
         $monArticle->create($dtCreArt, $libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem);
 
         header("Location: ./article.php");
-
     } elseif (
         empty($_FILES['monfichier'])
         and ((isset($_POST['libTitrArt'])) and !empty($_POST['libTitrArt']))
@@ -114,10 +113,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         and ((isset($_POST['libSsTitr2Art'])) and !empty($_POST['libSsTitr2Art']))
         and ((isset($_POST['parag3Art'])) and !empty($_POST['parag3Art']))
         and ((isset($_POST['libConclArt'])) and !empty($_POST['libConclArt']))
-        and ((isset($_POST['TypAngl'])) and !empty($_POST['TypAngl']))
-        and ($_POST['TypAngl'] != -1)
-        and ((isset($_POST['TypThem'])) and !empty($_POST['TypThem']))
-        and ($_POST['TypThem'] != -1)
+        and ((isset($_POST['angle'])) and !empty($_POST['angle']))
+        and ($_POST['anglr'] != -1)
+        and ((isset($_POST['thematique'])) and !empty($_POST['thematique']))
+        and ($_POST['thematique'] != -1)
         and (!empty($_POST['Submit']) and ($Submit === "Valider"))
     ) {
         // Saisies invalides
@@ -257,7 +256,7 @@ include __DIR__ . '/initArticle.php';
                         <b>Quelle langue :&nbsp;&nbsp;&nbsp;</b>
                     </label>
                     <input type="hidden" id="idLang" name="idLang" value="<?= ''; ?>" />
-                    <select size="1" name="TypLang" id="TypLang" class="form-control form-control-create" title="Sélectionnez la langue !">
+                    <select size="1" name="TypLang" id="langue" class="form-control form-control-create" title="Sélectionnez la langue !" onchange='change()'>
                         <option value="-1">- - - Choisissez une langue - - -</option>
                         <?php
                         $listNumLang = "";
@@ -269,13 +268,15 @@ include __DIR__ . '/initArticle.php';
                             foreach ($result as $row) {
                                 $listNumLang = $row["numLang"];
                                 $listlib1lang = $row["lib1Lang"];
+
                         ?>
+
                                 <option value="<?= $listNumLang; ?>">
                                     <?= $listlib1lang; ?>
                                 </option>
                         <?php
-                            } // End of foreach
-                        }   // if ($result)
+                            }
+                        }
                         ?>
                     </select>
                 </div>
@@ -283,78 +284,122 @@ include __DIR__ . '/initArticle.php';
             <!-- FIN Listbox Langue -->
             <!-- --------------------------------------------------------------- -->
             <!-- Listbox Angle live share -->
-            <br>
-            <div class="control-group">
-                <div class="controls">
-
-                    <label for="LibTypLang" title="Sélectionnez l'angle !">
-                        <b>Quelle angle :&nbsp;&nbsp;&nbsp;</b>
-                    </label>
-                    <input type="hidden" id="idAngl" name="idAngl" value="<?= ''; ?>" />
-                    <select size="1" name="TypAngl" id="TypAngl" class="form-control form-control-create" title="Sélectionnez l'angle !">
-                        <option value="-1">- - - Choisissez une angle - - -</option>
-                        <?php
-                        $listNumAngl = "";
-                        $listLibAngl = "";
-
-                        $result = $monAngle->get_AllAngles();
-
-                        if ($result) {
-                            foreach ($result as $row) {
-                                $listNumAngl = $row["numAngl"];
-                                $listLibAngl = $row["libAngl"];
-                        ?>
-                                <option value="<?= $listNumAngl; ?>">
-                                    <?= $listLibAngl; ?>
-                                </option>
-                        <?php
-                            }
-                        }
-                        ?>
-                    </select>
-                </div>
+            <br /><br />
+            <label><b>&nbsp;&nbsp;&nbsp;Quel Angle :&nbsp;&nbsp;</b></label>
+            <div id='angle' style='display:inline'>
+                <select size="1" name="angle" title="Sélectionnez l'angle !" style="padding:2px; ">
+                    <option value='-1'>- - - Aucun - - -</option>
+                </select>
             </div>
-            
+            <br /><br /><br />
+            <!-- FIN Listbox Angle -->
+
+            <!-- JAVA AJAX -->
+            <script type='text/javascript'>
+                function getXhr() {
+
+                    var xhr = null;
+                    if (window.XMLHttpRequest) { // Firefox & autres
+                        xhr = new XMLHttpRequest();
+                        console.log("ok");
+                    } else
+                    if (window.ActiveXObject) { // IE / Edge
+                        try {
+                            xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                        } catch (e) {
+                            xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                    } else {
+                        alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest...");
+                        xhr = false;
+                    }
+                    return xhr;
+                } // End of function
+
+                /**
+                 * Méthode appelée sur le click du bouton/listbox
+                 */
+                function change() {
+                    var xhr = getXhr();
+
+                    // On définit quoi faire quand réponse reçue
+                    xhr.onreadystatechange = function() {
+
+                        // test si tout est reçu et si serveur est ok
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+
+                            di = document.getElementById('angle');
+                            di.innerHTML = xhr.responseText;
+
+                        }
+                    }
+
+                    // Traitement en POST
+                    xhr.open("POST", "./ajaxAngle.php", true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    numLang = document.getElementById('langue').options[document.getElementById('langue').selectedIndex].value;
+                    xhr.send("numLang=" + numLang);
+
+                } 
+            </script>
 
             <!-- --------------------------------------------------------------- -->
             <!-- --------------------------------------------------------------- -->
             <!-- Listbox Thématique -->
-
-            <br>
-            <div class="control-group">
-                <div class="controls">
-
-                    <label for="LibTypThem" title="Sélectionnez la thématique !">
-                        <b>Quelle thématique :&nbsp;&nbsp;&nbsp;</b>
-                    </label>
-                    <input type="hidden" id="idThem" name="idThem" value="<?= ''; ?>" />
-                    <select size="1" name="TypThem" id="TypThem" class="form-control form-control-create" title="Sélectionnez la thematique !">
-                        <option value="-1">- - - Choisissez une thématique - - -</option>
-                        <?php
-                        $listNumThem = "";
-                        $listLibThem = "";
-
-                        $result = $maThematique->get_AllThematiques();
-
-                        if ($result) {
-                            foreach ($result as $row) {
-                                $listNumThem = $row["numThem"];
-                                $listLibThem = $row["libThem"];
-                        ?>
-                                <option value="<?= $listNumThem; ?>">
-                                    <?= $listLibThem; ?>
-                                </option>
-                        <?php
-                            }
-                        }
-                        ?>
-                    </select>
-                </div>
+            <br />
+            <label><b>&nbsp;&nbsp;&nbsp;Quelle thématique :&nbsp;&nbsp;</b></label>
+            <div id='thematique' style='display:inline'>
+                <select size="1" name="thematique" title="Sélectionnez la thématique !" style="padding:2px; ">
+                    <option value='-1'>- - - Aucun - - -</option>
+                </select>
             </div>
-            
-            <!-- FIN Listbox Thématique -->
-            <!-- --------------------------------------------------------------- -->
-            <!-- --------------------------------------------------------------- -->
+            <br />
+
+            <script type='text/javascript'>
+                function getXhr() {
+
+                    var xhr = null;
+                    if (window.XMLHttpRequest) { // Firefox & autres
+                        xhr = new XMLHttpRequest();
+                    } else
+                    if (window.ActiveXObject) { // IE / Edge
+                        try {
+                            xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                        } catch (e) {
+                            xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                    } else {
+                        alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest...");
+                        xhr = false;
+                    }
+                    return xhr;
+                } // End of function
+
+                /**
+                 * Méthode appelée sur le click du bouton/listbox
+                 */
+                function change2() {
+                    var xhr = getXhr();
+
+                    // On définit quoi faire quand réponse reçue
+                    xhr.onreadystatechange = function() {
+
+                        // test si tout est reçu et si serveur est ok
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            di = document.getElementById('thematique');
+                            di.innerHTML = xhr.responseText;
+
+                        }
+                    }
+
+                    // Traitement en POST
+                    xhr.open("POST", "./ajaxThematique.php", true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    numLang = document.getElementById('langue').options[document.getElementById('langue').selectedIndex].value;
+                    xhr.send("numLang=" + numLang);
+
+                } 
+            </script> 
 
             <!-- --------------------------------------------------------------- -->
             <!-- Drag and drop sur Mots clés -->

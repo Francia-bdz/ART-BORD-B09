@@ -8,30 +8,30 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 // connexion
 require_once __DIR__ . '/../../CONNECT/database.php';
 ?>
-<select name='angle' style='padding:2px;' onchange='change2()'>
+<select name='thematique' style='padding:2px; ' >
 <?php
 $langue = $_REQUEST["numLang"];
 
 if (isset($langue)) {
-	$query = "SELECT numAngl, libAngl FROM ANGLE WHERE numLang = ?;" ;
+	$query = "SELECT numThem, libThem FROM THEMATIQUE NATURAL JOIN LANGUE WHERE numLang= ?;" ;
 	$result = $db->prepare($query);
 	$result->execute([$langue]);
-	$allAnglesByLang= $result->fetchAll();
+	$allThematiquesByLang= $result->fetchAll();
 
-	if ($allAnglesByLang) {
+	if ($allThematiquesByLang) {
 ?>
-			<option value='-1'>- - - Choisissez un angle - - -</option>
+			<option value='-1'>- - - Choisissez une thématique - - -</option>
 <?php
-			foreach($allAnglesByLang as $row){
+			foreach($allThematiquesByLang as $row){
 ?>
-				<option value="<?= $row['numAngl']; ?>">
-					<?= $row['libAngl']; ?>
+				<option value="<?= $row['numThem']; ?>">
+					<?= $row['libThem']; ?>
 				</option>
 <?php
 			}	// End of foreach
 	}else {
 ?>
-			<option value='-1'>- - - Choisissez un angle - - -</option>
+			<option value='-1'>- - - Choisissez une thématique - - -</option>
 <?php
 	}	// else
 }	// End of if (isset($classe))
