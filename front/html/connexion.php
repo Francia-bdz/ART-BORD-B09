@@ -97,14 +97,15 @@ $passMembTest = "";
 
         h1 {
             font-family: "Bigilla", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-size: 150px;
+            font-size: 200px;
             text-align: center;
         }
 
         h2 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             margin-top: 3%;
-            font-weight: bolder;
-            font-size: 28px;
+            font-weight: lighter;
+            font-size: 75px;
         }
 
         .rectangle_rouge {
@@ -137,7 +138,7 @@ $passMembTest = "";
 
         .enluminure {
             font-family: "Bigilla";
-            font-size: 40px;
+            font-size: 100px;
             color: #AD1305;
         }
 
@@ -149,7 +150,6 @@ $passMembTest = "";
         input[type=submit]:hover {
             -webkit-filter: brightness(70%);
             filter: brightness(70%);
-            ;
         }
 
         .Pas_encore_inscrit {
@@ -178,7 +178,6 @@ $passMembTest = "";
             display: flex;
             justify-content: space-between;
             margin-left: 5%;
-
         }
 
         .title_footer {
@@ -203,14 +202,12 @@ $passMembTest = "";
 
         li {
             list-style: none;
-
         }
 
         .Plan_du_site {
             display: flex;
             font-family: 'Roboto', Arial, Helvetica, sans-serif;
             font-weight: bold;
-
         }
 
         .li_Plan_du_site {
@@ -225,7 +222,6 @@ $passMembTest = "";
         .Plan_du_site_2 {
             margin-left: 20%;
         }
-
 
         .Partie_Droit_Background {
             margin-top: 2%;
@@ -253,6 +249,8 @@ $passMembTest = "";
         a:hover {
             color: #7798C9;
         }
+
+
     </style>
 
     <link href="/front/sheets/connexion.css" rel="stylesheet" type="text/css" />
