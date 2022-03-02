@@ -167,6 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             color: #7798C9;
         }
 
+        
         /* Footer */
 
         footer {

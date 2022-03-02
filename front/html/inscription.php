@@ -19,32 +19,53 @@
             <h2><span class="enluminure">C</span>réer un compte</h2>
 
             <div class="Pseudo_control connexion_control">
-                <label class="control-label" for="eMailMemb"><b>Nom</b></label>
-            </div>
-            <div class="barre_d_entree"> 
-                <p>rentrez votre nom</p>
+                <label class="control-label" for="eMailMemb"><b>Prénom :</b></label>
+                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre prénom" autofocus />
             </div>
 
             <div class="Pseudo_control connexion_control">
-                <label class="control-label" for="eMailMemb"><b>Prénom</b></label>
-            </div>
-            <div class="barre_d_entree"> 
-                <p>rentrez votre prénom</p>
+                <label class="control-label" for="eMailMemb"><b>Nom :</b></label>
+                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre nom" autofocus />
             </div>
 
             <div class="Pseudo_control connexion_control">
-                <label class="control-label" for="eMailMemb"><b>Adresse Mail:</b></label>
-            </div>
-            <div class="barre_d_entree"> 
-                <p>rentrez votre adresse</p>
+                <label class="control-label" for="eMailMemb"><b>Pseudonyme :</b></label>
+                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="6 caractères minimum" autofocus />
             </div>
 
             <div class="Pseudo_control connexion_control">
-                <label class="control-label" for="eMailMemb"><b>Mot de passe</b></label>
+                <label class="control-label" for="eMailMemb"><b>Mot de passe :</b></label>
+                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre mot de passe" autofocus />
             </div>
-            <div class="barre_d_entree"> 
-                <b>rentrez votre mot de passe </b>
+            <div class="bouton_affichage_mdp">
+                    <input type="checkbox" onclick="myFunction('passMembTest')">
+                    &nbsp;&nbsp;
+                    <label><i>Afficher Mot de passe</i></label>
+                </div>
+
+            <div class="Pseudo_control connexion_control">
+                <label class="control-label" for="eMailMemb"><b>Confirmez le mot de passe :</b></label>
+                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="" autofocus />
             </div>
+            <div class="bouton_affichage_mdp">
+                    <input type="checkbox" onclick="myFunction('passMembTest')">
+                    &nbsp;&nbsp;
+                    <label><i>Afficher Mot de passe</i></label>
+                </div>
+
+            <div class="Pseudo_control connexion_control">
+                <label class="control-label" for="eMailMemb"><b>Confirmez l'Email :</b></label>
+                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre Email" autofocus />
+            </div>
+            
+
+            <div class="Pseudo_control connexion_control">
+                <label class="control-label" for="eMailMemb"><b>Email :</b></label>
+                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="" autofocus />
+            </div>
+
+            
+            
             <!-- <div class="Mdp_control connexion_control">
 
             </div> -->
