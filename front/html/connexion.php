@@ -14,6 +14,9 @@ require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 
 $monMembre = new MEMBRE();
 
+$eMailMemb = "";
+$passMembTest = "";
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (isset($_POST['Submit'])) {
@@ -24,22 +27,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
 
-        if (((isset($_POST['prenomMemb'])) and !empty($_POST['prenomMemb']))
-            and ((isset($_POST['nomMemb'])) and !empty($_POST['nomMemb']))
+        if (((isset($_POST['eMailMemb'])) and !empty($_POST['eMailMemb']))
+            and ((isset($_POST['passMembTest'])) and !empty($_POST['passMembTest']))
         ) {
 
-            $_POST['$eMailMemb'] = $eMailMemb;
+            $oneMembre=$monMembre->get_1MembreByEmail($_POST['eMailMemb']);
 
-            if ($monMembre->get_1MembreByEmail($eMailMemb) === true) {
+            if ($oneMembre != false) {
 
-                $eMailMemb = $monMembre['eMailMemb'];
-                $passMemb = $monMembre['passMemb'];
+                $eMailMemb = $oneMembre['eMailMemb'];
+                $passMemb = $oneMembre['passMemb'];
 
                 if ($passMemb == $_POST['passMembTest']) {
 
                     // (password_verify($_POST['passMemb'], $passMemb) === true);
                     setcookie('eMailMemb', $eMailMemb, time() + 3600);
-                    setcookie('passMemb', $passMemb, time() + 3600);
                     header("Location: ./cover.php");
                 } else {
                     echo "Mauvais Mot de passe";
@@ -53,8 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-$eMailMemb = "";
-$passMembTest = "";
 
 
 ?>
@@ -294,7 +294,7 @@ $passMembTest = "";
 
             <div class="Mdp_control connexion_control">
 
-                <label class="control-label" for="passMemb"><b>Mot de passe:</b></label>
+                <label class="control-label" for="passMembTest"><b>Mot de passe:</b></label>
                 <input type="password" name="passMembTest" id="passMembTest" size="43" placeholder="Entrez votre mot de passe" value="<?= $passMembTest ?>" autofocus />
                 <br>
                 <div class="bouton_affichage_mdp">
