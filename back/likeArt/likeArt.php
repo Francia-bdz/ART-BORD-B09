@@ -54,9 +54,35 @@ $monLikeArt = new LIKEART();
             font-style: italic;
             border-radius: 5px;
         }
+        h2{
+            text-align: center;
+        }
+
+        i{
+            color: #137E85;
+        }
+
+        a{
+            text-decoration: transparent;
+            transition: all 0.1s ease-in-out;
+        }
+
+        a:hover{
+            text-decoration: underline;
+            text-decoration-color: #137E85;
+        }
+        table{
+            border-collapse: collapse;
+            margin: auto;
+            background-color: white;
+            border: 2px;
+        }
 </style>
 </head>
 <body>
+<?php 
+    require_once __DIR__ . '/../cover.php';
+    ?>
     <h1>BLOGART22 Admin - CRUD Like sur Article</h1>
 
     <hr />

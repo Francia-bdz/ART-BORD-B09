@@ -101,6 +101,9 @@ include __DIR__ . '/initAngle.php';
     </style>
 </head>
 <body>
+<?php 
+    require_once __DIR__ . '/../cover.php';
+    ?>
     <h1>BLOGART22 Admin - CRUD Angle</h1>
     <h2>Suppression d'un angle</h2>
 <?php
