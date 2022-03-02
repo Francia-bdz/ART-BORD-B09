@@ -19,22 +19,35 @@
             <h2><span class="enluminure">C</span>réer un compte</h2>
 
             <div class="Pseudo_control connexion_control">
+                <label class="control-label" for="eMailMemb"><b>Nom</b></label>
+            </div>
+            <div class="barre_d_entree"> 
+                <p>rentrez votre nom</p>
+            </div>
+
+            <div class="Pseudo_control connexion_control">
+                <label class="control-label" for="eMailMemb"><b>Prénom</b></label>
+            </div>
+            <div class="barre_d_entree"> 
+                <p>rentrez votre prénom</p>
+            </div>
+
+            <div class="Pseudo_control connexion_control">
                 <label class="control-label" for="eMailMemb"><b>Adresse Mail:</b></label>
-                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre adresse mail" value="<?= $eMailMemb ?>" autofocus />
+            </div>
+            <div class="barre_d_entree"> 
+                <p>rentrez votre adresse</p>
             </div>
 
-            <div class="Mdp_control connexion_control">
-
-                <label class="control-label" for="passMemb"><b>Mot de passe:</b></label>
-                <input type="password" name="passMembTest" id="passMembTest" size="43" placeholder="Entrez votre mot de passe" value="<?= $passMembTest ?>" autofocus />
-                <br>
-                <div class="bouton_affichage_mdp">
-                    <input type="checkbox" onclick="myFunction('passMembTest')">
-                    &nbsp;&nbsp;
-                    <label><i>Afficher Mot de passe</i></label>
-                </div>
+            <div class="Pseudo_control connexion_control">
+                <label class="control-label" for="eMailMemb"><b>Mot de passe</b></label>
             </div>
-            <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border-radius:5px;" name="Submit" />
+            <div class="barre_d_entree"> 
+                <b>rentrez votre mot de passe </b>
+            </div>
+            <!-- <div class="Mdp_control connexion_control">
+
+            </div> -->
             
         </form>
 
@@ -60,7 +73,7 @@
 
         /* - - - TYPO - - - */
 
-        
+
 @font-face {
             font-family: "Bigilla";
             src: local("Bigilla"),
@@ -72,6 +85,12 @@
             margin-top: 2%;
         }
 
+        .barre_d_entree {
+            height: 36px;
+            width: 392px;
+            background-color: grey;
+            border-radius: 5px;
+        }
 
         .Partie_Texte {
             margin-left: 3%;
@@ -109,6 +128,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             font-size: 20px;
             margin-right: 1%;
+            font-weight: lighter;
         }
 
         .bouton_affichage_mdp {
@@ -124,3 +144,9 @@
             font-size: 100px;
             color: #AD1305;
         }
+
+
+
+
+
+
