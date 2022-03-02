@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-// Traitnemnt : upload image => Nom image à la volée
+
 
 include __DIR__ . '/initArticle.php';
 ?>
@@ -144,6 +144,8 @@ include __DIR__ . '/initArticle.php';
     <meta name="author" content="" />
 
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
+
+	<script src="ckeditor/ckeditor.js"></script>
 
     <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -421,6 +423,8 @@ include __DIR__ . '/initArticle.php';
             <!-- Fin FK : Angle, Thématique + TJ Mots Clés -->
             <!-- --------------------------------------------------------------- -->
 
+             
+
             <div class="control-group">
                 <div class="error">
                     <?php
@@ -446,6 +450,8 @@ include __DIR__ . '/initArticle.php';
             </div>
         </fieldset>
     </form>
+
+
 
     <!-- --------------------------------------------------------------- -->
     <!-- Début Ajax : Langue => Angle, Thématique + TJ Mots Clés -->

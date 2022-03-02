@@ -28,7 +28,6 @@
 
 <div class="articles_div">
 
-    
     <div class="articles">
         <img class ="image_article" src="/front/assets/images/P1040500.JPG" alt="Photo de Nobu"> 
         <p class="date_article">07/08</p>

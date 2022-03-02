@@ -19,13 +19,14 @@
         @font-face {
             font-family: "Bigilla";
             src: local("Bigilla"),
-                url(/front/assets/typo/Bigilla.otf);
-            font-weight: normal;
+            url(/front/assets/typo/Bigilla.otf);
+           
         }
 
         h1 {
             font-size: 200px;
             font-family: 'Bigilla';
+            font-weight:normal;
             margin-bottom: 0%;
             margin-top: 10%;
         }

@@ -1,0 +1,48 @@
+*{
+    margin : 0%;
+    padding : 0%;
+}
+
+.header{
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size : 25px;
+    display : flex;
+    flex-direction: row;
+    justify-content :flex-end;   
+}
+
+.li_header{
+    list-style: none;
+    margin-right: 5%;
+    
+}
+
+.a_header{
+    text-decoration: none;
+    color: white;
+    transition: all 0.2 ease-in-out;
+}
+
+.a_header:hover{
+    color: #7798C9;
+}
+
+
+.navbar{
+    margin-right: 2%;
+    border-radius: 20px;
+    padding-left: 1%;
+    border: 0px;
+    background-color: rgba(255, 255, 255, 0.65);
+    font-weight: bold;
+    font-family: "Roboto";
+    font-size : 25px;
+    color: white;
+    font-style: italic;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 0.5; /* Firefox */
+  }
