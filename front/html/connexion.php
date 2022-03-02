@@ -28,8 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             and ((isset($_POST['nomMemb'])) and !empty($_POST['nomMemb']))
         ) {
 
-
-
             $_POST['$eMailMemb'] = $eMailMemb;
 
             if ($monMembre->get_1MembreByEmail($eMailMemb) === true) {
@@ -330,7 +328,7 @@ $passMembTest = "";
             <ul>
                 <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Se connecter </a></li>
                 <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> S'inscrire</a></li>
-                <li class="li_Plan_du_site"><a href="./index1.php" class="a_Plan_du_site"> Partie Admin</a></li>
+                <li class="li_Plan_du_site"><a href="./../../index1.php" class="a_Plan_du_site"> Partie Admin</a></li>
             </ul>
         </div>
         <div class="Partie_Droit_Background">
