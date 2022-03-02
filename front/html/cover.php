@@ -16,9 +16,16 @@
             margin: 0%;
         }
 
+        @font-face {
+            font-family: "Bigilla";
+            src: local("Bigilla"),
+                url(/front/assets/typo/Bigilla.otf);
+            font-weight: normal;
+        }
+
         h1 {
             font-size: 200px;
-            font-family: Bigilla;
+            font-family: 'Bigilla';
             margin-bottom: 0%;
             margin-top: 10%;
         }
@@ -43,13 +50,7 @@
             width: 900px;
             margin-right: 50%;
         }
-
-        @font-face {
-            font-family: "Bigilla";
-            src: local("Bigilla"),
-                url(/front/assets/typo/Bigilla.otf);
-            font-weight: normal;
-        }
+    
     </style>
 </head>
 <section class="cover">

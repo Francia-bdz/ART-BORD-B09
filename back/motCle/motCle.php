@@ -31,6 +31,18 @@ $monMotcle = new MOTCLE();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <style type="text/css">
+        * {
+            font-family: 'Roboto';
+        }
+        .error {
+            padding: 2px;
+            border: solid 0px black;
+            color: red;
+            font-style: italic;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 
 <body>

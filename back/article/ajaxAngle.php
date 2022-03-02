@@ -27,6 +27,8 @@ if (isset($langue)) {
 				<option value="<?= $row['numAngl']; ?>">
 					<?= $row['libAngl']; ?>
 				</option>
+				
+				
 <?php
 			}	// End of foreach
 	}else {

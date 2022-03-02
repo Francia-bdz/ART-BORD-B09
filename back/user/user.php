@@ -34,6 +34,9 @@ $monUser = new USER();
     <meta name="author" content="" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
+         * {
+            font-family: 'Roboto';
+        }
         .error {
             padding: 2px;
             border: solid 0px black;

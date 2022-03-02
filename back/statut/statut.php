@@ -37,6 +37,10 @@ if (isset($_GET['count'])) {
     <meta name="description" content="" />
     <meta name="author" content="" />
     <style type="text/css">
+         * {
+            font-family: 'Roboto';
+        }
+        
         .error {
             padding: 2px;
             border: solid 0px black;
@@ -44,6 +48,7 @@ if (isset($_GET['count'])) {
             font-style: italic;
             border-radius: 5px;
         }
+    
 
         .superAdmin {
             text-decoration: none;

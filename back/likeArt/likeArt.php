@@ -30,6 +30,9 @@ $monLikeArt = new LIKEART();
     <meta name="description" content="" />
     <meta name="author" content="" />
     <style type="text/css">
+        * {
+            font-family: 'Roboto';
+        }
         .error {
             padding: 2px;
             border: solid 0px black;

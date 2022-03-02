@@ -56,6 +56,11 @@ if (isset($_GET['count'])) {
             font-style: italic;
             border-radius: 5px;
         }
+        
+        table{
+            border-collapse: collapse;
+            margin: auto;
+        }
     </style>
 </head>
 
@@ -77,7 +82,7 @@ if (isset($_GET['count'])) {
     <hr />
     <h2>Tous les angles</h2>
 
-    <table border="1" bgcolor="#FFFFFF">
+    <table border="1"bgcolor="#FFFFFF">
         <thead>
             <tr>
                 <th>&nbsp;Numéro&nbsp;</th>

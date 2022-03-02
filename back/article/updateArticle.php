@@ -91,10 +91,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     AND((isset($_POST['libSsTitr2Art'])) AND !empty($_POST['libSsTitr2Art']))
     AND((isset($_POST['parag3Art'])) AND !empty($_POST['parag3Art']))
     AND((isset($_POST['libConclArt'])) AND !empty($_POST['libConclArt']))
-    AND ((isset($_POST['TypAngl'])) AND !empty($_POST['TypAngl']))
-    AND ($_POST['TypAngl']!=-1)
-    AND ((isset($_POST['TypThem'])) AND !empty($_POST['TypThem']))
-    AND ($_POST['TypThem']!=-1)
+    AND ((isset($_POST['angle'])) AND !empty($_POST['angle']))
+    AND ($_POST['angle']!=-1)
+    AND ((isset($_POST['thematique'])) AND !empty($_POST['thematique']))
+    AND ($_POST['thematique']!=-1)
     AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
      
         $erreur = false;
@@ -108,11 +108,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $libSsTitr2Art = ctrlSaisies(($_POST['libSsTitr2Art']));
         $parag3Art = ctrlSaisies(($_POST['parag3Art']));
         $libConclArt = ctrlSaisies(($_POST['libConclArt']));
-        $urlPhotArt = ctrlSaisies(($_POST['urlPhotArt']));
-        $numAngl = ctrlSaisies(($_POST['TypAngl']));
-        $numThem = ctrlSaisies(($_POST['TypThem']));
+      
+        $numAngl = ctrlSaisies(($_POST['angle']));
+        $numThem = ctrlSaisies(($_POST['thematique']));
 
-        require_once __DIR__ . '/../../ctrlerUploadImage.php';
+        require_once __DIR__ . '/ctrlerUploadImage.php';
+
+        $urlPhotArt = $nomImage;
 
         $numArt = ctrlSaisies(($_POST['id']));
 
@@ -127,11 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     }   
 
-    // Traitnemnt : upload image => Chnager image
-    // Nom image à la volée
-
-}   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
-// Init variables form
+}   
 include __DIR__ . '/initArticle.php';
 // En dur
 $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
@@ -170,8 +168,9 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
     $parag3Art = $oneArticle['parag3Art'];
     $libConclArt = $oneArticle['libConclArt'];
     $urlPhotArt = $oneArticle['urlPhotArt'];
-    $numAngl = $oneArticle['numAngl'];
-    $numThem = $oneArticle['numThem'];
+    $angle = $oneArticle['numAngl'];
+    $thematique = $oneArticle['numThem'];
+    $numLang= $oneArticle['numLang'];
 }
 
 ?>
@@ -266,7 +265,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
             <label class="control-label" for="urlPhotArt"><b>Importez l'illustration :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
             <div class="controls">
                 <input type="hidden" name="MAX_FILE_SIZE" id="MAX_FILE_SIZE" value="<?= MAX_SIZE; ?>" />
-                <input type="file" name="monfichier" id="monfichier" required="required" accept=".jpg,.gif,.png,.jpeg" size="70" maxlength="70" value="<?= "$urlPhotArt"; ?>" tabindex="110" placeholder="Sur 70 car." title="Recherchez l'image à uploader !" />
+                <input type="file" name="monfichier" id="monfichier" required="required" accept=".jpg,.gif,.png,.jpeg" size="70" maxlength="70" value="<?= 'monfichier'; ?>" tabindex="110" placeholder="Sur 70 car." title="Recherchez l'image à uploader !" />
                 <p>
 <?php              // Gestion extension images acceptées
                   $msgImagesOK = "&nbsp;&nbsp;>> Extension des images acceptées : .jpg, .gif, .png, .jpeg" . "<br>" .
@@ -285,15 +284,16 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
     <div class="control-group">
             <div class="controls">      
 
-                <label for="LibTypLang" title="Sélectionnez la langue !">
-            <b>Quelle langue :&nbsp;&nbsp;&nbsp;</b>
-        </label>
-        <input type="hidden" id="idLang" name="idLang" value="<?= ''; ?>" />
-            <select size="1" name="TypLang" id="TypLang"  class="form-control form-control-create" title="Sélectionnez la langue !" >
-                <option value="-1">- - - Choisissez une langue - - -</option>
-<?php
-                $listNumLang= "";
-                $listlib1lang = "";
+            
+            <label for="LibTypLang" title="Sélectionnez la langue !">
+                        <b>Quelle langue :&nbsp;&nbsp;&nbsp;</b>
+                    </label>
+                    <input type="hidden" id="idLang" name="idLang" value="<?= ''; ?>" />
+                    <select size="1" name="TypLang" id="langue" class="form-control form-control-create" title="Sélectionnez la langue !" onchange='change()'>
+                        <option value="-1">- - - Choisissez une langue - - -</option>
+                        <?php
+                        $listNumLang = "";
+                        $listlib1lang = "";
 
                 $result=$maLangue->get_AllLangues();
 
@@ -342,7 +342,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
                     var xhr = null;
                     if (window.XMLHttpRequest) { // Firefox & autres
                         xhr = new XMLHttpRequest();
-                        console.log("ok");
+            
                     } else
                     if (window.ActiveXObject) { // IE / Edge
                         try {
