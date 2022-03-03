@@ -24,7 +24,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 
     <style type="text/css">
 		 * {
-            font-family: 'Roboto';
+            font-family: 'Roboto', Arial;
 			font-size: 20px;
 			color: #333;
 			text-decoration-color: transparent;
