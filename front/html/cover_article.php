@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
     <style type="text/css">
         * {
             margin: 0%;
@@ -22,8 +23,8 @@
             font-family: "Bigilla";
             src: local("Bigilla"),
                 url(/front/assets/typo/Bigilla.otf);
-
         }
+
 
         h1 {
             font-size: 200px;
@@ -33,9 +34,11 @@
             margin-top: 10%;
         }
 
+
         .couleur {
             color: rgb(255, 255, 255);
         }
+
 
         .cover {
             background-color: #151CC0;
@@ -55,6 +58,7 @@
             margin-right: 50%;
         }
 
+        
         .header{
             margin-top: 2%;
             align-self: flex-end;
