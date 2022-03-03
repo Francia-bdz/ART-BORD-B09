@@ -21,67 +21,72 @@
     <div class="misenpageinscri">
         <section>
             <div class="Pseudo_control connexion_control">
-                <label class="control-label" for="eMailMemb"><b>Prénom :</b></label>
+                <label class="control-label" for="prenomMemb"><b>Prénom :</b></label>
                 <br>
-                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre prénom" autofocus />
+                <input type="text" name="prenomMemb" id="prenomMemb" size="50" value="<?= $prenomMemb; ?>" placeholder="Entrez votre prénom" autofocus />
             </div>
 
             <div class="Pseudo_control connexion_control">
-                <label class="control-label" for="eMailMemb"><b>Nom :</b></label>
+                <label class="control-label" for="nomMemb"><b>Nom :</b></label>
                 <br>
-                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre nom" autofocus />
+                <input type="text" name="nomMemb" id="nomMemb" size="50" placeholder="Entrez votre nom" value="<?= $nomMemb; ?>" autofocus />
             </div>
 
             <div class="Pseudo_control connexion_control">
-                <label class="control-label" for="eMailMemb"><b>Pseudonyme :</b></label>
+                <label class="control-label" for="pseudoMemb"><b>Pseudonyme :</b></label>
                 <br>
-                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="6 caractères minimum" autofocus />
+                <input type="text" name="pseudoMemb" id="pseudoMemb" size="50" placeholder="6 caractères minimum" value="<?= $pseudoMemb; ?>" autofocus />
             </div>
         </section>
         <section>
             <div class="Pseudo_control connexion_control">
-                <label class="control-label" for="eMailMemb"><b>Mot de passe :</b></label>
+                <label class="control-label" for="pass1Memb"><b>Mot de passe :</b></label>
                 <br>
-                <input type="password" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre mot de passe" autofocus />
+                <input type="password" name="pass1Memb" id="myInput1" size="50" placeholder="Contient 1 majuscule, 1 miniscule, 1 chiffre et 1 caractère sp." value="<?= $pass1Memb; ?>" autofocus />
             </div>
             <div class="bouton_affichage_mdp">
-                    <input type="checkbox" onclick="myFunction('passMembTest')">
+                    <input type="checkbox" onclick="myFunction('myInput1')">
                     &nbsp;&nbsp;
                     <label><i>Afficher Mot de passe</i></label>
                 </div>
 
             <div class="Pseudo_control connexion_control">
-                <label class="control-label" for="eMailMemb"><b>Confirmez le mot de passe :</b></label>
+                <label class="control-label" for="pass2Memb"><b>Confirmez le mot de passe :</b></label>
                 <br>
-                <input type="password" name="eMailMemb" id="eMailMemb" size="50" placeholder="" autofocus />
+                <input type="password" name="pass2Memb" id="myInput2" size="50" placeholder="" value="<?= $pass2Memb; ?>" autofocus />
             </div>
             <div class="bouton_affichage_mdp">
-                    <input type="checkbox" onclick="myFunction('passMembTest')">
+                    <input type="checkbox" onclick="myFunction('myInput2')">
                     &nbsp;&nbsp;
                     <label><i>Afficher Mot de passe</i></label>
                 </div>
 
             <div class="Pseudo_control connexion_control">
-                <label class="control-label" for="eMailMemb"><b>Confirmez l'Email :</b></label>
+                <label class="control-label" for="eMail1Memb"><b>Email:</b></label>
                 <br>
-                <input type="email" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre Email" autofocus />
+                <input type="email" name="eMail1Memb" id="eMail1Memb" size="50" placeholder="Entrez votre Email" value="<?= $eMail1Memb; ?>"autofocus />
             </div>
             
 
             <div class="Pseudo_control connexion_control">
-                <label class="control-label" for="eMailMemb"><b>Email :</b></label>
+                <label class="control-label" for="eMail2Memb"><b>Confirmez l'Email :</b></label>
                 <br>
-                <input type="email" name="eMailMemb" id="eMailMemb" size="50" placeholder="" autofocus />
+                <input type="email" name="eMail2Memb" id="eMail2Memb" size="50" placeholder="" value="<?= $eMail1Memb; ?>" autofocus />
             </div>
 
             <div class="Pseudo_control connexion_control">
-                <label class="control(label" for="eMailMemb"><b> J'accepte que mes données soient conservées : </b></label>
+                <label class="control"><b> J'accepte que mes données soient conservées : </b></label>
                 <div class ="controls">
                     <fieldset>
-                    <input type="radio" name="eMailMemb" > "&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp; "
-                    <input type="radio" name="eMailMemb" checked="checked"> "&nbsp;&nbsp;Non ""
+                    <input type="radio" name="accordMemb"
+                  <?= ($accordMemb == "on") ? 'checked="checked"' : ''
+                  ?> value="on" /> "&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp; 
+                     <input type="radio" name="accordMemb"
+                  <?= ($accordMemb == "off") ? 'checked="checked"' : ''
+                  ?> value="off" checked="checked" /> &nbsp;&nbsp;Non 
                     </fieldset>
                 </div>
+                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border-radius:5px;" name="Submit" />
             </div>
 
            
@@ -198,4 +203,8 @@
             font-family: "Bigilla";
             font-size: 100px;
             color: #AD1305;
+        }
+
+        fieldset{
+            border: 0px;
         }
