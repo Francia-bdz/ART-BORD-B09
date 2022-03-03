@@ -26,6 +26,7 @@
 
         footer {
             background-color: #E1E1E1;
+            margin-top: 3%;
         }
 
         .title_and_rectangle {
@@ -37,7 +38,7 @@
         .title_footer {
             font-family: 'Bigilla';
             font-size: 80px;
-            font-weight: bold;
+            font-weight: normal;
             margin-top: 2%;
         }
 
@@ -61,7 +62,7 @@
         .Plan_du_site {
             display: flex;
             font-family: 'Roboto', Arial, Helvetica, sans-serif;
-            font-weight: bold;
+            font-weight: 300;
 
         }
 
@@ -120,12 +121,11 @@
                 <ul>
                     <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Accueil </a></li>
                     <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Articles </a></li>
-                    <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> À propos</a></li>
                 </ul>
             </div>
             <div class="Plan_du_site_2"></div>
             <ul>
-                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Se connecter </a></li>
+                <li class="li_Plan_du_site"><a href="" class="a_Plan_du_site"> Se connecter </a></li>
                 <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> S'inscrire</a></li>
             </ul>
         </div>
