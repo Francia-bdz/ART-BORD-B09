@@ -19,7 +19,7 @@ h2{
 h3{
     font-family: 'Roboto';
     font-size: 55px;
-    font-style: normal;
+    font-weight: bold;
     margin-bottom: 2%;
     letter-spacing: 00.25em;
 }
@@ -98,6 +98,9 @@ h4 {
     margin-left: 15%;
 }
 
+
+
+
 .photo_date {
     display: flex;
     flex-direction: row;
@@ -129,13 +132,41 @@ h4 {
   flex-direction: row;
 } */
 
+.espace {
+    margin-left: 3%;
+}
 
+.barre_commentaire {
+    border-color: #FFA800;
+    border-radius: 20px;
+    border-style: solid;
+    width: 540px;
+    height: 28px;
+    margin-left: 8%;
+    margin-bottom: 3%;
+    margin-right: 2%;
+}
  .ligne_verticale {
     width: 307px;
     height: 11px;
     background-color: #FFA800;
     transform: rotate(90deg);
 } 
+
+.misenpagecommentaire {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.recadragebouton {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    align-items: center;
+}
 
 .misenpagedroite {
     margin: 10%;
@@ -155,4 +186,35 @@ h4 {
     background-color: black;
     height: 1464px;
     padding-top: 2%;
+}
+
+
+.style_pseudo {
+    font-weight: bolder;
+}
+
+
+.misenpagecommentaireu {
+    display: flex;
+    flex-direction: row;
+    margin-left: 15%;
+    margin-right: 35%;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.style_typo {
+    color: #7798C9;
+    font-weight: bolder;
+    margin-left: 10%;
+}
+
+.recadrageboutoncoeur {
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+}
+
+a:hover {
+    opacity: 0.5;
 }

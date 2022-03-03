@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Likeart
-require_once __DIR__ . '/../../CLASS_CRUD/likeart.class.php';
+require_once __DIR__ . '/../../class_crud/likeart.class.php';
 
 // Instanciation de la classe Likeart
 

@@ -35,6 +35,7 @@ $monComment = new COMMENT();
     <meta name="author" content="" />
     <style type="text/css">
         * {
+            margin: 0%;
             font-family: 'Roboto';
         }
         .error {
