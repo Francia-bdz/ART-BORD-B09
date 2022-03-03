@@ -303,7 +303,6 @@ include __DIR__ . '/initArticle.php';
                     var xhr = null;
                     if (window.XMLHttpRequest) { // Firefox & autres
                         xhr = new XMLHttpRequest();
-                        console.log("ok");
                     } else
                     if (window.ActiveXObject) { // IE / Edge
                         try {

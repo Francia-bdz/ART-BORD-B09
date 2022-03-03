@@ -214,7 +214,7 @@ $monArticle = new ARTICLE ();
         <div class="l_jaune"></div>
         <h3 class="titre_article"> <?= $row["libTitrArt"]; ?> </h3>
         <p class="p_article"><?= $row["libChapoArt"]; ?></p>
-        <a href="" class="lire_plus">Lire plus</a>
+        <a href="./article_blog.php?id=<?=$row["numArt"]; ?>" class="lire_plus">Lire plus</a>
     </div>
 
 <?php
