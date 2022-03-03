@@ -33,6 +33,7 @@ $monArticle = new ARTICLE ();
     <meta name="author" content="" />
     <style type="text/css">
             * {
+             margin: 0%;
             font-family: 'Roboto';
         }
         .error {

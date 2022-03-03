@@ -26,7 +26,7 @@
 
         footer {
             background-color: #E1E1E1;
-            margin-top: 3%;
+        
         }
 
         .title_and_rectangle {
@@ -62,7 +62,7 @@
         .Plan_du_site {
             display: flex;
             font-family: 'Roboto', Arial, Helvetica, sans-serif;
-            font-weight: 300;
+            font-weight: 400;
 
         }
 

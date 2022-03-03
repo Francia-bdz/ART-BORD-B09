@@ -14,14 +14,14 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Angle
-require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe angle
 
 $monAngle = new ANGLE();
 
 // Insertion classe Langue
-require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 $maLangue = new LANGUE();
 
@@ -29,7 +29,7 @@ $maLangue = new LANGUE();
 
 // Ctrl CIR
 // Insertion classe Article
-require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../class_crud/article.class.php';
 
 // Instanciation de la classe ARTICLE
 $monArticle = new ARTICLE ();

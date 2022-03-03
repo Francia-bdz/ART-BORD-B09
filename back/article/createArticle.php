@@ -23,25 +23,25 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Article
 
-require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../class_crud/article.class.php';
 
 // Instanciation de la classe ARTICLE
 $monArticle = new ARTICLE();
 
 // Insertion classe Langue
-require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 // Instanciation de la classe Langue
 $maLangue = new LANGUE();
 
 // Insertion classe Angle
-require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe Angle
 $monAngle = new ANGLE();
 
 // Insertion classe Thematique
-require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+require_once __DIR__ . '/../../class_crud/thematique.class.php';
 
 // Instanciation de la classe Angle
 $maThematique = new THEMATIQUE();

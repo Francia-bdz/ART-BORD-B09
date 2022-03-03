@@ -229,12 +229,8 @@ include __DIR__ . '/initMembre.php';
             <label class="control-label" for="accordMemb"><b>J'accepte que mes données soient conservées :</b></label>
             <div class="controls">
                <fieldset>
-                  <input type="radio" name="accordMemb"
-                  <?= ($accordMemb == "on") ? 'checked="checked"' : ''
-                  ?> value="on" />&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="accordMemb"
-                  <?= ($accordMemb == "off") ? 'checked="checked"' : ''
-                  ?> value="off" checked="checked" />&nbsp;&nbsp;Non
+                  <input type="radio" name="accordMemb" <?= ($accordMemb == "on") ? 'checked="checked"' : '' ?> value="on" />&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="radio" name="accordMemb" <?= ($accordMemb == "off") ? 'checked="checked"' : '' ?> value="off" checked="checked" />&nbsp;&nbsp;Non
                </fieldset>
             </div>
         </div>

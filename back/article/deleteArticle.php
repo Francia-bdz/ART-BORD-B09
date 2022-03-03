@@ -21,20 +21,20 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Article
-require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../class_crud/article.class.php';
 
 // Instanciation de la classe ARTICLE
 $monArticle = new ARTICLE();
 
 // Ctrl CIR
 // Insertion classe MotCleArticle
-require_once __DIR__ . '/../../CLASS_CRUD/motclearticle.class.php';
+require_once __DIR__ . '/../../class_crud/motclearticle.class.php';
 
 // Instanciation de la classe MotCleArticle
 $monMotCleArticle = new MOTCLEARTICLE();
 
 // Insertion classe MotCle
-require_once __DIR__ . '/../../CLASS_CRUD/motcle.class.php';
+require_once __DIR__ . '/../../class_crud/motcle.class.php';
 
 // Instanciation de la classe MotCle
 

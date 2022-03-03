@@ -17,20 +17,20 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Comment
 
-require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
+require_once __DIR__ . '/../../class_crud/comment.class.php';
 
 // Instanciation de la classe COMMENT
 $monComment = new COMMENT();
 
 // Insertion classe Membre
-require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
 $monMembre = new MEMBRE();
 
 // Insertion classe Article
 
-require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../class_crud/article.class.php';
 
 // Instanciation de la classe ARTICLE
 $monArticle = new ARTICLE();

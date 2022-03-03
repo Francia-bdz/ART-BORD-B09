@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Langue
-require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 // Instanciation de la classe langue
 
@@ -25,21 +25,21 @@ $monPays = new PAYS();
 
 // Ctrl CIR
 // Insertion classe Angle
-require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe Angle
 
 $monAngle = new ANGLE();
 
 // Insertion classe Thematique
-require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+require_once __DIR__ . '/../../class_crud/thematique.class.php';
 
 // Instanciation de la classe Thematique
 $maThematique = new THEMATIQUE();
 
 
 // Insertion classe Motcle
-require_once __DIR__ . '/../../CLASS_CRUD/motcle.class.php';
+require_once __DIR__ . '/../../class_crud/motcle.class.php';
 // Instanciation de la classe Motcle
 $monMotcle = new MOTCLE();
 

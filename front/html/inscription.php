@@ -8,7 +8,10 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Membre
 
-require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../class_crud/membre.class.php';
+
+require_once __DIR__ . '/../../util/regex.php';
+
 
 // Instanciation de la classe Membre
 
@@ -52,6 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             } elseif (($_POST['accordMemb']) == "on"){
                 $accordMemb = 1;
             }
+            // else{
+            //     $accordMemb = 0;
+            // }
             
             $prenomMemb = ctrlSaisies(($_POST['prenomMemb']));
             $nomMemb = ctrlSaisies(($_POST['nomMemb']));
@@ -65,32 +71,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (strlen($pseudoMemb)<6 || strlen($pseudoMemb)>70){
                 $erreur = true;
                 $errSaisies =  "Erreur, le nombre de caractère pour le pseudo doit être compris entre 6 et 70 !";
+                echo "Erreur, le nombre de caractère pour le pseudo doit être compris entre 6 et 70 !";
             } 
             elseif (($monMembre->get_ExistPseudo($pseudoMemb))>1){
                 
                 $erreur = true;
                 $errSaisies =  "Le pseudo existe déja!";
+                echo "Le pseudo existe déja!";
 
             }elseif ($eMailMemb != $_POST['eMail1Memb']){
                 
                 $erreur = true;
                 $errSaisies =  "Les deux eMails ne correspondent pas !";
+                echo "Les deux eMails ne correspondent pas !";
 
             }elseif (isEmail($eMailMemb)!= true ){
                 
                 $erreur = true;
                 $errSaisies =  "L'email n'est pas dans le bon format !";
+                echo "L'email n'est pas dans le bon format !";
 
             }
             elseif ($passMemb != $_POST['pass1Memb']){
                 
                 $erreur = true;
                 $errSaisies =  "Les deux mots de passe ne correspondent pas !";
+                echo "Les deux mots de passe ne correspondent pas !";
+
+                
 
             } elseif (isPassWord($passMemb)!= true){
                 
                 $erreur = true;
                 $errSaisies =  "Le mot de passe doit contenir au moins une majuscule, une minuscule et un caractère spécial !";
+                echo "Le mot de passe doit contenir au moins une majuscule, une minuscule et un caractère spécial !";
 
             } else {
                 
@@ -102,10 +116,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
                 header("Location: ./accueil.php");
             }
-    }   
-    else {
+    }   else {
         
         $erreur = true;
+        echo "Erreur, la saisie est obligatoire !";
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }  
 }
@@ -113,9 +127,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 ?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -250,6 +261,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             margin-top: 2%;
             margin-bottom: 3%;
         }
+
+        .deja_inscrit {
+            margin-top: 2%;
+            font-weight: bolder;
+        }
+
+        .deja_inscrit_lien {
+            text-decoration: none;
+            color: #AD1305;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .deja_inscrit_lien:hover {
+            color: #7798C9;
+        }
     </style>
 
 </head>
@@ -350,8 +376,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     </form>
 
-    <p class="deja_inscrit">Déja inscrit ? <a href="/connexion.php" class="deja_inscrit_lien"> Cliquez ici pour vous connecter</a> </p>
+    <p class="deja_inscrit">Déja inscrit ? <a href="<?= ROOTFRONT . '/front/html/' . 'connexion.php' ?>" class="deja_inscrit_lien"> Cliquez ici pour vous connecter</a> </p>
 
+    </div>
+
+<?php require_once __DIR__ .  '/footer.php';
+?>
     </div>
     </div>
 
