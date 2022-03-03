@@ -276,7 +276,11 @@ if (isset($_GET['id'])) {
 
     </div>
 
+    <div>
+        <h3>Commentaires</h3>
+    </div>
     <?php
+
 
     require_once __DIR__ . '/footer.php';
 
