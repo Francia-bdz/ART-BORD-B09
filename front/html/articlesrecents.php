@@ -27,13 +27,13 @@
 
 
         h3 {
-            font-family: 'Roboto' Arial;
+            font-family: 'Roboto';
             letter-spacing: 0.25em;
             font-size: 55px;
         }
 
         p {
-            font-family: 'Roboto' Arial;
+            font-family: 'Roboto'Arial;
             font-size: 20px;
             text-align: left;
         }
@@ -45,8 +45,8 @@
         h2 {
             font-family: 'Roboto';
             font-size: 70px;
-            font-style: normal;
-            margin-left: 10%;
+            font-weight: normal;
+            margin-left: 5%;
             margin-bottom: 0%;
 
         }
@@ -68,11 +68,9 @@
         .enluminure {
             font-family: Bigilla;
             font-size: 100px;
+            font-weight: normal;
             color: #AD1305;
         }
-
-
-
 
 
 
@@ -103,9 +101,6 @@
             width: 400px;
             height: 400px;
             object-fit: cover;
-        }
-
-        img {
             margin-right: 5%;
         }
 
@@ -130,6 +125,7 @@
         .bouton {
             width: 50px;
             height: 50px;
+
         }
 
         .color-button {
@@ -140,7 +136,10 @@
             flex-direction: row;
             justify-content: flex-end;
             align-items: center;
+        }
 
+        .art_recent{
+            padding-bottom : 5%;
         }
 
 
@@ -161,61 +160,63 @@
 
 <body>
     <div>
+        <div>
 
-        <h3 class="aligner"> Bienvenue </h3>
-        <p class="margin_text_bienvenue">Bonjour, bienvenue sur Art’Bord,
-            le blog destiné à vous faire découvrir Bordeaux à travers ses artistes.
-            Par ce blog, nous rassemblons des personnes partageant nos hobbys et passions,
-            à savoir, l’art dans son entièreté !
-            Musique, cinéma, dessin, écriture, festivals et évènements,
-            ici vous découvrirez des articles originaux et variés,
-            qui pourraient parler aux artistes et aux passionnés.
-            Amateur, ou véritable professionnel ?
-            Peu importe car notre blog vise simplement à vous faire découvrir,
-            vous faire voyager à travers Bordeaux et ses artistes.</p>
+            <h3 class="aligner"> Bienvenue </h3>
+            <p class="margin_text_bienvenue">Bonjour, bienvenue sur Art’Bord,
+                le blog destiné à vous faire découvrir Bordeaux à travers ses artistes.
+                Par ce blog, nous rassemblons des personnes partageant nos hobbys et passions,
+                à savoir, l’art dans son entièreté !
+                Musique, cinéma, dessin, écriture, festivals et évènements,
+                ici vous découvrirez des articles originaux et variés,
+                qui pourraient parler aux artistes et aux passionnés.
+                Amateur, ou véritable professionnel ?
+                Peu importe car notre blog vise simplement à vous faire découvrir,
+                vous faire voyager à travers Bordeaux et ses artistes.</p>
 
-    </div>
+        </div>
 
-    <div>
-        <section class="titre">
-            <h2><span class="enluminure">A</span>rticles récents</h2>
-            <div class="ligne-noir"></div>
-        </section>
-        <section class="articles">
-            <img class="img-article" src="/front/assets/images/P1040500.JPG">
-            <div class="text_article">
-                <div class="titre-bouton">
-                    <h3 class="color-title-home">Nobu</h3><a><img class="bouton" src="/front/assets/images/Bouton-foncé.png"></a>
+        <div class="art_recent">
+            <section class="titre">
+                <h2><span class="enluminure">A</span>rticles récents</h2>
+                <div class="ligne-noir"></div>
+            </section>
+            <section class="articles">
+                <img class="img-article" src="/front/assets/images/P1040500.JPG">
+                <div class="text_article">
+                    <div class="titre-bouton">
+                        <h3 class="color-title-home">Nobu</h3><a><img class="bouton" src="/front/assets/images/Bouton-foncé.png"></a>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
+                        fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
+                        velit libero distinctio saepe.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
+                        fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
+                        velit libero distinctio saepe.</p>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-                    fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-                    velit libero distinctio saepe.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-                    fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-                    velit libero distinctio saepe.</p>
-            </div>
-        </section>
-        </section>
-        <section class="articles">
-            <img class="img-article" src="/front/assets/images/FIFIB2018-FCBK-EVENT-1920x1080.png">
-            <div class="text_article">
-                <div class="titre-bouton">
-                    <h3 class="color-title-home">Fifib</h3><a><img class="bouton" src="/front/assets/images/Bouton-foncé.png"></a>
+            </section>
+            </section>
+            <section class="articles">
+                <img class="img-article" src="/front/assets/images/FIFIB2018-FCBK-EVENT-1920x1080.png">
+                <div class="text_article">
+                    <div class="titre-bouton">
+                        <h3 class="color-title-home">Fifib</h3><a><img class="bouton" src="/front/assets/images/Bouton-foncé.png"></a>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
+                        fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
+                        velit libero distinctio saepe.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
+                        fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
+                        velit libero distinctio saepe.</p>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-                    fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-                    velit libero distinctio saepe.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-                    fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-                    velit libero distinctio saepe.</p>
-            </div>
-        </section>
+            </section>
 
-        <div class="color-button">
-            <p>Plus d'articles</p><a><img class="bouton" src="/front/assets/images/Bouton-foncé.png"></a>
+            <div class="color-button">
+                <p>Plus d'articles</p><a><img class="bouton" src="/front/assets/images/Bouton-foncé.png"></a>
+            </div>
         </div>
 </body>
