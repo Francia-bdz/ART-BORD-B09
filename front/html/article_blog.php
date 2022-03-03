@@ -211,6 +211,8 @@ if (isset($_GET['id'])) {
 
     <?php
 
+    require_once __DIR__ . '/cover_article.php';
+
     $from = 'Y-m-d H:i:s';
     $to = 'd/m';
 
@@ -281,6 +283,8 @@ if (isset($_GET['id'])) {
     </div>
 
     <?php
+
+    require_once __DIR__ . '/footer.php';
 
     ?>
 </body>
