@@ -94,6 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         .Partie_Texte {
             margin-left: 3%;
+            margin-bottom: 3%;
         }
 
         h1 {
@@ -224,7 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
         </form>
 
-            <p class="Pas_encore_inscrit">Pas encore inscrit ? <a href="/footer.php" class="Pas_encore_inscrit_lien"> Cliquez ici pour vous inscrire</a> </p>
+            <p class="Pas_encore_inscrit">Pas encore inscrit ? <a href="<?= ROOTFRONT . '/front/html/' . 'inscription.php' ?>" class="Pas_encore_inscrit_lien"> Cliquez ici pour vous inscrire</a> </p>
 
         </div>
     </div>

@@ -112,10 +112,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $numAngl = ctrlSaisies(($_POST['angle']));
         $numThem = ctrlSaisies(($_POST['thematique']));
 
+        if (isset($_FILES['monfichier']['tmp_name'])){
+
         require_once __DIR__ . '/ctrlerUploadImage.php';
 
         $urlPhotArt = $nomImage;
 
+        }elseif(empty($_FILES['monfichier']['tmp_name'])){
+
+            $oneArticle = $monArticle-> get_1ArticleAnd3FK($_POST['id']);
+
+            $urlPhotArt = $oneArticle['urlPhotArt'];
+         }
         $numArt = ctrlSaisies(($_POST['id']));
 
         $monArticle->update($numArt, $libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem);
