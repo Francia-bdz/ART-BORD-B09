@@ -155,8 +155,8 @@ include __DIR__ . '/initLikeCom.php';
                     <label for="LibTypArticle" title="Sélectionnez votre article !">
                         <b>Quel Article :&nbsp;&nbsp;&nbsp;</b>
                     </label>
-                    <input type="hidden" id="TypArt" name="TypArt" value="<?= ''; ?>" />
-                    <select size="1" name="TypArt" id="TypArt" class="form-control form-control-create" title="Sélectionnez votre article !">
+                    <input type="hidden" id="article" name="article" value="<?= ''; ?>" />
+                    <select size="1" name="article" id="article" class="form-control form-control-create" title="Sélectionnez votre article !" onchange='change()'>
                         <option value="-1">- - - Choisissez l'article - - -</option>
                         <?php
                         $listNumArt = "";
@@ -180,6 +180,63 @@ include __DIR__ . '/initLikeCom.php';
                 </div>
             </div>
             <!-- FIN Listbox Commentaire / Article -->
+            <br /><br />
+            <label><b>&nbsp;&nbsp;&nbsp;Quel Commentaire :&nbsp;&nbsp;</b></label>
+            <div id='commentaire' style='display:inline'>
+                <select size="1" name="commentaire" title="Sélectionnez le commentaire !" style="padding:2px; ">
+                    <option value='-1'>- - - Aucun - - -</option>
+                </select>
+            </div>
+            <br /><br />
+            <!-- FIN Listbox Angle -->
+
+            <!-- JAVA AJAX -->
+            <script type='text/javascript'>
+                function getXhr() {
+
+                    var xhr = null;
+                    if (window.XMLHttpRequest) { // Firefox & autres
+                        xhr = new XMLHttpRequest();
+                    } else
+                    if (window.ActiveXObject) { // IE / Edge
+                        try {
+                            xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                        } catch (e) {
+                            xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                    } else {
+                        alert("Votre navigateur ne supporte pas les objets XMLHTTPRequest...");
+                        xhr = false;
+                    }
+                    return xhr;
+                } // End of function
+
+                /**
+                 * Méthode appelée sur le click du bouton/listbox
+                 */
+                function change() {
+                    var xhr = getXhr();
+
+                    // On définit quoi faire quand réponse reçue
+                    xhr.onreadystatechange = function() {
+
+                        // test si tout est reçu et si serveur est ok
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+
+                            di = document.getElementById('commentaire');
+                            di.innerHTML = xhr.responseText;
+
+                        }
+                    }
+
+                    // Traitement en POST
+                    xhr.open("POST", "./ajaxcommentaire.php", true);
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    numArt = document.getElementById('article').options[document.getElementById('article').selectedIndex].value;
+                    xhr.send("numArt=" + numArt);
+
+                } 
+            </script>
             <!-- --------------------------------------------------------------- -->
             <!-- --------------------------------------------------------------- -->
 

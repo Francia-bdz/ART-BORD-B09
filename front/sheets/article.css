@@ -2,6 +2,12 @@
 
 
 /* - - - TYPO - - -  */
+@font-face {
+    font-family: "Bigilla";
+    src: local("Bigilla"),
+    url(/front/assets/typo/Bigilla.otf);
+    font-weight: normal;
+    }
 
 
 h2{
