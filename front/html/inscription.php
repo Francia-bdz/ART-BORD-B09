@@ -13,29 +13,36 @@
 <div class="title_and_rectangle_connexion">
         <h1> INSCRIPTION</h1>
         <div class="rectangle_rouge"></div>
-    </div>
+</div>
     <div class="Partie_Texte">
         <div class="Partie_connexion">
             <h2><span class="enluminure">C</span>réer un compte</h2>
 
+    <div class="misenpageinscri">
+        <section>
             <div class="Pseudo_control connexion_control">
                 <label class="control-label" for="eMailMemb"><b>Prénom :</b></label>
+                <br>
                 <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre prénom" autofocus />
             </div>
 
             <div class="Pseudo_control connexion_control">
                 <label class="control-label" for="eMailMemb"><b>Nom :</b></label>
+                <br>
                 <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre nom" autofocus />
             </div>
 
             <div class="Pseudo_control connexion_control">
                 <label class="control-label" for="eMailMemb"><b>Pseudonyme :</b></label>
+                <br>
                 <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="6 caractères minimum" autofocus />
             </div>
-
+        </section>
+        <section>
             <div class="Pseudo_control connexion_control">
                 <label class="control-label" for="eMailMemb"><b>Mot de passe :</b></label>
-                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre mot de passe" autofocus />
+                <br>
+                <input type="password" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre mot de passe" autofocus />
             </div>
             <div class="bouton_affichage_mdp">
                     <input type="checkbox" onclick="myFunction('passMembTest')">
@@ -45,7 +52,8 @@
 
             <div class="Pseudo_control connexion_control">
                 <label class="control-label" for="eMailMemb"><b>Confirmez le mot de passe :</b></label>
-                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="" autofocus />
+                <br>
+                <input type="password" name="eMailMemb" id="eMailMemb" size="50" placeholder="" autofocus />
             </div>
             <div class="bouton_affichage_mdp">
                     <input type="checkbox" onclick="myFunction('passMembTest')">
@@ -55,16 +63,33 @@
 
             <div class="Pseudo_control connexion_control">
                 <label class="control-label" for="eMailMemb"><b>Confirmez l'Email :</b></label>
-                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre Email" autofocus />
+                <br>
+                <input type="email" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre Email" autofocus />
             </div>
             
 
             <div class="Pseudo_control connexion_control">
                 <label class="control-label" for="eMailMemb"><b>Email :</b></label>
-                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="" autofocus />
+                <br>
+                <input type="email" name="eMailMemb" id="eMailMemb" size="50" placeholder="" autofocus />
             </div>
 
+            <div class="Pseudo_control connexion_control">
+                <label class="control(label" for="eMailMemb"><b> J'accepte que mes données soient conservées : </b></label>
+                <div class ="controls">
+                    <fieldset>
+                    <input type="radio" name="eMailMemb" > "&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp; "
+                    <input type="radio" name="eMailMemb" checked="checked"> "&nbsp;&nbsp;Non ""
+                    </fieldset>
+                </div>
+            </div>
+
+           
+        </div>
+        </section>
+</div>
             
+
             
             <!-- <div class="Mdp_control connexion_control">
 
@@ -90,9 +115,16 @@
             font-family: 'Roboto';
         }
 
-
+.misenpageinscri {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-right: 10%;
+    margin-bottom: 10%;
+}
 
         /* - - - TYPO - - - */
+
 
 
 @font-face {
@@ -115,6 +147,7 @@
 
         .Partie_Texte {
             margin-left: 3%;
+            margin-top: 5%;
         }
 
         h1 {
@@ -165,9 +198,3 @@
             font-size: 100px;
             color: #AD1305;
         }
-
-
-
-
-
-
