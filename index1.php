@@ -24,7 +24,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 
     <style type="text/css">
 		 * {
-            font-family: 'Roboto';
+            font-family: 'Roboto', Arial, Helvetica, sans-serif;
 			font-size: 20px;
 			color: #333;
 			text-decoration-color: transparent;
@@ -70,7 +70,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 
         h1 {
             font-size: 150px;
-            font-family: 'Bigilla';
+            font-family: 'Bigilla', Georgia, 'Times New Roman', Times, serif;
             margin-bottom: 0%;
             margin-top: 10%;
 			background-color: #137E85;
@@ -131,45 +131,45 @@ require_once __DIR__ . '/util/utilErrOn.php';
 	<!-- <hr class="hr1" /> -->
 	<div>
 	<span class="crud">CRUD :</span>
-	<a href="./BACK/angle/angle.php"><span>Angle </span></a>
+	<a href="./back/angle/angle.php"><span>Angle </span></a>
 	<br /><br />
 	<span class="crud">CRUD :</span>
-	<a href="./BACK/article/article.php"><span>Article </span></a>
+	<a href="./back/article/article.php"><span>Article </span></a>
 	<br /><br />
 	<span class="crud">CRUD :</span>
-	<a href="./BACK/comment/comment.php"><span>Commentaire </span></a>
+	<a href="./back/comment/comment.php"><span>Commentaire </span></a>
 	<br /><br />
 	<span class="crud">CRUD :</span>
-	<a href="./BACK/commentplus/commentplus.php">Réponse sur Commentaire</a>
+	<a href="./back/commentplus/commentplus.php">Réponse sur Commentaire</a>
 	<br /><br />
 	<span class="crud">CRUD :</span>
-	<a href="./BACK/langue/langue.php"><span>Langue </span></a>
+	<a href="./back/langue/langue.php"><span>Langue </span></a>
 	<br /><br />
 	<span class="crud">CRUD :</span>
-	<a href="./BACK/likeart/likeart.php"><span>Like Article </span></a>
+	<a href="./back/likeart/likeart.php"><span>Like Article </span></a>
 	<br /><br />
 	<span class="crud">CRUD :</span>
-	<a href="./BACK/likecom/likecom.php"><span>Like Commentaire </span></a>
+	<a href="./back/likecom/likecom.php"><span>Like Commentaire </span></a>
 	<br /><br />
 <!-- Membre  - reCaptcha à ajouter -->
 	<span class="crud">CRUD :</span>
-	<a href="./BACK/membre/membre.php"><span>Membre </span></a>
+	<a href="./back/membre/membre.php"><span>Membre </span></a>
 	<br /><br />
 	<span class="crud">CRUD :</span>
-	<a href="./BACK/motcle/motcle.php"><span>Mot-clé </span></a>
+	<a href="./back/motcle/motcle.php"><span>Mot-clé </span></a>
 	<br /><br />
 	<span class="crud">CRUD :</span>
 	<a href="#">Mot-clé Article => dans Article</a>
 	<br /><br />
 	<span class="crud">CRUD :</span>
-	<a href="./BACK/statut/statut.php"><span>Statut </span></a>
+	<a href="./back/statut/statut.php"><span>Statut </span></a>
 	<br /><br />
 	<span class="crud">CRUD :</span>
-	<a href="./BACK/thematique/thematique.php"><span>Thématique </span></a>
+	<a href="./back/thematique/thematique.php"><span>Thématique </span></a>
 	<br /><br />
 <!-- User  - reCaptcha à ajouter -->
 	<span class="crud">CRUD :</span>
-	<a href="./BACK/user/user.php"><span>User </span></a>
+	<a href="./back/user/user.php"><span>User </span></a>
 	<br /><br /><hr class="hr1" /><br />
 	<span class="crud">Barre de recherche :</span>
 	<a href="./SearchBar/barreF2.php"><span>CONCAT : Un SEUL Mot clé dans articles </span></a>

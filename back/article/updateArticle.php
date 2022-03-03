@@ -265,7 +265,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
             <label class="control-label" for="urlPhotArt"><b>Importez l'illustration :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
             <div class="controls">
                 <input type="hidden" name="MAX_FILE_SIZE" id="MAX_FILE_SIZE" value="<?= MAX_SIZE; ?>" />
-                <input type="file" name="monfichier" id="monfichier" required="required" accept=".jpg,.gif,.png,.jpeg" size="70" maxlength="70" value="<?= 'monfichier'; ?>" tabindex="110" placeholder="Sur 70 car." title="Recherchez l'image à uploader !" />
+                <input type="file" name="monfichier" id="monfichier" required="required" accept=".jpg,.gif,.png,.jpeg" size="70" maxlength="70" value="<?= ROOTFRONT . '/uploads/' . htmlspecialchars($urlPhotArt); ?>" tabindex="110" placeholder="Sur 70 car." title="Recherchez l'image à uploader !" />
                 <p>
 <?php              // Gestion extension images acceptées
                   $msgImagesOK = "&nbsp;&nbsp;>> Extension des images acceptées : .jpg, .gif, .png, .jpeg" . "<br>" .

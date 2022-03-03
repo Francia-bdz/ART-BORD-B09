@@ -14,6 +14,9 @@ require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 
 $monMembre = new MEMBRE();
 
+$eMailMemb = "";
+$passMembTest = "";
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (isset($_POST['Submit'])) {
@@ -24,25 +27,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
 
-        if (((isset($_POST['prenomMemb'])) and !empty($_POST['prenomMemb']))
-            and ((isset($_POST['nomMemb'])) and !empty($_POST['nomMemb']))
+        if (((isset($_POST['eMailMemb'])) and !empty($_POST['eMailMemb']))
+            and ((isset($_POST['passMembTest'])) and !empty($_POST['passMembTest']))
         ) {
 
+            $oneMembre=$monMembre->get_1MembreByEmail($_POST['eMailMemb']);
 
+            if ($oneMembre != false) {
 
-            $_POST['$eMailMemb'] = $eMailMemb;
-
-            if ($monMembre->get_1MembreByEmail($eMailMemb) === true) {
-
-                $eMailMemb = $monMembre['eMailMemb'];
-                $passMemb = $monMembre['passMemb'];
+                $eMailMemb = $oneMembre['eMailMemb'];
+                $passMemb = $oneMembre['passMemb'];
 
                 if ($passMemb == $_POST['passMembTest']) {
 
                     // (password_verify($_POST['passMemb'], $passMemb) === true);
                     setcookie('eMailMemb', $eMailMemb, time() + 3600);
-                    setcookie('passMemb', $passMemb, time() + 3600);
-                    header("Location: ./cover.php");
+                    header("Location: ./accueil.php");
                 } else {
                     echo "Mauvais Mot de passe";
                 }
@@ -55,8 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-$eMailMemb = "";
-$passMembTest = "";
 
 
 ?>
@@ -71,7 +69,7 @@ $passMembTest = "";
     <title>Connexion</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
     <style type="text/css">
         @font-face {
@@ -84,7 +82,8 @@ $passMembTest = "";
         * {
             margin: 0%;
             padding: 0%;
-            font-family: 'Roboto';
+            font-family: 'Roboto', Arial;
+            font-weight: 400;
 
         }
 
@@ -99,14 +98,16 @@ $passMembTest = "";
 
         h1 {
             font-family: "Bigilla", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-size: 150px;
+            font-size: 200px;
+            font-weight: normal;
             text-align: center;
         }
 
         h2 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             margin-top: 3%;
-            font-weight: bolder;
-            font-size: 28px;
+            font-weight: lighter;
+            font-size: 75px;
         }
 
         .rectangle_rouge {
@@ -139,7 +140,7 @@ $passMembTest = "";
 
         .enluminure {
             font-family: "Bigilla";
-            font-size: 40px;
+            font-size: 100px;
             color: #AD1305;
         }
 
@@ -151,7 +152,6 @@ $passMembTest = "";
         input[type=submit]:hover {
             -webkit-filter: brightness(70%);
             filter: brightness(70%);
-            ;
         }
 
         .Pas_encore_inscrit {
@@ -169,92 +169,7 @@ $passMembTest = "";
             color: #7798C9;
         }
 
-        /* Footer */
 
-        footer {
-            margin-top: 4%;
-            background-color: #E1E1E1;
-        }
-
-        .title_and_rectangle {
-            display: flex;
-            justify-content: space-between;
-            margin-left: 5%;
-
-        }
-
-        .title_footer {
-            font-family: 'Bigilla';
-            font-size: 80px;
-            font-weight: bold;
-            margin-top: 2%;
-        }
-
-        .rectangle_noir_footer {
-            align-self: center;
-            background-color: black;
-            width: 500px;
-            height: 10px;
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-            font-size: 16px;
-        }
-
-        li {
-            list-style: none;
-
-        }
-
-        .Plan_du_site {
-            display: flex;
-            font-family: 'Roboto', Arial, Helvetica, sans-serif;
-            font-weight: bold;
-
-        }
-
-        .li_Plan_du_site {
-            margin-bottom: 20%;
-            margin-top: 20%;
-        }
-
-        .Plan_du_site_1 {
-            margin-left: 5%;
-        }
-
-        .Plan_du_site_2 {
-            margin-left: 20%;
-        }
-
-
-        .Partie_Droit_Background {
-            margin-top: 2%;
-            background-color: #D2D2D2;
-        }
-
-        .Partie_Droit {
-            display: flex;
-            height: 50px;
-
-            font-family: 'Roboto', Arial, Helvetica, sans-serif;
-            font-weight: bold;
-
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            margin-left: 5%;
-            margin-right: 10%;
-        }
-
-        a {
-            transition: color 0.3 ease-in-out;
-        }
-
-        a:hover {
-            color: #7798C9;
-        }
     </style>
 
     <link href="/front/sheets/connexion.css" rel="stylesheet" type="text/css" />
@@ -296,7 +211,7 @@ $passMembTest = "";
 
             <div class="Mdp_control connexion_control">
 
-                <label class="control-label" for="passMemb"><b>Mot de passe:</b></label>
+                <label class="control-label" for="passMembTest"><b>Mot de passe:</b></label>
                 <input type="password" name="passMembTest" id="passMembTest" size="43" placeholder="Entrez votre mot de passe" value="<?= $passMembTest ?>" autofocus />
                 <br>
                 <div class="bouton_affichage_mdp">
@@ -309,41 +224,12 @@ $passMembTest = "";
             
         </form>
 
-            <p class="Pas_encore_inscrit">Pas encore inscrit ? <a href="#" class="Pas_encore_inscrit_lien"> Cliquez ici pour vous inscrire</a> </p>
+            <p class="Pas_encore_inscrit">Pas encore inscrit ? <a href="/footer.php" class="Pas_encore_inscrit_lien"> Cliquez ici pour vous inscrire</a> </p>
 
         </div>
     </div>
 
-    <footer>
-        <div class="title_and_rectangle">
-            <p class="title_footer">ART'BORD</p>
-            <div class="rectangle_noir_footer"></div>
-        </div>
-        <div class="Plan_du_site">
-            <div class="Plan_du_site_1"></div>
-            <ul>
-                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Accueil </a></li>
-                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Articles </a></li>
-                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> À propos</a></li>
-            </ul>
-            <div class="Plan_du_site_2"></div>
-            <ul>
-                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Se connecter </a></li>
-                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> S'inscrire</a></li>
-                <li class="li_Plan_du_site"><a href="./index1.php" class="a_Plan_du_site"> Partie Admin</a></li>
-            </ul>
-        </div>
-        <div class="Partie_Droit_Background">
-            <div class="Partie_Droit">
-
-                <li><a href="#"> Mentions légales |</a></li>
-                <li><a href="#"> Conditions générales d'utilisation |</a></li>
-                <li><a href="#"> Cookies |</a></li>
-                <li><a href="#"> Protection des données |</a></li>
-
-            </div>
-        </div>
-
-    </footer>
+    <?php require_once __DIR__ .  '/footer.php';
+?>
 
 </body>

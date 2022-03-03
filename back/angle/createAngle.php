@@ -85,7 +85,12 @@ include __DIR__ . '/initAngle.php';
 </head>
 
 <body>
-    <h1>BLOGART22 Admin - CRUD Angle</h1>
+    
+    <?php 
+    require_once __DIR__ . '/../cover.php';
+    ?>
+
+    <h1 >BLOGART22 Admin - CRUD Angle</h1>
     <h2>Ajout d'un angle</h2>
 
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
@@ -149,9 +154,9 @@ include __DIR__ . '/initAngle.php';
                 <div class="controls">
                     <br><br>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                    <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                    <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                     <br>
                 </div>
             </div>
