@@ -15,20 +15,20 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Likecom
 
-require_once __DIR__ . '/../../CLASS_CRUD/likeCom.class.php';
+require_once __DIR__ . '/../../class_crud/likeCom.class.php';
 
 // Insertion classe Likecom
 $monLikeCom = new LIKECOM();
 
 // Insertion classe Membre
-require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
 $monMembre = new MEMBRE();
 
 // Insertion classe Article
 
-require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../class_crud/article.class.php';
 
 // Instanciation de la classe ARTICLE
 $monArticle = new ARTICLE();

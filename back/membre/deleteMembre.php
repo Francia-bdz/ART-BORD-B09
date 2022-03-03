@@ -17,33 +17,33 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Membre
 
-require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
 $monMembre = new MEMBRE();
 
 // Insertion classe Statut
-require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
+require_once __DIR__ . '/../../class_crud/statut.class.php';
 
 // Instanciation de la classe Statut
 $monStatut = new STATUT();
 
 // Insertion classe Comment
-require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
+require_once __DIR__ . '/../../class_crud/comment.class.php';
 
 // Instanciation de la classe Comment
 
 $monComment = new COMMENT();
 
 // Instanciation de la classe Likeart
-require_once __DIR__ . '/../../CLASS_CRUD/likeArt.class.php';
+require_once __DIR__ . '/../../class_crud/likeArt.class.php';
 
 // Insertion classe Likeart
 $monLikeArt = new LIKEART();
 
 // Insertion classe Likecom
 
-require_once __DIR__ . '/../../CLASS_CRUD/likeCom.class.php';
+require_once __DIR__ . '/../../class_crud/likeCom.class.php';
 
 // Insertion classe Likecom
 $monLikeCom = new LIKECOM();

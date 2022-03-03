@@ -16,20 +16,20 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/delAccents.php';
 
 // Instanciation de la classe Likeart
-require_once __DIR__ . '/../../CLASS_CRUD/likeArt.class.php';
+require_once __DIR__ . '/../../class_crud/likeArt.class.php';
 
 // Insertion classe Likeart
 $monLikeArt = new LIKEART();
 
 // Insertion classe Membre
-require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
 $monMembre = new MEMBRE();
 
 // Insertion classe Article
 
-require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../class_crud/article.class.php';
 
 // Instanciation de la classe ARTICLE
 $monArticle = new ARTICLE();
