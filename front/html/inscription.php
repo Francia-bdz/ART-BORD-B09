@@ -10,6 +10,9 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 
+require_once __DIR__ . '/../../util/regex.php';
+
+
 // Instanciation de la classe Membre
 
 $monMembre = new MEMBRE();
@@ -43,14 +46,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         AND ((isset($_POST['pass2Memb'])) AND !empty($_POST['pass2Memb']))
         AND((isset($_POST['eMail1Memb'])) AND !empty($_POST['eMail1Memb']))
         AND((isset($_POST['eMail2Memb'])) AND !empty($_POST['eMail2Memb']))
-        AND((isset($_POST['accordMemb'])) AND !empty($_POST['accordMemb']))
+        // AND((isset($_POST['accordMemb'])) AND !empty($_POST['accordMemb']))
         AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
      
+            echo "ca vaa";
             
             if (($_POST['accordMemb'])== "off"){
                 $accordMemb = 0;
             } elseif (($_POST['accordMemb']) == "on"){
                 $accordMemb = 1;
+            }else{
+                $accordMemb = 0;
             }
             
             $prenomMemb = ctrlSaisies(($_POST['prenomMemb']));
@@ -65,32 +71,40 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (strlen($pseudoMemb)<6 || strlen($pseudoMemb)>70){
                 $erreur = true;
                 $errSaisies =  "Erreur, le nombre de caractère pour le pseudo doit être compris entre 6 et 70 !";
+                echo "Erreur, le nombre de caractère pour le pseudo doit être compris entre 6 et 70 !";
             } 
             elseif (($monMembre->get_ExistPseudo($pseudoMemb))>1){
                 
                 $erreur = true;
                 $errSaisies =  "Le pseudo existe déja!";
+                echo "Le pseudo existe déja!";
 
             }elseif ($eMailMemb != $_POST['eMail1Memb']){
                 
                 $erreur = true;
                 $errSaisies =  "Les deux eMails ne correspondent pas !";
+                echo "Les deux eMails ne correspondent pas !";
 
             }elseif (isEmail($eMailMemb)!= true ){
                 
                 $erreur = true;
                 $errSaisies =  "L'email n'est pas dans le bon format !";
+                echo "L'email n'est pas dans le bon format !";
 
             }
             elseif ($passMemb != $_POST['pass1Memb']){
                 
                 $erreur = true;
                 $errSaisies =  "Les deux mots de passe ne correspondent pas !";
+                echo "Les deux mots de passe ne correspondent pas !";
+
+                
 
             } elseif (isPassWord($passMemb)!= true){
                 
                 $erreur = true;
                 $errSaisies =  "Le mot de passe doit contenir au moins une majuscule, une minuscule et un caractère spécial !";
+                echo "Le mot de passe doit contenir au moins une majuscule, une minuscule et un caractère spécial !";
 
             } else {
                 
@@ -102,10 +116,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
                 header("Location: ./accueil.php");
             }
-    }   
-    else {
+    }   else {
         
         $erreur = true;
+        echo "YA pb";
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }  
 }
@@ -113,9 +127,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 ?>
-
-
-
 
 
 <!DOCTYPE html>
