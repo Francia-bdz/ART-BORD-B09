@@ -153,6 +153,7 @@
         h1 {
             font-family: "Bigilla", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             font-size: 200px;
+            font-weight: normal;
             text-align: center;
         }
 
