@@ -149,12 +149,6 @@ $monArticle = new ARTICLE();
             padding-bottom: 0%;
         }
 
-        /* .pitieligne {
-  margin-top: 50%;
-  display: flex;
-  flex-direction: row;
-} */
-
 
         .ligne_verticale {
             width: 307px;

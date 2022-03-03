@@ -6,8 +6,6 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 // Insertion classe Article
 require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 
-require_once __DIR__ .  '/../../back/article/ctrlerUploadImage.php';
-
 // Instanciation de la classe ARTICLE
 $monArticle = new ARTICLE ();
 

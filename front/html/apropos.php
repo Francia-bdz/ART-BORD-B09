@@ -33,7 +33,7 @@
         .enluminure {
             font-family: 'Bigilla';
             font-size: 200px;
-            color: #FF1400;
+            color: #AD1305;
         }
 
         .color_text_propos {
