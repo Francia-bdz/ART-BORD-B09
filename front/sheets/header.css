@@ -42,7 +42,7 @@
     font-style: italic;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder { 
     color: white;
-    opacity: 0.5; /* Firefox */
+    opacity: 0.5; 
   }

@@ -24,7 +24,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 
     <style type="text/css">
 		 * {
-            font-family: 'Roboto';
+            font-family: 'Roboto', Arial, Helvetica, sans-serif;
 			font-size: 20px;
 			color: #333;
 			text-decoration-color: transparent;
@@ -70,7 +70,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 
         h1 {
             font-size: 150px;
-            font-family: 'Bigilla';
+            font-family: 'Bigilla', Georgia, 'Times New Roman', Times, serif;
             margin-bottom: 0%;
             margin-top: 10%;
 			background-color: #137E85;
