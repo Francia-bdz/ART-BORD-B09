@@ -46,18 +46,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         AND ((isset($_POST['pass2Memb'])) AND !empty($_POST['pass2Memb']))
         AND((isset($_POST['eMail1Memb'])) AND !empty($_POST['eMail1Memb']))
         AND((isset($_POST['eMail2Memb'])) AND !empty($_POST['eMail2Memb']))
-        // AND((isset($_POST['accordMemb'])) AND !empty($_POST['accordMemb']))
+        AND((isset($_POST['accordMemb'])) AND !empty($_POST['accordMemb']))
         AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
      
-            echo "ca vaa";
             
             if (($_POST['accordMemb'])== "off"){
                 $accordMemb = 0;
             } elseif (($_POST['accordMemb']) == "on"){
                 $accordMemb = 1;
-            }else{
-                $accordMemb = 0;
             }
+            // else{
+            //     $accordMemb = 0;
+            // }
             
             $prenomMemb = ctrlSaisies(($_POST['prenomMemb']));
             $nomMemb = ctrlSaisies(($_POST['nomMemb']));
@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }   else {
         
         $erreur = true;
-        echo "YA pb";
+        echo "Erreur, la saisie est obligatoire !";
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }  
 }
@@ -261,6 +261,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             margin-top: 2%;
             margin-bottom: 3%;
         }
+
+        .deja_inscrit {
+            margin-top: 2%;
+            font-weight: bolder;
+        }
+
+        .deja_inscrit_lien {
+            text-decoration: none;
+            color: #AD1305;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .deja_inscrit_lien:hover {
+            color: #7798C9;
+        }
     </style>
 
 </head>
@@ -361,8 +376,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     </form>
 
-    <p class="deja_inscrit">Déja inscrit ? <a href="/connexion.php" class="deja_inscrit_lien"> Cliquez ici pour vous connecter</a> </p>
+    <p class="deja_inscrit">Déja inscrit ? <a href="<?= ROOTFRONT . '/front/html/' . 'connexion.php' ?>" class="deja_inscrit_lien"> Cliquez ici pour vous connecter</a> </p>
 
+    </div>
+
+<?php require_once __DIR__ .  '/footer.php';
+?>
     </div>
     </div>
 

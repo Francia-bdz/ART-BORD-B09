@@ -47,6 +47,7 @@ if (isset($_GET['count'])) {
     <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Roboto:wght@200&display=swap" rel="stylesheet">
     <style type="text/css">
          * {
+             margin: 0%;
             font-family: 'Roboto';
         }
         .error {
