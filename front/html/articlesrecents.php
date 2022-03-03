@@ -27,13 +27,13 @@
 
 
         h3 {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Roboto' Arial;
             letter-spacing: 0.25em;
             font-size: 55px;
         }
 
         p {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Roboto' Arial;
             font-size: 20px;
             text-align: left;
         }
