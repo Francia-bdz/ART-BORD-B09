@@ -97,7 +97,6 @@ include __DIR__ . '/initMotCle.php';
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
-            <legend class="legend1">Formulaire Mot Clé...</legend>
 
             <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
             <div class="control-group">
