@@ -15,7 +15,7 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Angle
 
-require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe angle
 
