@@ -29,8 +29,8 @@ $erreur = false;
 // init msg erreur
 
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
 
 
 
-}   // Fin if ($_SERVER["REQUEST_METHOD"] == "post")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
 // Init variables form
 include __DIR__ . '/initUser.php';
 ?>
@@ -104,7 +104,7 @@ include __DIR__ . '/initUser.php';
     <h1>BLOGART22 Admin - CRUD User</h1>
     <h2>Ajout d'un user : Inscription</h2>
 
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
       <fieldset>
 

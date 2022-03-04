@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD membre (PDO) - Modifié : 4 Juillet 2021
+//  CRUD MEMBRE (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : membre.php  -  (ETUD)  BLOGART22
 //
@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
-$monMembre = new membre();
+$monMembre = new MEMBRE();
 
 
 //  trl CIR
@@ -93,7 +93,7 @@ if (isset($_GET['count'])) {
     ?>
         <br />
         <i>
-            <div class="error"><br>=>&nbsp;Erreur delete membre : la suppression s'est mal passée !</div>
+            <div class="error"><br>=>&nbsp;Erreur delete MEMBRE : la suppression s'est mal passée !</div>
         </i>
     <?php
     }   // End of if ($errDel == 99)

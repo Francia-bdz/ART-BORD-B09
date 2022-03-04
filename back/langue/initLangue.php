@@ -1,6 +1,6 @@
 <?php
 /*
-* Table langue
+* Table LANGUE
 * initLangue.php
 */
 // PK langue

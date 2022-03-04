@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD article (PDO) - Modifié : 4 Juillet 2021
+//  CRUD ARTICLE (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : article.php  -  (ETUD)  BLOGART22
 //
@@ -17,10 +17,10 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Article
-require_once __DIR__ . '/../../class_crud/article.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 
-// Instanciation de la classe article
-$monArticle = new article ();
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE ();
 
 ?>
 <!DOCTYPE html>
@@ -33,6 +33,7 @@ $monArticle = new article ();
     <meta name="author" content="" />
     <style type="text/css">
             * {
+             margin: 0%;
             font-family: 'Roboto';
         }
         .error {

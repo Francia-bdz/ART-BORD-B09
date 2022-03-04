@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD langue (PDO) - Modifié : 4 Juillet 2021
+//  CRUD LANGUE (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : updateLangue.php  -  (ETUD)  BLOGART22
 //
@@ -19,43 +19,43 @@ require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 // Instanciation de la classe langue
 
-$maLangue = new langue();
+$maLangue = new LANGUE();
 
 $monPays = new PAYS();
 
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
-    if (isset($_post['Submit'])) {
-        $Submit = $_post['Submit'];
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) and ($Submit === "Initialiser")) {
-        $sameId = $_post['id'];
+    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
+        $sameId = $_POST['id'];
         header("Location: ./updateLangue.php?id=" . $sameId);
     }
 
 
-    if (((isset($_post['lib1Lang'])) and !empty($_post['lib1Lang']))
-        and ((isset($_post['lib2Lang'])) and !empty($_post['lib2Lang']))
-        and ((isset($_post['TypPays'])) and !empty($_post['TypPays']))
-        and ($_post['TypPays'] != -1)
-        and (!empty($_post['Submit']) and ($Submit === "Valider"))
+    if (((isset($_POST['lib1Lang'])) and !empty($_POST['lib1Lang']))
+        and ((isset($_POST['lib2Lang'])) and !empty($_POST['lib2Lang']))
+        and ((isset($_POST['TypPays'])) and !empty($_POST['TypPays']))
+        and ($_POST['TypPays'] != -1)
+        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
     ) {
 
         $erreur = false;
 
-        $lib1Lang = ctrlSaisies(($_post['lib1Lang']));
-        $lib2Lang = ctrlSaisies(($_post['lib2Lang']));
-        $numPays = ctrlSaisies(($_post['TypPays']));
+        $lib1Lang = ctrlSaisies(($_POST['lib1Lang']));
+        $lib2Lang = ctrlSaisies(($_POST['lib2Lang']));
+        $numPays = ctrlSaisies(($_POST['TypPays']));
 
-        $numLang = ctrlSaisies(($_post['id']));
+        $numLang = ctrlSaisies(($_POST['id']));
 
         $maLangue->update($numLang, $lib1Lang, $lib2Lang, $numPays);
 
@@ -96,7 +96,7 @@ include __DIR__ . '/initLangue.php';
     }
 
     ?>
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
             

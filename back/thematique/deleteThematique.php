@@ -23,36 +23,36 @@ $maThematique = new THEMATIQUE();
 require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 // Instanciation de la classe Langue
-$maLangue = new langue();
+$maLangue = new LANGUE();
 
 // Ctrl CIR
 // Insertion classe Article
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe article
-$monArticle = new article();
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE();
 
 // BBCode
 
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if (isset($_post['Submit'])) {
-        $Submit = $_post['Submit'];
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) and ($Submit === "Annuler")) {
+    if ((isset($_POST["Submit"])) and ($Submit === "Annuler")) {
         header("Location: ./thematique.php");
     }
 
-    if ((!empty($_post['Submit']) and ($Submit === "Valider"))) {
+    if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
         // Saisies valides
         $erreur = false;
 
-        $numThem = ctrlSaisies(($_post['id']));
+        $numThem = ctrlSaisies(($_POST['id']));
 
         $arrayArticle = $monArticle->get_NbAllArticlesByNumThem($numThem);
 
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
         if ($countArticle < 1) {
             $erreur = false;
 
-            $numThem = ctrlSaisies(($_post['id']));
+            $numThem = ctrlSaisies(($_POST['id']));
 
             $maThematique->delete($numThem);
 
@@ -120,7 +120,7 @@ include __DIR__ . '/initThematique.php';
     }
 
     ?>
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
 

@@ -24,14 +24,14 @@ $monLikeCom = new LIKECOM();
 require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
-$monMembre = new membre();
+$monMembre = new MEMBRE();
 
 // Insertion classe Article
 
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe article
-$monArticle = new article();
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE();
 
 
 
@@ -39,30 +39,30 @@ $monArticle = new article();
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if (isset($_post['Submit'])) {
-        $Submit = $_post['Submit'];
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) and ($Submit === "Initialiser")) {
+    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
         header("Location: ./createLikeCom.php");
     }
 
-    if (((isset($_post['TypMemb'])) and !empty($_post['TypMemb']))
-        and ($_post['TypMemb'] != -1) and
-        ((isset($_post['TypArt'])) and !empty($_post['TypArt']))
-        and ($_post['TypArt'] != -1)
-        and (!empty($_post['Submit']) and ($Submit === "Valider"))
+    if (((isset($_POST['TypMemb'])) and !empty($_POST['TypMemb']))
+        and ($_POST['TypMemb'] != -1) and
+        ((isset($_POST['TypArt'])) and !empty($_POST['TypArt']))
+        and ($_POST['TypArt'] != -1)
+        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
     ) {
 
         $erreur = false;
 
-        $numMemb = ctrlSaisies(($_post['TypMemb']));
-        $numArt = ctrlSaisies(($_post['TypArt']));
+        $numMemb = ctrlSaisies(($_POST['TypMemb']));
+        $numArt = ctrlSaisies(($_POST['TypArt']));
         $likeC = 1;
 
         $monLikeCom->create($numMemb, $numSeqCom, $numArt, $likeC);
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }
 
-}   // Fin if ($_SERVER["REQUEST_METHOD"] == "post")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
 // Init variables form
 include __DIR__ . '/initLikeCom.php';
 ?>
@@ -95,7 +95,7 @@ include __DIR__ . '/initLikeCom.php';
     <h1>BLOGART22 Admin - CRUD Like Commentaire</h1>
     <h2>Ajout d'un like sur un Commentaire d'un Article</h2>
 
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
 
@@ -228,8 +228,8 @@ include __DIR__ . '/initLikeCom.php';
                         }
                     }
 
-                    // Traitement en post
-                    xhr.open("post", "./ajaxcommentaire.php", true);
+                    // Traitement en POST
+                    xhr.open("POST", "./ajaxcommentaire.php", true);
                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                     numArt = document.getElementById('article').options[document.getElementById('article').selectedIndex].value;
                     xhr.send("numArt=" + numArt);

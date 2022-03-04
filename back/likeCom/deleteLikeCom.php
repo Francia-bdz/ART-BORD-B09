@@ -22,8 +22,8 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     // delete effective du likcom
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
 
 
 
-}   // Fin if ($_SERVER["REQUEST_METHOD"] == "post")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
 // Init variables form
 include __DIR__ . '/initLikeCom.php';
 ?>
@@ -64,7 +64,7 @@ include __DIR__ . '/initLikeCom.php';
 
 
 ?>
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
       <fieldset>
 

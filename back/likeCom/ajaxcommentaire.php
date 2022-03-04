@@ -13,7 +13,7 @@ require_once __DIR__ . '/../../connect/database.php';
 $article = $_REQUEST["numArt"];
 
 if (isset($article)) {
-	$query = "SELECT numSeqCom, libCom FROM comment WHERE numArt = ?;" ;
+	$query = "SELECT numSeqCom, libCom FROM COMMENT WHERE numArt = ?;" ;
 	$result = $db->prepare($query);
 	$result->execute([$article]);
 	$allCommentairesByArt= $result->fetchAll();

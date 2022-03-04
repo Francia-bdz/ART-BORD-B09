@@ -185,47 +185,7 @@ $monArticle = new article ();
         <div class="ligne_jaune"></div>
     </section>
 
-    <p class="p_intro">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-        fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-        velit libero distinctio saepe.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-        fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-        velit libero distinctio saepe.</p>
-
-
-    <div class="articles_div">
-
-        <?php
-        $from = 'Y-m-d H:i:s';
-        $to = 'd/m';
-
-        $allArticles = $monArticle->get_AllArticlesByNumAnglNumThem();
-
-        foreach ($allArticles as $row) {
-
-            $dtCreArt = dateChangeFormat($row['dtCreArt'], $from, $to);
-        ?>
-
-            <div class="articles">
-                <img class="image_article" src="<?= ROOTFRONT . '/uploads/' . htmlspecialchars($row['urlPhotArt']); ?>" alt="Photo de l'article">
-                <p class="date_article"><?= $dtCreArt; ?></p>
-                <div class="l_jaune"></div>
-                <h3 class="titre_article"> <?= $row["libTitrArt"]; ?> </h3>
-                <p class="p_article"><?= $row["libChapoArt"]; ?></p>
-                <a href="./article_blog.php?id=<?= $row["numArt"]; ?>" class="lire_plus">Lire plus</a>
-            </div>
-
-        <?php
-        }
-        ?>
-
-    </div>
-    <h1 class="couleur_h1"> articleS </h1>
-    <div class="ligne_jaune"></div>
-</section>
-
+        
 <p class="p_intro">Retrouvez ici nos différents articles et présentations. 
     Vous pourrez alors découvrir des nouveautés ou relire vos articles favoris ! 
     En recherche d’originalité et d’articles variés ? 

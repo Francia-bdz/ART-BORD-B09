@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 // Instanciation de la classe langue
 
-$maLangue = new langue();
+$maLangue = new LANGUE();
 
 $monPays = new PAYS();
 
@@ -29,7 +29,7 @@ require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe Angle
 
-$monAngle = new angle();
+$monAngle = new ANGLE();
 
 // Insertion classe Thematique
 require_once __DIR__ . '/../../class_crud/thematique.class.php';
@@ -41,34 +41,34 @@ $maThematique = new THEMATIQUE();
 // Insertion classe Motcle
 require_once __DIR__ . '/../../class_crud/motcle.class.php';
 // Instanciation de la classe Motcle
-$monMotcle = new motcle();
+$monMotcle = new MOTCLE();
 
 
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
-    $numLang = ctrlSaisies(($_post['id']));
+    $numLang = ctrlSaisies(($_POST['id']));
 
-    if (isset($_post['Submit'])) {
-        $Submit = $_post['Submit'];
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) and ($Submit === "Annuler")) {
+    if ((isset($_POST["Submit"])) and ($Submit === "Annuler")) {
         header("Location: ./langue.php");
     }
 
 
-    if ((!empty($_post['Submit']) and ($Submit === "Valider"))) {
+    if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
         // Saisies valides
         $erreur = false;
 
-        $numLang = ctrlSaisies(($_post['id']));
+        $numLang = ctrlSaisies(($_POST['id']));
 
         $arrayTheme = $maThematique->get_NbAllThematiquesBynumLang($numLang);
         $arrayAngle = $monAngle->get_NbAllAnglesBynumLang($numLang);
@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
         if ($countTheme < 1 and $countAngle < 1 and $countMotcle < 1) {
             $erreur = false;
 
-            $numLang = ctrlSaisies(($_post['id']));
+            $numLang = ctrlSaisies(($_POST['id']));
 
             $maLangue->delete($numLang);
 
@@ -136,7 +136,7 @@ include __DIR__ . '/initLangue.php';
 
 
     ?>
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
 

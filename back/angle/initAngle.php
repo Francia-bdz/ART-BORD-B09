@@ -1,6 +1,6 @@
 <?php
 /*
-* Table angle
+* Table ANGLE
 * initAngle.php
 */
 // PK Angle
