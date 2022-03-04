@@ -109,6 +109,11 @@
         a:hover {
             color: #7798C9;
         }
+
+        .li_droit{
+            margin-right : 5%;
+        }
+
     </style>
 </head>
 
@@ -135,7 +140,7 @@
         <div class="Partie_Droit_Background">
             <div class="Partie_Droit">
 
-                <li><a href="<?= ROOTFRONT . '/front/html/' . 'mentions.php' ?>"> Mentions légales |</a></li>
+                <li class="li_droit"><a href="<?= ROOTFRONT . '/front/html/' . 'mentions.php' ?>"> Mentions légales |</a></li>
                 <li><a href="<?= ROOTFRONT . '/front/html/' . 'connexionadmin.php' ?>"> Partie Admin |</a></li>
             </div>
         </div>
