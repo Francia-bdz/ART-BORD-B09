@@ -132,11 +132,8 @@
         <div class="Partie_Droit_Background">
             <div class="Partie_Droit">
 
-                <li><a href="#"> Mentions légales |</a></li>
-                <li><a href="#"> Conditions générales d'utilisation |</a></li>
-                <li><a href="#"> Cookies |</a></li>
-                <li><a href="#"> Protection des données |</a></li>
-
+                <li><a href="<?= ROOTFRONT . '/front/html/' . 'mentions.php' ?>"> Mentions légales |</a></li>
+                <li><a href="<?= ROOTFRONT . '/front/html/' . 'connexionadmin.php' ?>"> Partie Admin |</a></li>
             </div>
         </div>
 

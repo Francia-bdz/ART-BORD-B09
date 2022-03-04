@@ -188,5 +188,8 @@ require_once __DIR__ . '/util/utilErrOn.php';
 <?php
 require_once __DIR__ . '/footer.php';
 ?>
+<!-- <?php require_once __DIR__ .  '/front/html/footer.php';
+?> -->
+
 </body>
 </html>
