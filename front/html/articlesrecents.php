@@ -1,5 +1,11 @@
 <?php
 
+// Insertion classe Article
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+
+// Instanciation de la classe article
+$monArticle = new article();
+
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Articles récents</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Roboto:wght@100&display=swap" rel="stylesheet">
@@ -29,13 +35,15 @@
         h3 {
             font-family: 'Roboto';
             letter-spacing: 0.25em;
-            font-size: 55px;
+            font-size: 30px;
+            margin-bottom: 3%;
         }
 
         .p_apropos {
             font-family: 'Roboto'Arial;
             font-size: 20px;
             text-align: left;
+            line-height: 140%;
         }
 
         .margin_text_bienvenue {
@@ -134,8 +142,8 @@
             align-items: center;
         }
 
-        .art_recent{
-            padding-bottom : 5%;
+        .art_recent {
+            padding-bottom: 5%;
         }
 
 
@@ -174,40 +182,49 @@
 
         <div class="art_recent">
             <section class="titre">
-                <h2><span class="enluminure">A</span>rticles récents</h2>
+                <h2><span class="enluminure">A</span>rticles phares</h2>
                 <div class="ligne-noir"></div>
             </section>
-            
+
+            <?php $Article1 = $monArticle->get_1Article(1);
+
+            $numArt1 = $Article1['numArt'];
+            $libTitrArt1 = $Article1['libTitrArt'];
+            $libChapoArt1 = $Article1['libChapoArt'];
+            $urlPhotArt1 = $Article1['urlPhotArt'];
+
+            ?>
+
             <section class="articles">
-                <img class="img-article" src="/front/assets/images/P1040500.JPG">
+                <img class="img-article" src="<?= ROOTFRONT . '/uploads/' . htmlspecialchars($urlPhotArt1); ?>">
                 <div class="text_article">
                     <div class="titre-bouton">
-                        <h3 class="color-title-home">Nobu</h3><a><img class="bouton" src="/front/assets/images/Bouton-foncé.png"></a>
+                        <h3 class="color-title-home"> <?= $libTitrArt1; ?> ok </h3><a href="<?= ROOTFRONT . '/front/html/' . 'article_blog.php?id=' . $numArt1 ?>"><img class="bouton" src="<?= ROOTFRONT . '/front/assets/images/' . 'Bouton.png' ?>"></a>
                     </div>
-                    <p class="p_apropos">Lorem ipsum dolor sit amet, 
-                        consectetur adipiscing elit. Metus, varius a morbi dapibus imperdiet aliquam. 
-                        Vitae nam sit diam pellentesque sem massa mattis a. 
-                        Habitant sed volutpat risus dictum vel tellus tincidunt. 
-                        Tincidunt cursus habitant ipsum quis sollicitudin pharetra.</p>
+                    <p class="p_apropos"><?= $libChapoArt1 ?></p>
                 </div>
             </section>
-            </section>
+
+            <?php $Article2 = $monArticle->get_1Article(2);
+            $numArt2 = $Article2['numArt'];
+            $libTitrArt2 = $Article2['libTitrArt'];
+            $libChapoArt2 = $Article2['libChapoArt'];
+            $urlPhotArt2 = $Article2['urlPhotArt'];
+
+            ?>
+
             <section class="articles">
-                <img class="img-article" src="/front/assets/images/FIFIB2018-FCBK-EVENT-1920x1080.png">
+                <img class="img-article" src="<?= ROOTFRONT . '/uploads/' . htmlspecialchars($urlPhotArt2); ?>">
                 <div class="text_article">
                     <div class="titre-bouton">
-                        <h3 class="color-title-home">Fifib</h3><a><img class="bouton" src="/front/assets/images/Bouton-foncé.png"></a>
+                        <h3 class="color-title-home"> <?= $libTitrArt2; ?> ok </h3><a href="<?= ROOTFRONT . '/front/html/' . 'article_blog.php?id=' . $numArt2 ?>"><img class="bouton" src="<?= ROOTFRONT . '/front/assets/images/' . 'Bouton.png' ?>"></a>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, 
-                        consectetur adipiscing elit. Metus, varius a morbi dapibus imperdiet aliquam. 
-                        Vitae nam sit diam pellentesque sem massa mattis a. 
-                        Habitant sed volutpat risus dictum vel tellus tincidunt. 
-                        Tincidunt cursus habitant ipsum quis sollicitudin pharetra.</p>
+                    <p class="p_apropos"><?= $libChapoArt2 ?></p>
                 </div>
             </section>
 
             <div class="color-button">
-                <p>Plus d'articles</p><a><img class="bouton" src="/front/assets/images/Bouton-foncé.png"></a>
+                <p>Plus d'articles</p><a href="<?= ROOTFRONT . '/front/html/' . 'touslesarticles.php' ?>"><img class="bouton" src="<?= ROOTFRONT . '/front/assets/images/' . 'Bouton.png' ?>"></a>
             </div>
         </div>
 </body>

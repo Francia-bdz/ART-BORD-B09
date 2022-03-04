@@ -1,4 +1,5 @@
-<?php require_once __DIR__ . '/../../connect/config.php';
+<?php 
+require_once __DIR__ . '/../../connect/config.php';
 ?>
 
 
@@ -127,7 +128,7 @@
         <div class="Plan_du_site">
             <div class="Plan_du_site_1">
                 <ul>
-                    <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'accueil.php' ?>" class="a_Plan_du_site"> Accueil </a></li>
+                    <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/index.php' ?>" class="a_Plan_du_site"> Accueil </a></li>
                     <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'touslesarticles.php' ?>" class="a_Plan_du_site"> Articles </a></li>
                 </ul>
             </div>

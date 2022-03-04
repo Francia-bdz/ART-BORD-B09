@@ -114,7 +114,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 $monMembre->create($prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $dtCreaMemb, $accordMemb, $idStat);
         
-                header("Location: ./accueil.php");
+                setcookie('eMailMemb', $eMailMemb, time() + 3600);
+
+                header("Location: ./index.php");
             }
     }   else {
         

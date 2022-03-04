@@ -8,6 +8,14 @@
 ////////////////////////////////////////////////////////////
 
 // Mode DEV
+
+if(!empty($_POST['deconnexion']) and ($_POST['deconnexion'] === "Se deconnecter")){
+
+	unset($_COOKIE['pseudoUser']);
+
+	header("Location: ./index.php" );
+}
+
 require_once __DIR__ . '/util/utilErrOn.php';
 ?>
 <!DOCTYPE html>
@@ -107,7 +115,22 @@ require_once __DIR__ . '/util/utilErrOn.php';
             margin-right: 50%;
 			padding-top: 0px;
 			padding-bottom: 0px;
+
         }
+
+		.deconnexion{
+			color:#137E85;
+			background-color: transparent;
+			border: 0px;
+			cursor:pointer;
+			text-align: center;
+			margin-left: 4%;
+			transition: all 0.2s ease-in-out;
+		}
+
+		.deconnexion:hover{
+			text-decoration: underline;
+		}
 
     </style>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"></script>
@@ -124,6 +147,17 @@ require_once __DIR__ . '/util/utilErrOn.php';
 </section>
 	<br />
 	<h2>Panneau d'Admin : CRUD - BLOGART22 (ETUD)</h2>
+
+	<br> <?php if(isset($_COOKIE['pseudoUser'])){ 
+		?>
+		        <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+
+			
+            <input type="submit" name="deconnexion" class="deconnexion" id="deconnexion" value="Se deconnecter">
+			
+				</form>
+			<?php
+		 } ?>
 	<br /><br />
 	<p>
 		<!-- <h2>Connexion...</h2> -->

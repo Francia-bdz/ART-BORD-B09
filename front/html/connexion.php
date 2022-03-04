@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     // (password_verify($_POST['passMemb'], $passMemb) === true);
                     setcookie('eMailMemb', $eMailMemb, time() + 3600);
-                    header("Location: ./accueil.php");
+                    header("Location: ./index.php");
                 } else {
                     echo "Mauvais Mot de passe";
                 }
