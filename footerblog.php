@@ -40,7 +40,6 @@
 
         .title_and_rectangle {
             display: flex;
-            justify-content: space-between;
             margin-left: 5%;
         }
 
