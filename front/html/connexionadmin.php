@@ -18,7 +18,7 @@ $pseudoUser= "";
 $passUserTest = "";
 
     if(isset($_COOKIE['pseudoUser']) AND (($_COOKIE['pseudoUser']) == 'admin')){
-    header('Location: http://localhost/ARTBORD/BLOGART22/index1.php');
+    header('Location: ./../../index1.php');
     }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     // (password_verify($_POST['passMemb'], $passMemb) === true);
                     setcookie('pseudoUser', $pseudoUser, time() + 3600, "/");
-                    header("Location: http://localhost/ARTBORD/BLOGART22/index1.php");
+                    header("Location: ./../../index1.php");
                 } else {
                     echo "Mauvais Mot de passe";
                 }

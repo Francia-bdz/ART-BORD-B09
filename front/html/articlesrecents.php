@@ -186,7 +186,7 @@ $monArticle = new article();
                 <div class="ligne-noir"></div>
             </section>
 
-            <?php $Article1 = $monArticle->get_1Article(1);
+            <?php $Article1 = $monArticle->get_1Article(30);
 
             $numArt1 = $Article1['numArt'];
             $libTitrArt1 = $Article1['libTitrArt'];
@@ -205,7 +205,7 @@ $monArticle = new article();
                 </div>
             </section>
 
-            <?php $Article2 = $monArticle->get_1Article(2);
+            <?php $Article2 = $monArticle->get_1Article(31);
             $numArt2 = $Article2['numArt'];
             $libTitrArt2 = $Article2['libTitrArt'];
             $libChapoArt2 = $Article2['libChapoArt'];

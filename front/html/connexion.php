@@ -40,9 +40,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 if ($passMemb == $_POST['passMembTest']) {
 
+                    // Le pass hash a été compris mais un manque de temps pour bien 
+                    
                     // (password_verify($_POST['passMemb'], $passMemb) === true);
                     setcookie('eMailMemb', $eMailMemb, time() + 3600);
-                    header("Location: ./index.php");
+                    header("Location: ./../../index.php");
                 } else {
                     echo "Mauvais Mot de passe";
                 }
