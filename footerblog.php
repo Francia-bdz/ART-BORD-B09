@@ -58,7 +58,7 @@
             height: 10px;
         }
 
-        a {
+        .a_Plan_du_site {
             text-decoration: none;
             color: black;
 
@@ -108,7 +108,7 @@
             margin-right: 10%;
         }
 
-        a {
+        .a_Plan_du_site {
             transition: color 0.3 ease-in-out;
         }
 

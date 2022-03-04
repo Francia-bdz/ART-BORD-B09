@@ -347,7 +347,11 @@ if (isset($_GET['id'])) {
 
     </div>
 
-    
+    <div class="mis_en_page_commentaire">
+        <h3 class="h3_commentaire">Likes</h3>
+    </div>
+
+
     <div class="mis_en_page_commentaire">
         <h3 class="h3_commentaire">Commentaires</h3>
     </div>

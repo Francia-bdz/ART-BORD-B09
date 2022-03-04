@@ -20,15 +20,13 @@ require_once __DIR__ . '/util/utilErrOn.php';
     <meta name="author" content="" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Roboto:wght@200&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <style type="text/css">
 		 * {
             font-family: 'Roboto', Arial, Helvetica, sans-serif;
 			font-size: 20px;
 			color: #333;
 			text-decoration-color: transparent;
-			background-color: #CCCCCC;
 			margin: 0%;
         }
 		a {
@@ -59,7 +57,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 		}
 		.hr1 {
 			width: 60%;
-			background-color: #CCCCCC;	/* => grey */
+			background-color: #333;	/* => grey */
 
 		}
 
@@ -80,13 +78,13 @@ require_once __DIR__ . '/util/utilErrOn.php';
 
 		h2 {
             font-size: 30px;
-			color: white;
+			color: #333;
 			text-align: center;
 			text-decoration: underline;
         }
 
 		.crud{
-			font-weight: bolder;
+			font-weight: 400;
 		}
         .couleur {
             color: rgb(255, 255, 255);

@@ -109,10 +109,6 @@
         }
 
 
-
-
-
-
         /* BOUTON */
 
 
@@ -181,6 +177,7 @@
                 <h2><span class="enluminure">A</span>rticles récents</h2>
                 <div class="ligne-noir"></div>
             </section>
+            
             <section class="articles">
                 <img class="img-article" src="/front/assets/images/P1040500.JPG">
                 <div class="text_article">
