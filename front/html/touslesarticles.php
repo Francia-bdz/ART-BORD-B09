@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 
 // Instanciation de la classe ARTICLE
-$monArticle = new ARTICLE ();
+$monArticle = new ARTICLE();
 
 ?>
 
@@ -34,7 +34,7 @@ $monArticle = new ARTICLE ();
             font-family: "Bigilla";
             src: local("Bigilla"),
                 url(/front/assets/typo/Bigilla.otf);
-  
+
         }
 
         h1 {
@@ -146,11 +146,11 @@ $monArticle = new ARTICLE ();
             color: #7798C9;
         }
 
-        .lire_plus{
+        .lire_plus {
             margin-top: 2%;
             font-weight: bold;
             font-size: larger;
-            
+
         }
 
         .navbar {
@@ -172,54 +172,57 @@ $monArticle = new ARTICLE ();
     </style>
 
 </head>
-
+<body>
 <section class="cover_articles">
     <div class="header">
         <li class="li_header"><a href="<?= ROOTFRONT . '/front/html/' . 'accueil.php' ?>" class="a_header"> Accueil </a></li>
         <li class="li_header"><a href="<?= ROOTFRONT . '/front/html/' . 'touslesarticles.php' ?>" class="a_header"> Articles </a></li>
         <input class="navbar" type="text" size="30" placeholder="Rechercher" />
+        </div>
+
+        
+        <h1 class="couleur_h1"> ARTICLES </h1>
+        <div class="ligne_jaune"></div>
+    </section>
+
+    <p class="p_intro">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
+        fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
+        velit libero distinctio saepe.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
+        fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
+        velit libero distinctio saepe.</p>
+
+
+    <div class="articles_div">
+
+        <?php
+        $from = 'Y-m-d H:i:s';
+        $to = 'd/m';
+
+        $allArticles = $monArticle->get_AllArticlesByNumAnglNumThem();
+
+        foreach ($allArticles as $row) {
+
+            $dtCreArt = dateChangeFormat($row['dtCreArt'], $from, $to);
+        ?>
+
+            <div class="articles">
+                <img class="image_article" src="<?= ROOTFRONT . '/uploads/' . htmlspecialchars($row['urlPhotArt']); ?>" alt="Photo de l'article">
+                <p class="date_article"><?= $dtCreArt; ?></p>
+                <div class="l_jaune"></div>
+                <h3 class="titre_article"> <?= $row["libTitrArt"]; ?> </h3>
+                <p class="p_article"><?= $row["libChapoArt"]; ?></p>
+                <a href="./article_blog.php?id=<?= $row["numArt"]; ?>" class="lire_plus">Lire plus</a>
+            </div>
+
+        <?php
+        }
+        ?>
+
     </div>
-    <h1 class="couleur_h1"> ARTICLES </h1>
-    <div class="ligne_jaune"></div>
-</section>
-
-<p class="p_intro">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-    fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-    velit libero distinctio saepe.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-    fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-    velit libero distinctio saepe.</p>
-
-
-<div class="articles_div">
-
-<?php
-    $from = 'Y-m-d H:i:s';
-    $to = 'd/m';
-
-    $allArticles = $monArticle->get_AllArticlesByNumAnglNumThem();
-
-    foreach($allArticles as $row) {
-
-        $dtCreArt = dateChangeFormat($row['dtCreArt'], $from, $to);
-?>
-
-    <div class="articles">
-        <img class="image_article" src="<?= ROOTFRONT . '/uploads/' . htmlspecialchars($row['urlPhotArt']); ?>" alt="Photo de l'article">
-        <p class="date_article"><?= $dtCreArt; ?></p>
-        <div class="l_jaune"></div>
-        <h3 class="titre_article"> <?= $row["libTitrArt"]; ?> </h3>
-        <p class="p_article"><?= $row["libChapoArt"]; ?></p>
-        <a href="./article_blog.php?id=<?=$row["numArt"]; ?>" class="lire_plus">Lire plus</a>
-    </div>
-
-<?php
-    }
-?>
-
-</div>
+</body>
 
 <?php require_once __DIR__ .  '/footer.php';
 ?>

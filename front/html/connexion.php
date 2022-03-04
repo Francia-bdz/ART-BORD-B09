@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             and ((isset($_POST['passMembTest'])) and !empty($_POST['passMembTest']))
         ) {
 
-            $oneMembre=$monMembre->get_1MembreByEmail($_POST['eMailMemb']);
+            $oneMembre = $monMembre->get_1MembreByEmail($_POST['eMailMemb']);
 
             if ($oneMembre != false) {
 
@@ -169,8 +169,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         .Pas_encore_inscrit_lien:hover {
             color: #7798C9;
         }
-
-
     </style>
 
     <link href="/front/sheets/connexion.css" rel="stylesheet" type="text/css" />
@@ -191,12 +189,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
-<form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
 
-<input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
+        <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
 
 
+<<<<<<< HEAD
+        <div class="title_and_rectangle_connexion">
+            <h1> BIENVENUE</h1>
+            <div class="rectangle_rouge"></div>
+=======
     <div class="title_and_rectangle_connexion">
         <h1> BIENVENUE</h1>
         <div class="rectangle_rouge"></div>
@@ -227,10 +230,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <p class="Pas_encore_inscrit">Pas encore inscrit ? <a href="<?= ROOTFRONT . '/front/html/' . 'inscription.php' ?>" class="Pas_encore_inscrit_lien"> Cliquez ici pour vous inscrire</a> </p>
 
+>>>>>>> 6c7815995eac5d0b3de54b418d356ebf452fd510
         </div>
+        <div class="Partie_Texte">
+            <div class="Partie_connexion">
+                <h2><span class="enluminure">C</span>onnexion</h2>
+
+                <div class="Pseudo_control connexion_control">
+                    <label class="control-label" for="eMailMemb"><b>Adresse Mail:</b></label>
+                    <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre adresse mail" value="<?= $eMailMemb ?>" autofocus />
+                </div>
+
+                <div class="Mdp_control connexion_control">
+
+                    <label class="control-label" for="passMembTest"><b>Mot de passe:</b></label>
+                    <input type="password" name="passMembTest" id="passMembTest" size="43" placeholder="Entrez votre mot de passe" value="<?= $passMembTest ?>" autofocus />
+                    <br>
+                    <div class="bouton_affichage_mdp">
+                        <input type="checkbox" onclick="myFunction('passMembTest')">
+                        &nbsp;&nbsp;
+                        <label><i>Afficher Mot de passe</i></label>
+                    </div>
+                </div>
+                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border-radius:5px;" name="Submit" />
+
+    </form>
+
+    <p class="Pas_encore_inscrit">Pas encore inscrit ? <a href="/footer.php" class="Pas_encore_inscrit_lien"> Cliquez ici pour vous inscrire</a> </p>
+
+    </div>
     </div>
 
     <?php require_once __DIR__ .  '/footer.php';
-?>
+    ?>
 
 </body>
