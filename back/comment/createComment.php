@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD COMMENT (PDO) - Modifié : 4 Juillet 2021
+//  CRUD comment (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : createComment.php  -  (ETUD)  BLOGART22
 //
@@ -19,8 +19,8 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 require_once __DIR__ . '/../../class_crud/comment.class.php';
 
-// Instanciation de la classe COMMENT
-$monComment = new COMMENT();
+// Instanciation de la classe comment
+$monComment = new comment();
 
 // Insertion classe Membre
 require_once __DIR__ . '/../../class_crud/membre.class.php';
@@ -32,8 +32,8 @@ $monMembre = new membre();
 
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe ARTICLE
-$monArticle = new ARTICLE();
+// Instanciation de la classe article
+$monArticle = new article();
 
 // Gestion des erreurs de saisie
 $erreur = false;

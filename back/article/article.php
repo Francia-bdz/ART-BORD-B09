@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD ARTICLE (PDO) - Modifié : 4 Juillet 2021
+//  CRUD article (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : article.php  -  (ETUD)  BLOGART22
 //
@@ -19,8 +19,8 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 // Insertion classe Article
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe ARTICLE
-$monArticle = new ARTICLE ();
+// Instanciation de la classe article
+$monArticle = new article ();
 
 ?>
 <!DOCTYPE html>

@@ -29,7 +29,7 @@ require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe Angle
 
-$monAngle = new ANGLE();
+$monAngle = new angle();
 
 // Insertion classe Thematique
 require_once __DIR__ . '/../../class_crud/thematique.class.php';
@@ -41,7 +41,7 @@ $maThematique = new THEMATIQUE();
 // Insertion classe Motcle
 require_once __DIR__ . '/../../class_crud/motcle.class.php';
 // Instanciation de la classe Motcle
-$monMotcle = new MOTCLE();
+$monMotcle = new motcle();
 
 
 // Gestion des erreurs de saisie

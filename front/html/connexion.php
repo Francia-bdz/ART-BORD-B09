@@ -226,9 +226,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <p class="Pas_encore_inscrit">Pas encore inscrit ? <a href="<?= ROOTFRONT . '/front/html/' . 'inscription.php' ?>" class="Pas_encore_inscrit_lien"> Cliquez ici pour vous inscrire</a> </p>
 
 
-
-<?php require_once __DIR__ .  '/footer.php'; ?>
-
-
+    </div>
+    </div>
+    <?php require_once __DIR__ .  '/footer.php';
+    ?>
 
 </body>

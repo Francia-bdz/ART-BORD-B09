@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD MOTCLE (PDO) - Modifié : 4 Juillet 2021
+//  CRUD motcle (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : deleteMotCle.php  -  (ETUD)  BLOGART22
 //
@@ -16,7 +16,7 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../class_crud/motcle.class.php';
 
 // Instanciation de la classe motcle
-$monMotcle = new MOTCLE();
+$monMotcle = new motcle();
 
 // Insertion classe Langue
 require_once __DIR__ . '/../../class_crud/langue.class.php';
