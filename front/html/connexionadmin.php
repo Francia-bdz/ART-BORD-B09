@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Membre
 
-require_once __DIR__ . '/../../class_crud/user.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/user.class.php';
 
 // Instanciation de la classe Membre
 
@@ -17,30 +17,30 @@ $monUser = new USER();
 $pseudoUser= "";
 $passUserTest = "";
 
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if (isset($_post['Submit'])) {
-        $Submit = $_post['Submit'];
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((!empty($_post['Submit']) and ($Submit === "Valider"))) {
+    if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
 
-        if (((isset($_post['pseudoUser'])) and !empty($_post['pseudoUser']))
-            and ((isset($_post['passUserTest'])) and !empty($_post['passUserTest']))
+        if (((isset($_POST['pseudoUser'])) and !empty($_POST['pseudoUser']))
+            and ((isset($_POST['passUserTest'])) and !empty($_POST['passUserTest']))
         ) {
 
-            $oneUser = $monUser->get_1User(($_post['pseudoUser']), ($_post['passUserTest']));
+            $oneUser = $monUser->get_1User(($_POST['pseudoUser']), ($_POST['passUserTest']));
 
             if ($oneUser != false) {
 
                 $pseudoUser = $oneUser['pseudoUser'];
                 $passUser = $oneUser['passUser'];
 
-                if ($passUser == $_post['passUserTest']) {
+                if ($passUser == $_POST['passUserTest']) {
 
-                    // (password_verify($_post['passMemb'], $passMemb) === true);
+                    // (password_verify($_POST['passMemb'], $passMemb) === true);
                     setcookie('pseudoUser', $pseudoUser, time() + 3600);
                     header("Location: http://localhost/ARTBORD/BLOGART22/index1.php");
                 } else {
@@ -189,7 +189,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
 
 <body>
 
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
 
         <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
