@@ -222,7 +222,6 @@ $monArticle = new article ();
         ?>
 
     </div>
-<<<<<<< HEAD
     <h1 class="couleur_h1"> articleS </h1>
     <div class="ligne_jaune"></div>
 </section>
@@ -264,9 +263,6 @@ $monArticle = new article ();
 ?>
 
 </div>
-=======
-</body>
->>>>>>> b5360f35feed222606bad78134d200a9a5eae116
 
 <?php require_once __DIR__ .  '/footer.php';
 ?>

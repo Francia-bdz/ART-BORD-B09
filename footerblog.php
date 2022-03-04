@@ -58,7 +58,7 @@
             height: 10px;
         }
 
-        a {
+        .a_Plan_du_site {
             text-decoration: none;
             color: black;
 
@@ -108,7 +108,7 @@
             margin-right: 10%;
         }
 
-        a {
+        .a_Plan_du_site {
             transition: color 0.3 ease-in-out;
         }
 
@@ -141,7 +141,7 @@
         <div class="Partie_Droit_Background">
             <div class="Partie_Droit">
 
-                <li><a href="<?= ROOTFRONT . '/front/html/' . 'mentions.php' ?>"> Mentions légales |</a></li>
+                <li><a href="<?= ROOTFRONT . '/front/html/' . 'mentions.php' ?>" > Mentions légales |</a></li>
                 <li><a href="<?= ROOTFRONT . '/front/html/' . 'connexionadmin.php' ?>"> Partie Admin |</a></li>
             </div>
         </div>
