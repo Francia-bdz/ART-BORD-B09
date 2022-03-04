@@ -17,6 +17,10 @@ $monUser = new USER();
 $pseudoUser= "";
 $passUserTest = "";
 
+    if(isset($_COOKIE['pseudoUser'])){
+    header('Location: http://localhost/ARTBORD/BLOGART22/index1.php');
+    }
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (isset($_POST['Submit'])) {

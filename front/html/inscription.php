@@ -380,6 +380,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <p class="deja_inscrit">Déja inscrit ? <a href="<?= ROOTFRONT . '/front/html/' . 'connexion.php' ?>" class="deja_inscrit_lien"> Cliquez ici pour vous connecter</a> </p>
 
     </div>
+    </div>
+    </div>
 
 <?php require_once __DIR__ .  '/footer.php';
 ?>
