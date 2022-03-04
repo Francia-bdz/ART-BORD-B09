@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD ARTICLE (PDO) - Modifié : 10 Juillet 2021
+//  CRUD article (PDO) - Modifié : 10 Juillet 2021
 //
 //  Script  : deleteArticle.php  -  (ETUD)  BLOGART22
 //
@@ -23,22 +23,22 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 // Insertion classe Article
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe ARTICLE
-$monArticle = new ARTICLE();
+// Instanciation de la classe article
+$monArticle = new article();
 
 // Ctrl CIR
 // Insertion classe MotCleArticle
 require_once __DIR__ . '/../../class_crud/motclearticle.class.php';
 
 // Instanciation de la classe MotCleArticle
-$monMotCleArticle = new MOTCLEARTICLE();
+$monMotCleArticle = new motclearticle();
 
 // Insertion classe MotCle
 require_once __DIR__ . '/../../class_crud/motcle.class.php';
 
 // Instanciation de la classe MotCle
 
-$monMotCle = new MOTCLE();
+$monMotCle = new motcle();
 
 // Gestion des erreurs de saisie
 $erreur = false;

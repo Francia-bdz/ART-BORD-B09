@@ -8,8 +8,8 @@ require_once __DIR__ . '/../../class_crud/article.class.php';
 
 // require_once __DIR__ .  '/../../back/article/ctrlerUploadImage.php';
 
-// Instanciation de la classe ARTICLE
-$monArticle = new ARTICLE();
+// Instanciation de la classe article
+$monArticle = new article();
 
 ?>
 
@@ -254,7 +254,7 @@ if (isset($_GET['id'])) {
         </div>
     </div>
 
-    <!--  SUITE ARTICLE  -->
+    <!--  SUITE article  -->
 
     <div class="fond_noir">
 

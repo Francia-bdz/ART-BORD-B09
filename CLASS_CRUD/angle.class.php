@@ -1,13 +1,13 @@
 <?php
-// CRUD ANGLE
+// CRUD angle
 // ETUD
 require_once __DIR__ . '../../connect/database.php';
 
-class ANGLE{
+class angle{
 	function get_1Angle(string $numAngl) {
 		global $db;
 
-		$query='SELECT * FROM ANGLE NATURAL JOIN langue WHERE numAngl= ?';
+		$query='SELECT * FROM angle NATURAL JOIN langue WHERE numAngl= ?';
 		$result = $db->prepare($query);
 		$result->execute([$numAngl]);
 		return($result->fetch());
@@ -16,7 +16,7 @@ class ANGLE{
 	function get_1AngleByLang(string $numAngl) {
 		global $db;
 
-		$query='SELECT * FROM ANGLE AN INNER JOIN LA langue ON AN.numLang=LA.numLang WHERE numAngl= ?';
+		$query='SELECT * FROM angle AN INNER JOIN LA langue ON AN.numLang=LA.numLang WHERE numAngl= ?';
 		$result = $db->prepare($query);
 		$result->execute([$numAngl]);
 		return($result->fetch());
@@ -25,7 +25,7 @@ class ANGLE{
 	function get_AllAngles() {
 		global $db;
 
-		$query ='SELECT * FROM ANGLE ORDER BY libAngl;';
+		$query ='SELECT * FROM angle ORDER BY libAngl;';
 		$result = $db->query($query);
 		$allAngles = $result->fetchAll();
 		return($allAngles);
@@ -34,7 +34,7 @@ class ANGLE{
 	function get_AllAnglesByLang() {
 		global $db;
 
-		$query='SELECT * FROM ANGLE AN INNER JOIN langue LA ON AN.numLang=LA.numLang ORDER BY lib1Lang';
+		$query='SELECT * FROM angle AN INNER JOIN langue LA ON AN.numLang=LA.numLang ORDER BY lib1Lang';
 		$result = $db->query($query);
 		$allAnglesByLang=$result->fetchAll();
 		return($allAnglesByLang);
@@ -43,14 +43,14 @@ class ANGLE{
 	function get_NbAllAnglesBynumLang(string $numLang) {
 		global $db;
 
-		$query = 'SELECT COUNT(*) FROM ANGLE where numLang=? ;';
+		$query = 'SELECT COUNT(*) FROM angle where numLang=? ;';
 		$result = $db->prepare($query);
 		$result->execute([$numLang]);
 		$allNbAnglesBynumLang = $result;
 		return($allNbAnglesBynumLang->fetch());
 	}
 
-	//  Récupérer la prochaine PK de la table ANGLE
+	//  Récupérer la prochaine PK de la table angle
 	function getNextNumAngl($numLang) {
 		global $db;
 	
@@ -58,15 +58,15 @@ class ANGLE{
 		$libLangSelect = substr($numLang, 0, 4);
 		$parmNumLang = $libLangSelect . '%';
 	
-		$requete = "SELECT MAX(numLang) AS numLang FROM ANGLE WHERE numLang LIKE '$parmNumLang';";
+		$requete = "SELECT MAX(numLang) AS numLang FROM angle WHERE numLang LIKE '$parmNumLang';";
 		$result = $db->query($requete);
 	
 		if ($result) {
 			$tuple = $result->fetch();
 			$numLang = $tuple["numLang"];
-			if (is_null($numLang)) {    // New lang dans ANGLE
+			if (is_null($numLang)) {    // New lang dans angle
 				// Récup dernière PK utilisée
-				$requete = "SELECT MAX(numAngl) AS numAngl FROM ANGLE;";
+				$requete = "SELECT MAX(numAngl) AS numAngl FROM angle;";
 				$result = $db->query($requete);
 				$tuple = $result->fetch();
 				$numAngl = $tuple["numAngl"];
@@ -74,11 +74,11 @@ class ANGLE{
 				$numAnglSelect = (int)substr($numAngl, 4, 2);
 				// No séquence suivant langue
 				$numSeq1Angl = $numAnglSelect + 1;
-				// Init no séquence ANGLE pour nouvelle lang
+				// Init no séquence angle pour nouvelle lang
 				$numSeq2Angl = 1;
 			} else {
 				// Récup dernière PK pour FK sélectionnée
-				$requete = "SELECT MAX(numAngl) AS numAngl FROM ANGLE WHERE numLang LIKE '$parmNumLang' ;";
+				$requete = "SELECT MAX(numAngl) AS numAngl FROM angle WHERE numLang LIKE '$parmNumLang' ;";
 				$result = $db->query($requete);
 				$tuple = $result->fetch();
 				$numAngl = $tuple["numAngl"];
@@ -87,7 +87,7 @@ class ANGLE{
 				$numSeq1Angl = (int)substr($numAngl, 4, 2);
 				// No séquence actuel langue
 				$numSeq2Angl = (int)substr($numAngl, 6, 2);
-				// No séquence suivant ANGLE
+				// No séquence suivant angle
 				$numSeq2Angl++;
 			}
 	
@@ -114,7 +114,7 @@ class ANGLE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO ANGLE (numAngl, libAngl, numLang) VALUES (?,?,?)';
+			$query = 'INSERT INTO angle (numAngl, libAngl, numLang) VALUES (?,?,?)';
 			$request = $db->prepare($query);
 			$request->execute([$numAngl, $libAngl, $numLang]);
 			$db->commit();
@@ -123,7 +123,7 @@ class ANGLE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert ANGLE : ' . $e->getMessage());
+			die('Erreur insert angle : ' . $e->getMessage());
 		}
 	}
 
@@ -133,7 +133,7 @@ class ANGLE{
 		try {
 			$db->beginTransaction();
 
-			$query='UPDATE ANGLE SET numLang=?, libAngl=? WHERE numAngl=?';
+			$query='UPDATE angle SET numLang=?, libAngl=? WHERE numAngl=?';
 			$request = $db->prepare($query);
 			$request->execute([$numLang, $libAngl, $numAngl]);
 			$db->commit();
@@ -142,18 +142,18 @@ class ANGLE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update ANGLE : ' . $e->getMessage());
+			die('Erreur update angle : ' . $e->getMessage());
 		}
 	}
 
-	// Ctrl FK sur THEMATIQUE, ANGLE, MOTCLE avec del
+	// Ctrl FK sur THEMATIQUE, angle, motcle avec del
 	function delete(string $numAngl){
 		global $db;
 
 		try {
 			$db->beginTransaction();
 
-			$query='DELETE FROM ANGLE WHERE numAngl=?';
+			$query='DELETE FROM angle WHERE numAngl=?';
 			$request = $db->prepare($query);
 			$request->execute([$numAngl]);
 			$count = $request->rowCount();
@@ -164,7 +164,8 @@ class ANGLE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete ANGLE : ' . $e->getMessage());
+			die('Erreur delete angle : ' . $e->getMessage());
 		}
 	}
 }		// End of class
+

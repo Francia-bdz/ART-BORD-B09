@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD ARTICLE (PDO) - Modifié : 4 Juillet 2021
+//  CRUD article (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : barreF2.php  -  (ETUD)  BLOGART22
 //

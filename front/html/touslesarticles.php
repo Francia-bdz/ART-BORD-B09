@@ -8,8 +8,8 @@ require_once __DIR__ . '/../../class_crud/article.class.php';
 
 require_once __DIR__ .  '/../../back/article/ctrlerUploadImage.php';
 
-// Instanciation de la classe ARTICLE
-$monArticle = new ARTICLE ();
+// Instanciation de la classe article
+$monArticle = new article ();
 
 ?>
 
@@ -181,7 +181,7 @@ $monArticle = new ARTICLE ();
         <li class="li_header"><a href="#" class="a_header"> Articles </a></li>
         <input class="navbar" type="text" size="30" placeholder="Rechercher" />
     </div>
-    <h1 class="couleur_h1"> ARTICLES </h1>
+    <h1 class="couleur_h1"> articleS </h1>
     <div class="ligne_jaune"></div>
 </section>
 

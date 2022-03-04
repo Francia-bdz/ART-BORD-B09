@@ -30,8 +30,8 @@ $monMembre = new membre();
 
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe ARTICLE
-$monArticle = new ARTICLE();
+// Instanciation de la classe article
+$monArticle = new article();
 
 
 

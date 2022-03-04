@@ -94,7 +94,7 @@ class USER{
 		try {
 			$db->beginTransaction();
 
-			$query='DELETE FROM COMMENT WHERE (pseudoUser=? AND passUser=?) ';
+			$query='DELETE FROM comment WHERE (pseudoUser=? AND passUser=?) ';
 			$request = $db->prepare($query);
 			$request->execute([$pseudoUser,$passUser]);
 			$db->commit();

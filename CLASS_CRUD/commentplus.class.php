@@ -1,13 +1,13 @@
 <?php
-// CRUD COMMENTPLUS
+// CRUD commentPLUS
 // ETUD
 require_once __DIR__ . '../../connect/database.php';
 
-class COMMENTPLUS{
+class commentPLUS{
 	function get_AllCommentPlusByArticle($numArt){
 		global $db;
 
-		$query='SELECT * FROM COMMENTPLUS NATURAL JOIN ARTICLE WHERE numArt=?';
+		$query='SELECT * FROM commentPLUS NATURAL JOIN article WHERE numArt=?';
 		$result = $db->query($query);
 		$result->execute([$numArt]);
 		return($result->fetchAll());
@@ -15,7 +15,7 @@ class COMMENTPLUS{
 
 	function get_AllCommentPlus(){
 		global $db;
-		$query='SELECT * FROM ARTICLE AR INNER JOIN COMMENTPLUS CP ON CP.numArt= AR.numArt INNER JOIN COMMENT CO ON CO.numSeqCom=CP.numSeqCom INNER JOIN membre ME ON CO.numMemb=ME.numMemb';
+		$query='SELECT * FROM article AR INNER JOIN commentPLUS CP ON CP.numArt= AR.numArt INNER JOIN comment CO ON CO.numSeqCom=CP.numSeqCom INNER JOIN membre ME ON CO.numMemb=ME.numMemb';
 		$result = $db->query($query);
 		return($result->fetchAll());
 	}
@@ -26,7 +26,7 @@ class COMMENTPLUS{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO COMMENTPLUS (numSeqCom, numArt, numSeqComR, numArtR) VALUES (?,?,?,?)';
+			$query = 'INSERT INTO commentPLUS (numSeqCom, numArt, numSeqComR, numArtR) VALUES (?,?,?,?)';
 			$request = $db->prepare($query);
 			$request->execute([$numSeqCom, $numArt, $numSeqComR, $numArtR]);
 			$db->commit();
@@ -35,7 +35,7 @@ class COMMENTPLUS{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert COMMENTPLUS : ' . $e->getMessage());
+			die('Erreur insert commentPLUS : ' . $e->getMessage());
 		}
 	}
 }	// End of class

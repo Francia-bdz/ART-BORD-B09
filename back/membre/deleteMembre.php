@@ -33,10 +33,10 @@ require_once __DIR__ . '/../../class_crud/comment.class.php';
 
 // Instanciation de la classe Comment
 
-$monComment = new COMMENT();
+$monComment = new comment();
 
 // Instanciation de la classe Likeart
-require_once __DIR__ . '/../../class_crud/likeArt.class.php';
+require_once __DIR__ . '/../../class_crud/likeart.class.php';
 
 // Insertion classe Likeart
 $monLikeArt = new likeart();

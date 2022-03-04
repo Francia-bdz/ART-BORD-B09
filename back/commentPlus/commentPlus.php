@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD COMMENTPLUS (PDO) - Modifié : 4 Juillet 2021
+//  CRUD commentPLUS (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : commentPlus.php  -  (ETUD)  BLOGART22
 //
@@ -21,22 +21,22 @@ require_once __DIR__ . '/../../class_crud/comment.class.php';
 
 // Instanciation de la classe Comment
 
-$monComment = new COMMENT ();
+$monComment = new comment ();
 
 // Insertion classe CommentPlus
 
 require_once __DIR__ . '/../../class_crud/commentplus.class.php';
 
 // Instanciation de la classe CommentPlus
-$monCommentPlus= new COMMENTPLUS ();
+$monCommentPlus= new commentPLUS ();
 
 
 // Insertion classe Article
 
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe ARTICLE
-$monArticle = new ARTICLE ();
+// Instanciation de la classe article
+$monArticle = new article ();
 
 
 
