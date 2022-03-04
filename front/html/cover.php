@@ -1,5 +1,14 @@
 <?php
 
+// Insertion classe Membre
+
+require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+
+// Instanciation de la classe Membre
+
+$monMembre = new MEMBRE();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -98,14 +107,61 @@
             color: white;
             opacity: 0.5;
         }
+
+        .p_header{
+            align-self: flex-start;
+            margin-right: 45%; 
+            white-space: nowrap;
+            color: white;
+
+        }
+
+        .deconnexion{
+       background-color: transparent;
+       text-decoration: none;
+       border: none;
+       color: white;
+       cursor:pointer;
+       transition: all 0.2 ease-in;
+        }
+
+        .deconnexion:hover{
+        text-decoration: underline;
+        }
     </style>
 </head>
 
 <body>
     <section class="cover">
         <div class="header">
-            <li class="li_header"><a href="#" class="a_header"> Accueil </a></li>
-            <li class="li_header"><a href="#" class="a_header"> Articles </a></li>
+
+        <?php
+        
+if(isset($_COOKIE['eMailMemb'])){
+
+    $oneMembre=$monMembre->get_1MembreByEmail($_COOKIE['eMailMemb']);
+
+    $pseudoMemb=$oneMembre['pseudoMemb'];
+  
+    if ($_SERVER["REQUEST_METHOD"] === "POST"){
+
+    if(!empty($_POST['deconnexion']) and ($_POST['deconnexion'] === "Se deconnecter")){
+
+    setcookie('eMailMemb');
+}
+}
+        ?>
+        <form class="p_header" method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+
+            <p class="p_header"> Bonjour, <?=$pseudoMemb; ?>
+            <br>
+            <input type="submit" name="deconnexion"class="deconnexion" id="deconnexion" value="Se deconnecter">
+        </form>
+            <?php
+}
+            ?>
+            <li class="li_header"><a href="http://localhost/ARTBORD/BLOGART22/front/html/accueil.php" class="a_header"> Accueil </a></li>
+            <li class="li_header"><a href="http://localhost/ARTBORD/BLOGART22/front/html/touslesarticles.php" class="a_header"> Articles </a></li>
             <input class="navbar" type="text" size="30" placeholder="Rechercher" />
         </div>
         <h1 class="couleur">

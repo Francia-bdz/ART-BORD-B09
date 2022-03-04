@@ -1,7 +1,7 @@
 <?php
 // CRUD COMMENT
 // ETUD
-require_once __DIR__ . '../../CONNECT/database.php';
+require_once __DIR__ . '../../connect/database.php';
 
 class COMMENT{
 	function get_1Comment($numSeqCom, $numArt){
@@ -16,7 +16,7 @@ class COMMENT{
 	function get_AllCommentsByArticle($numArt){
 		global $db;
 
-		$query = 'SELECT * FROM COMMENT where numArt=?';
+		$query = 'SELECT * FROM COMMENT NATURAL JOIN MEMBRE where numArt=?';
 		$result = $db->prepare($query);
 		$result->execute([$numArt]);
 		return($result->fetchAll());

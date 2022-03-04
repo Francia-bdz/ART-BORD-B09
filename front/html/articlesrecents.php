@@ -32,7 +32,7 @@
             font-size: 55px;
         }
 
-        p {
+        .p_apropos {
             font-family: 'Roboto'Arial;
             font-size: 20px;
             text-align: left;
@@ -187,14 +187,11 @@
                     <div class="titre-bouton">
                         <h3 class="color-title-home">Nobu</h3><a><img class="bouton" src="/front/assets/images/Bouton-foncé.png"></a>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-                        fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-                        velit libero distinctio saepe.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-                        fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-                        velit libero distinctio saepe.</p>
+                    <p class="p_apropos">Lorem ipsum dolor sit amet, 
+                        consectetur adipiscing elit. Metus, varius a morbi dapibus imperdiet aliquam. 
+                        Vitae nam sit diam pellentesque sem massa mattis a. 
+                        Habitant sed volutpat risus dictum vel tellus tincidunt. 
+                        Tincidunt cursus habitant ipsum quis sollicitudin pharetra.</p>
                 </div>
             </section>
             </section>
@@ -204,14 +201,11 @@
                     <div class="titre-bouton">
                         <h3 class="color-title-home">Fifib</h3><a><img class="bouton" src="/front/assets/images/Bouton-foncé.png"></a>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-                        fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-                        velit libero distinctio saepe.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-                        fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-                        velit libero distinctio saepe.</p>
+                    <p>Lorem ipsum dolor sit amet, 
+                        consectetur adipiscing elit. Metus, varius a morbi dapibus imperdiet aliquam. 
+                        Vitae nam sit diam pellentesque sem massa mattis a. 
+                        Habitant sed volutpat risus dictum vel tellus tincidunt. 
+                        Tincidunt cursus habitant ipsum quis sollicitudin pharetra.</p>
                 </div>
             </section>
 

@@ -58,56 +58,56 @@
             margin-right: 50%;
         }
 
-        
-        .header{
+
+        .header {
             margin-top: 2%;
             align-self: flex-end;
             font-family: "Roboto";
             font-weight: bold;
-            font-size : 25px;
-            display : flex;
+            font-size: 25px;
+            display: flex;
             flex-direction: row;
-            justify-content :flex-end;   
+            justify-content: flex-end;
         }
 
-        .li_header{
+        .li_header {
             list-style: none;
             margin-right: 15%;
-            
+
         }
 
-        .a_header{
+        .a_header {
             text-decoration: none;
             color: white;
             transition: all 0.2 ease-in-out;
         }
 
-        .a_header:hover{
+        .a_header:hover {
             color: #7798C9;
         }
 
-        .navbar{
+        .navbar {
             margin-right: 2%;
             border-radius: 20px;
             padding-left: 2%;
             border: 0px;
             background-color: rgba(255, 255, 255, 0.65);
             font-family: "Roboto";
-            font-size : 25px;
+            font-size: 25px;
             color: white;
             font-style: italic;
         }
 
-        ::placeholder { 
+        ::placeholder {
             color: white;
-            opacity: 0.5; 
-  }
+            opacity: 0.5;
+        }
     </style>
 </head>
 <section class="cover">
     <div class="header">
-        <li class="li_header"><a href="#" class="a_header"> Accueil </a></li>
-        <li class="li_header"><a href="#" class="a_header"> Articles </a></li>
+        <li class="li_header"><a href="<?= ROOTFRONT . '/front/html/' . 'accueil.php' ?>" class="a_header"> Accueil </a></li>
+        <li class="li_header"><a href="<?= ROOTFRONT . '/front/html/' . 'touslesarticles.php' ?>" class="a_header"> Articles </a></li>
         <input class="navbar" type="text" size="30" placeholder="Rechercher" />
     </div>
     <h1 class="couleur">

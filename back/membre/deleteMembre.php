@@ -17,33 +17,33 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Membre
 
-require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
 $monMembre = new MEMBRE();
 
 // Insertion classe Statut
-require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
+require_once __DIR__ . '/../../class_crud/statut.class.php';
 
 // Instanciation de la classe Statut
 $monStatut = new STATUT();
 
 // Insertion classe Comment
-require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
+require_once __DIR__ . '/../../class_crud/comment.class.php';
 
 // Instanciation de la classe Comment
 
 $monComment = new COMMENT();
 
 // Instanciation de la classe Likeart
-require_once __DIR__ . '/../../CLASS_CRUD/likeArt.class.php';
+require_once __DIR__ . '/../../class_crud/likeArt.class.php';
 
 // Insertion classe Likeart
 $monLikeArt = new LIKEART();
 
 // Insertion classe Likecom
 
-require_once __DIR__ . '/../../CLASS_CRUD/likeCom.class.php';
+require_once __DIR__ . '/../../class_crud/likeCom.class.php';
 
 // Insertion classe Likecom
 $monLikeCom = new LIKECOM();
@@ -140,7 +140,6 @@ include __DIR__ . '/initMembre.php';
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
       <fieldset>
-        <legend class="legend1">Formulaire Membre...</legend>
 
         <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
         <div class="control-group">
@@ -239,9 +238,9 @@ include __DIR__ . '/initMembre.php';
             <div class="controls">
                 <br><br>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Annuler" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                <input type="submit" value="Annuler" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                 <br>
             </div>
         </div>

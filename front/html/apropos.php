@@ -106,16 +106,11 @@
         <h2 class="color_text_propos"><span class="enluminure">À</span> propos</h2>
         <div class="peinture_text"><img class="fit-picture" src="/front/assets/images/524239-main-5dc400e55b982.jpg">
             <section class="rectangle_blanc">
-                <p class="marge">Anaïs, Cléo, Francia, Louna, Perrine, 
-                    nous sommes cinq copines résidant à Bordeaux pour nos études ! 
-                    Certaines sont nées ici, d’autres ont voyagé pour arriver jusqu’à cette ville magnifique. 
-                    Notre point commun ? Nous sommes tombées amoureuse de Bordeaux. 
-                    Son dynamisme, ses rues magnifiques, mais surtout sa capacité à nous faire voyager. 
-                    En effet, selon nous, Bordeaux a cette capacité à rendre l’art accessible et captivant. 
-                    Passionnées d’écriture, de design et désireuses d’exploiter notre créativité, 
-                    nous avons eu l’idée de créer un blog réunissant nos centres d’intérêts : 
-                    écrire des articles sur Bordeaux et ses artistes et ainsi, vous faire voyager avec nous. 
-                    Alors, installez vous confortablement avec nous et préparez vous à en prendre plein les yeux !</p>
+                <p class="marge">Lorem ipsum dolor sit amet, 
+                    consectetur adipiscing elit. Metus, varius a morbi dapibus imperdiet aliquam. 
+                    Vitae nam sit diam pellentesque sem massa mattis a. 
+                    Habitant sed volutpat risus dictum vel tellus tincidunt. 
+                     Tincidunt cursus habitant ipsum quis sollicitudin pharetra.</p>
             </section>
         </div>
         <p class="color_credit">Maurice Larue,

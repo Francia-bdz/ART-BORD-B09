@@ -8,14 +8,14 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Membre
 
-require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/user.class.php';
 
 // Instanciation de la classe Membre
 
-$monMembre = new MEMBRE();
+$monUser = new USER();
 
-$eMailMemb = "";
-$passMembTest = "";
+$pseudoUser= "";
+$passUserTest = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -27,22 +27,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
 
-        if (((isset($_POST['eMailMemb'])) and !empty($_POST['eMailMemb']))
-            and ((isset($_POST['passMembTest'])) and !empty($_POST['passMembTest']))
+        if (((isset($_POST['pseudoUser'])) and !empty($_POST['pseudoUser']))
+            and ((isset($_POST['passUserTest'])) and !empty($_POST['passUserTest']))
         ) {
 
-            $oneMembre = $monMembre->get_1MembreByEmail($_POST['eMailMemb']);
+            $oneUser = $monUser->get_1User(($_POST['pseudoUser']), ($_POST['passUserTest']));
 
-            if ($oneMembre != false) {
+            if ($oneUser != false) {
 
-                $eMailMemb = $oneMembre['eMailMemb'];
-                $passMemb = $oneMembre['passMemb'];
+                $pseudoUser = $oneUser['pseudoUser'];
+                $passUser = $oneUser['passUser'];
 
-                if ($passMemb == $_POST['passMembTest']) {
+                if ($passUser == $_POST['passUserTest']) {
 
                     // (password_verify($_POST['passMemb'], $passMemb) === true);
-                    setcookie('eMailMemb', $eMailMemb, time() + 3600);
-                    header("Location: ./accueil.php");
+                    setcookie('pseudoUser', $pseudoUser, time() + 3600);
+                    header("Location: http://localhost/ARTBORD/BLOGART22/index1.php");
                 } else {
                     echo "Mauvais Mot de passe";
                 }
@@ -195,37 +195,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
 
 
-        <div class="title_and_rectangle_connexion">
-            <h1> BIENVENUE</h1>
-            <div class="rectangle_rouge"></div>
-        </div>
-        <div class="Partie_Texte">
-            <div class="Partie_connexion">
-                <h2><span class="enluminure">C</span>onnexion</h2>
+    <div class="title_and_rectangle_connexion">
+        <h1> BIENVENUE</h1>
+        <div class="rectangle_rouge"></div>
+    </div>
+    <div class="Partie_Texte">
+        <div class="Partie_connexion">
+            <h2><span class="enluminure">C</span>onnexion Admin</h2>
 
-                <div class="Pseudo_control connexion_control">
-                    <label class="control-label" for="eMailMemb"><b>Adresse Mail:</b></label>
-                    <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre adresse mail" value="<?= $eMailMemb ?>" autofocus />
+            <div class="Pseudo_control connexion_control">
+                <label class="control-label" for="pseudoUser"><b>Pseudo:</b></label>
+                <input type="text" name="pseudoUser" id="pseudoUser" size="50" placeholder="Entrez votre pseudo" value="<?= $pseudoUser ?>" autofocus />
+            </div>
+
+            <div class="Mdp_control connexion_control">
+
+                <label class="control-label" for="passUserTest"><b>Mot de passe:</b></label>
+                <input type="password" name="passUserTest" id="passUserTest" size="43" placeholder="Entrez votre mot de passe" value="<?= $passUserTest ?>" autofocus />
+                <br>
+                <div class="bouton_affichage_mdp">
+                    <input type="checkbox" onclick="myFunction('passUserTest')">
+                    &nbsp;&nbsp;
+                    <label><i>Afficher Mot de passe</i></label>
                 </div>
-
-                <div class="Mdp_control connexion_control">
-
-                    <label class="control-label" for="passMembTest"><b>Mot de passe:</b></label>
-                    <input type="password" name="passMembTest" id="passMembTest" size="43" placeholder="Entrez votre mot de passe" value="<?= $passMembTest ?>" autofocus />
-                    <br>
-                    <div class="bouton_affichage_mdp">
-                        <input type="checkbox" onclick="myFunction('passMembTest')">
-                        &nbsp;&nbsp;
-                        <label><i>Afficher Mot de passe</i></label>
-                    </div>
-                </div>
-                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border-radius:5px;" name="Submit" />
-
-    </form>
-
-    <p class="Pas_encore_inscrit">Pas encore inscrit ? <a href="<?= ROOTFRONT . '/front/html/' . 'inscription.php' ?>" class="Pas_encore_inscrit_lien"> Cliquez ici pour vous inscrire</a> </p>
-
-        
+            </div>
+            <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border-radius:5px;" name="Submit" />
+            
+        </form>
 
     <?php require_once __DIR__ .  '/footer.php';
     ?>

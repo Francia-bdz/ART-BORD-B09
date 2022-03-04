@@ -17,20 +17,20 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Comment
 
-require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
+require_once __DIR__ . '/../../class_crud/comment.class.php';
 
 // Instanciation de la classe COMMENT
 $monComment = new COMMENT();
 
 // Insertion classe Membre
-require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
 $monMembre = new MEMBRE();
 
 // Insertion classe Article
 
-require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../class_crud/article.class.php';
 
 // Instanciation de la classe ARTICLE
 $monArticle = new ARTICLE();
@@ -105,7 +105,7 @@ include __DIR__ . '/initComment.php';
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
-            <legend class="legend1">Commentez un commentaire...</legend>
+            
 
             <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
 
@@ -216,9 +216,9 @@ include __DIR__ . '/initComment.php';
             <div class="control-group">
                 <div class="controls">
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                    <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                    <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                     <br>
                 </div>
             </div>

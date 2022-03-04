@@ -119,24 +119,21 @@
         <div class="Plan_du_site">
             <div class="Plan_du_site_1">
                 <ul>
-                    <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Accueil </a></li>
-                    <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Articles </a></li>
+                    <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'accueil.php' ?>" class="a_Plan_du_site"> Accueil </a></li>
+                    <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'touslesarticles.php' ?>" class="a_Plan_du_site"> Articles </a></li>
                 </ul>
             </div>
             <div class="Plan_du_site_2"></div>
             <ul>
-                <li class="li_Plan_du_site"><a href="" class="a_Plan_du_site"> Se connecter </a></li>
-                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> S'inscrire</a></li>
+                <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'connexion.php' ?>" class="a_Plan_du_site"> Se connecter </a></li>
+                <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'inscription.php' ?>" class="a_Plan_du_site"> S'inscrire</a></li>
             </ul>
         </div>
         <div class="Partie_Droit_Background">
             <div class="Partie_Droit">
 
-                <li><a href="#"> Mentions légales |</a></li>
-                <li><a href="#"> Conditions générales d'utilisation |</a></li>
-                <li><a href="#"> Cookies |</a></li>
-                <li><a href="#"> Protection des données |</a></li>
-
+                <li><a href="<?= ROOTFRONT . '/front/html/' . 'mentions.php' ?>"> Mentions légales |</a></li>
+                <li><a href="<?= ROOTFRONT . '/front/html/' . 'connexionadmin.php' ?>"> Partie Admin |</a></li>
             </div>
         </div>
 

@@ -172,7 +172,6 @@ include __DIR__ . '/initMembre.php';
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
       <fieldset>
-        <legend class="legend1">Formulaire Membre...</legend>
 
         <input type="hidden" id="id" name="id" value="<?= isset($_POST['id']) ? $_POST['id'] : '' ?>" />
 
@@ -230,12 +229,8 @@ include __DIR__ . '/initMembre.php';
             <label class="control-label" for="accordMemb"><b>J'accepte que mes données soient conservées :</b></label>
             <div class="controls">
                <fieldset>
-                  <input type="radio" name="accordMemb"
-                  <?= ($accordMemb == "on") ? 'checked="checked"' : ''
-                  ?> value="on" />&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="accordMemb"
-                  <?= ($accordMemb == "off") ? 'checked="checked"' : ''
-                  ?> value="off" checked="checked" />&nbsp;&nbsp;Non
+                  <input type="radio" name="accordMemb" <?= ($accordMemb == "on") ? 'checked="checked"' : '' ?> value="on" />&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="radio" name="accordMemb" <?= ($accordMemb == "off") ? 'checked="checked"' : '' ?> value="off" checked="checked" />&nbsp;&nbsp;Non
                </fieldset>
             </div>
         </div>
@@ -304,9 +299,9 @@ include __DIR__ . '/initMembre.php';
             <div class="controls">
                 <br><br>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                 <br>
             </div>
         </div>

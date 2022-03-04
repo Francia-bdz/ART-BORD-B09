@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe User
 
-require_once __DIR__ . '/../../CLASS_CRUD/user.class.php';
+require_once __DIR__ . '/../../class_crud/user.class.php';
 
 // Instanciation de la classe USER
 $monUser = new USER();

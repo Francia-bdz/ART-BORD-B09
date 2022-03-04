@@ -15,7 +15,7 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Angle
 
-require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe angle
 
@@ -47,6 +47,7 @@ if (isset($_GET['count'])) {
     <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Roboto:wght@200&display=swap" rel="stylesheet">
     <style type="text/css">
          * {
+             margin: 0%;
             font-family: 'Roboto';
         }
         .error {

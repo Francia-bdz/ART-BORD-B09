@@ -15,20 +15,20 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Likecom
 
-require_once __DIR__ . '/../../CLASS_CRUD/likeCom.class.php';
+require_once __DIR__ . '/../../class_crud/likeCom.class.php';
 
 // Insertion classe Likecom
 $monLikeCom = new LIKECOM();
 
 // Insertion classe Membre
-require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
 $monMembre = new MEMBRE();
 
 // Insertion classe Article
 
-require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../class_crud/article.class.php';
 
 // Instanciation de la classe ARTICLE
 $monArticle = new ARTICLE();
@@ -98,7 +98,6 @@ include __DIR__ . '/initLikeCom.php';
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
-            <legend class="legend1">Formulaire Like Commentaire d'un Article...</legend>
 
             <input type="hidden" id="id1" name="id1" value="<?= isset($_GET['id1']) ? $_GET['id1'] : '' ?>" />
             <input type="hidden" id="id2" name="id2" value="<?= isset($_GET['id2']) ? $_GET['id2'] : '' ?>" />
@@ -257,9 +256,9 @@ include __DIR__ . '/initLikeCom.php';
                 <div class="controls">
                     <br><br>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                    <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                    <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                     <br>
                 </div>
             </div>

@@ -25,25 +25,25 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 // Mise en forme date
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
-require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../class_crud/article.class.php';
 // Insertion classe Article
 
 $monArticle = new ARTICLE();
 
 // Insertion classe Langue
-require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 // Instanciation de la classe Langue
 $maLangue = new LANGUE();
 
 // Insertion classe Angle
-require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe Angle
 $monAngle = new ANGLE();
 
 // Insertion classe Thematique
-require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+require_once __DIR__ . '/../../class_crud/thematique.class.php';
 
 // Instanciation de la classe Angle
 $maThematique = new THEMATIQUE();
@@ -112,10 +112,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $numAngl = ctrlSaisies(($_POST['angle']));
         $numThem = ctrlSaisies(($_POST['thematique']));
 
+        if (isset($_FILES['monfichier']['tmp_name'])){
+
         require_once __DIR__ . '/ctrlerUploadImage.php';
 
         $urlPhotArt = $nomImage;
 
+        }elseif(empty($_FILES['monfichier']['tmp_name'])){
+
+            $oneArticle = $monArticle-> get_1ArticleAnd3FK($_POST['id']);
+
+            $urlPhotArt = $oneArticle['urlPhotArt'];
+         }
         $numArt = ctrlSaisies(($_POST['id']));
 
         $monArticle->update($numArt, $libTitrArt, $libChapoArt, $libAccrochArt, $parag1Art, $libSsTitr1Art, $parag2Art, $libSsTitr2Art, $parag3Art, $libConclArt, $urlPhotArt, $numAngl, $numThem);
@@ -177,7 +185,6 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
     <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8" id="chgLang">
 
       <fieldset>
-        <legend class="legend1">Formulaire Article...</legend>
 
         <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
 
@@ -481,9 +488,9 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
             <div class="controls">
                 <br><br>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                 <br>
             </div>
         </div>

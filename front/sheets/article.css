@@ -153,7 +153,7 @@ h4 {
     transform: rotate(90deg);
 } 
 
-.misenpagecommentaire {
+.mis_en_page_commentaire {
     display: flex;
     flex-direction: row;
     align-self: center;
@@ -161,7 +161,7 @@ h4 {
     margin-left: 5%;
 }
 
-.recadragebouton {
+.recadrage_bouton {
     width: 50px;
     height: 50px;
     object-fit: cover;
@@ -194,7 +194,7 @@ h4 {
 }
 
 
-.misenpagecommentaireu {
+.mis_en_page_commentaire_plus {
     display: flex;
     flex-direction: row;
     margin-left: 15%;
@@ -209,7 +209,7 @@ h4 {
     margin-left: 10%;
 }
 
-.recadrageboutoncoeur {
+.recadrage_bouton_coeur {
     width: 25px;
     height: 25px;
     object-fit: cover;
