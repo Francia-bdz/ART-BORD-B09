@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD ANGLE (PDO) - Modifié : 4 Juillet 2021
+//  CRUD angle (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : angle.php  -  (ETUD)  BLOGART22
 //
@@ -19,7 +19,7 @@ require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe angle
 
-$monAngle = new ANGLE();
+$monAngle = new angle();
 
 
 // Ctrl CIR
@@ -96,7 +96,7 @@ if (isset($_GET['count'])) {
     ?>
         <br />
         <i>
-            <div class="error"><br>=>&nbsp;Erreur delete ANGLE : la suppression s'est mal passée !</div>
+            <div class="error"><br>=>&nbsp;Erreur delete angle : la suppression s'est mal passée !</div>
         </i>
     <?php
     }   // End of if ($errDel == 99)

@@ -1,6 +1,6 @@
 <?php
 /*
-* Table MOTCLEARTICLE
+* Table motclearticle
 * initMotCleArticle.php
 */
 // FK PK MotCleArticle

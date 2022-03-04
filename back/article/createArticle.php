@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD ARTICLE (PDO) - Modifié : 10 Juillet 2021
+//  CRUD article (PDO) - Modifié : 10 Juillet 2021
 //
 //  Script  : createArticle.php  -  (ETUD)  BLOGART22
 //
@@ -25,8 +25,8 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe ARTICLE
-$monArticle = new ARTICLE();
+// Instanciation de la classe article
+$monArticle = new article();
 
 // Insertion classe Langue
 require_once __DIR__ . '/../../class_crud/langue.class.php';
@@ -38,7 +38,7 @@ $maLangue = new langue();
 require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe Angle
-$monAngle = new ANGLE();
+$monAngle = new angle();
 
 // Insertion classe Thematique
 require_once __DIR__ . '/../../class_crud/thematique.class.php';

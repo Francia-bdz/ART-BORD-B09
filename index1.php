@@ -39,11 +39,13 @@ require_once __DIR__ . '/util/utilErrOn.php';
 			text-decoration-color: #333;
 
 		}
-		div {
+
+		.span_crud{
 			padding-top: 60px;
 			padding-bottom: 40px;
 			margin-bottom: 0px;
 			margin-left: 60px;
+
 		}
         /* span {
             background-color: yellow;
@@ -129,7 +131,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 		<!-- <h2>Connexion...</h2> -->
 	</p>
 	<!-- <hr class="hr1" /> -->
-	<div>
+	<div class="span_crud">
 	<span class="crud">CRUD :</span>
 	<a href="./back/angle/angle.php"><span>Angle </span></a>
 	<br /><br />
@@ -188,7 +190,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 <?php
 require_once __DIR__ . '/footer.php';
 ?>
- <?php require_once __DIR__ .  '/footerblog.php';
+<?php require_once __DIR__ .  '/footerblog.php';
 ?> 
 
 </body>

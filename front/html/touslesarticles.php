@@ -6,8 +6,8 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 // Insertion classe Article
 require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 
-// Instanciation de la classe ARTICLE
-$monArticle = new ARTICLE();
+// Instanciation de la classe article
+$monArticle = new article ();
 
 ?>
 
@@ -222,7 +222,51 @@ $monArticle = new ARTICLE();
         ?>
 
     </div>
+<<<<<<< HEAD
+    <h1 class="couleur_h1"> articleS </h1>
+    <div class="ligne_jaune"></div>
+</section>
+
+<p class="p_intro">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
+    fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
+    velit libero distinctio saepe.
+    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
+    fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
+    velit libero distinctio saepe.</p>
+
+
+<div class="articles_div">
+
+<?php
+    $from = 'Y-m-d H:i:s';
+    $to = 'd/m';
+
+    $allArticles = $monArticle->get_AllArticlesByNumAnglNumThem();
+
+    foreach($allArticles as $row) {
+
+        $dtCreArt = dateChangeFormat($row['dtCreArt'], $from, $to);
+?>
+
+    <div class="articles">
+        <img class="image_article" src="<?= ROOTFRONT . '/uploads/' . htmlspecialchars($row['urlPhotArt']); ?>" alt="Photo de l'article">
+        <p class="date_article"><?= $dtCreArt; ?></p>
+        <div class="l_jaune"></div>
+        <h3 class="titre_article"> <?= $row["libTitrArt"]; ?> </h3>
+        <p class="p_article"><?= $row["libChapoArt"]; ?></p>
+        <a href="./article_blog.php?id=<?=$row["numArt"]; ?>" class="lire_plus">Lire plus</a>
+    </div>
+
+<?php
+    }
+?>
+
+</div>
+=======
 </body>
+>>>>>>> b5360f35feed222606bad78134d200a9a5eae116
 
 <?php require_once __DIR__ .  '/footer.php';
 ?>

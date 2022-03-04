@@ -26,7 +26,7 @@ class LIKECOM{
 	function get_1LikeComPlusCom($numMemb, $numSeqCom, $numArt){
 		global $db;
 
-		$query='SELECT * FROM LIKECOM NATURAL JOIN COMMENT WHERE (numMemb= ? AND numSeqCom=? AND numArt= ?)';
+		$query='SELECT * FROM LIKECOM NATURAL JOIN comment WHERE (numMemb= ? AND numSeqCom=? AND numArt= ?)';
 		$result = $db->prepare($query);
 		$result->execute([$numMemb,$numSeqCom ,$numArt]);
 		return($result->fetch());
@@ -35,7 +35,7 @@ class LIKECOM{
 	function get_1LikeComPlusArt($numSeqCom, $numArt){
 		global $db;
 
-		$query='SELECT * FROM LIKECOM NATURAL JOIN ARTICLE WHERE (numSeqCom=? AND numArt= ?)';
+		$query='SELECT * FROM LIKECOM NATURAL JOIN article WHERE (numSeqCom=? AND numArt= ?)';
 		$result = $db->prepare($query);
 		$result->execute([$numSeqCom ,$numArt]);
 		return($result->fetch());
@@ -44,7 +44,7 @@ class LIKECOM{
 	function get_AllLikesCom(){
 		global $db;
 
-		$query ='SELECT * FROM membre ME INNER JOIN LIKECOM LKC ON ME.numMemb = LKC.numMemb INNER JOIN ARTICLE ART ON LKC.numArt = ART.numArt INNER JOIN COMMENT CO ON CO.numSeqCom=LKC.numSeqCom;';
+		$query ='SELECT * FROM membre ME INNER JOIN LIKECOM LKC ON ME.numMemb = LKC.numMemb INNER JOIN article ART ON LKC.numArt = ART.numArt INNER JOIN comment CO ON CO.numSeqCom=LKC.numSeqCom;';
 		$result = $db->query($query);
 		$allLikesCom = $result->fetchAll();
 		return($allLikesCom);

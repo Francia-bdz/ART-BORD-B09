@@ -1,3 +1,7 @@
+<?php require_once __DIR__ . '/connect/config.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -19,9 +23,14 @@
         }
 
         * {
-            margin: 0%;
-            padding: 0%;
+            margin: 0px;
+            padding: 0px;
 
+        }
+
+        div{
+            padding: 0px;
+            margin: 0px;
         }
 
         footer {

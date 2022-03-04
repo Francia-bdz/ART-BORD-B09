@@ -108,7 +108,7 @@ class membre{
 		}
 	}
 
-	// Ctrl FK sur COMMENT avec del
+	// Ctrl FK sur comment avec del
 	function delete($numMemb){
 		global $db;
 		
