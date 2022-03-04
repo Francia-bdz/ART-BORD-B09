@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD angle (PDO) - Modifié : 4 Juillet 2021
+//  CRUD ANGLE (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : deleteAngle.php  -  (ETUD)  BLOGART22
 //
@@ -18,12 +18,12 @@ require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe angle
 
-$monAngle = new angle();
+$monAngle = new ANGLE();
 
 // Insertion classe Langue
 require_once __DIR__ . '/../../class_crud/langue.class.php';
 
-$maLangue = new langue();
+$maLangue = new LANGUE();
 
 // Instanciation de la classe langue
 
@@ -31,31 +31,31 @@ $maLangue = new langue();
 // Insertion classe Article
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe article
-$monArticle = new article ();
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE ();
 
 
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if(isset($_post['Submit'])){
-        $Submit = $_post['Submit'];
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) AND ($Submit === "Annuler")) {
+    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
         header("Location: ./thematique.php");
     }  
 
-    if ((!empty($_post['Submit']) AND ($Submit === "Valider"))) {
+    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
         // Saisies valides
         $erreur = false;
 
-        $numAngl = ctrlSaisies(($_post['id']));
+        $numAngl = ctrlSaisies(($_POST['id']));
 
         $arrayArticle=$monArticle->get_NbAllArticlesByNumAngl($numAngl);
 
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
         if ($countArticle<1){
         $erreur = false;
 
-        $numAngl = ctrlSaisies(($_post['id']));
+        $numAngl = ctrlSaisies(($_POST['id']));
 
         $monAngle->delete($numAngl);
 
@@ -116,7 +116,7 @@ if (isset($_GET['id'])){
     $lib1Lang= $oneAngle['lib1Lang'];
 }
 ?>
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
       <fieldset>
 

@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD article (PDO) - Modifié : 10 Juillet 2021
+//  CRUD ARTICLE (PDO) - Modifié : 10 Juillet 2021
 //
 //  Script  : deleteArticle.php  -  (ETUD)  BLOGART22
 //
@@ -23,22 +23,22 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 // Insertion classe Article
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe article
-$monArticle = new article();
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE();
 
 // Ctrl CIR
 // Insertion classe MotCleArticle
 require_once __DIR__ . '/../../class_crud/motclearticle.class.php';
 
 // Instanciation de la classe MotCleArticle
-$monMotCleArticle = new motclearticle();
+$monMotCleArticle = new MOTCLEARTICLE();
 
 // Insertion classe MotCle
 require_once __DIR__ . '/../../class_crud/motcle.class.php';
 
 // Instanciation de la classe MotCle
 
-$monMotCle = new motcle();
+$monMotCle = new MOTCLE();
 
 // Gestion des erreurs de saisie
 $erreur = false;
@@ -47,24 +47,24 @@ $targetDir = TARGET;
 
 // init mots cles
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if(isset($_post['Submit'])){
-        $Submit = $_post['Submit'];
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) AND ($Submit === "Annuler")) {
+    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
         header("Location: ./article.php");
     }  
 
-    if ((!empty($_post['Submit']) AND ($Submit === "Valider"))) {
+    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
   
         $erreur = false;
 
-        $numArt = ctrlSaisies(($_post['id']));
+        $numArt = ctrlSaisies(($_POST['id']));
 
         // $arrayArticle=$monArticle->get_NbAllArticlesByNumThem($numThem);
 
@@ -130,7 +130,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 }
 
 ?>
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
       <fieldset>
 

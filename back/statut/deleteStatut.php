@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD statut (PDO) - Modifié : 4 Juillet 2021
+//  CRUD STATUT (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : deleteStatut.php  -  (ETUD)  BLOGART22
 //
@@ -19,7 +19,7 @@ require_once __DIR__ . '/../../util/delAccents.php';
 require_once __DIR__ . '/../../class_crud/statut.class.php';
 
 // Instanciation de la classe Statut
-$monStatut = new statut();
+$monStatut = new STATUT();
 
 // Ctrl CIR
 // Insertion classe User
@@ -32,29 +32,29 @@ $monUser = new USER();
 require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
-$monMembre = new membre();
+$monMembre = new MEMBRE();
 
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
-    if (isset($_post['Submit'])) {
-        $Submit = $_post['Submit'];
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) and ($Submit === "Annuler")) {
+    if ((isset($_POST["Submit"])) and ($Submit === "Annuler")) {
         header("Location: ./statut.php");
     }
 
-    if ((!empty($_post['Submit']) and ($Submit === "Valider"))) {
+    if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
 
 
-        $idStat = ctrlSaisies(($_post['id']));
+        $idStat = ctrlSaisies(($_POST['id']));
 
         $arrayUser = $monUser->get_NbAllUsersByidStat($idStat);
         $arrayMembre = $monMembre->get_NbAllMembersByidStat($idStat);
@@ -130,7 +130,7 @@ include __DIR__ . '/initStatut.php';
 
 
     ?>
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
 

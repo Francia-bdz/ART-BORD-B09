@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD commentPLUS (PDO) - Modifié : 4 Juillet 2021
+//  CRUD COMMENTPLUS (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : commentPlus.php  -  (ETUD)  BLOGART22
 //
@@ -17,26 +17,26 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Comment
 
-require_once __DIR__ . '/../../class_crud/comment.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
 
 // Instanciation de la classe Comment
 
-$monComment = new comment ();
+$monComment = new COMMENT ();
 
 // Insertion classe CommentPlus
 
-require_once __DIR__ . '/../../class_crud/commentplus.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/commentplus.class.php';
 
 // Instanciation de la classe CommentPlus
-$monCommentPlus= new commentPLUS ();
+$monCommentPlus= new COMMENTPLUS ();
 
 
 // Insertion classe Article
 
-require_once __DIR__ . '/../../class_crud/article.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 
-// Instanciation de la classe article
-$monArticle = new article ();
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE ();
 
 
 
@@ -51,6 +51,7 @@ $monArticle = new article ();
     <meta name="author" content="" />
     <style type="text/css">
         * {
+            margin: 0%;
             font-family: 'Roboto';
         }
         .error {

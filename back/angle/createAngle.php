@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD angle (PDO) - Modifié : 4 Juillet 2021
+//  CRUD ANGLE (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : createAngle.php  -  (ETUD)  BLOGART22
 //
@@ -18,43 +18,43 @@ require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe angle
 
-$monAngle = new angle();
+$monAngle = new ANGLE();
 
 // Insertion classe Langue
 require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 // Instanciation de la classe langue
 
-$maLangue = new langue();
+$maLangue = new LANGUE();
 
 
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
-    if (isset($_post['Submit'])) {
-        $Submit = $_post['Submit'];
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) and ($Submit === "Initialiser")) {
+    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
         header("Location: ./createAngle.php");
     }
 
-    if (((isset($_post['libAngl'])) and !empty($_post['libAngl']))
-        and ((isset($_post['TypLang'])) and !empty($_post['TypLang']))
-        and ($_post['TypLang'] != -1)
-        and (!empty($_post['Submit']) and ($Submit === "Valider"))
+    if (((isset($_POST['libAngl'])) and !empty($_POST['libAngl']))
+        and ((isset($_POST['TypLang'])) and !empty($_POST['TypLang']))
+        and ($_POST['TypLang'] != -1)
+        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
     ) {
 
         $erreur = false;
 
-        $libAngl = ctrlSaisies(($_post['libAngl']));
-        $numLang = ctrlSaisies(($_post['TypLang']));
+        $libAngl = ctrlSaisies(($_POST['libAngl']));
+        $numLang = ctrlSaisies(($_POST['TypLang']));
 
         $numAngl = $monAngle->getNextNumAngl($numLang);
 
@@ -93,7 +93,7 @@ include __DIR__ . '/initAngle.php';
     <h1 >BLOGART22 Admin - CRUD Angle</h1>
     <h2>Ajout d'un angle</h2>
 
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
       

@@ -1,6 +1,6 @@
 <?php
 /*
-* Table motcle
+* Table MOTCLE
 * initMotCle.php
 */
 // PK MotCle

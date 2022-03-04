@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD statut (PDO) - Modifié : 4 Juillet 2021
+//  CRUD STATUT (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : createStatut.php  -  (ETUD)  BLOGART22
 //
@@ -17,40 +17,40 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../class_crud/statut.class.php';
 
 // Instanciation de la classe Statut
-$monStatut = new statut();
+$monStatut = new STATUT();
 
 
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
 
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if (isset($_post['Submit'])) {
-        $Submit = $_post['Submit'];
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) and ($Submit === "Initialiser")) {
+    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
 
         header("Location: ./createStatut.php");
     }
 
 
-    if (((isset($_post['libStat'])) and !empty($_post['libStat']))
-        and (!empty($_post['Submit']) and ($Submit === "Valider"))
+    if (((isset($_POST['libStat'])) and !empty($_POST['libStat']))
+        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
     ) {
         // Saisies valides
         $erreur = false;
 
-        $libStat = ctrlSaisies(($_post['libStat']));
+        $libStat = ctrlSaisies(($_POST['libStat']));
 
         $monStatut->create($libStat);
 
         header("Location: ./statut.php");
-    }   // Fin if ((isset($_post['libStat'])) ...
+    }   // Fin if ((isset($_POST['libStat'])) ...
     else {
         // Saisies invalides
         $erreur = true;
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
 
 
 
-}   // Fin if ($_SERVER["REQUEST_METHOD"] == "post")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
 // Init variables form
 include __DIR__ . '/initStatut.php';
 ?>
@@ -80,7 +80,7 @@ include __DIR__ . '/initStatut.php';
     <h1>BLOGART22 Admin - CRUD Statut</h1>
     <h2>Ajout d'un statut</h2>
 
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
 

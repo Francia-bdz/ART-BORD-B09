@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD membre (PDO) - Modifié : 4 Juillet 2021
+//  CRUD MEMBRE (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : createMembre.php  -  (ETUD)  BLOGART22
 //
@@ -18,16 +18,16 @@ require_once __DIR__ . '/../../util/delAccents.php';
 require_once __DIR__ . '/../../util/regex.php';
 
 // Insertion classe Membre
-require_once __DIR__ . '/../../class_crud/membre.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 
 // Instanciation de la classe Membre
-$monMembre = new membre();
+$monMembre = new MEMBRE();
 
 // Insertion classe Statut
-require_once __DIR__ . '/../../class_crud/statut.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
 
 // Instanciation de la classe Statut
-$monStatut = new statut();
+$monStatut = new STATUT();
 
 // Constantes reCaptcha
 
@@ -37,45 +37,45 @@ $erreur = false;
 // init msg erreur
 
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if(isset($_post['Submit'])){
-        $Submit = $_post['Submit'];
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) AND ($Submit === "Initialiser")) {
+    if ((isset($_POST["Submit"])) AND ($Submit === "Initialiser")) {
         header("Location: ./createMembre.php");
     }  
 
-    if (((isset($_post['prenomMemb'])) AND !empty($_post['prenomMemb']))
-        AND ((isset($_post['nomMemb'])) AND !empty($_post['nomMemb']))
-        AND ((isset($_post['pseudoMemb'])) AND !empty($_post['pseudoMemb']))
-        AND ((isset($_post['pass1Memb'])) AND !empty($_post['pass1Memb']))
-        AND ((isset($_post['pass2Memb'])) AND !empty($_post['pass2Memb']))
-        AND((isset($_post['eMail1Memb'])) AND !empty($_post['eMail1Memb']))
-        AND((isset($_post['eMail2Memb'])) AND !empty($_post['eMail2Memb']))
-        AND((isset($_post['accordMemb'])) AND !empty($_post['accordMemb']))
-        AND ((isset($_post['TypStat'])) AND !empty($_post['TypStat']))
-        AND ($_post['TypStat']!=-1)
-        AND (!empty($_post['Submit']) AND ($Submit === "Valider"))) {
+    if (((isset($_POST['prenomMemb'])) AND !empty($_POST['prenomMemb']))
+        AND ((isset($_POST['nomMemb'])) AND !empty($_POST['nomMemb']))
+        AND ((isset($_POST['pseudoMemb'])) AND !empty($_POST['pseudoMemb']))
+        AND ((isset($_POST['pass1Memb'])) AND !empty($_POST['pass1Memb']))
+        AND ((isset($_POST['pass2Memb'])) AND !empty($_POST['pass2Memb']))
+        AND((isset($_POST['eMail1Memb'])) AND !empty($_POST['eMail1Memb']))
+        AND((isset($_POST['eMail2Memb'])) AND !empty($_POST['eMail2Memb']))
+        AND((isset($_POST['accordMemb'])) AND !empty($_POST['accordMemb']))
+        AND ((isset($_POST['TypStat'])) AND !empty($_POST['TypStat']))
+        AND ($_POST['TypStat']!=-1)
+        AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
      
             
-            if (($_post['accordMemb'])== "off"){
+            if (($_POST['accordMemb'])== "off"){
                 $accordMemb = 0;
-            } elseif (($_post['accordMemb']) == "on"){
+            } elseif (($_POST['accordMemb']) == "on"){
                 $accordMemb = 1;
             }
             
-            $prenomMemb = ctrlSaisies(($_post['prenomMemb']));
-            $nomMemb = ctrlSaisies(($_post['nomMemb']));
-            $pseudoMemb = ctrlSaisies(($_post['pseudoMemb']));
-            $passMemb = ctrlSaisies(($_post['pass2Memb']));
-            $eMailMemb = ctrlSaisies(($_post['eMail2Memb']));
+            $prenomMemb = ctrlSaisies(($_POST['prenomMemb']));
+            $nomMemb = ctrlSaisies(($_POST['nomMemb']));
+            $pseudoMemb = ctrlSaisies(($_POST['pseudoMemb']));
+            $passMemb = ctrlSaisies(($_POST['pass2Memb']));
+            $eMailMemb = ctrlSaisies(($_POST['eMail2Memb']));
             $dtCreaMemb = date('Y-m-d H:i:s');
-            $idStat = ctrlSaisies(($_post['TypStat']));
+            $idStat = ctrlSaisies(($_POST['TypStat']));
 
             
             if (strlen($pseudoMemb)<6 || strlen($pseudoMemb)>70){
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
                 $erreur = true;
                 $errSaisies =  "Le pseudo existe déja!";
 
-            }elseif ($eMailMemb != $_post['eMail1Memb']){
+            }elseif ($eMailMemb != $_POST['eMail1Memb']){
                 
                 $erreur = true;
                 $errSaisies =  "Les deux eMails ne correspondent pas !";
@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
                 $errSaisies =  "L'email n'est pas dans le bon format !";
 
             }
-            elseif ($passMemb != $_post['pass1Memb']){
+            elseif ($passMemb != $_POST['pass1Memb']){
                 
                 $erreur = true;
                 $errSaisies =  "Les deux mots de passe ne correspondent pas !";
@@ -169,12 +169,11 @@ include __DIR__ . '/initMembre.php';
     <h1>BLOGART22 Admin - CRUD Membre</h1>
     <h2>Ajout d'un membre : Inscription</h2>
 
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
       <fieldset>
-        <legend class="legend1">Formulaire Membre...</legend>
 
-        <input type="hidden" id="id" name="id" value="<?= isset($_post['id']) ? $_post['id'] : '' ?>" />
+        <input type="hidden" id="id" name="id" value="<?= isset($_POST['id']) ? $_POST['id'] : '' ?>" />
 
         <div class="control-group">
             <label class="control-label" for="prenomMemb"><b>Prénom<span class="error">(*)</span> :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
@@ -230,12 +229,8 @@ include __DIR__ . '/initMembre.php';
             <label class="control-label" for="accordMemb"><b>J'accepte que mes données soient conservées :</b></label>
             <div class="controls">
                <fieldset>
-                  <input type="radio" name="accordMemb"
-                  <?= ($accordMemb == "on") ? 'checked="checked"' : ''
-                  ?> value="on" />&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
-                  <input type="radio" name="accordMemb"
-                  <?= ($accordMemb == "off") ? 'checked="checked"' : ''
-                  ?> value="off" checked="checked" />&nbsp;&nbsp;Non
+                  <input type="radio" name="accordMemb" <?= ($accordMemb == "on") ? 'checked="checked"' : '' ?> value="on" />&nbsp;&nbsp;Oui&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="radio" name="accordMemb" <?= ($accordMemb == "off") ? 'checked="checked"' : '' ?> value="off" checked="checked" />&nbsp;&nbsp;Non
                </fieldset>
             </div>
         </div>
@@ -304,9 +299,9 @@ include __DIR__ . '/initMembre.php';
             <div class="controls">
                 <br><br>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
+                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:black; border:Opx; border-radius:5px; color:white;" name="Submit" />
                 <br>
             </div>
         </div>

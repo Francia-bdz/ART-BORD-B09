@@ -25,7 +25,7 @@ $maThematique = new THEMATIQUE();
 // Insertion classe Langue
 require_once __DIR__ . '/../../class_crud/langue.class.php';
 // Instanciation de la classe Langue
-$maLangue = new langue();
+$maLangue = new LANGUE();
 
 // BBCode
 
@@ -33,32 +33,32 @@ $maLangue = new langue();
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if (isset($_post['Submit'])) {
-        $Submit = $_post['Submit'];
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) and ($Submit === "Initialiser")) {
-        $sameId = $_post['id'];
+    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
+        $sameId = $_POST['id'];
         header("Location: ./updateThematique.php?id=" . $sameId);
     }
 
-    if (((isset($_post['libThem'])) and !empty($_post['libThem']))
-        and ((isset($_post['TypLang'])) and !empty($_post['TypLang']))
-        and ($_post['TypLang'] != -1)
-        and (!empty($_post['Submit']) and ($Submit === "Valider"))
+    if (((isset($_POST['libThem'])) and !empty($_POST['libThem']))
+        and ((isset($_POST['TypLang'])) and !empty($_POST['TypLang']))
+        and ($_POST['TypLang'] != -1)
+        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
     ) {
 
         $erreur = false;
 
-        $libThem = ctrlSaisies(($_post['libThem']));
-        $numLang = ctrlSaisies(($_post['TypLang']));
+        $libThem = ctrlSaisies(($_POST['libThem']));
+        $numLang = ctrlSaisies(($_POST['TypLang']));
 
-        $numThem = ctrlSaisies(($_post['id']));
+        $numThem = ctrlSaisies(($_POST['id']));
 
         $maThematique->update($numThem, $libThem, $numLang);
 
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }
-}   // Fin if ($_SERVER["REQUEST_METHOD"] === "post")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
 // Init variables form
 include __DIR__ . '/initThematique.php';
 ?>
@@ -98,7 +98,7 @@ include __DIR__ . '/initThematique.php';
     }
 
     ?>
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
 

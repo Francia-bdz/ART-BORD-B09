@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD motcle (PDO) - Modifié : 4 Juillet 2021
+//  CRUD MOTCLE (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : deleteMotCle.php  -  (ETUD)  BLOGART22
 //
@@ -16,32 +16,32 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../class_crud/motcle.class.php';
 
 // Instanciation de la classe motcle
-$monMotcle = new motcle();
+$monMotcle = new MOTCLE();
 
 // Insertion classe Langue
 require_once __DIR__ . '/../../class_crud/langue.class.php';
 // Instanciation de la classe Langue
-$maLangue = new langue();
+$maLangue = new LANGUE();
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En post
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $numMotCle = ctrlSaisies(($_post['id']));
+    $numMotCle = ctrlSaisies(($_POST['id']));
 
-    if (isset($_post['Submit'])) {
-        $Submit = $_post['Submit'];
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) and ($Submit === "Annuler")) {
+    if ((isset($_POST["Submit"])) and ($Submit === "Annuler")) {
         header("Location: ./motCle.php");
     }
 
-    if ((!empty($_post['Submit']) and ($Submit === "Valider"))) {
+    if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
         // Saisies valides
 
-        $numMotCle = ctrlSaisies(($_post['id']));
+        $numMotCle = ctrlSaisies(($_POST['id']));
 
         $monMotcle->delete($numMotCle);
 
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }
-}   // Fin if ($_SERVER["REQUEST_METHOD"] === "post")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
 // Init variables form
 include __DIR__ . '/initMotCle.php';
 ?>
@@ -98,7 +98,7 @@ include __DIR__ . '/initMotCle.php';
 
 
     ?>
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
 

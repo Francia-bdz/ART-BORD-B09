@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD membre (PDO) - Modifié : 4 Juillet 2021
+//  CRUD MEMBRE (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : deleteMembre.php  -  (ETUD)  BLOGART22
 //
@@ -20,26 +20,26 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
-$monMembre = new membre();
+$monMembre = new MEMBRE();
 
 // Insertion classe Statut
 require_once __DIR__ . '/../../class_crud/statut.class.php';
 
 // Instanciation de la classe Statut
-$monStatut = new statut();
+$monStatut = new STATUT();
 
 // Insertion classe Comment
 require_once __DIR__ . '/../../class_crud/comment.class.php';
 
 // Instanciation de la classe Comment
 
-$monComment = new comment();
+$monComment = new COMMENT();
 
 // Instanciation de la classe Likeart
-require_once __DIR__ . '/../../class_crud/likeart.class.php';
+require_once __DIR__ . '/../../class_crud/likeArt.class.php';
 
 // Insertion classe Likeart
-$monLikeArt = new likeart();
+$monLikeArt = new LIKEART();
 
 // Insertion classe Likecom
 
@@ -49,24 +49,24 @@ require_once __DIR__ . '/../../class_crud/likeCom.class.php';
 $monLikeCom = new LIKECOM();
 
 
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
-    if(isset($_post['Submit'])){
-        $Submit = $_post['Submit'];
+    if(isset($_POST['Submit'])){
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) AND ($Submit === "Annuler")) {
+    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
         header("Location: ./membre.php");
     }  
 
-    if ((!empty($_post['Submit']) AND ($Submit === "Valider"))) {
+    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
 
         $erreur = false;
 
-        $numMemb = ctrlSaisies(($_post['id']));
+        $numMemb = ctrlSaisies(($_POST['id']));
 
         $arrayComment=$monComment->get_NbAllCommentsBynumMemb($numMemb);
 
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
 
 
 
-}   // Fin if ($_SERVER["REQUEST_METHOD"] === "post")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
 // Init variables form
 include __DIR__ . '/initMembre.php';
 ?>
@@ -137,7 +137,7 @@ include __DIR__ . '/initMembre.php';
 
 
 ?>
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
       <fieldset>
 

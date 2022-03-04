@@ -1,9 +1,9 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD likeart (PDO) - Modifié : 4 Juillet 2021
+//  CRUD LIKEART (PDO) - Modifié : 4 Juillet 2021
 //
-//  Script  : likeart.php  -  (ETUD)  BLOGART22
+//  Script  : likeArt.php  -  (ETUD)  BLOGART22
 //
 ////////////////////////////////////////////////////////////
 
@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../class_crud/likeart.class.php';
 
 // Instanciation de la classe Likeart
 
-$monLikeArt = new likeart();
+$monLikeArt = new LIKEART();
 
 ?>
 <!DOCTYPE html>

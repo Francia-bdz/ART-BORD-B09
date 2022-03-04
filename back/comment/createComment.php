@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD comment (PDO) - Modifié : 4 Juillet 2021
+//  CRUD COMMENT (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : createComment.php  -  (ETUD)  BLOGART22
 //
@@ -19,50 +19,50 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 require_once __DIR__ . '/../../class_crud/comment.class.php';
 
-// Instanciation de la classe comment
-$monComment = new comment();
+// Instanciation de la classe COMMENT
+$monComment = new COMMENT();
 
 // Insertion classe Membre
 require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
-$monMembre = new membre();
+$monMembre = new MEMBRE();
 
 // Insertion classe Article
 
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe article
-$monArticle = new article();
+// Instanciation de la classe ARTICLE
+$monArticle = new ARTICLE();
 
 // Gestion des erreurs de saisie
 $erreur = false;
 
-if ($_SERVER["REQUEST_METHOD"] === "post") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if (isset($_post['Submit'])) {
-        $Submit = $_post['Submit'];
+    if (isset($_POST['Submit'])) {
+        $Submit = $_POST['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_post["Submit"])) and ($Submit === "Initialiser")) {
+    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
         header("Location: ./createComment.php");
     }
 
-    if (((isset($_post['TypMemb'])) and !empty($_post['TypMemb']))
-        and ($_post['TypMemb'] != -1) and
-        ((isset($_post['TypArt'])) and !empty($_post['TypArt']))
-        and ($_post['TypArt'] != -1)
-        and ((isset($_post['libCom'])) and !empty($_post['libCom']))
-        and (!empty($_post['Submit']) and ($Submit === "Valider"))
+    if (((isset($_POST['TypMemb'])) and !empty($_POST['TypMemb']))
+        and ($_POST['TypMemb'] != -1) and
+        ((isset($_POST['TypArt'])) and !empty($_POST['TypArt']))
+        and ($_POST['TypArt'] != -1)
+        and ((isset($_POST['libCom'])) and !empty($_POST['libCom']))
+        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
     ) {
 
         $erreur = false;
 
-        $numMemb = ctrlSaisies(($_post['TypMemb']));
-        $numArt = ctrlSaisies(($_post['TypArt']));
-        $libCom = ctrlSaisies(($_post['libCom']));
+        $numMemb = ctrlSaisies(($_POST['TypMemb']));
+        $numArt = ctrlSaisies(($_POST['TypArt']));
+        $libCom = ctrlSaisies(($_POST['libCom']));
 
         $numSeqCom = $monComment->getNextNumCom($numArt);
 
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }
-}   // Fin if ($_SERVER["REQUEST_METHOD"] == "post")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
 // Init variables form
 include __DIR__ . '/initComment.php';
 // Var init
@@ -102,7 +102,7 @@ include __DIR__ . '/initComment.php';
     <h1>BLOGART22 Admin - CRUD Commentaire</h1>
     <h2>Ajout d'un commentaire</h2>
 
-    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
             

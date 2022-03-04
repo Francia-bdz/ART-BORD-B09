@@ -1,7 +1,7 @@
 <?php
 /////////////////////////////////////////////////////
 //
-//  CRUD motclearticle (PDO) - Modifié : 6 Juillet 2021
+//  CRUD MOTCLEARTICLE (PDO) - Modifié : 6 Juillet 2021
 //
 //  Script  : motCleArticle.php  -  (ETUD)  BLOGART22
 //
