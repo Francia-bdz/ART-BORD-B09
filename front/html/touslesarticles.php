@@ -175,8 +175,8 @@ $monArticle = new ARTICLE ();
 
 <section class="cover_articles">
     <div class="header">
-        <li class="li_header"><a href="#" class="a_header"> Accueil </a></li>
-        <li class="li_header"><a href="#" class="a_header"> Articles </a></li>
+        <li class="li_header"><a href="<?= ROOTFRONT . '/front/html/' . 'accueil.php' ?>" class="a_header"> Accueil </a></li>
+        <li class="li_header"><a href="<?= ROOTFRONT . '/front/html/' . 'touslesarticles.php' ?>" class="a_header"> Articles </a></li>
         <input class="navbar" type="text" size="30" placeholder="Rechercher" />
     </div>
     <h1 class="couleur_h1"> ARTICLES </h1>

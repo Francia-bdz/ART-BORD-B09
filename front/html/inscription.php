@@ -265,6 +265,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         .deja_inscrit {
             margin-top: 2%;
             font-weight: bolder;
+            margin-bottom: 5%;
         }
 
         .deja_inscrit_lien {

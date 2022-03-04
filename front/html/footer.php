@@ -119,14 +119,14 @@
         <div class="Plan_du_site">
             <div class="Plan_du_site_1">
                 <ul>
-                    <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Accueil </a></li>
-                    <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Articles </a></li>
+                    <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'accueil.php' ?>" class="a_Plan_du_site"> Accueil </a></li>
+                    <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'touslesarticles.php' ?>" class="a_Plan_du_site"> Articles </a></li>
                 </ul>
             </div>
             <div class="Plan_du_site_2"></div>
             <ul>
-                <li class="li_Plan_du_site"><a href="" class="a_Plan_du_site"> Se connecter </a></li>
-                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> S'inscrire</a></li>
+                <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'connexion.php' ?>" class="a_Plan_du_site"> Se connecter </a></li>
+                <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'inscription.php' ?>" class="a_Plan_du_site"> S'inscrire</a></li>
             </ul>
         </div>
         <div class="Partie_Droit_Background">
