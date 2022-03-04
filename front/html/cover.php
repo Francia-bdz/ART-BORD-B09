@@ -2,11 +2,11 @@
 
 // Insertion classe Membre
 
-require_once __DIR__ . '/../../class_crud/membre.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 
 // Instanciation de la classe Membre
 
-$monMembre = new membre();
+$monMembre = new MEMBRE();
 
 
 ?>
@@ -143,15 +143,15 @@ if(isset($_COOKIE['eMailMemb'])){
 
     $pseudoMemb=$oneMembre['pseudoMemb'];
   
-    if ($_SERVER["REQUEST_METHOD"] === "post"){
+    if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
-    if(!empty($_post['deconnexion']) and ($_post['deconnexion'] === "Se deconnecter")){
+    if(!empty($_POST['deconnexion']) and ($_POST['deconnexion'] === "Se deconnecter")){
 
     setcookie('eMailMemb');
 }
 }
         ?>
-        <form class="p_header" method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+        <form class="p_header" method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
             <p class="p_header"> Bonjour, <?=$pseudoMemb; ?>
             <br>

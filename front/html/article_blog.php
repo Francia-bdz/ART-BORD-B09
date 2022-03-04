@@ -4,12 +4,17 @@
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Article
-require_once __DIR__ . '/../../class_crud/article.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 
 // require_once __DIR__ .  '/../../back/article/ctrlerUploadImage.php';
 
 // Instanciation de la classe article
 $monArticle = new article();
+
+// Insertion classe Comment
+require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
+
+$monComment = new COMMENT();
 
 ?>
 
@@ -33,7 +38,6 @@ $monArticle = new article();
                 url(/front/assets/typo/Bigilla.otf);
             font-weight: normal;
         }
-
 
         h2 {
             font-family: 'Roboto';
@@ -87,6 +91,7 @@ $monArticle = new article();
             font-size: 20px;
             text-align: left;
             padding: 0%;
+            line-height: 150%;
         }
 
         .pblanc {
@@ -95,6 +100,7 @@ $monArticle = new article();
             text-align: left;
             padding: 0%;
             color: white;
+            line-height: 150%;
         }
 
 
@@ -149,12 +155,6 @@ $monArticle = new article();
             padding-bottom: 0%;
         }
 
-        /* .pitieligne {
-  margin-top: 50%;
-  display: flex;
-  flex-direction: row;
-} */
-
 
         .ligne_verticale {
             width: 307px;
@@ -180,9 +180,74 @@ $monArticle = new article();
 
         .fond_noir {
             background-color: black;
-            height: 1464px;
+            padding-bottom: 5%;
             padding-top: 2%;
         }
+
+        .barre_commentaire {
+    border-color: #FFA800;
+    border-radius: 20px;
+    border-style: solid;
+    width: 540px;
+    height: 28px;
+    margin-left: 8%;
+    margin-bottom: 3%;
+    margin-right: 2%;
+    padding: 1%;
+}
+
+.style_pseudo {
+    font-weight: bolder;
+}
+
+
+.mis_en_page_commentaire_plus {
+    display: flex;
+    flex-direction: row;
+    margin-left: 15%;
+    margin-right: 35%;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.style_typo {
+    color: #7798C9;
+    font-weight: bolder;
+    margin-left: 10%;
+}
+
+.recadrage_bouton_coeur {
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+}
+
+a:hover {
+    opacity: 0.5;
+}
+
+.espace {
+    margin-left: 3%;
+}
+
+.mis_en_page_commentaire {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.recadrage_bouton {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    align-items: center;
+}
+
+.h3_commentaire{
+    margin-left: 8%;
+}
     </style>
 
 </head>
@@ -210,6 +275,8 @@ if (isset($_GET['id'])) {
 <body>
 
     <?php
+
+    require_once __DIR__ . '/cover_article.php';
 
     $from = 'Y-m-d H:i:s';
     $to = 'd/m';
@@ -280,7 +347,39 @@ if (isset($_GET['id'])) {
 
     </div>
 
+    
+    <div class="mis_en_page_commentaire">
+        <h3 class="h3_commentaire">Commentaires</h3>
+    </div>
+
+    <div class="mis_en_page_commentaire">
+    <!-- <div class="barre_commentaire espace "></div> -->
+    <input class ="barre_commentaire" type="text" name="libCom" id="libCom" size="540" placeholder="Entrez votre commentaire" autofocus />
+    <a type="submit"><img class="recadrage_bouton espace" src="<?= ROOTFRONT . '/front/assets/images/' . 'ajouter commentaire.png'?>" alt="bouton + pour ajouter un commentaire une fois qu'il est écrit"></a>
+    <a type="submit"><p class="espace style_typo"> Ajouter un <br> commentaire</p></a>
+    </div>
+
     <?php
+
+    $allComments=$monComment->get_AllCommentsByArticle($id);
+
+    foreach($allComments as $row) {
+
+    ?>
+    <div class="mis_en_page_commentaire_plus">
+        <p class="style_pseudo"><?= $row["pseudoMemb"]; ?> </p>
+    <p class="espace"><?= $row["libCom"]; ?></p>
+        <img  class="recadrage_bouton_coeur espace" src="<?= ROOTFRONT . '/front/assets/images/' . 'coeur gris.png' ?>">
+    </div>
+
+
+    <?php
+    }
+    ?>
+
+    <?php
+
+    require_once __DIR__ . '/footer.php';
 
     ?>
 </body>

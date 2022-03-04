@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -12,50 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link href="/front/sheets/footer.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-
-<?php
-
-require_once __DIR__ . '/cover.php';
-require_once __DIR__ . '/jacceptecookies.php';
-require_once __DIR__ . '/articlesrecents.php';
-require_once __DIR__ . '/apropos.php';
-
-// require_once __DIR__ . '/footer.php';
-// require_once __DIR__ . '/popup.php';
-
-?>
-
-<footer>
-        <div class="title_and_rectangle">
-            <p class="title_footer">ART'BORD</p>
-            <div class="rectangle_noir_footer"></div>
-        </div>
-        <div class="Plan_du_site">
-            <div class="Plan_du_site_1">
-                <ul>
-                    <li class="li_Plan_du_site"><a href="http://localhost/ARTBORD/BLOGART22/front/html/accueil.php" class="a_Plan_du_site"> Accueil </a></li>
-                    <li class="li_Plan_du_site"><a href="http://localhost/ARTBORD/BLOGART22/front/html/touslesarticles.php" class="a_Plan_du_site"> Articles </a></li>
-                </ul>
-            </div>
-            <div class="Plan_du_site_2"></div>
-            <ul>
-                <li class="li_Plan_du_site"><a href="http://localhost/ARTBORD/BLOGART22/front/html/connexion.php" class="a_Plan_du_site"> Se connecter </a></li>
-                <li class="li_Plan_du_site"><a href="http://localhost/ARTBORD/BLOGART22/front/html/inscription.php" class="a_Plan_du_site"> S'inscrire</a></li>
-            </ul>
-        </div>
-        <div class="Partie_Droit_Background">
-            <div class="Partie_Droit">
-
-                <li><a href="http://localhost/ARTBORD/BLOGART22/front/html/mentions.php"> Mentions légales |</a></li>
-                <li><a href="http://localhost/ARTBORD/BLOGART22/front/html/connexionadmin.php"> Partie Admin |</a></li>
-            </div>
-        </div>
-
-    </footer>
-
     <style type="text/css">
         @font-face {
             font-family: "Bigilla";
@@ -153,6 +107,38 @@ require_once __DIR__ . '/apropos.php';
             color: #7798C9;
         }
     </style>
-    
+</head>
+
+<body>
+
+    <footer>
+        <div class="title_and_rectangle">
+            <p class="title_footer">ART'BORD</p>
+            <div class="rectangle_noir_footer"></div>
+        </div>
+        <div class="Plan_du_site">
+            <div class="Plan_du_site_1">
+                <ul>
+                    <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'accueil.php' ?>" class="a_Plan_du_site"> Accueil </a></li>
+                    <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'touslesarticles.php' ?>" class="a_Plan_du_site"> Articles </a></li>
+                </ul>
+            </div>
+            <div class="Plan_du_site_2"></div>
+            <ul>
+                <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'connexion.php' ?>" class="a_Plan_du_site"> Se connecter </a></li>
+                <li class="li_Plan_du_site"><a href="<?= ROOTFRONT . '/front/html/' . 'inscription.php' ?>" class="a_Plan_du_site"> S'inscrire</a></li>
+            </ul>
+        </div>
+        <div class="Partie_Droit_Background">
+            <div class="Partie_Droit">
+
+                <li><a href="<?= ROOTFRONT . '/front/html/' . 'mentions.php' ?>"> Mentions légales |</a></li>
+                <li><a href="<?= ROOTFRONT . '/front/html/' . 'connexionadmin.php' ?>"> Partie Admin |</a></li>
+            </div>
+        </div>
+
+    </footer>
+
 </body>
 
+</html>
