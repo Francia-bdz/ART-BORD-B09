@@ -35,6 +35,7 @@ $monUser = new USER();
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
          * {
+             margin: 0%;
             font-family: 'Roboto';
         }
         .error {
