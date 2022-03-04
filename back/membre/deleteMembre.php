@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD MEMBRE (PDO) - Modifié : 4 Juillet 2021
+//  CRUD membre (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : deleteMembre.php  -  (ETUD)  BLOGART22
 //
@@ -20,13 +20,13 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
-$monMembre = new MEMBRE();
+$monMembre = new membre();
 
 // Insertion classe Statut
 require_once __DIR__ . '/../../class_crud/statut.class.php';
 
 // Instanciation de la classe Statut
-$monStatut = new STATUT();
+$monStatut = new statut();
 
 // Insertion classe Comment
 require_once __DIR__ . '/../../class_crud/comment.class.php';
@@ -39,7 +39,7 @@ $monComment = new COMMENT();
 require_once __DIR__ . '/../../class_crud/likeArt.class.php';
 
 // Insertion classe Likeart
-$monLikeArt = new LIKEART();
+$monLikeArt = new likeart();
 
 // Insertion classe Likecom
 
@@ -49,24 +49,24 @@ require_once __DIR__ . '/../../class_crud/likeCom.class.php';
 $monLikeCom = new LIKECOM();
 
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
 
-    if(isset($_POST['Submit'])){
-        $Submit = $_POST['Submit'];
+    if(isset($_post['Submit'])){
+        $Submit = $_post['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
+    if ((isset($_post["Submit"])) AND ($Submit === "Annuler")) {
         header("Location: ./membre.php");
     }  
 
-    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+    if ((!empty($_post['Submit']) AND ($Submit === "Valider"))) {
 
         $erreur = false;
 
-        $numMemb = ctrlSaisies(($_POST['id']));
+        $numMemb = ctrlSaisies(($_post['id']));
 
         $arrayComment=$monComment->get_NbAllCommentsBynumMemb($numMemb);
 
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-}   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] === "post")
 // Init variables form
 include __DIR__ . '/initMembre.php';
 ?>
@@ -137,7 +137,7 @@ include __DIR__ . '/initMembre.php';
 
 
 ?>
-    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
       <fieldset>
 

@@ -1,13 +1,13 @@
 <?php
-// CRUD LANGUE
+// CRUD langue
 // ETUD
 require_once __DIR__ . '../../connect/database.php';
 
-class LANGUE{
+class langue{
 	function get_1Langue($numLang){
 		global $db;
 		
-		$query='SELECT * FROM LANGUE NATURAL JOIN PAYS WHERE numLang= ?';
+		$query='SELECT * FROM langue NATURAL JOIN PAYS WHERE numLang= ?';
 		$request = $db->prepare($query);
 		$request->execute([$numLang]);
 		return($request->fetch());
@@ -16,7 +16,7 @@ class LANGUE{
 	function get_1LangueByPays($numLang){
 		global $db;
 
-		$query = 'SELECT * FROM LANGUE ET INNER JOIN PAYS CL ON ET.numLang = CL.numLang WHERE numLang = ?;';
+		$query = 'SELECT * FROM langue ET INNER JOIN PAYS CL ON ET.numLang = CL.numLang WHERE numLang = ?;';
 		$result = $db->prepare($query);
 		$result->execute([$numLang]);
 		return($result->fetch());
@@ -25,7 +25,7 @@ class LANGUE{
 	function get_AllLangues(){
 		global $db;
 		
-		$query ='SELECT * FROM LANGUE NATURAL JOIN PAYS;';
+		$query ='SELECT * FROM langue NATURAL JOIN PAYS;';
 		$result = $db->query($query);
 		$allLangues = $result->fetchAll();
 		return($allLangues);
@@ -34,7 +34,7 @@ class LANGUE{
 	function get_AllLanguesByPays(){
 		global $db;
 
-		$query = 'SELECT * FROM LANGUE LA INNER JOIN PAYS PA ON LA.numPays = PA.numPays;';
+		$query = 'SELECT * FROM langue LA INNER JOIN PAYS PA ON LA.numPays = PA.numPays;';
 		$result = $db->query($query);
 		$allLanguesByPays = $result->fetchAll();
 		return($allLanguesByPays);
@@ -42,7 +42,7 @@ class LANGUE{
 
 	function get_AllLanguesByLib1Lang(){
 		global $db;
-		$query = 'SELECT * FROM LANGUE ORDER BY lib1Lang;';
+		$query = 'SELECT * FROM langue ORDER BY lib1Lang;';
 		$result = $db->query($query);
 		$allLanguesByLib1Lang = $result->fetchAll();
 		return($allLanguesByLib1Lang);
@@ -58,7 +58,7 @@ class LANGUE{
 		$numPaysSelect = $numPays;  // exemple : 'CHIN'
 		$parmNumLang = $numPaysSelect . '%';
 	
-		$requete = "SELECT MAX(numLang) AS numLang FROM LANGUE WHERE numLang LIKE '$parmNumLang';";
+		$requete = "SELECT MAX(numLang) AS numLang FROM langue WHERE numLang LIKE '$parmNumLang';";
 	
 		$result = $db->query($requete);
 	
@@ -95,7 +95,7 @@ class LANGUE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO LANGUE (numLang, lib1Lang, lib2Lang, numPays) VALUES (?,?,?,?)';
+			$query = 'INSERT INTO langue (numLang, lib1Lang, lib2Lang, numPays) VALUES (?,?,?,?)';
 			$request = $db->prepare($query);
 			$request->execute([$numLang, $lib1Lang, $lib2Lang, $numPays]);
 			$db->commit();
@@ -104,7 +104,7 @@ class LANGUE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert LANGUE : ' . $e->getMessage());
+			die('Erreur insert langue : ' . $e->getMessage());
 		}
 	}
 
@@ -114,7 +114,7 @@ class LANGUE{
 		try {
 			$db->beginTransaction();
 
-			$query='UPDATE LANGUE SET lib1Lang=?, lib2Lang=?, numPays=? WHERE numLang=?';
+			$query='UPDATE langue SET lib1Lang=?, lib2Lang=?, numPays=? WHERE numLang=?';
 			$request = $db->prepare($query);
 			$request->execute([$lib1Lang,$lib2Lang,$numPays,$numLang]);
 			$db->commit();
@@ -123,7 +123,7 @@ class LANGUE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update LANGUE : ' . $e->getMessage());
+			die('Erreur update langue : ' . $e->getMessage());
 		}
 	}
 
@@ -133,7 +133,7 @@ class LANGUE{
 
 		try {
 			$db->beginTransaction();
-			$query='DELETE FROM LANGUE WHERE numLang=?';
+			$query='DELETE FROM langue WHERE numLang=?';
 			$request = $db->prepare($query);
 			$request->execute([$numLang]);
 			$count = $request->rowCount();
@@ -144,7 +144,7 @@ class LANGUE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete LANGUE : ' . $e->getMessage());
+			die('Erreur delete langue : ' . $e->getMessage());
 		}
 	}
 }	// End of class

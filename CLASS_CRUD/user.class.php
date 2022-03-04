@@ -35,7 +35,7 @@ class USER{
 	function get_AllUsersByStat(){
 		global $db;
 
-		$query ='SELECT * FROM USER NATURAL JOIN STATUT ';
+		$query ='SELECT * FROM USER NATURAL JOIN statut ';
 		$result = $db->query($query);
 		$allUsersByStat = $result->fetchAll();
 		return($allUsersByStat);

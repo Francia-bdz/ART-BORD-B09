@@ -7,7 +7,7 @@ class THEMATIQUE{
 	function get_1Thematique($numThem){
 		global $db;
 		
-		$query='SELECT * FROM THEMATIQUE NATURAL JOIN LANGUE WHERE numThem= ?';
+		$query='SELECT * FROM THEMATIQUE NATURAL JOIN langue WHERE numThem= ?';
 		$request = $db->prepare($query);
 		$request->execute([$numThem]);
 		return($request->fetch());
@@ -16,7 +16,7 @@ class THEMATIQUE{
 	function get_1ThematiqueByLang($numThem){
 		
 		global $db;
-		$query='SELECT * FROM THEMATIQUE NATURAL JOIN LANGUE WHERE numThem= ?';
+		$query='SELECT * FROM THEMATIQUE NATURAL JOIN langue WHERE numThem= ?';
 		$result = $db->prepare($query);
 		$result->execute([$numThem]);
 		return($result->fetch());
@@ -34,7 +34,7 @@ class THEMATIQUE{
 	function get_AllThematiquesByLang(){
 		global $db;
 
-		$query='SELECT * FROM THEMATIQUE NATURAL JOIN LANGUE ORDER BY libThem';
+		$query='SELECT * FROM THEMATIQUE NATURAL JOIN langue ORDER BY libThem';
 		$result = $db->query($query);
 		$allThematiquesByLang=$result->fetchAll();
 		return($allThematiquesByLang);
@@ -54,7 +54,7 @@ class THEMATIQUE{
 	function getNextNumThem($numLang) {
 		global $db;
 	
-		// Découpage FK LANGUE
+		// Découpage FK langue
 		$libLangSelect = substr($numLang, 0, 4);
 		$parmNumLang = $libLangSelect . '%';
 	
@@ -72,7 +72,7 @@ class THEMATIQUE{
 				$numThem = $tuple["numThem"];
 	
 				$numThemSelect = (int)substr($numThem, 4, 2);
-				// No séquence suivant LANGUE
+				// No séquence suivant langue
 				$numSeq1Them = $numThemSelect + 1;
 				// Init no séquence THEMATIQUE pour nouvelle lang
 				$numSeq2Them = 1;
@@ -83,9 +83,9 @@ class THEMATIQUE{
 				$tuple = $result->fetch();
 				$numThem = $tuple["numThem"];
 	
-				// No séquence actuel LANGUE
+				// No séquence actuel langue
 				$numSeq1Them = (int)substr($numThem, 4, 2);
-				// No séquence actuel LANGUE
+				// No séquence actuel langue
 				$numSeq2Them = (int)substr($numThem, 6, 2);
 				// No séquence suivant THEMATIQUE
 				$numSeq2Them++;
@@ -104,7 +104,7 @@ class THEMATIQUE{
 			} else {
 				$numThem = $numThem . $numSeq2Them;
 			}
-		}   // End of if ($result) / no seq LANGUE
+		}   // End of if ($result) / no seq langue
 		return $numThem;
 	} // End of function
 

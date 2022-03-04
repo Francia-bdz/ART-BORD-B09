@@ -47,24 +47,24 @@ $targetDir = TARGET;
 
 // init mots cles
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En post
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
-    if(isset($_POST['Submit'])){
-        $Submit = $_POST['Submit'];
+    if(isset($_post['Submit'])){
+        $Submit = $_post['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) AND ($Submit === "Annuler")) {
+    if ((isset($_post["Submit"])) AND ($Submit === "Annuler")) {
         header("Location: ./article.php");
     }  
 
-    if ((!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+    if ((!empty($_post['Submit']) AND ($Submit === "Valider"))) {
   
         $erreur = false;
 
-        $numArt = ctrlSaisies(($_POST['id']));
+        $numArt = ctrlSaisies(($_post['id']));
 
         // $arrayArticle=$monArticle->get_NbAllArticlesByNumThem($numThem);
 
@@ -130,7 +130,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 }
 
 ?>
-    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
       <fieldset>
 

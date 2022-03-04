@@ -24,8 +24,8 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En post
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
 
 
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-}   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] == "post")
 // Init variables form
 include __DIR__ . '/initComment.php';
 $htmlCode    = "";
@@ -85,7 +85,7 @@ $description = "";
 
 ?>
 
-    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
       <fieldset>
         <legend class="legend1">Modération : validez un commentaire...</legend>

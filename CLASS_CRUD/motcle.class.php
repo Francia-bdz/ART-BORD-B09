@@ -7,7 +7,7 @@ class MOTCLE{
 	function get_1MotCle($numMotCle){
 		global $db;
 
-		$query='SELECT * FROM MOTCLE NATURAL JOIN LANGUE WHERE numMotCle= ?';
+		$query='SELECT * FROM MOTCLE NATURAL JOIN langue WHERE numMotCle= ?';
 		$request = $db->prepare($query);
 		$request->execute([$numMotCle]);
 		return($request->fetch());
@@ -16,7 +16,7 @@ class MOTCLE{
 	function get_1MotCleByLang($numMotCle){
 		global $db;
 
-		$query='SELECT * FROM MOTCLE NATURAL JOIN LANGUE WHERE numLang= ?';
+		$query='SELECT * FROM MOTCLE NATURAL JOIN langue WHERE numLang= ?';
 		$request = $db->prepare($query);
 		$request->execute([$numMotCle]);
 		return($request->fetch());
@@ -25,7 +25,7 @@ class MOTCLE{
 	function get_AllMotCles(){
 		global $db;
 
-		$query ='SELECT * FROM MOTCLE NATURAL JOIN LANGUE ORDER BY numMotCle;';
+		$query ='SELECT * FROM MOTCLE NATURAL JOIN langue ORDER BY numMotCle;';
 		$result = $db->query($query);
 		$allMotCles = $result->fetchAll();
 		return($allMotCles);
@@ -34,7 +34,7 @@ class MOTCLE{
 	function get_AllMotsClesByLang(){
 		global $db;
 
-		$query='SELECT * FROM MOTCLE NATURAL JOIN LANGUE ORDER BY lib1Lang';
+		$query='SELECT * FROM MOTCLE NATURAL JOIN langue ORDER BY lib1Lang';
 		$result = $db->query($query);
 		$allMotsClesByLang=$result->fetchAll();
 		return($allMotsClesByLang);
@@ -71,7 +71,7 @@ class MOTCLE{
 	function getNextNumMotCle($numLang) {
 		global $db;
 	
-		// Découpage FK LANGUE
+		// Découpage FK langue
 		$libLangSelect = substr($numLang, 0, 4);
 		$parmNumLang = $libLangSelect . '%';
 	
@@ -89,7 +89,7 @@ class MOTCLE{
 				$numMotCle = $tuple["numMot"];
 	
 				$numMotCleSelect = (int)substr($numMotCle, 4, 2);
-				// No séquence suivant LANGUE
+				// No séquence suivant langue
 				$numSeq1MotCle = $numMotCleSelect + 1;
 				// Init no séquence MOTCLE pour nouvelle lang
 				$numSeq2MotCle = 1;
@@ -100,7 +100,7 @@ class MOTCLE{
 				$tuple = $result->fetch();
 				$numMotCle = $tuple["numMotCle"];
 	
-				// No séquence actuel LANGUE
+				// No séquence actuel langue
 				$numSeq1MotCle = (int)substr($numMotCle, 4, 2);
 				// No séquence actuel MOTCLE
 				$numSeq2MotCle = (int)substr($numMotCle, 6, 2);
@@ -121,7 +121,7 @@ class MOTCLE{
 			} else {
 				$numMotCle = $numMotCle . $numSeq2MotCle;
 			}
-		}   // End of if ($result) / no seq LANGUE
+		}   // End of if ($result) / no seq langue
 		return $numMotCle;
 	} // End of function
 

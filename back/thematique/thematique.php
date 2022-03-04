@@ -24,7 +24,7 @@ $maThematique = new THEMATIQUE();
 // Insertion classe Langue
 require_once __DIR__ . '/../../class_crud/langue.class.php';
 // Instanciation de la classe Langue
-$maLangue = new LANGUE();
+$maLangue = new langue();
 
 // Ctrl CIR
 $errCIR = 0;

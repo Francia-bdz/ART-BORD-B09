@@ -13,7 +13,7 @@ require_once __DIR__ . '/../../connect/database.php';
 $langue = $_REQUEST["numLang"];
 
 if (isset($langue)) {
-	$query = "SELECT numThem, libThem FROM THEMATIQUE NATURAL JOIN LANGUE WHERE numLang= ?;" ;
+	$query = "SELECT numThem, libThem FROM THEMATIQUE NATURAL JOIN langue WHERE numLang= ?;" ;
 	$result = $db->prepare($query);
 	$result->execute([$langue]);
 	$allThematiquesByLang= $result->fetchAll();

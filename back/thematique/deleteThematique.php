@@ -23,7 +23,7 @@ $maThematique = new THEMATIQUE();
 require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 // Instanciation de la classe Langue
-$maLangue = new LANGUE();
+$maLangue = new langue();
 
 // Ctrl CIR
 // Insertion classe Article
@@ -35,24 +35,24 @@ $monArticle = new ARTICLE();
 // BBCode
 
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En post
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
-    if (isset($_POST['Submit'])) {
-        $Submit = $_POST['Submit'];
+    if (isset($_post['Submit'])) {
+        $Submit = $_post['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) and ($Submit === "Annuler")) {
+    if ((isset($_post["Submit"])) and ($Submit === "Annuler")) {
         header("Location: ./thematique.php");
     }
 
-    if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
+    if ((!empty($_post['Submit']) and ($Submit === "Valider"))) {
         // Saisies valides
         $erreur = false;
 
-        $numThem = ctrlSaisies(($_POST['id']));
+        $numThem = ctrlSaisies(($_post['id']));
 
         $arrayArticle = $monArticle->get_NbAllArticlesByNumThem($numThem);
 
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($countArticle < 1) {
             $erreur = false;
 
-            $numThem = ctrlSaisies(($_POST['id']));
+            $numThem = ctrlSaisies(($_post['id']));
 
             $maThematique->delete($numThem);
 
@@ -120,7 +120,7 @@ include __DIR__ . '/initThematique.php';
     }
 
     ?>
-    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
 

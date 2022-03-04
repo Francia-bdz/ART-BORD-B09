@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD LIKEART (PDO) - Modifié : 4 Juillet 2021
+//  CRUD likeart (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : updateLikeArt.php  -  (ETUD)  BLOGART22
 //

@@ -17,7 +17,7 @@ class LIKECOM{
 		
 		global $db;
 	
-		$query='SELECT * FROM LIKECOM NATURAL JOIN MEMBRE WHERE (numMemb= ? AND numSeqCom=? AND numArt= ?)';
+		$query='SELECT * FROM LIKECOM NATURAL JOIN membre WHERE (numMemb= ? AND numSeqCom=? AND numArt= ?)';
 		$result = $db->prepare($query);
 		$result->execute([$numMemb,$numSeqCom ,$numArt]);
 		return($result->fetch());
@@ -44,7 +44,7 @@ class LIKECOM{
 	function get_AllLikesCom(){
 		global $db;
 
-		$query ='SELECT * FROM MEMBRE ME INNER JOIN LIKECOM LKC ON ME.numMemb = LKC.numMemb INNER JOIN ARTICLE ART ON LKC.numArt = ART.numArt INNER JOIN COMMENT CO ON CO.numSeqCom=LKC.numSeqCom;';
+		$query ='SELECT * FROM membre ME INNER JOIN LIKECOM LKC ON ME.numMemb = LKC.numMemb INNER JOIN ARTICLE ART ON LKC.numArt = ART.numArt INNER JOIN COMMENT CO ON CO.numSeqCom=LKC.numSeqCom;';
 		$result = $db->query($query);
 		$allLikesCom = $result->fetchAll();
 		return($allLikesCom);
@@ -62,7 +62,7 @@ class LIKECOM{
 	function get_AllLikesComByMembre($numMemb){
 		global $db;
 
-		$query='SELECT * FROM LIKECOM NATURAL JOIN MEMBRE WHERE numMemb=?';
+		$query='SELECT * FROM LIKECOM NATURAL JOIN membre WHERE numMemb=?';
 		$result = $db->prepare($query);
 		$result->execute([$numMemb]);
 		return($result->fetchAll());

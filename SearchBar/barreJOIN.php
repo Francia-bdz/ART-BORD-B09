@@ -27,11 +27,11 @@ require_once __DIR__ . '/../util/ctrlSaisies.php';
 // Recherche à partir de table MOTCLE
 /*------------------------------------------------------------------*/
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
 	// recup most clés
 
-}   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] == "post")
 
 /*------------------------------------------------------------------*/
 // Formulaire
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
 	<h1>BLOGART22 Admin - Barre de recherche dans MOTCLE (JOIN)</h1>
-  	<form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+  	<form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 		<br>
 		<input type="search" name="motcle" required="required" size="70" maxlength="70" placeholder="Mots clés séparés par un espace..." />
 		<br><br>

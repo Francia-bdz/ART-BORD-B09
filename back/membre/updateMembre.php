@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD MEMBRE (PDO) - Modifié : 4 Juillet 2021
+//  CRUD membre (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : updateMembre.php  -  (ETUD)  BLOGART22
 //
@@ -19,13 +19,13 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 // Insertion classe Membre
 require_once __DIR__ . '/../../class_crud/membre.class.php';
 
-// Instanciation de la classe STATUT
-$monMembre = new MEMBRE();
+// Instanciation de la classe statut
+$monMembre = new membre();
 
 require_once __DIR__ . '/../../class_crud/statut.class.php';
 
-// Instanciation de la classe STATUT
-$monStatut = new STATUT();
+// Instanciation de la classe statut
+$monStatut = new statut();
 
 
 // Gestion des erreurs de saisie
@@ -34,47 +34,47 @@ $erreur = false;
 // Init msg
 
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En post
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
 
-    if (isset($_POST['Submit'])) {
-        $Submit = $_POST['Submit'];
+    if (isset($_post['Submit'])) {
+        $Submit = $_post['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
-        $sameId = $_POST['id'];
+    if ((isset($_post["Submit"])) and ($Submit === "Initialiser")) {
+        $sameId = $_post['id'];
         header("Location: ./updateMembre.php?id=" . $sameId);
     }
 
 
-    if (((isset($_POST['prenomMemb'])) and !empty($_POST['prenomMemb']))
-        and ((isset($_POST['nomMemb'])) and !empty($_POST['nomMemb']))
-        and ((isset($_POST['pass1Memb'])) and !empty($_POST['pass1Memb']))
-        and ((isset($_POST['pass2Memb'])) and !empty($_POST['pass2Memb']))
-        and ((isset($_POST['eMail1Memb'])) and !empty($_POST['eMail1Memb']))
-        and ((isset($_POST['eMail2Memb'])) and !empty($_POST['eMail2Memb']))
-        and ((isset($_POST['TypStat'])) and !empty($_POST['TypStat']))
-        and ($_POST['TypStat'] != -1)
-        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
+    if (((isset($_post['prenomMemb'])) and !empty($_post['prenomMemb']))
+        and ((isset($_post['nomMemb'])) and !empty($_post['nomMemb']))
+        and ((isset($_post['pass1Memb'])) and !empty($_post['pass1Memb']))
+        and ((isset($_post['pass2Memb'])) and !empty($_post['pass2Memb']))
+        and ((isset($_post['eMail1Memb'])) and !empty($_post['eMail1Memb']))
+        and ((isset($_post['eMail2Memb'])) and !empty($_post['eMail2Memb']))
+        and ((isset($_post['TypStat'])) and !empty($_post['TypStat']))
+        and ($_post['TypStat'] != -1)
+        and (!empty($_post['Submit']) and ($Submit === "Valider"))
     ) {
 
         $erreur = false;
 
-        $numMemb = ctrlSaisies(($_POST['id']));
-        $prenomMemb = ctrlSaisies(($_POST['prenomMemb']));
-        $nomMemb = ctrlSaisies(($_POST['nomMemb']));
-        $passMemb = ctrlSaisies(($_POST['pass2Memb']));
-        $eMailMemb = ctrlSaisies(($_POST['eMail2Memb']));
-        $idStat = ctrlSaisies(($_POST['TypStat']));
+        $numMemb = ctrlSaisies(($_post['id']));
+        $prenomMemb = ctrlSaisies(($_post['prenomMemb']));
+        $nomMemb = ctrlSaisies(($_post['nomMemb']));
+        $passMemb = ctrlSaisies(($_post['pass2Memb']));
+        $eMailMemb = ctrlSaisies(($_post['eMail2Memb']));
+        $idStat = ctrlSaisies(($_post['TypStat']));
 
-        if ($eMailMemb != $_POST['eMail1Memb']) {
+        if ($eMailMemb != $_post['eMail1Memb']) {
 
             $erreur = true;
             $errSaisies =  "Les deux eMails ne correspondent pas !";
-        } elseif ($passMemb != $_POST['pass1Memb']) {
+        } elseif ($passMemb != $_post['pass1Memb']) {
 
             $erreur = true;
             $errSaisies =  "Les deux mots de passe ne correspondent pas !";
@@ -151,7 +151,7 @@ include __DIR__ . '/initMembre.php';
 
 
     ?>
-    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
 

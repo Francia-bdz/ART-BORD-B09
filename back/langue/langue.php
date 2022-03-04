@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD LANGUE (PDO) - Modifié : 4 Juillet 2021
+//  CRUD langue (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : langue.php  -  (ETUD)  BLOGART22
 //
@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 // Instanciation de la classe langue
 
-$maLangue = new LANGUE();
+$maLangue = new langue();
 
 
 // Ctrl CIR
@@ -89,7 +89,7 @@ if (isset($_GET['count'])) {
     ?>
         <br />
         <i>
-            <div class="error"><br>=>&nbsp;Erreur delete LANGUE : la suppression s'est mal passée !</div>
+            <div class="error"><br>=>&nbsp;Erreur delete langue : la suppression s'est mal passée !</div>
         </i>
     <?php
     }   // End of if ($errDel == 99)

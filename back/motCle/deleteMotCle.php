@@ -21,27 +21,27 @@ $monMotcle = new MOTCLE();
 // Insertion classe Langue
 require_once __DIR__ . '/../../class_crud/langue.class.php';
 // Instanciation de la classe Langue
-$maLangue = new LANGUE();
+$maLangue = new langue();
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En post
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
-    $numMotCle = ctrlSaisies(($_POST['id']));
+    $numMotCle = ctrlSaisies(($_post['id']));
 
-    if (isset($_POST['Submit'])) {
-        $Submit = $_POST['Submit'];
+    if (isset($_post['Submit'])) {
+        $Submit = $_post['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) and ($Submit === "Annuler")) {
+    if ((isset($_post["Submit"])) and ($Submit === "Annuler")) {
         header("Location: ./motCle.php");
     }
 
-    if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
+    if ((!empty($_post['Submit']) and ($Submit === "Valider"))) {
         // Saisies valides
 
-        $numMotCle = ctrlSaisies(($_POST['id']));
+        $numMotCle = ctrlSaisies(($_post['id']));
 
         $monMotcle->delete($numMotCle);
 
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }
-}   // Fin if ($_SERVER["REQUEST_METHOD"] === "POST")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] === "post")
 // Init variables form
 include __DIR__ . '/initMotCle.php';
 ?>
@@ -98,7 +98,7 @@ include __DIR__ . '/initMotCle.php';
 
 
     ?>
-    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
 

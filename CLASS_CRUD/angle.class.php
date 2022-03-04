@@ -7,7 +7,7 @@ class ANGLE{
 	function get_1Angle(string $numAngl) {
 		global $db;
 
-		$query='SELECT * FROM ANGLE NATURAL JOIN LANGUE WHERE numAngl= ?';
+		$query='SELECT * FROM ANGLE NATURAL JOIN langue WHERE numAngl= ?';
 		$result = $db->prepare($query);
 		$result->execute([$numAngl]);
 		return($result->fetch());
@@ -16,7 +16,7 @@ class ANGLE{
 	function get_1AngleByLang(string $numAngl) {
 		global $db;
 
-		$query='SELECT * FROM ANGLE AN INNER JOIN LA LANGUE ON AN.numLang=LA.numLang WHERE numAngl= ?';
+		$query='SELECT * FROM ANGLE AN INNER JOIN LA langue ON AN.numLang=LA.numLang WHERE numAngl= ?';
 		$result = $db->prepare($query);
 		$result->execute([$numAngl]);
 		return($result->fetch());
@@ -34,7 +34,7 @@ class ANGLE{
 	function get_AllAnglesByLang() {
 		global $db;
 
-		$query='SELECT * FROM ANGLE AN INNER JOIN LANGUE LA ON AN.numLang=LA.numLang ORDER BY lib1Lang';
+		$query='SELECT * FROM ANGLE AN INNER JOIN langue LA ON AN.numLang=LA.numLang ORDER BY lib1Lang';
 		$result = $db->query($query);
 		$allAnglesByLang=$result->fetchAll();
 		return($allAnglesByLang);
@@ -54,7 +54,7 @@ class ANGLE{
 	function getNextNumAngl($numLang) {
 		global $db;
 	
-		// Découpage FK LANGUE
+		// Découpage FK langue
 		$libLangSelect = substr($numLang, 0, 4);
 		$parmNumLang = $libLangSelect . '%';
 	
@@ -72,7 +72,7 @@ class ANGLE{
 				$numAngl = $tuple["numAngl"];
 	
 				$numAnglSelect = (int)substr($numAngl, 4, 2);
-				// No séquence suivant LANGUE
+				// No séquence suivant langue
 				$numSeq1Angl = $numAnglSelect + 1;
 				// Init no séquence ANGLE pour nouvelle lang
 				$numSeq2Angl = 1;
@@ -83,9 +83,9 @@ class ANGLE{
 				$tuple = $result->fetch();
 				$numAngl = $tuple["numAngl"];
 	
-				// No séquence actuel LANGUE
+				// No séquence actuel langue
 				$numSeq1Angl = (int)substr($numAngl, 4, 2);
-				// No séquence actuel LANGUE
+				// No séquence actuel langue
 				$numSeq2Angl = (int)substr($numAngl, 6, 2);
 				// No séquence suivant ANGLE
 				$numSeq2Angl++;

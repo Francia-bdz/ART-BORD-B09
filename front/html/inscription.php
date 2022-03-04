@@ -15,7 +15,7 @@ require_once __DIR__ . '/../../util/regex.php';
 
 // Instanciation de la classe Membre
 
-$monMembre = new MEMBRE();
+$monMembre = new membre();
 
 
 $prenomMemb = "";
@@ -31,39 +31,39 @@ $idMemb = "";
 $numMemb = "";
 $idStat = "";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
-    if (isset($_POST['Submit'])) {
-        $Submit = $_POST['Submit'];
+    if (isset($_post['Submit'])) {
+        $Submit = $_post['Submit'];
     } else {
         $Submit = "";
     }
 
-    if (((isset($_POST['prenomMemb'])) AND !empty($_POST['prenomMemb']))
-        AND ((isset($_POST['nomMemb'])) AND !empty($_POST['nomMemb']))
-        AND ((isset($_POST['pseudoMemb'])) AND !empty($_POST['pseudoMemb']))
-        AND ((isset($_POST['pass1Memb'])) AND !empty($_POST['pass1Memb']))
-        AND ((isset($_POST['pass2Memb'])) AND !empty($_POST['pass2Memb']))
-        AND((isset($_POST['eMail1Memb'])) AND !empty($_POST['eMail1Memb']))
-        AND((isset($_POST['eMail2Memb'])) AND !empty($_POST['eMail2Memb']))
-        AND((isset($_POST['accordMemb'])) AND !empty($_POST['accordMemb']))
-        AND (!empty($_POST['Submit']) AND ($Submit === "Valider"))) {
+    if (((isset($_post['prenomMemb'])) AND !empty($_post['prenomMemb']))
+        AND ((isset($_post['nomMemb'])) AND !empty($_post['nomMemb']))
+        AND ((isset($_post['pseudoMemb'])) AND !empty($_post['pseudoMemb']))
+        AND ((isset($_post['pass1Memb'])) AND !empty($_post['pass1Memb']))
+        AND ((isset($_post['pass2Memb'])) AND !empty($_post['pass2Memb']))
+        AND((isset($_post['eMail1Memb'])) AND !empty($_post['eMail1Memb']))
+        AND((isset($_post['eMail2Memb'])) AND !empty($_post['eMail2Memb']))
+        AND((isset($_post['accordMemb'])) AND !empty($_post['accordMemb']))
+        AND (!empty($_post['Submit']) AND ($Submit === "Valider"))) {
      
             
-            if (($_POST['accordMemb'])== "off"){
+            if (($_post['accordMemb'])== "off"){
                 $accordMemb = 0;
-            } elseif (($_POST['accordMemb']) == "on"){
+            } elseif (($_post['accordMemb']) == "on"){
                 $accordMemb = 1;
             }
             // else{
             //     $accordMemb = 0;
             // }
             
-            $prenomMemb = ctrlSaisies(($_POST['prenomMemb']));
-            $nomMemb = ctrlSaisies(($_POST['nomMemb']));
-            $pseudoMemb = ctrlSaisies(($_POST['pseudoMemb']));
-            $passMemb = ctrlSaisies(($_POST['pass2Memb']));
-            $eMailMemb = ctrlSaisies(($_POST['eMail2Memb']));
+            $prenomMemb = ctrlSaisies(($_post['prenomMemb']));
+            $nomMemb = ctrlSaisies(($_post['nomMemb']));
+            $pseudoMemb = ctrlSaisies(($_post['pseudoMemb']));
+            $passMemb = ctrlSaisies(($_post['pass2Memb']));
+            $eMailMemb = ctrlSaisies(($_post['eMail2Memb']));
             $dtCreaMemb = date('Y-m-d H:i:s');
             $idStat = 3;
 
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $errSaisies =  "Le pseudo existe déja!";
                 echo "Le pseudo existe déja!";
 
-            }elseif ($eMailMemb != $_POST['eMail1Memb']){
+            }elseif ($eMailMemb != $_post['eMail1Memb']){
                 
                 $erreur = true;
                 $errSaisies =  "Les deux eMails ne correspondent pas !";
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 echo "L'email n'est pas dans le bon format !";
 
             }
-            elseif ($passMemb != $_POST['pass1Memb']){
+            elseif ($passMemb != $_post['pass1Memb']){
                 
                 $erreur = true;
                 $errSaisies =  "Les deux mots de passe ne correspondent pas !";
@@ -283,7 +283,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
-    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
     <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
 

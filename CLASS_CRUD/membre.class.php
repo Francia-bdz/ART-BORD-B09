@@ -1,14 +1,14 @@
 <?php
-// CRUD MEMBRE
+// CRUD membre
 // ETUD
 // A tester sur Blog'Art
 require_once __DIR__ . '../../connect/database.php';
 
-class MEMBRE{
+class membre{
 	function get_1Membre($numMemb){
 		global $db;
 
-		$query='SELECT * FROM MEMBRE NATURAL JOIN STATUT WHERE numMemb= ?';
+		$query='SELECT * FROM membre NATURAL JOIN statut WHERE numMemb= ?';
 		$result = $db->prepare($query);
 		$result->execute([$numMemb]);
 		return($result->fetch());
@@ -17,7 +17,7 @@ class MEMBRE{
 	function get_1MembreByEmail($eMailMemb){
 		global $db;
 
-		$query='SELECT * FROM MEMBRE NATURAL JOIN STATUT WHERE eMailMemb= ?';
+		$query='SELECT * FROM membre NATURAL JOIN statut WHERE eMailMemb= ?';
 		$result = $db->prepare($query);
 		$result->execute([$eMailMemb]);
 		return($result->fetch());
@@ -26,7 +26,7 @@ class MEMBRE{
 	function get_AllMembres(){
 		global $db;
 
-		$query ='SELECT * FROM MEMBRE NATURAL JOIN STATUT ORDER BY numMemb;';
+		$query ='SELECT * FROM membre NATURAL JOIN statut ORDER BY numMemb;';
 		$result = $db->query($query);
 		$allMembres = $result->fetchAll();
 		return($allMembres);
@@ -35,7 +35,7 @@ class MEMBRE{
 	function get_ExistPseudo($pseudoMemb) {
 		global $db;
 
-		$query='SELECT * FROM MEMBRE WHERE pseudoMemb= ?';
+		$query='SELECT * FROM membre WHERE pseudoMemb= ?';
 		$request = $db->prepare($query);
 		$request->execute([$pseudoMemb]);
 		return($request->rowCount());
@@ -44,7 +44,7 @@ class MEMBRE{
 	function get_AllMembersByStat() {
 		global $db;
 
-		$query ='SELECT * FROM MEMBRE NATURAL JOIN STATUT ORDER BY numMemb;';
+		$query ='SELECT * FROM membre NATURAL JOIN statut ORDER BY numMemb;';
 		$result = $db->query($query);
 		$allMembersByStat = $result->fetchAll();
 		return($allMembersByStat);
@@ -53,7 +53,7 @@ class MEMBRE{
 	function get_NbAllMembersByidStat($idStat){
 		global $db;
 
-		$query = 'SELECT COUNT(*) FROM MEMBRE where idStat=? ;';
+		$query = 'SELECT COUNT(*) FROM membre where idStat=? ;';
 		$result = $db->prepare($query);
 		$result->execute([$idStat]);
 		$allNbMembersByStat = $result;
@@ -63,7 +63,7 @@ class MEMBRE{
 	function get_AllMembresByEmail($eMailMemb){
 		global $db;
 
-		$query='SELECT * FROM MEMBRE WHERE eMailMemb= ?';
+		$query='SELECT * FROM membre WHERE eMailMemb= ?';
 		$result = $db->prepare($query);
 		$result->execute([$eMailMemb]);
 		return($result->fetchAll());
@@ -76,7 +76,7 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO MEMBRE (prenomMemb, nomMemb, pseudoMemb, passMemb, eMailMemb, dtCreaMemb, accordMemb, idStat) VALUES (?,?,?,?,?,?,?,?)';
+			$query = 'INSERT INTO membre (prenomMemb, nomMemb, pseudoMemb, passMemb, eMailMemb, dtCreaMemb, accordMemb, idStat) VALUES (?,?,?,?,?,?,?,?)';
 			$request = $db->prepare($query);
 			$request->execute([$prenomMemb, $nomMemb, $pseudoMemb, $passMemb, $eMailMemb, $dtCreaMemb, $accordMemb, $idStat]);
 			$db->commit();
@@ -85,7 +85,7 @@ class MEMBRE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert MEMBRE : ' . $e->getMessage());
+			die('Erreur insert membre : ' . $e->getMessage());
 		}
 	}
 
@@ -95,7 +95,7 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 			
-				$query='UPDATE MEMBRE SET prenomMemb=?, nomMemb=?, passMemb=?, eMailMemb=?,idStat=? WHERE numMemb=?';
+				$query='UPDATE membre SET prenomMemb=?, nomMemb=?, passMemb=?, eMailMemb=?,idStat=? WHERE numMemb=?';
 				$request = $db->prepare($query);
 				$request->execute([$prenomMemb, $nomMemb, $passMemb, $eMailMemb, $idStat, $numMemb]);
 				$db->commit();
@@ -104,7 +104,7 @@ class MEMBRE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update MEMBRE : ' . $e->getMessage());
+			die('Erreur update membre : ' . $e->getMessage());
 		}
 	}
 
@@ -115,7 +115,7 @@ class MEMBRE{
 		try {
 			$db->beginTransaction();
 
-			$query='DELETE FROM MEMBRE WHERE numMemb=?';
+			$query='DELETE FROM membre WHERE numMemb=?';
 			$request = $db->prepare($query);
 			$request->execute([$numMemb]);
 			$count = $request->rowCount();
@@ -126,7 +126,7 @@ class MEMBRE{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete MEMBRE : ' . $e->getMessage());
+			die('Erreur delete membre : ' . $e->getMessage());
 		}
 	}
 }	// End of class

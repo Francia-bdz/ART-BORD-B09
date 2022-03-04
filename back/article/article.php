@@ -17,7 +17,7 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 // Insertion classe Article
-require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../class_crud/article.class.php';
 
 // Instanciation de la classe ARTICLE
 $monArticle = new ARTICLE ();
@@ -33,7 +33,6 @@ $monArticle = new ARTICLE ();
     <meta name="author" content="" />
     <style type="text/css">
             * {
-             margin: 0%;
             font-family: 'Roboto';
         }
         .error {

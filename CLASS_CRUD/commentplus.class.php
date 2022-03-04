@@ -15,7 +15,7 @@ class COMMENTPLUS{
 
 	function get_AllCommentPlus(){
 		global $db;
-		$query='SELECT * FROM ARTICLE AR INNER JOIN COMMENTPLUS CP ON CP.numArt= AR.numArt INNER JOIN COMMENT CO ON CO.numSeqCom=CP.numSeqCom INNER JOIN MEMBRE ME ON CO.numMemb=ME.numMemb';
+		$query='SELECT * FROM ARTICLE AR INNER JOIN COMMENTPLUS CP ON CP.numArt= AR.numArt INNER JOIN COMMENT CO ON CO.numSeqCom=CP.numSeqCom INNER JOIN membre ME ON CO.numMemb=ME.numMemb';
 		$result = $db->query($query);
 		return($result->fetchAll());
 	}

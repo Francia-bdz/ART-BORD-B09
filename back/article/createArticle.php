@@ -32,7 +32,7 @@ $monArticle = new ARTICLE();
 require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 // Instanciation de la classe Langue
-$maLangue = new LANGUE();
+$maLangue = new langue();
 
 // Insertion classe Angle
 require_once __DIR__ . '/../../class_crud/angle.class.php';
@@ -50,50 +50,50 @@ $maThematique = new THEMATIQUE();
 $erreur = false;
 
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En post
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
-    if (isset($_POST['Submit'])) {
-        $Submit = $_POST['Submit'];
+    if (isset($_post['Submit'])) {
+        $Submit = $_post['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
+    if ((isset($_post["Submit"])) and ($Submit === "Initialiser")) {
         header("Location: ./createArticle.php");
     }
 
-    if (((isset($_POST['libTitrArt'])) and !empty($_POST['libTitrArt']))
-        and ((isset($_POST['libChapoArt'])) and !empty($_POST['libChapoArt']))
-        and ((isset($_POST['libAccrochArt'])) and !empty($_POST['libAccrochArt']))
-        and ((isset($_POST['parag1Art'])) and !empty($_POST['parag1Art']))
-        and ((isset($_POST['libSsTitr1Art'])) and !empty($_POST['libSsTitr1Art']))
-        and ((isset($_POST['parag2Art'])) and !empty($_POST['parag2Art']))
-        and ((isset($_POST['libSsTitr2Art'])) and !empty($_POST['libSsTitr2Art']))
-        and ((isset($_POST['parag3Art'])) and !empty($_POST['parag3Art']))
-        and ((isset($_POST['libConclArt'])) and !empty($_POST['libConclArt']))
+    if (((isset($_post['libTitrArt'])) and !empty($_post['libTitrArt']))
+        and ((isset($_post['libChapoArt'])) and !empty($_post['libChapoArt']))
+        and ((isset($_post['libAccrochArt'])) and !empty($_post['libAccrochArt']))
+        and ((isset($_post['parag1Art'])) and !empty($_post['parag1Art']))
+        and ((isset($_post['libSsTitr1Art'])) and !empty($_post['libSsTitr1Art']))
+        and ((isset($_post['parag2Art'])) and !empty($_post['parag2Art']))
+        and ((isset($_post['libSsTitr2Art'])) and !empty($_post['libSsTitr2Art']))
+        and ((isset($_post['parag3Art'])) and !empty($_post['parag3Art']))
+        and ((isset($_post['libConclArt'])) and !empty($_post['libConclArt']))
         and isset($_FILES['monfichier']['tmp_name']) and !empty($_FILES['monfichier']['tmp_name'])
-        and ((isset($_POST['angle'])) and !empty($_POST['angle']))
-        and ($_POST['angle'] != -1)
-        and ((isset($_POST['thematique'])) and !empty($_POST['thematique']))
-        and ($_POST['thematique'] != -1)
-        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
+        and ((isset($_post['angle'])) and !empty($_post['angle']))
+        and ($_post['angle'] != -1)
+        and ((isset($_post['thematique'])) and !empty($_post['thematique']))
+        and ($_post['thematique'] != -1)
+        and (!empty($_post['Submit']) and ($Submit === "Valider"))
     ) {
 
         $erreur = false;
 
-        $dtCreArt = ctrlSaisies(($_POST['dtCreArt']));
-        $libTitrArt = ctrlSaisies(($_POST['libTitrArt']));
-        $libChapoArt = ctrlSaisies(($_POST['libChapoArt']));
-        $libAccrochArt = ctrlSaisies(($_POST['libAccrochArt']));
-        $parag1Art = ctrlSaisies(($_POST['parag1Art']));
-        $libSsTitr1Art = ctrlSaisies(($_POST['libSsTitr1Art']));
-        $parag2Art = ctrlSaisies(($_POST['parag2Art']));
-        $libSsTitr2Art = ctrlSaisies(($_POST['libSsTitr2Art']));
-        $parag3Art = ctrlSaisies(($_POST['parag3Art']));
-        $libConclArt = ctrlSaisies(($_POST['libConclArt']));
-        $numAngl = ctrlSaisies(($_POST['angle']));
-        $numThem = ctrlSaisies(($_POST['thematique']));
+        $dtCreArt = ctrlSaisies(($_post['dtCreArt']));
+        $libTitrArt = ctrlSaisies(($_post['libTitrArt']));
+        $libChapoArt = ctrlSaisies(($_post['libChapoArt']));
+        $libAccrochArt = ctrlSaisies(($_post['libAccrochArt']));
+        $parag1Art = ctrlSaisies(($_post['parag1Art']));
+        $libSsTitr1Art = ctrlSaisies(($_post['libSsTitr1Art']));
+        $parag2Art = ctrlSaisies(($_post['parag2Art']));
+        $libSsTitr2Art = ctrlSaisies(($_post['libSsTitr2Art']));
+        $parag3Art = ctrlSaisies(($_post['parag3Art']));
+        $libConclArt = ctrlSaisies(($_post['libConclArt']));
+        $numAngl = ctrlSaisies(($_post['angle']));
+        $numThem = ctrlSaisies(($_post['thematique']));
 
         require_once __DIR__ . '/ctrlerUploadImage.php';
 
@@ -104,20 +104,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         header("Location: ./article.php");
     } elseif (
         empty($_FILES['monfichier'])
-        and ((isset($_POST['libTitrArt'])) and !empty($_POST['libTitrArt']))
-        and ((isset($_POST['libChapoArt'])) and !empty($_POST['libChapoArt']))
-        and ((isset($_POST['libAccrochArt'])) and !empty($_POST['libAccrochArt']))
-        and ((isset($_POST['parag1Art'])) and !empty($_POST['parag1Art']))
-        and ((isset($_POST['libSsTitr1Art'])) and !empty($_POST['libSsTitr1Art']))
-        and ((isset($_POST['parag2Art'])) and !empty($_POST['parag2Art']))
-        and ((isset($_POST['libSsTitr2Art'])) and !empty($_POST['libSsTitr2Art']))
-        and ((isset($_POST['parag3Art'])) and !empty($_POST['parag3Art']))
-        and ((isset($_POST['libConclArt'])) and !empty($_POST['libConclArt']))
-        and ((isset($_POST['angle'])) and !empty($_POST['angle']))
-        and ($_POST['anglr'] != -1)
-        and ((isset($_POST['thematique'])) and !empty($_POST['thematique']))
-        and ($_POST['thematique'] != -1)
-        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
+        and ((isset($_post['libTitrArt'])) and !empty($_post['libTitrArt']))
+        and ((isset($_post['libChapoArt'])) and !empty($_post['libChapoArt']))
+        and ((isset($_post['libAccrochArt'])) and !empty($_post['libAccrochArt']))
+        and ((isset($_post['parag1Art'])) and !empty($_post['parag1Art']))
+        and ((isset($_post['libSsTitr1Art'])) and !empty($_post['libSsTitr1Art']))
+        and ((isset($_post['parag2Art'])) and !empty($_post['parag2Art']))
+        and ((isset($_post['libSsTitr2Art'])) and !empty($_post['libSsTitr2Art']))
+        and ((isset($_post['parag3Art'])) and !empty($_post['parag3Art']))
+        and ((isset($_post['libConclArt'])) and !empty($_post['libConclArt']))
+        and ((isset($_post['angle'])) and !empty($_post['angle']))
+        and ($_post['anglr'] != -1)
+        and ((isset($_post['thematique'])) and !empty($_post['thematique']))
+        and ($_post['thematique'] != -1)
+        and (!empty($_post['Submit']) and ($Submit === "Valider"))
     ) {
         // Saisies invalides
         $erreur = true;
@@ -156,7 +156,7 @@ include __DIR__ . '/initArticle.php';
     <h1>BLOGART22 Admin - CRUD Article</h1>
     <h2>Ajout d'un article</h2>
 
-    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8" id="chgLang">
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8" id="chgLang">
 
         <fieldset>
 
@@ -334,8 +334,8 @@ include __DIR__ . '/initArticle.php';
                         }
                     }
 
-                    // Traitement en POST
-                    xhr.open("POST", "./ajaxAngle.php", true);
+                    // Traitement en post
+                    xhr.open("post", "./ajaxAngle.php", true);
                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                     numLang = document.getElementById('langue').options[document.getElementById('langue').selectedIndex].value;
                     xhr.send("numLang=" + numLang);
@@ -392,8 +392,8 @@ include __DIR__ . '/initArticle.php';
                         }
                     }
 
-                    // Traitement en POST
-                    xhr.open("POST", "./ajaxThematique.php", true);
+                    // Traitement en post
+                    xhr.open("post", "./ajaxThematique.php", true);
                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                     numLang = document.getElementById('langue').options[document.getElementById('langue').selectedIndex].value;
                     xhr.send("numLang=" + numLang);

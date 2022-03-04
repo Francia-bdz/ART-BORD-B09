@@ -26,35 +26,35 @@ $monMotcle = new MOTCLE();
 require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 // Instanciation de la classe Langue
-$maLangue = new LANGUE();
+$maLangue = new langue();
 
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En post
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
 
-    if (isset($_POST['Submit'])) {
-        $Submit = $_POST['Submit'];
+    if (isset($_post['Submit'])) {
+        $Submit = $_post['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
+    if ((isset($_post["Submit"])) and ($Submit === "Initialiser")) {
         header("Location: ./createMotCle.php");
     }
 
-    if (((isset($_POST['libMotCle'])) and !empty($_POST['libMotCle']))
-        and ((isset($_POST['TypLang'])) and !empty($_POST['TypLang']))
-        and ($_POST['TypLang'] != -1)
-        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
+    if (((isset($_post['libMotCle'])) and !empty($_post['libMotCle']))
+        and ((isset($_post['TypLang'])) and !empty($_post['TypLang']))
+        and ($_post['TypLang'] != -1)
+        and (!empty($_post['Submit']) and ($Submit === "Valider"))
     ) {
 
         $erreur = false;
 
-        $libMotCle = ctrlSaisies(($_POST['libMotCle']));
-        $numLang = ctrlSaisies(($_POST['TypLang']));
+        $libMotCle = ctrlSaisies(($_post['libMotCle']));
+        $numLang = ctrlSaisies(($_post['TypLang']));
 
         // $numThem = $maThematique->getNextNumMoCle($numLang);
 
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }
-}   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] == "post")
 // Init variables form
 include __DIR__ . '/initMotCle.php';
 ?>
@@ -87,7 +87,7 @@ include __DIR__ . '/initMotCle.php';
     <h1>BLOGART22 Admin - CRUD Mot Clé</h1>
     <h2>Ajout d'un Mot Clé</h2>
 
-    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
 

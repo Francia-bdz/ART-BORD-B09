@@ -8,41 +8,41 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe Membre
 
-require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
 
-$monMembre = new MEMBRE();
+$monMembre = new membre();
 
 $eMailMemb = "";
 $passMembTest = "";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
-    if (isset($_POST['Submit'])) {
-        $Submit = $_POST['Submit'];
+    if (isset($_post['Submit'])) {
+        $Submit = $_post['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
+    if ((!empty($_post['Submit']) and ($Submit === "Valider"))) {
 
-        if (((isset($_POST['eMailMemb'])) and !empty($_POST['eMailMemb']))
-            and ((isset($_POST['passMembTest'])) and !empty($_POST['passMembTest']))
+        if (((isset($_post['eMailMemb'])) and !empty($_post['eMailMemb']))
+            and ((isset($_post['passMembTest'])) and !empty($_post['passMembTest']))
         ) {
 
-            $oneMembre = $monMembre->get_1MembreByEmail($_POST['eMailMemb']);
+            $oneMembre=$monMembre->get_1MembreByEmail($_post['eMailMemb']);
 
             if ($oneMembre != false) {
 
                 $eMailMemb = $oneMembre['eMailMemb'];
                 $passMemb = $oneMembre['passMemb'];
 
-                if ($passMemb == $_POST['passMembTest']) {
+                if ($passMemb == $_post['passMembTest']) {
 
-                    // (password_verify($_POST['passMemb'], $passMemb) === true);
+                    // (password_verify($_post['passMemb'], $passMemb) === true);
                     setcookie('eMailMemb', $eMailMemb, time() + 3600);
-                    header("Location: ./accueil.php");
+                    header("Location: ./cover.php");
                 } else {
                     echo "Mauvais Mot de passe";
                 }
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Connexion</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Roboto:wght@100&display=swap" rel="stylesheet">
 
     <style type="text/css">
         @font-face {
@@ -82,8 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         * {
             margin: 0%;
             padding: 0%;
-            font-family: 'Roboto', Arial;
-            font-weight: 400;
+            font-family: 'Roboto';
 
         }
 
@@ -94,13 +93,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         .Partie_Texte {
             margin-left: 3%;
-            margin-bottom: 3%;
         }
 
         h1 {
             font-family: "Bigilla", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             font-size: 200px;
-            font-weight: normal;
             text-align: center;
         }
 
@@ -169,6 +166,92 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         .Pas_encore_inscrit_lien:hover {
             color: #7798C9;
         }
+
+        
+        /* Footer */
+
+        footer {
+            margin-top: 4%;
+            background-color: #E1E1E1;
+        }
+
+        .title_and_rectangle {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 5%;
+        }
+
+        .title_footer {
+            font-family: 'Bigilla';
+            font-size: 80px;
+            font-weight: bold;
+            margin-top: 2%;
+        }
+
+        .rectangle_noir_footer {
+            align-self: center;
+            background-color: black;
+            width: 500px;
+            height: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .Plan_du_site {
+            display: flex;
+            font-family: 'Roboto', Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+
+        .li_Plan_du_site {
+            margin-bottom: 20%;
+            margin-top: 20%;
+        }
+
+        .Plan_du_site_1 {
+            margin-left: 5%;
+        }
+
+        .Plan_du_site_2 {
+            margin-left: 20%;
+        }
+
+        .Partie_Droit_Background {
+            margin-top: 2%;
+            background-color: #D2D2D2;
+        }
+
+        .Partie_Droit {
+            display: flex;
+            height: 50px;
+
+            font-family: 'Roboto', Arial, Helvetica, sans-serif;
+            font-weight: bold;
+
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-left: 5%;
+            margin-right: 10%;
+        }
+
+        a {
+            transition: color 0.3 ease-in-out;
+        }
+
+        a:hover {
+            color: #7798C9;
+        }
+
+
     </style>
 
     <link href="/front/sheets/connexion.css" rel="stylesheet" type="text/css" />
@@ -189,45 +272,75 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
-    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+<form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
 
-        <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
+<input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
 
 
-        <div class="title_and_rectangle_connexion">
-            <h1> BIENVENUE</h1>
-            <div class="rectangle_rouge"></div>
+    <div class="title_and_rectangle_connexion">
+        <h1> BIENVENUE</h1>
+        <div class="rectangle_rouge"></div>
+    </div>
+    <div class="Partie_Texte">
+        <div class="Partie_connexion">
+            <h2><span class="enluminure">C</span>onnexion</h2>
+
+            <div class="Pseudo_control connexion_control">
+                <label class="control-label" for="eMailMemb"><b>Adresse Mail:</b></label>
+                <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre adresse mail" value="<?= $eMailMemb ?>" autofocus />
+            </div>
+
+            <div class="Mdp_control connexion_control">
+
+                <label class="control-label" for="passMembTest"><b>Mot de passe:</b></label>
+                <input type="password" name="passMembTest" id="passMembTest" size="43" placeholder="Entrez votre mot de passe" value="<?= $passMembTest ?>" autofocus />
+                <br>
+                <div class="bouton_affichage_mdp">
+                    <input type="checkbox" onclick="myFunction('passMembTest')">
+                    &nbsp;&nbsp;
+                    <label><i>Afficher Mot de passe</i></label>
+                </div>
+            </div>
+            <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border-radius:5px;" name="Submit" />
+            
+        </form>
+
+            <p class="Pas_encore_inscrit">Pas encore inscrit ? <a href="#" class="Pas_encore_inscrit_lien"> Cliquez ici pour vous inscrire</a> </p>
+
         </div>
-        <div class="Partie_Texte">
-            <div class="Partie_connexion">
-                <h2><span class="enluminure">C</span>onnexion</h2>
+    </div>
 
-                <div class="Pseudo_control connexion_control">
-                    <label class="control-label" for="eMailMemb"><b>Adresse Mail:</b></label>
-                    <input type="text" name="eMailMemb" id="eMailMemb" size="50" placeholder="Entrez votre adresse mail" value="<?= $eMailMemb ?>" autofocus />
-                </div>
+    <footer>
+        <div class="title_and_rectangle">
+            <p class="title_footer">ART'BORD</p>
+            <div class="rectangle_noir_footer"></div>
+        </div>
+        <div class="Plan_du_site">
+            <div class="Plan_du_site_1"></div>
+            <ul>
+                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Accueil </a></li>
+                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Articles </a></li>
+                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> À propos</a></li>
+            </ul>
+            <div class="Plan_du_site_2"></div>
+            <ul>
+                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> Se connecter </a></li>
+                <li class="li_Plan_du_site"><a href="#" class="a_Plan_du_site"> S'inscrire</a></li>
+                <li class="li_Plan_du_site"><a href="./../../index1.php" class="a_Plan_du_site"> Partie Admin</a></li>
+            </ul>
+        </div>
+        <div class="Partie_Droit_Background">
+            <div class="Partie_Droit">
 
-                <div class="Mdp_control connexion_control">
+                <li><a href="#"> Mentions légales |</a></li>
+                <li><a href="#"> Conditions générales d'utilisation |</a></li>
+                <li><a href="#"> Cookies |</a></li>
+                <li><a href="#"> Protection des données |</a></li>
 
-                    <label class="control-label" for="passMembTest"><b>Mot de passe:</b></label>
-                    <input type="password" name="passMembTest" id="passMembTest" size="43" placeholder="Entrez votre mot de passe" value="<?= $passMembTest ?>" autofocus />
-                    <br>
-                    <div class="bouton_affichage_mdp">
-                        <input type="checkbox" onclick="myFunction('passMembTest')">
-                        &nbsp;&nbsp;
-                        <label><i>Afficher Mot de passe</i></label>
-                    </div>
-                </div>
-                <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border-radius:5px;" name="Submit" />
+            </div>
+        </div>
 
-    </form>
-
-    <p class="Pas_encore_inscrit">Pas encore inscrit ? <a href="<?= ROOTFRONT . '/front/html/' . 'inscription.php' ?>" class="Pas_encore_inscrit_lien"> Cliquez ici pour vous inscrire</a> </p>
-
-        
-
-    <?php require_once __DIR__ .  '/footer.php';
-    ?>
+    </footer>
 
 </body>

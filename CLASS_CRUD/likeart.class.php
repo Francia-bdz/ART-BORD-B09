@@ -1,13 +1,13 @@
 <?php
-// CRUD LIKEART
+// CRUD likeart
 // ETUD
 require_once __DIR__ . '../../connect/database.php';
 
-class LIKEART{
+class likeart{
 	function get_1LikeArt($numMemb, $numArt){
 		global $db;
 
-		$query='SELECT * FROM LIKEART WHERE (numMemb= ? AND numArt= ?)';
+		$query='SELECT * FROM likeart WHERE (numMemb= ? AND numArt= ?)';
 		$result = $db->prepare($query);
 		$result->execute([$numMemb, $numArt]);
 		return($result->fetch());
@@ -15,7 +15,7 @@ class LIKEART{
 
 	function get_AllLikesArt(){
 		global $db;
-		$query ='SELECT * FROM LIKEART;';
+		$query ='SELECT * FROM likeart;';
 		$result = $db->query($query);
 		$allLikesArt = $result->fetchAll();
 		return($allLikesArt);
@@ -24,7 +24,7 @@ class LIKEART{
 	function get_AllLikesArtByNumArt(){
 		global $db;
 
-		$query = 'SELECT * FROM MEMBRE ME INNER JOIN LIKEART LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt ;';
+		$query = 'SELECT * FROM membre ME INNER JOIN likeart LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt ;';
 		$result = $db->query($query);
 		$allLikesArtByNumArt = $result->fetchAll();
 		return($allLikesArtByNumArt);
@@ -33,7 +33,7 @@ class LIKEART{
 	function get_AllLikesArtByNumMemb(){
 		global $db;
 
-		$query = 'SELECT * FROM MEMBRE ME INNER JOIN LIKEART LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt ;';
+		$query = 'SELECT * FROM membre ME INNER JOIN likeart LKA ON ME.numMemb = LKA.numMemb INNER JOIN ARTICLE ART ON LKA.numArt = ART.numArt ;';
 		$result = $db->query($query);
 		$allLikesArtByNumMemb = $result->fetchAll();
 		return($allLikesArtByNumMemb);
@@ -42,7 +42,7 @@ class LIKEART{
 	function get_nbLikesArtByArticle($numArt){
 		global $db;
 
-		$query = 'SELECT COUNT(*) FROM LIKEART where numArt=? ;';
+		$query = 'SELECT COUNT(*) FROM likeart where numArt=? ;';
 		$result = $db->prepare($query);
 		$result->execute([$numArt]);
 		return($result->fetchAll());
@@ -51,7 +51,7 @@ class LIKEART{
 	function get_nbLikesArtByMembre($numMemb){
 		global $db;
 
-		$query = 'SELECT COUNT(*) FROM LIKEART where numMemb=? ;';
+		$query = 'SELECT COUNT(*) FROM likeart where numMemb=? ;';
 		$result = $db->prepare($query);
 		$result->execute([$numMemb]);
 		return($result->fetchAll());
@@ -63,7 +63,7 @@ class LIKEART{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO LIKEART (numMemb, numArt, likeA) VALUES (?,?,?)';
+			$query = 'INSERT INTO likeart (numMemb, numArt, likeA) VALUES (?,?,?)';
 			$request = $db->prepare($query);
 			$request->execute([$numMemb, $numArt, $likeA]);
 			$db->commit();
@@ -72,7 +72,7 @@ class LIKEART{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert LIKEART : ' . $e->getMessage());
+			die('Erreur insert likeart : ' . $e->getMessage());
 		}
 	}
 
@@ -82,7 +82,7 @@ class LIKEART{
 		try {
 			$db->beginTransaction();
 
-			$query='UPDATE LIKEART SET numArt=?, likeA=? WHERE numMemb=?';
+			$query='UPDATE likeart SET numArt=?, likeA=? WHERE numMemb=?';
 			$request = $db->prepare($query);
 			$request->execute([$numArt, $likeA, $numMemb]);
 			$db->commit();
@@ -91,7 +91,7 @@ class LIKEART{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update LIKEART : ' . $e->getMessage());
+			die('Erreur update likeart : ' . $e->getMessage());
 		}
 	}
 
@@ -102,7 +102,7 @@ class LIKEART{
 		try {
 			$db->beginTransaction();
 
-			$query='INSERT OR UPDATE LIKEART WHERE (numMemb=? AND numArt=?)';
+			$query='INSERT OR UPDATE likeart WHERE (numMemb=? AND numArt=?)';
 			$request = $db->prepare($query);
 			$request->execute([$numMemb,$numArt]);
 			$db->commit();
@@ -111,7 +111,7 @@ class LIKEART{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert Or Update LIKEART : ' . $e->getMessage());
+			die('Erreur insert Or Update likeart : ' . $e->getMessage());
 		}
 	}
 
@@ -122,7 +122,7 @@ class LIKEART{
 		try {
 			$db->beginTransaction();
 
-			$query='DELETE FROM LIKEART WHERE (numMemb=? AND numArt=?)';
+			$query='DELETE FROM likeart WHERE (numMemb=? AND numArt=?)';
 			$request = $db->prepare($query);
 			$request->execute([$numMemb, $numArt]);
 			$count = $request->rowCount();
@@ -133,7 +133,7 @@ class LIKEART{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete LIKEART : ' . $e->getMessage());
+			die('Erreur delete likeart : ' . $e->getMessage());
 		}
 	}
 }	// End of class

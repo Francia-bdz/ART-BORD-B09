@@ -1,13 +1,13 @@
 <?php
-// CRUD STATUT
+// CRUD statut
 
 require_once __DIR__ . '../../connect/database.php';
 
-class STATUT{
+class statut{
 	function get_1Statut($idStat){
 		global $db;
 
-		$query='SELECT * FROM STATUT WHERE idStat= ?';
+		$query='SELECT * FROM statut WHERE idStat= ?';
 		$request = $db->prepare($query);
 		$request->execute([$idStat]);
 		return($request->fetch());
@@ -15,7 +15,7 @@ class STATUT{
 
 	function get_AllStatuts(){
 		global $db;
-		$query ='SELECT * FROM STATUT;';
+		$query ='SELECT * FROM statut;';
 		$result = $db->query($query);
 		$allStatuts= $result->fetchAll();
 		return($allStatuts);
@@ -27,7 +27,7 @@ class STATUT{
 		try {
 			$db->beginTransaction();
 
-			$query = 'INSERT INTO STATUT(libStat) VALUES (?)';
+			$query = 'INSERT INTO statut(libStat) VALUES (?)';
 			$request = $db->prepare($query);
 			$request->execute([$libStat]);
 			$db->commit();
@@ -36,7 +36,7 @@ class STATUT{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur insert STATUT : ' . $e->getMessage());
+			die('Erreur insert statut : ' . $e->getMessage());
 		}
 	}
 
@@ -46,7 +46,7 @@ class STATUT{
 		try {
 			$db->beginTransaction();
 
-			$query='UPDATE STATUT SET libStat=? WHERE idStat=?';
+			$query='UPDATE statut SET libStat=? WHERE idStat=?';
 			$request = $db->prepare($query);
 			$request->execute([$libStat, $idStat]);
 			$db->commit();
@@ -55,7 +55,7 @@ class STATUT{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur update STATUT : ' . $e->getMessage());
+			die('Erreur update statut : ' . $e->getMessage());
 		}
 	}
 
@@ -65,7 +65,7 @@ class STATUT{
 		try {
 			$db->beginTransaction();
 
-			$query='DELETE FROM STATUT WHERE idStat=?';
+			$query='DELETE FROM statut WHERE idStat=?';
 			$request = $db->prepare($query);
 			$request->execute([$idStat]);
 			$count = $request->rowCount(); //
@@ -76,7 +76,7 @@ class STATUT{
 		catch (PDOException $e) {
 			$db->rollBack();
 			$request->closeCursor();
-			die('Erreur delete STATUT : ' . $e->getMessage());
+			die('Erreur delete statut : ' . $e->getMessage());
 		}
 	}
 }	// End of class

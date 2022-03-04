@@ -16,7 +16,7 @@ class ARTICLE{
 	function get_1ArticleAnd3FK($numArt){
 		global $db;
 
-		$query='SELECT * FROM ARTICLE AR INNER JOIN ANGLE AN ON AR.numAngl= AN.numAngl INNER JOIN THEMATIQUE TH ON AR.numThem= TH.numThem INNER JOIN LANGUE LA ON LA.numLang= TH.numLang WHERE numArt= ?';
+		$query='SELECT * FROM ARTICLE AR INNER JOIN ANGLE AN ON AR.numAngl= AN.numAngl INNER JOIN THEMATIQUE TH ON AR.numThem= TH.numThem INNER JOIN langue LA ON LA.numLang= TH.numLang WHERE numArt= ?';
 		$result = $db->prepare($query);
 		$result->execute([$numArt]);
 		return($result->fetch());

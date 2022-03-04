@@ -26,7 +26,7 @@ $monComment = new COMMENT();
 require_once __DIR__ . '/../../class_crud/membre.class.php';
 
 // Instanciation de la classe Membre
-$monMembre = new MEMBRE();
+$monMembre = new membre();
 
 // Insertion classe Article
 
@@ -38,31 +38,31 @@ $monArticle = new ARTICLE();
 // Gestion des erreurs de saisie
 $erreur = false;
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
-    if (isset($_POST['Submit'])) {
-        $Submit = $_POST['Submit'];
+    if (isset($_post['Submit'])) {
+        $Submit = $_post['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) and ($Submit === "Initialiser")) {
+    if ((isset($_post["Submit"])) and ($Submit === "Initialiser")) {
         header("Location: ./createComment.php");
     }
 
-    if (((isset($_POST['TypMemb'])) and !empty($_POST['TypMemb']))
-        and ($_POST['TypMemb'] != -1) and
-        ((isset($_POST['TypArt'])) and !empty($_POST['TypArt']))
-        and ($_POST['TypArt'] != -1)
-        and ((isset($_POST['libCom'])) and !empty($_POST['libCom']))
-        and (!empty($_POST['Submit']) and ($Submit === "Valider"))
+    if (((isset($_post['TypMemb'])) and !empty($_post['TypMemb']))
+        and ($_post['TypMemb'] != -1) and
+        ((isset($_post['TypArt'])) and !empty($_post['TypArt']))
+        and ($_post['TypArt'] != -1)
+        and ((isset($_post['libCom'])) and !empty($_post['libCom']))
+        and (!empty($_post['Submit']) and ($Submit === "Valider"))
     ) {
 
         $erreur = false;
 
-        $numMemb = ctrlSaisies(($_POST['TypMemb']));
-        $numArt = ctrlSaisies(($_POST['TypArt']));
-        $libCom = ctrlSaisies(($_POST['libCom']));
+        $numMemb = ctrlSaisies(($_post['TypMemb']));
+        $numArt = ctrlSaisies(($_post['TypArt']));
+        $libCom = ctrlSaisies(($_post['libCom']));
 
         $numSeqCom = $monComment->getNextNumCom($numArt);
 
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";
     }
-}   // Fin if ($_SERVER["REQUEST_METHOD"] == "POST")
+}   // Fin if ($_SERVER["REQUEST_METHOD"] == "post")
 // Init variables form
 include __DIR__ . '/initComment.php';
 // Var init
@@ -102,7 +102,7 @@ include __DIR__ . '/initComment.php';
     <h1>BLOGART22 Admin - CRUD Commentaire</h1>
     <h2>Ajout d'un commentaire</h2>
 
-    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
             

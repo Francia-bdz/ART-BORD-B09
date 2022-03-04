@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../class_crud/langue.class.php';
 
 // Instanciation de la classe langue
 
-$maLangue = new LANGUE();
+$maLangue = new langue();
 
 $monPays = new PAYS();
 
@@ -47,28 +47,28 @@ $monMotcle = new MOTCLE();
 // Gestion des erreurs de saisie
 $erreur = false;
 
-// Gestion du $_SERVER["REQUEST_METHOD"] => En POST
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+// Gestion du $_SERVER["REQUEST_METHOD"] => En post
+if ($_SERVER["REQUEST_METHOD"] === "post") {
 
 
-    $numLang = ctrlSaisies(($_POST['id']));
+    $numLang = ctrlSaisies(($_post['id']));
 
-    if (isset($_POST['Submit'])) {
-        $Submit = $_POST['Submit'];
+    if (isset($_post['Submit'])) {
+        $Submit = $_post['Submit'];
     } else {
         $Submit = "";
     }
 
-    if ((isset($_POST["Submit"])) and ($Submit === "Annuler")) {
+    if ((isset($_post["Submit"])) and ($Submit === "Annuler")) {
         header("Location: ./langue.php");
     }
 
 
-    if ((!empty($_POST['Submit']) and ($Submit === "Valider"))) {
+    if ((!empty($_post['Submit']) and ($Submit === "Valider"))) {
         // Saisies valides
         $erreur = false;
 
-        $numLang = ctrlSaisies(($_POST['id']));
+        $numLang = ctrlSaisies(($_post['id']));
 
         $arrayTheme = $maThematique->get_NbAllThematiquesBynumLang($numLang);
         $arrayAngle = $monAngle->get_NbAllAnglesBynumLang($numLang);
@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($countTheme < 1 and $countAngle < 1 and $countMotcle < 1) {
             $erreur = false;
 
-            $numLang = ctrlSaisies(($_POST['id']));
+            $numLang = ctrlSaisies(($_post['id']));
 
             $maLangue->delete($numLang);
 
@@ -136,7 +136,7 @@ include __DIR__ . '/initLangue.php';
 
 
     ?>
-    <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
+    <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data" accept-charset="UTF-8">
 
         <fieldset>
 
