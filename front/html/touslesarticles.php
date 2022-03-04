@@ -222,19 +222,15 @@ $monArticle = new article ();
         ?>
 
     </div>
-<<<<<<< HEAD
     <h1 class="couleur_h1"> articleS </h1>
     <div class="ligne_jaune"></div>
 </section>
 
-<p class="p_intro">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-    fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-    velit libero distinctio saepe.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    Totam esse dolorum iusto mollitia et blanditiis, culpa dicta
-    fugiat tempore qui! Accusantium optio, dicta illo cumque numquam
-    velit libero distinctio saepe.</p>
+<p class="p_intro">Retrouvez ici nos différents articles et présentations. 
+    Vous pourrez alors découvrir des nouveautés ou relire vos articles favoris ! 
+    En recherche d’originalité et d’articles variés ? 
+    Vous trouverez des pépites même dans nos anciens articles ! 
+    Bonne lecture à vous ! </p>
 
 
 <div class="articles_div">
@@ -264,9 +260,6 @@ $monArticle = new article ();
 ?>
 
 </div>
-=======
-</body>
->>>>>>> b5360f35feed222606bad78134d200a9a5eae116
 
 <?php require_once __DIR__ .  '/footer.php';
 ?>
