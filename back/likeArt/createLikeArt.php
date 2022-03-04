@@ -16,7 +16,7 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../util/delAccents.php';
 
 // Instanciation de la classe Likeart
-require_once __DIR__ . '/../../class_crud/likeArt.class.php';
+require_once __DIR__ . '/../../class_crud/likeart.class.php';
 
 // Insertion classe Likeart
 $monLikeArt = new likeart();
@@ -31,8 +31,8 @@ $monMembre = new membre();
 
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe ARTICLE
-$monArticle = new ARTICLE();
+// Instanciation de la classe article
+$monArticle = new article();
 
 // Gestion des erreurs de saisie
 $erreur = false;
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "post") {
 
         $monLikeArt->create($numMemb, $numArt, $likeA);
 
-        header("Location: ./likeArt.php");
+        header("Location: ./likeart.php");
     } else {
         $erreur = true;
         $errSaisies =  "Erreur, la saisie est obligatoire !";

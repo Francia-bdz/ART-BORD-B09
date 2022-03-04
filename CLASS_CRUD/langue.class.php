@@ -127,7 +127,7 @@ class langue{
 		}
 	}
 
-	// Ctrl FK sur THEMATIQUE, ANGLE, MOTCLE avec del
+	// Ctrl FK sur THEMATIQUE, angle, motcle avec del
 	function delete($numLang){
 		global $db;
 

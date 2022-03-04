@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD COMMENT (PDO) - Modifié : 4 Juillet 2021
+//  CRUD comment (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : updateComment.php  -  (ETUD)  BLOGART22
 //

@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD COMMENT (PDO) - Modifié : 4 Juillet 2021
+//  CRUD comment (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : comment.php  -  (ETUD)  BLOGART22
 //
@@ -20,8 +20,8 @@ require_once __DIR__ . '/../../util/dateChangeFormat.php';
 
 require_once __DIR__ . '/../../class_crud/comment.class.php';
 
-// Instanciation de la classe COMMENT
-$monComment = new COMMENT();
+// Instanciation de la classe comment
+$monComment = new comment();
 
 
 ?>

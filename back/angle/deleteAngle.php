@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD ANGLE (PDO) - Modifié : 4 Juillet 2021
+//  CRUD angle (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : deleteAngle.php  -  (ETUD)  BLOGART22
 //
@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe angle
 
-$monAngle = new ANGLE();
+$monAngle = new angle();
 
 // Insertion classe Langue
 require_once __DIR__ . '/../../class_crud/langue.class.php';
@@ -31,8 +31,8 @@ $maLangue = new langue();
 // Insertion classe Article
 require_once __DIR__ . '/../../class_crud/article.class.php';
 
-// Instanciation de la classe ARTICLE
-$monArticle = new ARTICLE ();
+// Instanciation de la classe article
+$monArticle = new article ();
 
 
 // Gestion des erreurs de saisie

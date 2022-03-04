@@ -1,7 +1,7 @@
 <?php
 ////////////////////////////////////////////////////////////
 //
-//  CRUD ANGLE (PDO) - Modifié : 4 Juillet 2021
+//  CRUD angle (PDO) - Modifié : 4 Juillet 2021
 //
 //  Script  : createAngle.php  -  (ETUD)  BLOGART22
 //
@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../class_crud/angle.class.php';
 
 // Instanciation de la classe angle
 
-$monAngle = new ANGLE();
+$monAngle = new angle();
 
 // Insertion classe Langue
 require_once __DIR__ . '/../../class_crud/langue.class.php';
