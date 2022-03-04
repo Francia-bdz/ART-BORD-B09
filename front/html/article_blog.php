@@ -347,10 +347,7 @@ if (isset($_GET['id'])) {
 
     </div>
 
-    <div class="mis_en_page_commentaire">
-        <h3 class="h3_commentaire">Likes</h3>
-    </div>
-
+<!-- On ne peut que voir les commentaires mais pas aimé ou encore faire un commentaire -->
 
     <div class="mis_en_page_commentaire">
         <h3 class="h3_commentaire">Commentaires</h3>

@@ -49,17 +49,6 @@ require_once __DIR__ . '/../../class_crud/thematique.class.php';
 $maThematique = new THEMATIQUE();
 
 
-// Insertion classe MotCleArticle
-
-// Instanciation de la classe MotCleArticle
-
-
-// Insertion classe MotCle
-
-// Instanciation de la classe MotCle
-
-
-
 // Gestion des erreurs de saisie
 $erreur = false;
 // dossier images
@@ -268,6 +257,8 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
         </div>
 
         <br>
+
+        <!-- Nous avons essayé de garder l'image en upload mais n'avons pas réussi  -->
         <div class="control-group">
             <label class="control-label" for="urlPhotArt"><b>Importez l'illustration :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
             <div class="controls">
@@ -288,6 +279,9 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
     <!-- Listbox Langue -->
+
+            <!-- Avec l'ajax, nous n'avons pas réussi à garder les listboxs deja sélectionnés -->
+
     <div class="control-group">
             <div class="controls">      
 
@@ -310,7 +304,7 @@ $urlPhotArt = "../uploads/imgArt2dd0b196b8b4e0afb45a748c3eba54ea.png";
                         $listlib1lang = $row["lib1Lang"];
                         if($numLang == $row['numLang']){
                             ?>
-                            <option value="<?= $listNumLang; ?>" selected>
+                            <option value="<?= $listNumLang; ?>" >
                                 <?= $listlib1lang; ?>
                             </option>
                         <?php
